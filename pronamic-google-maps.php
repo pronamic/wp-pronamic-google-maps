@@ -37,10 +37,23 @@ function pronamic_get_google_maps_meta() {
 	return $meta;
 }
 
+function pronamic_google_maps_title($arguments) {
+	$pgm = pronamic_get_google_maps_meta();
+
+	echo $pgm->title;
+}
+
+function pronamic_google_maps_description($arguments) {
+	$pgm = pronamic_get_google_maps_meta();
+
+	echo $pgm->description;
+}
+
 function pronamic_google_maps($arguments) {
 	$defaults = array(
 		'width' => 500 ,
-		'height' => 300 
+		'height' => 300 , 
+		'static' => false 
 	);
 
 	$arguments = wp_parse_args($arguments, $defaults);
@@ -75,14 +88,8 @@ function pronamic_google_maps($arguments) {
 
 		<input type="hidden" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" />
 		<input type="hidden" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" />
-
-		<h3 class="pgm-title">
-			<?php echo $pgm->title; ?>
-		</h3>
-
-		<p class="pgm-description">
-			<?php echo $pgm->description; ?>
-		</p>
+		<input type="hidden" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($pgm->title); ?>" />
+		<input type="hidden" name="<?php echo Pronamic_Google_Maps::META_KEY_DESCRIPTION; ?>" value="<?php echo esc_attr($pgm->description); ?>" />
 
 		<p class="pgm-static-map">
 			<img src="<?php echo $url; ?>" alt="" />

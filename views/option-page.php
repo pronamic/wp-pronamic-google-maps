@@ -31,8 +31,6 @@ $activeTypes = $options['active'];
 
 						<div class="inside">
 
-							<!-- INSIDE START -->
-
 							<table class="form-table">
 
 								<?php foreach($types as $name => $type): ?>
@@ -61,8 +59,6 @@ $activeTypes = $options['active'];
 							<p class="submit">
 								<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN) ?>" />
 							</p>
-
-							<!-- INSIDE END -->
 
 					</div>
 				</div>
@@ -148,17 +144,41 @@ $activeTypes = $options['active'];
 				<h3 class="hndle"><span>Latest news from Pronamic</span></h3>
 
 				<div class="inside">
+
+					<?php 
+					
+					include_once(ABSPATH . WPINC . '/feed.php');
+
+					$rss = fetch_feed('http://feeds.feedburner.com/pronamic');
+					$rssItems = $rss->get_items(0, $rss->get_item_quantity(5));
+
+					if($rssItems): ?>
+
 					<ul>
+						<?php foreach($rssItems as $item): ?>
+
 						<li class="pronamic">
-							no news items, feed might be broken...
+							<a class="rsswidget" href="<?php echo esc_url($item->get_permalink(), $protocolls = null, 'display'); ?>">
+								<?php echo htmlentities($item->get_title()); ?>
+							</a>
 						</li>
-						<li class="rss">
-							<a href="http://pronamic.nl/feed/">Subscribe with RSS</a>
-						</li>
-						<li class="email">
-							<a href="http://pronamic.nl/">Subscribe by e-mail</a>
-						</li>
+
+						<?php endforeach; ?>
 					</ul>
+
+					<?php else: ?>
+					
+					<p>
+						no news items, feed might be broken...
+					</p>
+
+					<?php endif; ?>
+
+					<p>
+						<a href="http://feeds.feedburner.com/pronamic">Subscribe with RSS</a>
+
+						<a href="http://pronamic.nl/">Subscribe by e-mail</a>
+					</p>
 				</div>
 			</div>
 		</div>
