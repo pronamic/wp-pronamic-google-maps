@@ -30,6 +30,25 @@ For example: if a developer registers a custom post type for *real estate* it is
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
+You should add some code to you templates to add the Google Map.
+
+*Dynamic Google Maps*
+
+	pronamic_google_maps(array(
+		'width' => 290 ,
+		'height' => 200 
+	));
+
+*Static Google Maps*
+	
+	pronamic_google_maps(array(
+		'width' => 290 ,
+		'height' => 200 ,
+		'static' => true ,
+		'color' => '0xFFD800' ,
+		'label' => 'M'
+	));
+
 == Screenshots ==
 
 1. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
