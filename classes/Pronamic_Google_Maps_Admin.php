@@ -32,6 +32,7 @@ class Pronamic_Google_Maps_Admin {
 		add_action('admin_init', array($this, 'initialize'));
 		add_action('admin_head', array($this, 'renderHead'));
 		add_action('save_post', array($this, 'savePost'));
+		add_filter('plugin_action_links_' . Pronamic_Google_Maps::$baseName, array($this, 'actionLinks'));
 
 		new Pronamic_Google_Maps_OptionPage();
 	}
@@ -71,7 +72,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function registerType($type) {
 		$metaBox = new Pronamic_Google_Maps_MetaBox();
 
-		add_meta_box('pronamic_google_maps', __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN), array($metaBox, 'render'), $name);
+		add_meta_box('pronamic_google_maps', __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN), array($metaBox, 'render'), $type);
 	}
 
 	//////////////////////////////////////////////////
@@ -105,12 +106,16 @@ class Pronamic_Google_Maps_Admin {
 		$active = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
 		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
+		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
 		$title = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_TITLE, FILTER_SANITIZE_STRING);
 		$description = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_DESCRIPTION, FILTER_SANITIZE_STRING);
 
 		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_ACTIVE, $active ? 'true' : 'false');
 		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_LATITUDE, $latitude);
 		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_LONGITUDE, $longitude);
+		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_MAP_TYPE, $mapType);
+		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_ZOOM, $zoom);
 		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_TITLE, $title);
 		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_DESCRIPTION, $description);
 	}
@@ -121,7 +126,7 @@ class Pronamic_Google_Maps_Admin {
 	 * Save the options
 	 */
 	public function saveOptions() {
-		$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
 
 		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME)) {
 			$options = Pronamic_Google_Maps::getOptions();
@@ -157,5 +162,23 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public function doingAutosave() {
 		return defined('DOING_AUTOSAVE') && DOING_AUTOSAVE;
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Action links 
+	 * 
+	 * @param array $links
+	 * @param string $file
+	 */
+	public function actionLinks($links) {
+		$url = admin_url('options-general.php?page=' . Pronamic_Google_Maps_OptionPage::SLUG);
+
+		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
+
+		array_unshift($links, $link);
+
+		return $links;
 	}
 }
