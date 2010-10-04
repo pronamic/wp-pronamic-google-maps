@@ -32,14 +32,14 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 You should add some code to you templates to add the Google Map.
 
-*Dynamic Google Maps*
+**Dynamic Google Maps**
 
 	pronamic_google_maps(array(
 		'width' => 290 ,
 		'height' => 200 
 	));
 
-*Static Google Maps*
+**Static Google Maps**
 	
 	pronamic_google_maps(array(
 		'width' => 290 ,
