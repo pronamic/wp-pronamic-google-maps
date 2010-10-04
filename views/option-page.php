@@ -21,7 +21,7 @@ $activeTypes = $options['active'];
 
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
 
-			<div class="postbox-container" style="width:65%;">
+			<div class="postbox-container" style="width: 64%; margin-right: 1%;">
 				<div class="metabox-holder"><div class="meta-box-sortables"> 
 					<?php include 'option-page-post-types.php'; ?>
 				</div></div>
