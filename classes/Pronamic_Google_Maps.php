@@ -234,7 +234,7 @@ class Pronamic_Google_Maps {
 	
 			$parameters = array();
 			$parameters['center'] = $pgm->latitude . ',' . $pgm->longitude;
-			$parameters['zoom'] = 12;
+			$parameters['zoom'] = $pgm->zoom;
 			$parameters['size'] = $arguments['width'] . 'x' . $arguments['height'];
 			$parameters['maptype'] = $pgm->mapType;
 			$parameters['sensor'] = 'false';

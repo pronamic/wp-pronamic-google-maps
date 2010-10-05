@@ -58,3 +58,15 @@ You should add some code to you templates to add the Google Map.
 ==Readme Generator== 
 
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
+
+== Changelog ==
+
+= 1.2 =
+* Fixed bug with fixed zoom value of 12 on static Google Maps
+* Added translation options (Dutch language added)
+ 
+= 1.1 =
+* Added static and dynamic Google Maps support 
+
+= 1.0 =
+* Initial release
