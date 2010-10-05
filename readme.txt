@@ -64,6 +64,7 @@ This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/
 = 1.2 =
 * Fixed bug with fixed zoom value of 12 on static Google Maps
 * Added translation options (Dutch language added)
+* Changed the latitude and longitude fields from text to hidden
  
 = 1.1 =
 * Added static and dynamic Google Maps support 
