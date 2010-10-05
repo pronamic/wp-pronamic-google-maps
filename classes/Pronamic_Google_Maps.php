@@ -14,7 +14,7 @@ class Pronamic_Google_Maps {
 	 *
 	 * @var string
 	 */
-	const TEXT_DOMAIN = 'pronamic_google_maps';
+	const TEXT_DOMAIN = 'pronamic-google-maps';
 
 	//////////////////////////////////////////////////
 

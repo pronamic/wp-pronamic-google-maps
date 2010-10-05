@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pronamic Google Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-05 16:11+0100\n"
-"PO-Revision-Date: 2010-10-05 16:19+0100\n"
+"POT-Creation-Date: 2010-10-05 16:28+0100\n"
+"PO-Revision-Date: 2010-10-05 16:29+0100\n"
 "Last-Translator: Remco Tolsma <remco@pronamic.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "MIME-Version: 1.0\n"
@@ -106,6 +106,10 @@ msgstr "Post typen"
 #: views/option-page-post-types.php:26
 msgid "Activate Google Maps functionality"
 msgstr "Activeer Google Maps functionaliteit"
+
+#: views/option-page-post-types.php:37
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
 
 #: views/option-page-support.php:5
 msgid "Found a bug?"
