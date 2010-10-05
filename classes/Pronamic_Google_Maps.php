@@ -128,6 +128,9 @@ class Pronamic_Google_Maps {
 			$this->setDefaultOptions();
 		}
 
+		$relPath = dirname(self::$baseName) . '/languages';
+		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
+
 		if(is_admin()) {
 			$admin = new Pronamic_Google_Maps_Admin($this);
 		} else {
