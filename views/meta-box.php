@@ -6,6 +6,11 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 
 ?>
 <div id="pronamic-google-maps">
+	<input id="pronamic-latitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="hidden" />
+	<input id="pronamic-longitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" type="hidden" />
+	<input id="pronamic-google-maps-map-type" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" type="hidden" />
+	<input id="pronamic-google-maps-zoom" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" type="hidden" />
+
 	<table class="form-table">
 		<tr>
 			<th scope="row">
@@ -14,22 +19,6 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 			<td>
 				<input id="pronamic-google-maps-active" name="<?php echo Pronamic_Google_Maps::META_KEY_ACTIVE; ?>" value="true" type="checkbox" <?php if($pgm->active): ?>checked="checked"<?php endif; ?> /> 
 				<label for="pronamic-google-maps-active"><?php echo _e('Show Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<label for="pronamic-latitude-field"><?php echo _e('Latitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
-			</td>
-			<td>
-				<input id="pronamic-latitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="text" />
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<label for="pronamic-longitude-field"><?php echo _e('Longitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
-			</th>
-			<td>
-				<input id="pronamic-longitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" type="text" />
 			</td>
 		</tr>
 		<tr>
@@ -49,9 +38,6 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 			</td>
 		</tr>
 	</table>
-	
-	<input id="pronamic-google-maps-map-type" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" type="hidden" />
-	<input id="pronamic-google-maps-zoom" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" type="hidden" />
-	
+
 	<div id="pronamic-google-maps-canvas" style="width=100%; height:500px;"></div>
 </div>

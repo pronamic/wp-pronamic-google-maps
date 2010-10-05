@@ -14,7 +14,7 @@ class Pronamic_Google_Maps {
 	 *
 	 * @var string
 	 */
-	const TEXT_DOMAIN = 'pronamic_google_maps';
+	const TEXT_DOMAIN = 'pronamic-google-maps';
 
 	//////////////////////////////////////////////////
 
@@ -128,6 +128,9 @@ class Pronamic_Google_Maps {
 			$this->setDefaultOptions();
 		}
 
+		$relPath = dirname(self::$baseName) . '/languages';
+		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
+
 		if(is_admin()) {
 			$admin = new Pronamic_Google_Maps_Admin($this);
 		} else {
@@ -231,7 +234,7 @@ class Pronamic_Google_Maps {
 	
 			$parameters = array();
 			$parameters['center'] = $pgm->latitude . ',' . $pgm->longitude;
-			$parameters['zoom'] = 12;
+			$parameters['zoom'] = $pgm->zoom;
 			$parameters['size'] = $arguments['width'] . 'x' . $arguments['height'];
 			$parameters['maptype'] = $pgm->mapType;
 			$parameters['sensor'] = 'false';
