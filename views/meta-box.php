@@ -5,9 +5,9 @@ $pgm = pronamic_get_google_maps_meta();
 wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 
 ?>
-<div id="pronamic-google-maps">	
+<div id="pronamic-google-maps">
+	<input id="pronamic-latitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="hidden" />
 	<input id="pronamic-longitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" type="hidden" />
-	<input id="pronamic-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($pgm->title); ?>" type="hidden" />
 	<input id="pronamic-google-maps-map-type" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" type="hidden" />
 	<input id="pronamic-google-maps-zoom" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" type="hidden" />
 
@@ -23,10 +23,10 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="pronamic-latitude-field"><?php echo _e('Latitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
-			</td>
+				<label for="pronamic-title-field"><?php echo _e('Title', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+			</th>
 			<td>
-				<input id="pronamic-latitude-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="text" />
+				<input id="pronamic-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($pgm->title); ?>" type="text" />
 			</td>
 		</tr>
 		<tr>
