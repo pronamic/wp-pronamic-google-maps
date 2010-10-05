@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: google maps, geo, v3, api, custom types, latitude, longitude
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.1
+Stable tag: 1.2
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -64,6 +64,7 @@ This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/
 = 1.2 =
 * Fixed bug with fixed zoom value of 12 on static Google Maps
 * Added translation options (Dutch language added)
+* Changed the latitude and longitude fields from text to hidden
  
 = 1.1 =
 * Added static and dynamic Google Maps support 
