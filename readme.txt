@@ -1,6 +1,6 @@
 === Pronamic Google Maps ===
 Contributors: pronamic, remcotolsma 
-Tags: google maps, geo, v3, api, custom types, latitude, longitude
+Tags: pronamic, google maps, geo, v3, api, custom types, latitude, longitude
 Requires at least: 3.0
 Tested up to: 3.0
 Stable tag: 1.2
