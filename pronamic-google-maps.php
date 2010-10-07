@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Pronamic Google Maps
-Plugin URI: http://pronamic.nl/
+Plugin URI: http://pronamic.nl/wordpress/google-maps/
 Description: This plugin makes it simple to add Google Maps to your WordPress post, pages or other custom post types.
 Author: Pronamic
-Version: 1.0
+Version: 1.3
 Requires at least: 3.0
 Author URI: http://pronamic.nl/
 License: GPL
