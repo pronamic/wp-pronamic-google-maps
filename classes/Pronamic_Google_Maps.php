@@ -257,8 +257,8 @@ class Pronamic_Google_Maps {
 			if(!$arguments['static']):  ?>
 	
 			<input type="hidden" id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" />
-			<input type="hidden" id="pmg-lon-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" />
-			<input type="hidden" id="pgm-map-type-id-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" />
+			<input type="hidden" id="pmg-lng-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" />
+			<input type="hidden" id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" />
 			<input type="hidden" id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" />
 			<input type="hidden" id="pgm-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($pgm->title); ?>" />
 			<input type="hidden" id="pgm-description-field" name="<?php echo Pronamic_Google_Maps::META_KEY_DESCRIPTION; ?>" value="<?php echo esc_attr($pgm->description); ?>" />

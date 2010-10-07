@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, geo, v3, api, custom types, latitude, longitude
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.2
+Stable tag: 1.3
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -55,11 +55,18 @@ You should add some code to you templates to add the Google Map.
 
 2. The metabox where you can easily manage the GEO meta data.
 
-==Readme Generator== 
-
-This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
-
 == Changelog ==
+
+= 1.3 =
+* Fixed a bug dynamic maps didn't show up (thanks to ThomasBuxo)
+* Made the latitude and longitude fields visibile again (request from ThomasBuxo)
+* Added change and keyup events to latitude and longitude fields
+* Mozilla Firefox 3.6.10 browser check
+* Google Chrome 6.0.472.63 browser check
+* Safari 5.0.2 browser check
+* Opera 10.62 browser check
+* Internet Explorer 8 browser check
+* Internet Explorer 7 browser check
 
 = 1.2 =
 * Fixed bug with fixed zoom value of 12 on static Google Maps
