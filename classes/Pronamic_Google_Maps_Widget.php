@@ -8,6 +8,7 @@
  * @author Remco Tolsma
  * @version 1.0
  * @doc http://codex.wordpress.org/Widgets_API
+ *      http://codex.wordpress.org/Function_Reference/wp_enqueue_script
  */
 class Pronamic_Google_Maps_Widget extends WP_Widget {
 	/**
@@ -22,7 +23,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 
 		if(is_admin()) {
 			wp_enqueue_script(
-				'pronamic_google_maps_widget', 
+				'pronamic-google-maps-widget', 
 				Pronamic_Google_Maps::$pluginUrl . 'js/widget.js' ,
 				array('jquery') 
 			);
