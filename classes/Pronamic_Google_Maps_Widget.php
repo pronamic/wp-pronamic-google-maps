@@ -33,7 +33,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	public function widget($arguments, $instance) {
 		extract($arguments);
 
-		
+		var_dump($instance);
 	} 
 
 	public function update($newInstance, $oldInstance) {
@@ -43,7 +43,12 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$instance['description'] = $newInstance['description'];
 		$instance['latitude'] = $newInstance['latitude'];
 		$instance['longitude'] = $newInstance['longitude'];
-		
+		$instance['map-type'] = $newInstance['map-type'];
+		$instance['zoom'] = $newInstance['zoom'];
+		$instance['width'] = $newInstance['width'];
+		$instance['width-unit'] = $newInstance['width-unit'];
+		$instance['height'] = $newInstance['height'];
+		$instance['height-unit'] = $newInstance['height-unit'];
 
         return $instance;		
 	}
@@ -53,9 +58,32 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			'title' => '' , 
 			'description' => '' , 
 			'latitude' => '' , 
-			'longitude' => ''
+			'longitude' => '' , 
+			'map-type' => '' , 
+			'zoom' => '' , 
+			'width' => '100' , 
+			'width-unit' => 'pixels' ,  
+			'height' => '200' , 
+			'height-unit' => 'pixels'
 		));
 
 		include Pronamic_Google_Maps::$pluginPath . 'views/widget-form.php';
+	}
+
+	public function renderUnitField($name, $value = null) {
+		$units = array(
+			array('value' => 'pixels', 'label' => __('pixels', Pronamic_Google_Maps::TEXT_DOMAIN)) , 
+			array('value' => 'percentages', 'label' => __('percent', Pronamic_Google_Maps::TEXT_DOMAIN)) 
+		);
+
+		?>
+		<select id="<?php echo $this->get_field_id($name); ?>" name="<?php echo $this->get_field_id($name); ?>">
+			<?php foreach($units as $unit): ?>
+			<option value="<?php echo $unit['value']; ?>" <?php if($value == $unit['value']): ?>checked="checked"<?php endif?>>
+				<?php echo $unit['label']; ?>
+			</option>
+			<?php endforeach; ?>
+		</select>
+		<?php
 	}
 }

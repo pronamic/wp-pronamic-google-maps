@@ -30,7 +30,6 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public function __construct() {
 		add_action('admin_init', array($this, 'initialize'));
-		add_action('admin_head', array($this, 'renderHead'));
 		add_action('save_post', array($this, 'savePost'));
 		add_filter('plugin_action_links_' . Pronamic_Google_Maps::$baseName, array($this, 'actionLinks'));
 
@@ -155,15 +154,6 @@ class Pronamic_Google_Maps_Admin {
 
 			update_option(Pronamic_Google_Maps::OPTION_NAME, $options);
 		}
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Render the admin head
-	 */
-	public function renderHead() {
-		include Pronamic_Google_Maps::$pluginPath . 'views/admin-head.php';
 	}
 
 	//////////////////////////////////////////////////

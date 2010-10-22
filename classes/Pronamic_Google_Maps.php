@@ -214,6 +214,51 @@ class Pronamic_Google_Maps {
 
 	//////////////////////////////////////////////////
 
+	public static function render2($info) {
+		?>
+		<div id="pgm-canvas" <?php if(!$info->static): ?>style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;"<?php endif; ?>>
+			<?php 
+			
+			$url = 'http://maps.google.com/maps/api/staticmap?';
+	
+			$parameters = array();
+			$parameters['center'] = $info->latitude . ',' . $info->longitude;
+			$parameters['zoom'] = $info->zoom;
+			$parameters['size'] = $info->width . 'x' . $info->height;
+			$parameters['maptype'] = $info->mapType;
+			$parameters['sensor'] = 'false';
+
+			$markers = '';
+			if(isset($info->color)) {
+				$markers .= 'color:' . $info->color . '|';
+			}
+
+			if(isset($info->label)) {
+				$markers .= 'label:' . $info->label . '|';
+			}
+
+			$markers .= $info->latitude . ',' . $info->longitude;
+			
+			$parameters['markers'] = $markers;
+	
+			$url .= http_build_query($parameters, '', '&amp;');
+
+			if(!$info->static):  ?>
+	
+			<input type="hidden" id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($info->latitude); ?>" />
+			<input type="hidden" id="pmg-lng-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($info->longitude); ?>" />
+			<input type="hidden" id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($info->mapType); ?>" />
+			<input type="hidden" id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($info->zoom); ?>" />
+			<input type="hidden" id="pgm-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($info->title); ?>" />
+			<input type="hidden" id="pgm-description-field" name="<?php echo Pronamic_Google_Maps::META_KEY_DESCRIPTION; ?>" value="<?php echo esc_attr($info->description); ?>" />
+
+			<?php endif; ?>
+
+			<img src="<?php echo $url; ?>" alt="" />
+		</div>
+		<?php 
+	}
+
 	public static function render($arguments) {
 		$defaults = array(
 			'width' => 500 ,

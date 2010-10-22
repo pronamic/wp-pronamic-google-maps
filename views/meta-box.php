@@ -53,5 +53,5 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 		</tr>
 	</table>
 
-	<div id="pgm-canvas" style="width=100%; height:500px;"></div>
+	<div id="pgm-canvas" style="width: 100%; height: 500px;"></div>
 </div>
