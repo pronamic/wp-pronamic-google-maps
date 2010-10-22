@@ -115,6 +115,7 @@ class Pronamic_Google_Maps {
 	 */
 	public function __construct() {
 		add_action('init', array($this, 'initialize'));
+		add_action('widgets_init', array($this, 'initializeWidgets'));
 	}
 
 	//////////////////////////////////////////////////
@@ -138,6 +139,12 @@ class Pronamic_Google_Maps {
 		}
 	}
 
+	/**
+	 * Initialize widgets
+	 */
+	public function initializeWidgets() {
+		register_widget('Pronamic_Google_Maps_Widget');
+	}
 
 	//////////////////////////////////////////////////
 
@@ -227,7 +234,7 @@ class Pronamic_Google_Maps {
 	
 		if($active && $pgm->active): ?>
 	
-		<div id="pgm-canvas" <?php if(!$arguments['static']): ?>style="width: 290px; height: 200px;"<?php endif; ?>>
+		<div id="pgm-canvas" <?php if(!$arguments['static']): ?>style="width: <?php echo $arguments['width']; ?>px; height: <?php echo $arguments['height']; ?>px;"<?php endif; ?>>
 			<?php 
 	
 			$url = 'http://maps.google.com/maps/api/staticmap?';

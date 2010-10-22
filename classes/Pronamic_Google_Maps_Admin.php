@@ -34,6 +34,19 @@ class Pronamic_Google_Maps_Admin {
 		add_action('save_post', array($this, 'savePost'));
 		add_filter('plugin_action_links_' . Pronamic_Google_Maps::$baseName, array($this, 'actionLinks'));
 
+		wp_enqueue_script(
+			'google-maps' , 
+			'http://maps.google.com/maps/api/js?sensor=true' , 
+			false , 
+			'3'
+		);
+
+		wp_enqueue_script(
+			'pronamic-google-maps-admin' , 
+			Pronamic_Google_Maps::$pluginUrl . 'js/admin.js' , 
+			array('google-maps')
+		);
+		
 		new Pronamic_Google_Maps_OptionPage();
 	}
 

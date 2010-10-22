@@ -15,6 +15,7 @@ require_once 'classes/Pronamic_Google_Maps.php';
 require_once 'classes/Pronamic_Google_Maps_Admin.php';
 require_once 'classes/Pronamic_Google_Maps_OptionPage.php';
 require_once 'classes/Pronamic_Google_Maps_MetaBox.php';
+require_once 'classes/Pronamic_Google_Maps_Widget.php';
 
 Pronamic_Google_Maps::$baseName = plugin_basename(__FILE__);
 Pronamic_Google_Maps::$pluginPath = plugin_dir_path(__FILE__);
