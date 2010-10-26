@@ -11,7 +11,7 @@ $types = get_post_types(array(
 $activeTypes = $options['active'];
 
 ?>
-<div class="wrap">
+<div id="pgm" class="wrap">
 	<?php screen_icon(); ?>
 
 	<h2><?php echo esc_html($title); ?></h2>

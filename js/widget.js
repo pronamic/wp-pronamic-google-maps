@@ -1,13 +1,15 @@
 function pronamicGoogleMapsWidget(s) {
 	var element = jQuery(s);
 
+	element.data("pgm", true);
+
 	var latField = element.find(".latitude-field");
 	var lngField = element.find(".longitude-field");
 	var descriptionField = element.find(".description-field");
 	var mapTypeField = element.find(".map-type-field");
 	var zoomField = element.find(".zoom-field");
 
-	var canvas = element.find(".google-maps-canvas").get(0);
+	var canvas = element.find(".google-maps-canvas");
 
 	var location =  new google.maps.LatLng(latField.val(), lngField.val());
 
@@ -23,7 +25,7 @@ function pronamicGoogleMapsWidget(s) {
 		mapTypeId: mapType 
 	};
 
-	var map = new google.maps.Map(canvas, options);
+	var map = new google.maps.Map(canvas.get(0), options);
 
 	var marker = new google.maps.Marker({
 		position: location , 
@@ -54,19 +56,31 @@ function pronamicGoogleMapsWidget(s) {
 	google.maps.event.addListener(map, "zoom_changed", updateFields);
 	google.maps.event.addListener(marker, "drag", updateFields);
 	google.maps.event.addListener(marker, "dragend", updateFields);
-	google.maps.event.addDomListener(latField, "keyup", updateMarker);
-	google.maps.event.addDomListener(latField, "change", updateMarker);
-	google.maps.event.addDomListener(lngField, "keyup", updateMarker);
-	google.maps.event.addDomListener(lngField, "change", updateMarker);
-	google.maps.event.addDomListener(descriptionField, "keyup", function() { infoWindow.setContent(descriptionField.val()); });
-	google.maps.event.addDomListener(descriptionField, "change", function() { infoWindow.setContent(descriptionField.val()); });
+
+	latField.keyup(updateMarker).change(updateMarker);
+	lngField.keyup(updateMarker).change(updateMarker);
+
+	descriptionField.change(function() { infoWindow.setContent(descriptionField.val()); });
+	descriptionField.keyup(function() { infoWindow.setContent(descriptionField.val()); });
 
 	// The widget area is resized, wich is causing a buggy Google Maps, this function fixes that issue
 	var fixMap = function() {
-		google.maps.event.trigger(map, 'resize');
+		google.maps.event.trigger(map, "resize");
 
 		map.setCenter(location);
 	}
 
-	element.closest(".widget").find(".widget-action").live("click", function() { setTimeout(fixMap, 1000); });
+	element.closest(".widget").find(".widget-action").click(function() { setTimeout(fixMap, 1000); });
 }
+
+jQuery(document).ready(function() {
+	var checkNewWidgets = function() {
+		jQuery(".pronamic-google-maps-widget").each(function() {
+			if(!jQuery(this).data("pgm")) {
+				pronamicGoogleMapsWidget(this);
+			}
+		});
+	};
+
+	jQuery("div[id$='_pronamic_google_maps-__i__']").bind("dragstop", checkNewWidgets);
+});

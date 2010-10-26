@@ -132,10 +132,21 @@ class Pronamic_Google_Maps {
 		$relPath = dirname(self::$baseName) . '/languages';
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
+		wp_enqueue_script(
+			'google-maps' , 
+			'http://maps.google.com/maps/api/js?sensor=true' , 
+			false , 
+			'3'
+		);
+
 		if(is_admin()) {
 			$admin = new Pronamic_Google_Maps_Admin($this);
 		} else {
-			add_action('wp_head', array($this, 'renderHead'));
+			wp_enqueue_script(
+				'pronamic-google-maps' , 
+				Pronamic_Google_Maps::$pluginUrl . 'js/index.js' , 
+				array('google-maps', 'jquery')
+			);
 		}
 	}
 
@@ -144,15 +155,6 @@ class Pronamic_Google_Maps {
 	 */
 	public function initializeWidgets() {
 		register_widget('Pronamic_Google_Maps_Widget');
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Render the admin head
-	 */
-	public function renderHead() {
-		include Pronamic_Google_Maps::$pluginPath . 'views/head.php';
 	}
 
 	//////////////////////////////////////////////////
@@ -213,48 +215,62 @@ class Pronamic_Google_Maps {
 	}
 
 	//////////////////////////////////////////////////
+	
+	public static function getStaticMapUrl(Pronamic_Google_Maps_Info $info) {
+		$url = 'http://maps.google.com/maps/api/staticmap?';
 
-	public static function render2($info) {
+		$parameters = array();
+		$parameters['center'] = $info->latitude . ',' . $info->longitude;
+		$parameters['zoom'] = $info->zoom;
+		$parameters['size'] = $info->width . 'x' . $info->height;
+		$parameters['maptype'] = $info->mapType;
+		$parameters['sensor'] = 'false';
+
+		$markers = '';
+		if($info->color != null) {
+			$markers .= 'color:' . $info->color . '|';
+		}
+
+		if($info->label != null) {
+			$markers .= 'label:' . $info->label . '|';
+		}
+
+		$markers .= $info->latitude . ',' . $info->longitude;
+		
+		$parameters['markers'] = $markers;
+
+		$url .= http_build_query($parameters, '', '&amp;');
+
+		return $url;
+	}
+
+	public static function renderMap(Pronamic_Google_Maps_Info $info) {
 		?>
-		<div id="pgm-canvas" <?php if(!$info->static): ?>style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;"<?php endif; ?>>
-			<?php 
-			
-			$url = 'http://maps.google.com/maps/api/staticmap?';
-	
-			$parameters = array();
-			$parameters['center'] = $info->latitude . ',' . $info->longitude;
-			$parameters['zoom'] = $info->zoom;
-			$parameters['size'] = $info->width . 'x' . $info->height;
-			$parameters['maptype'] = $info->mapType;
-			$parameters['sensor'] = 'false';
+		<div class="pgm">
 
-			$markers = '';
-			if(isset($info->color)) {
-				$markers .= 'color:' . $info->color . '|';
-			}
+			<?php if($info->isDynamic()):  ?>
 
-			if(isset($info->label)) {
-				$markers .= 'label:' . $info->label . '|';
-			}
+			<input type="hidden" name="lat" value="<?php echo esc_attr($info->latitude); ?>" />
+			<input type="hidden" name="lng" value="<?php echo esc_attr($info->longitude); ?>" />
+			<input type="hidden" name="map-type" value="<?php echo esc_attr($info->mapType); ?>" />
+			<input type="hidden" name="zoom" value="<?php echo esc_attr($info->zoom); ?>" />
+			<input type="hidden" ame="title" value="<?php echo esc_attr($info->title); ?>" />
+			<input type="hidden" name="description" value="<?php echo esc_attr($info->description); ?>" />
+		
+			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">
+				<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
+			</div>
 
-			$markers .= $info->latitude . ',' . $info->longitude;
-			
-			$parameters['markers'] = $markers;
-	
-			$url .= http_build_query($parameters, '', '&amp;');
+			<?php else: ?>
 
-			if(!$info->static):  ?>
-	
-			<input type="hidden" id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($info->latitude); ?>" />
-			<input type="hidden" id="pmg-lng-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($info->longitude); ?>" />
-			<input type="hidden" id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($info->mapType); ?>" />
-			<input type="hidden" id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($info->zoom); ?>" />
-			<input type="hidden" id="pgm-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($info->title); ?>" />
-			<input type="hidden" id="pgm-description-field" name="<?php echo Pronamic_Google_Maps::META_KEY_DESCRIPTION; ?>" value="<?php echo esc_attr($info->description); ?>" />
+			<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
 
 			<?php endif; ?>
 
-			<img src="<?php echo $url; ?>" alt="" />
+			<div class="geo">
+				<abbr class="latitude" title="<?php printf('%.6f', $info->latitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($info->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE); ?></abbr> 
+				<abbr class="longitude" title="<?php printf('%.6f', $info->longitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($info->longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE); ?></abbr>
+			</div>
 		</div>
 		<?php 
 	}
@@ -263,7 +279,9 @@ class Pronamic_Google_Maps {
 		$defaults = array(
 			'width' => 500 ,
 			'height' => 300 , 
-			'static' => false
+			'static' => false , 
+			'label' => null , 
+			'color' => null
 		);
 	
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -277,49 +295,21 @@ class Pronamic_Google_Maps {
 	
 		$active = isset($activeTypes[$post->post_type]) && $activeTypes[$post->post_type];
 	
-		if($active && $pgm->active): ?>
-	
-		<div id="pgm-canvas" <?php if(!$arguments['static']): ?>style="width: <?php echo $arguments['width']; ?>px; height: <?php echo $arguments['height']; ?>px;"<?php endif; ?>>
-			<?php 
-	
-			$url = 'http://maps.google.com/maps/api/staticmap?';
-	
-			$parameters = array();
-			$parameters['center'] = $pgm->latitude . ',' . $pgm->longitude;
-			$parameters['zoom'] = $pgm->zoom;
-			$parameters['size'] = $arguments['width'] . 'x' . $arguments['height'];
-			$parameters['maptype'] = $pgm->mapType;
-			$parameters['sensor'] = 'false';
+		if($active && $pgm->active) {
+			$info = new Pronamic_Google_Maps_Info();
+			$info->title = $pgm->title;
+			$info->description = $pgm->description;
+			$info->latitude = $pgm->latitude;
+			$info->longitude = $pgm->longitude;
+			$info->mapType = $pgm->mapType;
+			$info->zoom = $pgm->zoom;
+			$info->width = $arguments['width'];
+			$info->height = $arguments['height'];
+			$info->static = $arguments['static'];
+			$info->label = $arguments['label'];
+			$info->color = $arguments['color'];
 
-			$markers = '';
-			if(isset($arguments['color'])) {
-				$markers .= 'color:' . $arguments['color'] . '|';
-			}
-
-			if(isset($arguments['label'])) {
-				$markers .= 'label:' . $arguments['label'] . '|';
-			}
-
-			$markers .= $pgm->latitude . ',' . $pgm->longitude;
-			
-			$parameters['markers'] = $markers;
-	
-			$url .= http_build_query($parameters, '', '&amp;');
-
-			if(!$arguments['static']):  ?>
-	
-			<input type="hidden" id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" />
-			<input type="hidden" id="pmg-lng-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" />
-			<input type="hidden" id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" />
-			<input type="hidden" id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" />
-			<input type="hidden" id="pgm-title-field" name="<?php echo Pronamic_Google_Maps::META_KEY_TITLE; ?>" value="<?php echo esc_attr($pgm->title); ?>" />
-			<input type="hidden" id="pgm-description-field" name="<?php echo Pronamic_Google_Maps::META_KEY_DESCRIPTION; ?>" value="<?php echo esc_attr($pgm->description); ?>" />
-
-			<?php endif; ?>
-
-			<img src="<?php echo $url; ?>" alt="" />
-		</div>
-	
-		<?php endif; 
+			self::renderMap($info);
+		}
 	}
 }

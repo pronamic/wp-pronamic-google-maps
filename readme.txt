@@ -57,6 +57,15 @@ manage location data for that post type. It comes in handy for all kind of custo
 *   Accommodations
 *   Hotels
 
+= Microformats =
+
+The plugin uses the latest [GEO microformat standards](http://microformats.org/wiki/geo).
+
+	<div class="geo">
+		<abbr class="latitude" title="37.408183">N 37° 24.491</abbr> 
+		<abbr class="longitude" title="-122.13855">W 122° 08.313</abbr>
+	</div> 
+
 = How to use? =
 
 **Dynamic Google Maps**
@@ -115,6 +124,7 @@ You should add some code to you templates to add the Google Map.
 *	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))
 *	Added Google Maps widget
 *	Add JavaScripts with the [wp_enqueue_script function](http://codex.wordpress.org/Function_Reference/wp_enqueue_script)
+*	[GEO microformat](http://microformats.org/wiki/geo) added
 
 = 1.3 =
 *	Fixed a bug dynamic maps didn't show up (thanks to ThomasBuxo)

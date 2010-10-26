@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Pronamic Google Maps Option page
+ * Title: Pronamic Google Maps option page
  * Description: 
  * Copyright: Copyright (c) 2005 - 2010
  * Company: Pronamic
