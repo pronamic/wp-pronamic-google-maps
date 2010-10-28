@@ -254,7 +254,7 @@ class Pronamic_Google_Maps {
 			<input type="hidden" name="lng" value="<?php echo esc_attr($info->longitude); ?>" />
 			<input type="hidden" name="map-type" value="<?php echo esc_attr($info->mapType); ?>" />
 			<input type="hidden" name="zoom" value="<?php echo esc_attr($info->zoom); ?>" />
-			<input type="hidden" ame="title" value="<?php echo esc_attr($info->title); ?>" />
+			<input type="hidden" name="title" value="<?php echo esc_attr($info->title); ?>" />
 			<input type="hidden" name="description" value="<?php echo esc_attr($info->description); ?>" />
 		
 			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">

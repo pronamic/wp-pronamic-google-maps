@@ -44,7 +44,16 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$info->mapType = $instance['map-type'];
 		$info->static = $instance['static'];
 
+		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
+
+		echo $before_widget;
+		if($title) {
+			echo $before_title . $title . $after_title;
+		}
+
 		Pronamic_Google_Maps::renderMap($info);
+
+		echo $after_widget;
 	} 
 
 	public function update($newInstance, $oldInstance) {
