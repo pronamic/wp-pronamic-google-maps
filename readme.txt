@@ -9,8 +9,6 @@ This plugin makes it easy to add Google Maps to your WordPress post, pages or ot
 
 == Description ==
 
-**So what does this Google Maps plugin do?**
-
 = Intro = 
 
 With this plugin a user can easily add location (latitude, longitude) meta data to a page, post or a 
@@ -21,8 +19,8 @@ There are quite a few Google Maps plugins available in the WordPress Plugin Dire
 the available plugins have a few drawbacks:
 
 *	**Google Maps API version 3**
-	Most of the available plugin still use the Google Maps version 2 API. The use the Google Maps v2 API you 
-	have to require an API key and include this in the plugin configuration.  The Pronamic Google Maps plugin 
+	Most of the available plugins still use the Google Maps version 2 API. To use the Google Maps v2 API you 
+	have to require an API key and include this in the plugin configuration. The Pronamic Google Maps plugin 
 	uses the Google Maps version 3 API. Wich no longer requires an API key, so you don't have 
 	to configure this plugin.
 
@@ -31,6 +29,7 @@ the available plugins have a few drawbacks:
 	technique, it's not always very user friendly. Not all users understand the shortcodes like;
 
 		[google-map-sc external_links="true" zoom="3"]
+
 
 *   **No extra tables**
 	Some plugin create additional tables in your WordPress database to store additional data. In many
@@ -66,6 +65,7 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 		<abbr class="longitude" title="-122.13855">W 122° 08.313</abbr>
 	</div> 
 
+
 = How to use? =
 
 **Dynamic Google Maps**
@@ -74,6 +74,7 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 		'width' => 290 ,
 		'height' => 200 
 	));
+
 
 **Static Google Maps**
 	
@@ -89,6 +90,7 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
  [2]: http://codex.wordpress.org/Custom_Fields
  [3]: http://codex.wordpress.org/Function_Reference/register_post_type
 
+
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your 
@@ -103,6 +105,7 @@ You should add some code to you templates to add the Google Map.
 		'height' => 200 
 	));
 
+
 **Static Google Maps**
 	
 	pronamic_google_maps(array(
@@ -112,6 +115,7 @@ You should add some code to you templates to add the Google Map.
 		'color' => '0xFFD800' ,
 		'label' => 'M'
 	));
+
 
 If you don't want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
 latitude and longitude information you should add the folowing line off CSS to your stylesheet 
@@ -129,7 +133,7 @@ file (style.css):
 
 == Changelog ==
 
-= 1.4
+= 1.4 =
 *	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))
 *	Added Google Maps widget
 *	Add JavaScripts with the [wp_enqueue_script function](http://codex.wordpress.org/Function_Reference/wp_enqueue_script)
