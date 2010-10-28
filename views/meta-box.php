@@ -5,7 +5,7 @@ $pgm = pronamic_get_google_maps_meta();
 wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 
 ?>
-<div id="pronamic-google-maps">
+<div id="pgm">
 	<input id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr($pgm->mapType); ?>" type="hidden" />
 	<input id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps::META_KEY_ZOOM; ?>" value="<?php echo esc_attr($pgm->zoom); ?>" type="hidden" />
 
@@ -53,5 +53,5 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 		</tr>
 	</table>
 
-	<div id="pgm-canvas" style="width=100%; height:500px;"></div>
+	<div id="pgm-canvas" style="width: 100%; height: 500px;"></div>
 </div>

@@ -4,36 +4,77 @@ $title = strip_tags($instance['title']);
 $description = format_to_edit($instance['description']);
 $latitude = strip_tags($instance['latitude']);
 $longitude = strip_tags($instance['longitude']);
+$mapType = $instance['map-type'];
+$zoom = $instance['zoom'];
+$width = $instance['width'];
+$height = $instance['height'];
+$static = $instance['static'];
 
 ?>
-<p>
-	<label for="<?php echo $this->get_field_id('title'); ?>">
-		<?php _e('Title', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
-	</label>
+<div id="<?php echo $this->get_field_id('pgm'); ?>" class="pronamic-google-maps-widget">
+	<input class="map-type-field" id="<?php echo $this->get_field_id('map-type'); ?>" name="<?php echo $this->get_field_name('map-type'); ?>" value="<?php echo esc_attr($mapType); ?>" type="hidden" />
+	<input class="zoom-field" id="<?php echo $this->get_field_id('zoom'); ?>" name="<?php echo $this->get_field_name('zoom'); ?>" value="<?php echo esc_attr($zoom); ?>" type="hidden" />
 
-	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-</p>
+	<p>
+		<label for="<?php echo $this->get_field_id('title'); ?>">
+			<?php _e('Title', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<input class="widefat title-field" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+	</p>
+	
+	<p>
+		<label for="<?php echo $this->get_field_id('description'); ?>">
+			<?php _e('Description', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<textarea class="widefat description-field" id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" type="text" rows="3" cols="20"><?php echo $description; ?></textarea>
+	</p>
+	
+	<p>
+		<label for="<?php echo $this->get_field_id('latitude'); ?>">
+			<?php _e('Latitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<input class="latitude-field" id="<?php echo $this->get_field_id('latitude'); ?>" name="<?php echo $this->get_field_name('latitude'); ?>" type="text" value="<?php echo $latitude; ?>" size="16" /> &deg;
 
-<p>
-	<label for="<?php echo $this->get_field_id('description'); ?>">
-		<?php _e('Description', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
-	</label>
+		<label for="<?php echo $this->get_field_id('longitude'); ?>">
+			<?php _e('Longitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<input class="longitude-field" id="<?php echo $this->get_field_id('longitude'); ?>" name="<?php echo $this->get_field_name('longitude'); ?>" type="text" value="<?php echo $longitude; ?>" size="16" /> &deg;
+	</p>
 
-	<textarea class="widefat" id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" type="text" value="<?php echo $description; ?>" rows="3" cols="20"></textarea>
-</p>
+	<div class="google-maps-canvas" style="width: 100%; height: 300px; margin: 1em 0;"></div>
 
-<p>
-	<label for="<?php echo $this->get_field_id('latitude'); ?>">
-		<?php _e('Latitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
-	</label>
+	<p>
+		<label for="<?php echo $this->get_field_id('width'); ?>">
+			<?php _e('Width', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<input id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo $width; ?>" size="3" />
+		pixels
 
-	<input class="widefat" id="<?php echo $this->get_field_id('latitude'); ?>" name="<?php echo $this->get_field_name('latitude'); ?>" type="text" value="<?php echo $latitude; ?>" />
-</p>
+		&times;
+		<label for="<?php echo $this->get_field_id('height'); ?>">
+			<?php _e('Height', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
+		</label>
+	
+		<input id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo $height; ?>" size="3" />
+		pixels
+	</p>
 
-<p>
-	<label for="<?php echo $this->get_field_id('longitude'); ?>">
-		<?php _e('Longitude', Pronamic_Google_Maps::TEXT_DOMAIN); ?>:
-	</label>
+	<p>
+		<input id="<?php echo $this->get_field_id('static-false'); ?>" name="<?php echo $this->get_field_name('static'); ?>" value="false" type="radio" <?php if(!$static): ?>checked="checked"<?php endif; ?> />
+		<label for="<?php echo $this->get_field_id('static-false'); ?>"><?php _e('Dynamic', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
 
-	<input class="widefat" id="<?php echo $this->get_field_id('longitude'); ?>" name="<?php echo $this->get_field_name('longitude'); ?>" type="text" value="<?php echo $longitude; ?>" />
-</p>
+		<input id="<?php echo $this->get_field_id('static-true'); ?>" name="<?php echo $this->get_field_name('static'); ?>" value="true" type="radio" <?php if($static): ?>checked="checked"<?php endif; ?> />
+		<label for="<?php echo $this->get_field_id('static-true'); ?>"><?php _e('Static', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+	</p>	
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+	pronamicGoogleMapsWidget("#<?php echo $this->get_field_id('pgm'); ?>");
+	//]]>
+</script>

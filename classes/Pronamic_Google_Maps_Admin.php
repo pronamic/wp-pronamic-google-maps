@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Pronamic Google Maps Admin
+ * Title: Pronamic Google Maps admin
  * Description: 
  * Copyright: Copyright (c) 2005 - 2010
  * Company: Pronamic
@@ -30,22 +30,21 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public function __construct() {
 		add_action('admin_init', array($this, 'initialize'));
-		add_action('admin_head', array($this, 'renderHead'));
 		add_action('save_post', array($this, 'savePost'));
 		add_filter('plugin_action_links_' . Pronamic_Google_Maps::$baseName, array($this, 'actionLinks'));
 
 		wp_enqueue_script(
-			'google-maps' , 
-			'http://maps.google.com/maps/api/js?sensor=true' , 
-			false , 
-			'3'
-		);
-
-		wp_enqueue_script(
 			'pronamic-google-maps-admin' , 
 			Pronamic_Google_Maps::$pluginUrl . 'js/admin.js' , 
-			array('google-maps')
+			array('google-maps', 'jquery')
 		);
+
+		wp_register_style(
+			'pronamic-google-maps-admin' , 
+			Pronamic_Google_Maps::$pluginUrl . 'css/admin.css' 
+		);
+
+		add_action('admin_print_styles', array($this, 'printStyles'));
 		
 		new Pronamic_Google_Maps_OptionPage();
 	}
@@ -59,6 +58,15 @@ class Pronamic_Google_Maps_Admin {
 		add_action('add_meta_boxes', array($this, 'addMetaBox'));
 
 		$this->saveOptions();
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Print styles
+	 */
+	public function printStyles() {
+		wp_enqueue_style('pronamic-google-maps-admin');	
 	}
 
 	//////////////////////////////////////////////////
@@ -155,15 +163,6 @@ class Pronamic_Google_Maps_Admin {
 
 			update_option(Pronamic_Google_Maps::OPTION_NAME, $options);
 		}
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Render the admin head
-	 */
-	public function renderHead() {
-		include Pronamic_Google_Maps::$pluginPath . 'views/admin-head.php';
 	}
 
 	//////////////////////////////////////////////////

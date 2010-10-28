@@ -1,45 +1,48 @@
-function Pronamic_Google_Maps(element) {
-	var latField = document.getElementById("pgm-lat-field");
-	var lngField = document.getElementById("pmg-lng-field");
-	var mapTypeField = document.getElementById("pgm-map-type-field");
-	var zoomField = document.getElementById("pgm-zoom-field");
-	var descriptionField = document.getElementById("pgm-description-field");
+function pronamicGoogleMaps(s) {
+	var element = jQuery(s);
 
-	if(latField && lngField) {
-		var location =  new google.maps.LatLng(latField.value, lngField.value);
+	var canvas = element.find(".canvas").get(0);
 
-		var zoom = parseInt(zoomField.value);
+	if(canvas) {
+		var latField = element.find("input[name=lat]");
+		var lngField = element.find("input[name=lng]");
+		var mapTypeField = element.find("input[name=map-type]");
+		var zoomField = element.find("input[name=zoom]");
+		var titleField = element.find("input[name=title]");
+		var descriptionField = element.find("input[name=description]");
+
+		var location =  new google.maps.LatLng(latField.val(), lngField.val());
+	
+		var zoom = parseInt(zoomField.val());
 		if(isNaN(zoom)) { zoom = 0; }
-
-		var mapType = mapTypeField.value;
+	
+		var mapType = mapTypeField.val();
 		if(mapType == "") { mapType = google.maps.MapTypeId.ROADMAP; }
-
+	
 		var options = {
 			zoom: zoom , 
 			center: location , 
 			mapTypeId: mapType 
 		};
-
-		var map = new google.maps.Map(element, options);
-
+	
+		var map = new google.maps.Map(canvas, options);
+	
 		var marker = new google.maps.Marker({
 			position: location , 
 			map: map , 
 			draggable: true
 		});
-
-		var infoWindow = new google.maps.InfoWindow({content: descriptionField.value});
-
+	
+		var infoWindow = new google.maps.InfoWindow({content: descriptionField.val()});
+	
 		google.maps.event.addListener(marker, "click", function() {
 			infoWindow.open(map, marker);
 		});
 	}
 }
 
-google.maps.event.addDomListener(window, "load", function() {
-	var pgm = document.getElementById("pgm-canvas");
-
-	if(pgm) {
-		new Pronamic_Google_Maps(pgm);
-	}
+jQuery(document).ready(function() {
+	jQuery(".pgm").each(function() {
+		pronamicGoogleMaps(this);
+	});
 });

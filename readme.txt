@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.3
+Stable tag: 1.4
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -57,6 +57,15 @@ manage location data for that post type. It comes in handy for all kind of custo
 *   Accommodations
 *   Hotels
 
+= Microformats =
+
+The plugin uses the latest [GEO microformat standards](http://microformats.org/wiki/geo).
+
+	<div class="geo">
+		<abbr class="latitude" title="37.408183">N 37° 24.491</abbr> 
+		<abbr class="longitude" title="-122.13855">W 122° 08.313</abbr>
+	</div> 
+
 = How to use? =
 
 **Dynamic Google Maps**
@@ -82,7 +91,8 @@ manage location data for that post type. It comes in handy for all kind of custo
 
 == Installation ==
 
-Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
+Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your 
+WordPress installation and then activate the Plugin from Plugins page.
 
 You should add some code to you templates to add the Google Map.
 
@@ -103,16 +113,28 @@ You should add some code to you templates to add the Google Map.
 		'label' => 'M'
 	));
 
+If you don't want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
+latitude and longitude information you should add the folowing line off CSS to your stylesheet 
+file (style.css):
+
+	.pgm .geo { display: none; }
+
 == Screenshots ==
 
-1. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+1. The Google Maps widget
 
-2. The metabox where you can easily manage the GEO meta data.
+2. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+
+3. The metabox where you can easily manage the GEO meta data.
 
 == Changelog ==
 
-= 1.3.1 =
-*	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/)) 
+= 1.4
+*	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))
+*	Added Google Maps widget
+*	Add JavaScripts with the [wp_enqueue_script function](http://codex.wordpress.org/Function_Reference/wp_enqueue_script)
+*	[GEO microformat](http://microformats.org/wiki/geo) added. You should add the folowing CSS code to your stylesheet if you don't want to display the GEO microformat.
+		.pgm .geo { display: none; }
 
 = 1.3 =
 *	Fixed a bug dynamic maps didn't show up (thanks to ThomasBuxo)
@@ -138,7 +160,7 @@ You should add some code to you templates to add the Google Map.
 
 == Links ==
 
-*	[Pronamic](http://pronamic.nl/ "Pronamic")
+*	[Pronamic](http://pronamic.nl/)
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *	[Markdown's Syntax Documentation][markdown syntax]
 
