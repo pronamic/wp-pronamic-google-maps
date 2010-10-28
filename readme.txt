@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.3
+Stable tag: 1.4
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -121,9 +121,11 @@ file (style.css):
 
 == Screenshots ==
 
-1. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+1. The Google Maps widget
 
-2. The metabox where you can easily manage the GEO meta data.
+2. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+
+3. The metabox where you can easily manage the GEO meta data.
 
 == Changelog ==
 
