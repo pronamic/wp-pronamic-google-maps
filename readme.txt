@@ -135,6 +135,9 @@ file (style.css):
 
 == Changelog ==
 
+= 1.4.1 =
+*	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))
+
 = 1.4 =
 *	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))
 *	Added Google Maps widget
