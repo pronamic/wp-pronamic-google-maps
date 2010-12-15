@@ -29,8 +29,7 @@ function pronamicGoogleMaps(s) {
 	
 		var marker = new google.maps.Marker({
 			position: location , 
-			map: map , 
-			draggable: true
+			map: map 
 		});
 	
 		var infoWindow = new google.maps.InfoWindow({content: descriptionField.val()});
