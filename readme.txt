@@ -137,6 +137,17 @@ file (style.css):
 
 = 1.4.1 =
 *	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))
+*	Added function pronamic_google_maps_location() for custom directions forms, template example:
+		<form action="http://maps.google.com/maps" method="get"> 
+			<label for="saddr">From:</label> 
+			<input id="saddr" name="saddr" type="text" /> 
+
+			<input name="daddr" type="hidden" value="<?php pronamic_google_maps_location(); ?>" />
+
+			<input name="hl" type="hidden" value="<?php echo substr(WPLANG, 0, 2); ?>" /> 
+
+			<input type="submit" value="Get Directions" /> 
+		</form>
 
 = 1.4 =
 *	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))

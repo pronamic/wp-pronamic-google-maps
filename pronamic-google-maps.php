@@ -41,6 +41,12 @@ function pronamic_google_maps_description($arguments) {
 	echo $pgm->description;
 }
 
+function pronamic_google_maps_location() {
+	$pgm = Pronamic_Google_Maps::getMetaData();
+
+	echo $pgm->latitude, ', ', $pgm->longitude;
+}
+
 function pronamic_google_maps($arguments) {
 	Pronamic_Google_Maps::render($arguments);
 }
