@@ -244,18 +244,30 @@ class Pronamic_Google_Maps {
 		return $url;
 	}
 
+	public static function renderHiddenFields(Pronamic_Google_Maps_Info $info) {
+		?>
+		<input type="hidden" name="lat" value="<?php echo esc_attr($info->latitude); ?>" />
+		<input type="hidden" name="lng" value="<?php echo esc_attr($info->longitude); ?>" />
+		<input type="hidden" name="map-type" value="<?php echo esc_attr($info->mapType); ?>" />
+		<input type="hidden" name="zoom" value="<?php echo esc_attr($info->zoom); ?>" />
+		<input type="hidden" name="title" value="<?php echo esc_attr($info->title); ?>" />
+		<input type="hidden" name="description" value="<?php echo esc_attr($info->description); ?>" />
+		<?php
+	}
+
+	public static function renderMetaHiddenField($info) {
+		?>
+		<input type="hidden" name="pronamic-google-maps-meta" value="<?php echo esc_attr(json_encode($info)); ?>" />
+		<?php
+	}
+
 	public static function renderMap(Pronamic_Google_Maps_Info $info) {
 		?>
 		<div class="pgm">
 
 			<?php if($info->isDynamic()):  ?>
 
-			<input type="hidden" name="lat" value="<?php echo esc_attr($info->latitude); ?>" />
-			<input type="hidden" name="lng" value="<?php echo esc_attr($info->longitude); ?>" />
-			<input type="hidden" name="map-type" value="<?php echo esc_attr($info->mapType); ?>" />
-			<input type="hidden" name="zoom" value="<?php echo esc_attr($info->zoom); ?>" />
-			<input type="hidden" name="title" value="<?php echo esc_attr($info->title); ?>" />
-			<input type="hidden" name="description" value="<?php echo esc_attr($info->description); ?>" />
+			<?php self::renderHiddenFields($info); ?>
 		
 			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">
 				<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
