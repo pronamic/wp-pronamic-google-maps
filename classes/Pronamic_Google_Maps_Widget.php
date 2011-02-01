@@ -58,6 +58,13 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	public function widget($arguments, $instance) {
 		extract($arguments);
 
+		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
+
+		echo $before_widget;
+		if($title) {
+			echo $before_title . $title . $after_title;
+		}
+
 		$info = new Pronamic_Google_Maps_Info();
 		$info->title = $instance['title'];
 		$info->description = $instance['description'];
@@ -68,13 +75,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$info->longitude = (float) $instance['longitude'];
 		$info->mapType = $instance['map-type'];
 		$info->static = $instance['static'];
-
-		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
-
-		echo $before_widget;
-		if($title) {
-			echo $before_title . $title . $after_title;
-		}
 
 		Pronamic_Google_Maps::renderMap($info);
 

