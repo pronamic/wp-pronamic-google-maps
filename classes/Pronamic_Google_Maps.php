@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Title: Pronamic Google Maps Admin
+ * Title: Pronamic Google Maps
  * Description: 
- * Copyright: Copyright (c) 2005 - 2010
+ * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
@@ -88,34 +88,28 @@ class Pronamic_Google_Maps {
 	//////////////////////////////////////////////////
 
 	/**
-	 * The basename of this plugin
+	 * The plugin file
 	 * 
 	 * @var string
 	 */
-	public static $baseName = '';
-
-	/**
-	 * The path to this plugin
-	 * 
-	 * @var string
-	 */
-	public static $pluginPath = '';
-
-	/**
-	 * The url to this plugin
-	 *
-	 * @var string
-	 */
-	public static $pluginUrl = '';
+	public static $file;
 
 	//////////////////////////////////////////////////
 
 	/**
-	 * Constructs and initializes the Pronamic Google Maps plugin
+	 * Bootstrap this plugin
+	 * 
+	 * @param string $file
 	 */
-	public function __construct() {
-		add_action('init', array($this, 'initialize'));
-		add_action('widgets_init', array($this, 'initializeWidgets'));
+	public static function bootstrap($file) {
+		self::$file = $file;
+
+		Pronamic_Google_Maps_Plugin::bootstrap();
+		Pronamic_Google_Maps_Widget::bootstrap();
+		Pronamic_Google_Maps_Magic::bootstrap();
+
+		// Actions and hooks
+		add_action('init', array(__CLASS__, 'initialize'));
 	}
 
 	//////////////////////////////////////////////////
@@ -123,16 +117,18 @@ class Pronamic_Google_Maps {
 	/**
 	 * Initialize the plugin
 	 */
-	public function initialize() {
-		$options = Pronamic_Google_Maps::getOptions();
+	public static function initialize() {
+		$options = self::getOptions();
 		if($options === false) {
-			$this->setDefaultOptions();
+			self::setDefaultOptions();
 		}
 
-		$relPath = dirname(self::$baseName) . '/languages';
+		// Load plugin text domain
+		$relPath = dirname(self::$file) . '/languages';
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
-		wp_enqueue_script(
+		// Register the Google Maps API script
+		wp_register_script(
 			'google-maps' , 
 			'http://maps.google.com/maps/api/js?sensor=true' , 
 			false , 
@@ -140,21 +136,10 @@ class Pronamic_Google_Maps {
 		);
 
 		if(is_admin()) {
-			$admin = new Pronamic_Google_Maps_Admin($this);
+			Pronamic_Google_Maps_Admin::bootstrap();
 		} else {
-			wp_enqueue_script(
-				'pronamic-google-maps' , 
-				Pronamic_Google_Maps::$pluginUrl . 'js/index.js' , 
-				array('google-maps', 'jquery')
-			);
+			Pronamic_Google_Maps_Site::bootstrap();
 		}
-	}
-
-	/**
-	 * Initialize widgets
-	 */
-	public function initializeWidgets() {
-		register_widget('Pronamic_Google_Maps_Widget');
 	}
 
 	//////////////////////////////////////////////////
@@ -173,7 +158,7 @@ class Pronamic_Google_Maps {
 	 *
 	 * @return array the default options
 	 */
-	public function setDefaultOptions() {
+	public static function setDefaultOptions() {
 		$options = array(
 			'installed' => true , 
 			'active' => array(
@@ -196,17 +181,17 @@ class Pronamic_Google_Maps {
 	 */
 	public static function getMetaData() {
 		global $post;
-		
+
 		$meta = new stdClass();
 		
 		$active = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_ACTIVE, true);
 		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
 		
-		$meta->latitude = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LATITUDE, true);
-		$meta->longitude = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LONGITUDE, true);
+		$meta->latitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LATITUDE, true);
+		$meta->longitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LONGITUDE, true);
 		
 		$meta->mapType = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_MAP_TYPE, true);
-		$meta->zoom = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_ZOOM, true);
+		$meta->zoom = (int) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_ZOOM, true);
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_TITLE, true);
 		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_DESCRIPTION, true);
@@ -267,8 +252,8 @@ class Pronamic_Google_Maps {
 
 			<?php if($info->isDynamic()):  ?>
 
-			<?php self::renderHiddenFields($info); ?>
-		
+			<?php self::renderMetaHiddenField($info); ?>
+
 			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">
 				<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
 			</div>

@@ -3,50 +3,36 @@
 /**
  * Title: Pronamic Google Maps admin
  * Description: 
- * Copyright: Copyright (c) 2005 - 2010
+ * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
  */
 class Pronamic_Google_Maps_Admin {
 	/**
-	 * The page title for the option page
-	 *
-	 * @var string
-	 */
-	const PAGE_TITLE = 'Pronamic Google Maps';
-
-	/**
-	 * The menu title for the option page
-	 *
-	 * @var string
-	 */
-	const MENU_TITLE = 'Google Maps';
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * Constructs and initliaze an Google Maps admin
 	 */
-	public function __construct() {
-		add_action('admin_init', array($this, 'initialize'));
-		add_action('save_post', array($this, 'savePost'));
-		add_filter('plugin_action_links_' . Pronamic_Google_Maps::$baseName, array($this, 'actionLinks'));
+	public static function bootstrap() {
+		// Actions and hooks
+		add_action('admin_init', array(__CLASS__, 'initialize'));
 
+		add_action('save_post', array(__CLASS__, 'savePost'));
+
+		// Scripts
 		wp_enqueue_script(
 			'pronamic-google-maps-admin' , 
-			Pronamic_Google_Maps::$pluginUrl . 'js/admin.js' , 
+			plugins_url('js/admin.js', Pronamic_Google_Maps::$file) , 
 			array('google-maps', 'jquery')
 		);
 
-		wp_register_style(
+		// Styles
+		wp_enqueue_style(
 			'pronamic-google-maps-admin' , 
-			Pronamic_Google_Maps::$pluginUrl . 'css/admin.css' 
+			plugins_url('css/admin.css', Pronamic_Google_Maps::$file)
 		);
 
-		add_action('admin_print_styles', array($this, 'printStyles'));
-		
-		new Pronamic_Google_Maps_OptionPage();
+		// Other
+		Pronamic_Google_Maps_OptionPage::bootstrap();
 	}
 
 	//////////////////////////////////////////////////
@@ -54,19 +40,10 @@ class Pronamic_Google_Maps_Admin {
 	/**
 	 * Initialize the admin
 	 */
-	public function initialize() {
-		add_action('add_meta_boxes', array($this, 'addMetaBox'));
+	public static function initialize() {
+		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
 
-		$this->saveOptions();
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Print styles
-	 */
-	public function printStyles() {
-		wp_enqueue_style('pronamic-google-maps-admin');	
+		self::saveOptions();
 	}
 
 	//////////////////////////////////////////////////
@@ -74,26 +51,14 @@ class Pronamic_Google_Maps_Admin {
 	/**
 	 * Add the meta box
 	 */
-	public function addMetaBox() {
+	public static function addMetaBox() {
 		$options = Pronamic_Google_Maps::getOptions();
 
 		$types = $options['active'];
+
 		foreach($types as $name => $active) {
-			self::registerType($name);
+			Pronamic_Google_Maps_MetaBox::register($name);
 		}
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Register type
-	 *
-	 * @var string $type
-	 */
-	public static function registerType($type) {
-		$metaBox = new Pronamic_Google_Maps_MetaBox();
-
-		add_meta_box('pronamic_google_maps', __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN), array($metaBox, 'render'), $type);
 	}
 
 	//////////////////////////////////////////////////
@@ -103,14 +68,14 @@ class Pronamic_Google_Maps_Admin {
 	 *
 	 * @param int $postId
 	 */
-	public function savePost($postId) {
+	public static function savePost($postId) {
 		$nonce = filter_input(INPUT_POST, Pronamic_Google_Maps::NONCE_NAME, FILTER_SANITIZE_STRING);
 
 		if(!wp_verify_nonce($nonce, 'save-post')) {
 			return $postId;
 		}
 
-		if($this->doingAutosave()) {
+		if(self::doingAutosave()) {
 			return $postId;
 		}
 
@@ -146,7 +111,7 @@ class Pronamic_Google_Maps_Admin {
 	/**
 	 * Save the options
 	 */
-	public function saveOptions() {
+	public static function saveOptions() {
 		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
 
 		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME)) {
@@ -172,25 +137,7 @@ class Pronamic_Google_Maps_Admin {
 	 *
 	 * @return boolean true if autosave is in progress, false otherwise
 	 */
-	public function doingAutosave() {
+	public static function doingAutosave() {
 		return defined('DOING_AUTOSAVE') && DOING_AUTOSAVE;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Action links 
-	 * 
-	 * @param array $links
-	 * @param string $file
-	 */
-	public function actionLinks($links) {
-		$url = admin_url('options-general.php?page=' . Pronamic_Google_Maps_OptionPage::SLUG);
-
-		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
-
-		array_unshift($links, $link);
-
-		return $links;
 	}
 }

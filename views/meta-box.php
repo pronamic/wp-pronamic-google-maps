@@ -41,6 +41,7 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 			</th>
 			<td>
 				<input id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="text" />
+				&deg;
 			</td>
 		</tr>
 		<tr>
@@ -49,6 +50,17 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 			</th>
 			<td>
 				<input id="pgm-lng-field" name="<?php echo Pronamic_Google_Maps::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr($pgm->longitude); ?>" type="text" />
+				&deg;
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="pgm-search-field"><?php echo _e('Search', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+			</th>
+			<td>
+				<input id="pgm-search-field" name="pgm_search" class="regular-text" value="" type="text" />
+
+				<input id="pgm-search-button" type="submit" value="Search" class="button" name="pgm_search" /> 
 			</td>
 		</tr>
 	</table>

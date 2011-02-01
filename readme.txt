@@ -135,6 +135,13 @@ file (style.css):
 
 == Changelog ==
 
+= 1.5 =
+*	Replaced all hidden HTML fields with one hidden field with JSON data
+*	Removed "Like this plugin?" from options page
+*	Removed "Donate $10, $20 or $50!" from options page
+*	Removed "Latest news from Pronamic" from options page
+*	Removed "Found a bug?" from options page
+
 = 1.4.1 =
 *	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))
 *	Added function pronamic_google_maps_location() for custom directions forms, template example:
@@ -180,6 +187,8 @@ file (style.css):
 
 == Links ==
 
+*	[Geocode with Google Maps API v3](http://tech.cibul.org/geocode-with-google-maps-api-v3/)
+*	[WordPress event locations](http://icalevents.anmari.com/2343-event-locations-geo-tags-for-custom-post-types/)
 *	[Pronamic](http://pronamic.eu/)
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *	[Markdown's Syntax Documentation][markdown syntax]

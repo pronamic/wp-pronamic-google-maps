@@ -3,17 +3,33 @@
 /**
  * Title: Pronamic Google Maps meta box
  * Description: 
- * Copyright: Copyright (c) 2005 - 2010
+ * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
  */
 class Pronamic_Google_Maps_MetaBox {
 	/**
-	 * Constructs and initialize the Google Maps meta box
+	 * The id of this meta box
+	 * 
+	 * @var string
 	 */
-	public function __construct() {
-		
+	const ID = 'pronamic-google-maps-meta-box';
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Register this meta box on the specified page
+	 */
+	public static function register($page, $context = 'advanced', $priority = 'default') {
+		add_meta_box(
+			self::ID , 
+			__('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN) , 
+			array(__CLASS__, 'render') , 
+			$page , 
+			$context , 
+			$priority
+		);
 	}
 
 	//////////////////////////////////////////////////
@@ -21,7 +37,7 @@ class Pronamic_Google_Maps_MetaBox {
 	/**
 	 * Render the option page
 	 */
-	public function render() {
-		include Pronamic_Google_Maps::$pluginPath . 'views/meta-box.php';
+	public static function render() {
+		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/meta-box.php';
 	}
 }

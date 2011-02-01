@@ -12,7 +12,7 @@
  * 
  * Notice also that you cannot modify the coordinates of a PLatLng. If you want
  * to compute another point, you have to create a new one.
- * Copyright: Copyright (c) 2005 - 2010
+ * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
