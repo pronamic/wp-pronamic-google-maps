@@ -16,7 +16,7 @@
 		buildMap: function(s) {
 			var element = jQuery(s);
 
-			var info = jQuery.parseJSON(element.find("input[name=pronamic-google-maps-meta]").val());
+			var info = jQuery.parseJSON(element.find("input[name=pgm-info]").val());
 
 			var canvas = element.find(".canvas").get(0);
 
@@ -77,9 +77,9 @@
 				list.find("li").each(function() {
 					var item = jQuery(this);
 
-					var meta = jQuery.parseJSON(item.find("input[name=pronamic-google-maps-meta]").val());
+					var info = jQuery.parseJSON(item.find("input[name=pgm-info]").val());
 
-					var location =  new google.maps.LatLng(meta.latitude, meta.longitude);
+					var location =  new google.maps.LatLng(info.latitude, info.longitude);
 
 					bounds.extend(location);
 
@@ -88,7 +88,7 @@
 						map: map 
 					});
 
-					var infoWindow = new google.maps.InfoWindow({content: meta.description});
+					var infoWindow = new google.maps.InfoWindow({content: info.description});
 				
 					google.maps.event.addListener(marker, "click", function() {
 						infoWindow.open(map, marker);

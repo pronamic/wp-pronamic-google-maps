@@ -23,6 +23,17 @@ function pronamic_google_maps_location() {
 	echo $latitude, ', ', $longitude;
 }
 
+function pronamic_google_maps_geo_microformat() {
+	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LATITUDE, true);
+	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LONGITUDE, true);
+
+	Pronamic_Google_Maps::renderMicroformat($latitude, $longitude);
+}
+
 function pronamic_google_maps($arguments) {
 	Pronamic_Google_Maps::render($arguments);
+}
+
+function pronamic_google_maps_mashup($query, $arguments) {
+	Pronamic_Google_Maps_Mashup::render($query, $arguments);
 }

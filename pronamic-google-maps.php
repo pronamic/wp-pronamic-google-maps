@@ -20,6 +20,7 @@ require_once 'classes/Pronamic_Google_Maps_OptionPage.php';
 require_once 'classes/Pronamic_Google_Maps_MetaBox.php';
 require_once 'classes/Pronamic_Google_Maps_Widget.php';
 require_once 'classes/Pronamic_Google_Maps_Magic.php';
+require_once 'classes/Pronamic_Google_Maps_Mashup.php';
 require_once 'functions.php';
 
 Pronamic_Google_Maps::bootstrap(__FILE__);

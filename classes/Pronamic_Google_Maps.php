@@ -200,7 +200,13 @@ class Pronamic_Google_Maps {
 	}
 
 	//////////////////////////////////////////////////
-	
+
+	/**
+	 * Get an URL to an static Google Maps iamge
+	 * 
+	 * @param Pronamic_Google_Maps_Info $info
+	 * @return string an URL
+	 */
 	public static function getStaticMapUrl(Pronamic_Google_Maps_Info $info) {
 		$url = 'http://maps.google.com/maps/api/staticmap?';
 
@@ -229,19 +235,37 @@ class Pronamic_Google_Maps {
 		return $url;
 	}
 
-	public static function renderMetaHiddenField($info) {
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render an GEO microformat for the specified latitude and longitude
+	 * 
+	 * @param float $latitude
+	 * @param float $longitude
+	 */
+	public static function renderMicroformat($latitude, $longitude) {
 		?>
-		<input type="hidden" name="pronamic-google-maps-meta" value="<?php echo esc_attr(json_encode($info)); ?>" />
-		<?php
+		<div class="geo">
+			<abbr class="latitude" title="<?php printf('%.6f', $latitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE); ?></abbr> 
+			<abbr class="longitude" title="<?php printf('%.6f', $longitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE); ?></abbr>
+		</div>
+		<?php 
 	}
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render an Google Maps according the specified info
+	 * 
+	 * @param Pronamic_Google_Maps_Info $info
+	 */
 	public static function renderMap(Pronamic_Google_Maps_Info $info) {
 		?>
 		<div class="pgm">
 
 			<?php if($info->isDynamic()):  ?>
 
-			<?php self::renderMetaHiddenField($info); ?>
+			<input type="hidden" name="pgm-info" value="<?php echo esc_attr(json_encode($info)); ?>" />
 
 			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">
 				<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
@@ -252,15 +276,17 @@ class Pronamic_Google_Maps {
 			<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
 
 			<?php endif; ?>
-
-			<div class="geo">
-				<abbr class="latitude" title="<?php printf('%.6f', $info->latitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($info->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE); ?></abbr> 
-				<abbr class="longitude" title="<?php printf('%.6f', $info->longitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($info->longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE); ?></abbr>
-			</div>
 		</div>
 		<?php 
 	}
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render an Google Maps for the current global post
+	 * 
+	 * @param mixed $arguments
+	 */
 	public static function render($arguments) {
 		$defaults = array(
 			'width' => 500 ,
