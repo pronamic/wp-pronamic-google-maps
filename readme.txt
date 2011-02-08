@@ -70,13 +70,18 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 
 **Dynamic Google Maps**
 
+	<?php
+
 	pronamic_google_maps(array(
 		'width' => 290 ,
 		'height' => 200 
 	));
 
+	?>
 
 **Static Google Maps**
+
+	<?php
 	
 	pronamic_google_maps(array(
 		'width' => 290 ,
@@ -85,6 +90,8 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 		'color' => '0xFFD800' ,
 		'label' => 'M'
 	));
+
+	?>
 
 
  [1]: http://codex.wordpress.org/Shortcode_API
@@ -100,13 +107,19 @@ You should add some code to you templates to add the Google Map.
 
 **Dynamic Google Maps**
 
+	<?php
+
 	pronamic_google_maps(array(
 		'width' => 290 ,
 		'height' => 200 
 	));
 
+	?>
+
 
 **Static Google Maps**
+
+	<?php
 	
 	pronamic_google_maps(array(
 		'width' => 290 ,
@@ -116,12 +129,13 @@ You should add some code to you templates to add the Google Map.
 		'label' => 'M'
 	));
 
+	?>
 
-If you don't want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
-latitude and longitude information you should add the folowing line off CSS to your stylesheet 
-file (style.css):
 
-	.pgm .geo { display: none; }
+If you want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
+latitude and longitude information you should call the following function in your template:
+
+	<?php pronamic_google_maps_geo_microformat(); ?>
 
 
 == Screenshots ==

@@ -22,7 +22,7 @@ require_once 'classes/Pronamic_Google_Maps_OptionPage.php';
 require_once 'classes/Pronamic_Google_Maps_MetaBox.php';
 require_once 'classes/Pronamic_Google_Maps_Widget.php';
 require_once 'classes/Pronamic_Google_Maps_Mashup.php';
-require_once 'classes/Pronamic_Google_Maps_Microformat.php';
+require_once 'classes/Pronamic_Google_Maps_GeoMicroformat.php';
 
 require_once 'functions.php';
 

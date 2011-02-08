@@ -31,7 +31,7 @@ function pronamic_google_maps_geo_microformat() {
 	$latitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
 	$longitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 
-	Pronamic_Google_Maps_Microformat::render($latitude, $longitude);
+	Pronamic_Google_Maps_GeoMicroformat::render($latitude, $longitude);
 }
 
 function pronamic_google_maps($arguments) {
