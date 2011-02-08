@@ -12,6 +12,7 @@ License: GPL
 
 require_once 'classes/Pronamic_Google_Maps.php';
 require_once 'classes/Pronamic_Google_Maps_Plugin.php';
+require_once 'classes/Pronamic_Google_Maps_MapTypeId.php';
 require_once 'classes/Pronamic_Google_Maps_Post.php';
 require_once 'classes/Pronamic_Google_Maps_Filters.php';
 require_once 'classes/Pronamic_Google_Maps_LatLng.php';
