@@ -72,7 +72,8 @@ class Pronamic_Google_Maps {
 		}
 
 		// Load plugin text domain
-		$relPath = dirname(self::$file) . '/languages';
+		$relPath = dirname(plugin_basename(self::$file)) . '/languages/';
+
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
 		// Register the Google Maps API script
@@ -129,8 +130,6 @@ class Pronamic_Google_Maps {
 	 */
 	public static function getMetaData() {
 		// _deprecated_function( __FUNCTION__, '1.4.1');
-
-		global $post;
 
 		$meta = new stdClass();
 		

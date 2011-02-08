@@ -156,10 +156,12 @@ latitude and longitude information you should call the following function in you
 *	Removed "Latest news from Pronamic" from options page
 *	Removed "Found a bug?" from options page
 *	Added a search field above the Google Map in the admin
+*	Added the pronamic_google_maps_is_active() function
 *	Added the pronamic_google_maps_title() function and the "pronamic_google_maps_item_title" filter
 *	Added the pronamic_google_maps_description() function and the "pronamic_google_maps_item_description" filter
-*	Added mashup functions: pronamic_google_maps_mashup($query, $arguments)
+*	Added mashup function: pronamic_google_maps_mashup($query, $arguments)
 *	Added the 'pronamic_google_maps_mashup_item' filter
+*	Added 'nl_NL' translations
 
 = 1.4.1 =
 *	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))

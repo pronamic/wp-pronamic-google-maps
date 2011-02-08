@@ -62,7 +62,7 @@ $activeTypes = $options['active'];
 
 		<p class="submit">
 			<input type="hidden" name="pronamic_google_maps_action" value="update" />
-			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN) ?>" />
+			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e(__('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>" />
 		</p>
 	</form>
 </div>

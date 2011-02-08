@@ -4,8 +4,10 @@ function pronamic_get_google_maps_meta() {
 	return Pronamic_Google_Maps::getMetaData();
 }
 
-function pronamic_is_google_maps_active() {
-	return get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
+function pronamic_google_maps_is_active() {
+	$active = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
+
+	return filter_var($active, FILTER_VALIDATE_BOOLEAN);
 }
 
 function pronamic_google_maps_title($arguments) {
