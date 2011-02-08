@@ -19,7 +19,7 @@ class Pronamic_Google_Maps_Mashup {
 			'width' => 500 ,
 			'height' => 300 , 
 			'zoom' => 8 , 
-			'map_type_id' => 'roadmap' , 
+			'map_type_id' => Pronamic_Google_Maps_MapTypeId::ROADMAP , 
 			'hide_list' => true
 		);
 	
@@ -40,18 +40,20 @@ class Pronamic_Google_Maps_Mashup {
 		<div class="pgmm">
 			<input type="hidden" name="options" value="<?php esc_attr_e(json_encode($options)); ?>" />
 		
-			<div class="canvas" style="width: 650px; height: 400px;">
+			<div class="canvas" style="width: <?php echo $options->width; ?>px; height: <?php echo $options->height; ?>px;">
 				
 			</div>
 
 			<ul>
 
 				<?php while($query->have_posts()): $query->the_post(); ?>
-		
+
+				<?php $pgm = Pronamic_Google_Maps::getMetaData(); ?>
+
+				<?php if($pgm->active): ?>
+
 				<li>
 					<?php 
-
-					$pgm = Pronamic_Google_Maps::getMetaData();
 		
 					$info = new Pronamic_Google_Maps_Info();
 					$info->title = $pgm->title;
@@ -77,6 +79,8 @@ class Pronamic_Google_Maps_Mashup {
 					
 					?>
 				</li>
+
+				<?php endif; ?>
 		
 				<?php endwhile; ?>
 		

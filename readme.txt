@@ -72,24 +72,46 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 
 	<?php
 
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 
-	));
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 
+		));
+	}
 
 	?>
 
 **Static Google Maps**
 
 	<?php
-	
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 ,
-		'static' => true ,
-		'color' => '0xFFD800' ,
-		'label' => 'M'
-	));
+
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 ,
+			'static' => true ,
+			'color' => '0xFFD800' ,
+			'label' => 'M'
+		));
+	}
+
+	?>
+
+**Google Maps Mashup**
+
+	<?php
+
+	if(function_exists('pronamic_google_maps_mashup')) {
+		pronamic_google_maps_mashup(
+			array(
+				'post_type' => 'post'
+			) , 
+			array(
+				'width' => 300 ,
+				'height' => 200 
+			)
+		);
+	}
 
 	?>
 

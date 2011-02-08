@@ -41,11 +41,11 @@ $activeTypes = $options['active'];
 				<tr>
 					<th scope="row">
 						<label for="pronamic-google-maps-type-<?php echo $name; ?>">
-							<?php echo $type->labels->name; ?>
+							<?php echo $type->labels->singular_name; ?>
 						</label>
 					</th>
 					<td>
-							<?php $active = isset($activeTypes[$name]) && $activeTypes[$name]; ?>
+						<?php $active = isset($activeTypes[$name]) && $activeTypes[$name]; ?>
 
 						<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="_pronamic_google_maps_active[]" value="<?php echo $name; ?>" type="checkbox" <?php if($active): ?>checked="checked"<?php endif; ?> />
 
