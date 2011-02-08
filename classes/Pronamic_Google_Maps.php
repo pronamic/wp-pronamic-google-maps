@@ -37,57 +37,6 @@ class Pronamic_Google_Maps {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Meta key for the Google Maps active meta data
-	 *
-	 * @var string
-	 */
-	const META_KEY_ACTIVE = '_pronamic_google_maps_active';
-
-	/**
-	 * Meta key for the Google Maps latitude meta data
-	 *
-	 * @var string
-	 */
-	const META_KEY_LATITUDE = '_pronamic_google_maps_latitude';
-
-	/**
-	 * Meta key for the Google Map longitude meta data
-	 *
-	 * @var string
-	 */
-	const META_KEY_LONGITUDE = '_pronamic_google_maps_longitude';
-
-	/**
-	 * Meta key for the Google Maps title meta data
-	 *
-	 * @var string
-	 */
-	const META_KEY_TITLE = '_pronamic_google_maps_title';
-
-	/**
-	 * Meta key for the Google Maps info meta data
-	 *
-	 * @var string
-	 */
-	const META_KEY_DESCRIPTION = '_pronamic_google_maps_description';
-
-	/**
-	 * Meta key for the Google Maps map type data
-	 *
-	 * @var string
-	 */
-	const META_KEY_MAP_TYPE = '_pronamic_google_maps_map_type';
-
-	/**
-	 * Meta key for the Google Maps map zoom level
-	 *
-	 * @var string
-	 */
-	const META_KEY_ZOOM = '_pronamic_google_maps_zoom';
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * The plugin file
 	 * 
 	 * @var string
@@ -106,7 +55,6 @@ class Pronamic_Google_Maps {
 
 		Pronamic_Google_Maps_Plugin::bootstrap();
 		Pronamic_Google_Maps_Widget::bootstrap();
-		Pronamic_Google_Maps_Magic::bootstrap();
 
 		// Actions and hooks
 		add_action('init', array(__CLASS__, 'initialize'));
@@ -180,21 +128,23 @@ class Pronamic_Google_Maps {
 	 * @return stdClass
 	 */
 	public static function getMetaData() {
+		// _deprecated_function( __FUNCTION__, '1.4.1');
+
 		global $post;
 
 		$meta = new stdClass();
 		
-		$active = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_ACTIVE, true);
+		$active = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
 		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
 		
-		$meta->latitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LATITUDE, true);
-		$meta->longitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_LONGITUDE, true);
+		$meta->latitude = (float) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+		$meta->longitude = (float) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 		
-		$meta->mapType = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_MAP_TYPE, true);
-		$meta->zoom = (int) get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_ZOOM, true);
+		$meta->mapType = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
+		$meta->zoom = (int) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
 		
-		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_TITLE, true);
-		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps::META_KEY_DESCRIPTION, true);
+		$meta->title = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
+		$meta->description = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
 		
 		return $meta;
 	}
@@ -233,23 +183,6 @@ class Pronamic_Google_Maps {
 		$url .= http_build_query($parameters, '', '&amp;');
 
 		return $url;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Render an GEO microformat for the specified latitude and longitude
-	 * 
-	 * @param float $latitude
-	 * @param float $longitude
-	 */
-	public static function renderMicroformat($latitude, $longitude) {
-		?>
-		<div class="geo">
-			<abbr class="latitude" title="<?php printf('%.6f', $latitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE); ?></abbr> 
-			<abbr class="longitude" title="<?php printf('%.6f', $longitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE); ?></abbr>
-		</div>
-		<?php 
 	}
 
 	//////////////////////////////////////////////////

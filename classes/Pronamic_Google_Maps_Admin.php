@@ -41,8 +41,10 @@ class Pronamic_Google_Maps_Admin {
 	 * Initialize the admin
 	 */
 	public static function initialize() {
+		// Actions and hooks
 		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
 
+		// Try to save the options if they are posted
 		self::saveOptions();
 	}
 
@@ -89,21 +91,21 @@ class Pronamic_Google_Maps_Admin {
 			}
 		}
 
-		$active = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
-		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
-		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
-		$title = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_TITLE, FILTER_SANITIZE_STRING);
-		$description = filter_input(INPUT_POST, Pronamic_Google_Maps::META_KEY_DESCRIPTION, FILTER_SANITIZE_STRING);
+		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
+		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
+		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
+		$title = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_SANITIZE_STRING);
+		$description = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_SANITIZE_STRING);
 
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_ACTIVE, $active ? 'true' : 'false');
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_LATITUDE, $latitude);
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_LONGITUDE, $longitude);
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_MAP_TYPE, $mapType);
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_ZOOM, $zoom);
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_TITLE, $title);
-		update_post_meta($postId, Pronamic_Google_Maps::META_KEY_DESCRIPTION, $description);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : 'false');
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, $mapType);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ZOOM, $zoom);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_TITLE, $title);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description);
 	}
 
 	//////////////////////////////////////////////////

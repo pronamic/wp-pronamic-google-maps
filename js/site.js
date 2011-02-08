@@ -23,12 +23,12 @@
 			if(canvas) {
 				var location =  new google.maps.LatLng(info.latitude, info.longitude);
 
-				var options = {
+				var mapOptions = {
 					zoom: info.zoom , 
 					center: location , 
 					mapTypeId: info.mapType 
 				};
-			
+
 				var map = new google.maps.Map(canvas, mapOptions);
 			
 				var marker = new google.maps.Marker({
@@ -56,7 +56,14 @@
 
 			var list = element.find("ul");
 
+			var defaultOptions = {
+				zoom: 8 , 
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
 			var options = jQuery.parseJSON(element.find("input[name=options]").val());
+
+			options = $.extend(defaultOptions, options);
 
 			var canvas = element.find(".canvas").get(0);
 
@@ -88,7 +95,7 @@
 						map: map 
 					});
 
-					var infoWindow = new google.maps.InfoWindow({content: info.description});
+					var infoWindow = new google.maps.InfoWindow({content: item.html()});
 				
 					google.maps.event.addListener(marker, "click", function() {
 						infoWindow.open(map, marker);

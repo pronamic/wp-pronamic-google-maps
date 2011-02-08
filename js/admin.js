@@ -80,7 +80,7 @@
 				fields.description.keyup(function() { infoWindow.setContent(fields.description.val()); });
 				fields.description.change(function() { infoWindow.setContent(fields.description.val()); });
 
-				searchButton.click(function() {
+				var search = function() {
 					geocoder.geocode({"address": fields.search.val()} , function(results, status) {
 						if(status == google.maps.GeocoderStatus.OK) {
 							if(results[0]) {
@@ -97,8 +97,20 @@
 							}
 						}
 					});
+				};
 
-					return false;
+				searchButton.click(function(event) { 
+					search(); 
+
+					return false; 
+				});
+
+				fields.search.keydown(function(event) { 
+					if(event.keyCode == 13) { 
+						search();
+
+						return false;
+					}
 				});
 			}
 		}

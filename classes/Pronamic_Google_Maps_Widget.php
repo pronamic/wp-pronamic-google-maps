@@ -16,8 +16,9 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 */
 	public static function bootstrap() {
 		add_action('widgets_init', array(__CLASS__, 'initialize'));
-		
 	}
+
+	//////////////////////////////////////////////////
 
 	/**
 	 * Initialize

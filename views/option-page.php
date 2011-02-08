@@ -29,7 +29,6 @@ $activeTypes = $options['active'];
 				<tr>
 					<th scope="col" class="manage-column"><?php _e('Post type', Pronamic_Google_Maps::TEXT_DOMAIN); ?></th>
 					<th scope="col" class="manage-column"><?php _e('Active', Pronamic_Google_Maps::TEXT_DOMAIN); ?></th>
-					<th scope="col" class="manage-column"><?php _e('Auto add', Pronamic_Google_Maps::TEXT_DOMAIN); ?></th>
 				</tr>
 			</<?php echo $tag; ?>>
 
@@ -46,14 +45,13 @@ $activeTypes = $options['active'];
 						</label>
 					</th>
 					<td>
+							<?php $active = isset($activeTypes[$name]) && $activeTypes[$name]; ?>
+
 						<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="_pronamic_google_maps_active[]" value="<?php echo $name; ?>" type="checkbox" <?php if($active): ?>checked="checked"<?php endif; ?> />
-	
+
 						<label for="pronamic-google-maps-type-<?php echo $name; ?>">
 							<?php _e('Activate Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN); ?>
 						</label>
-					</td>
-					<td>
-					
 					</td>
 				</tr>
 
