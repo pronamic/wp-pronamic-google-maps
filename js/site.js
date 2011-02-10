@@ -135,8 +135,8 @@
 /**
  * Check the document for Pronamic Google Maps and mashups
  */
-jQuery(document).ready(function() {
-	jQuery(".pgm").pronamicGoogleMaps();
+jQuery(document).ready(function($) {
+	$(".pgm").pronamicGoogleMaps();
 
-	jQuery(".pgmm").pronamicGoogleMapsMashup();
+	$(".pgmm").pronamicGoogleMapsMashup();
 });

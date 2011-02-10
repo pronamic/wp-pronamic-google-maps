@@ -131,19 +131,21 @@ class Pronamic_Google_Maps {
 	public static function getMetaData() {
 		// _deprecated_function( __FUNCTION__, '1.4.1');
 
+		global $post;
+
 		$meta = new stdClass();
 		
-		$active = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
+		$active = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
 		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
 		
-		$meta->latitude = (float) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-		$meta->longitude = (float) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+		$meta->latitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+		$meta->longitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 		
-		$meta->mapType = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
-		$meta->zoom = (int) get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		$meta->mapType = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
+		$meta->zoom = (int) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
 		
-		$meta->title = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
-		$meta->description = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
+		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
 		
 		return $meta;
 	}

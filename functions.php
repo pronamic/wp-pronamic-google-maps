@@ -5,33 +5,43 @@ function pronamic_get_google_maps_meta() {
 }
 
 function pronamic_google_maps_is_active() {
-	$active = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
+	global $post;
+
+	$active = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
 
 	return filter_var($active, FILTER_VALIDATE_BOOLEAN);
 }
 
 function pronamic_google_maps_title($arguments) {
-	$title = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
+	global $post;
+
+	$title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
 
 	echo apply_filters(Pronamic_Google_Maps_Filters::FILTER_TITLE, $title);
 }
 
 function pronamic_google_maps_description($arguments) {
-	$description = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+	global $post;
+
+	$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
 
 	echo apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
 }
 
 function pronamic_google_maps_location() {
-	$latitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-	$longitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+	global $post;
+
+	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 
 	echo $latitude, ', ', $longitude;
 }
 
 function pronamic_google_maps_geo_microformat() {
-	$latitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-	$longitude = get_post_meta(get_the_ID(), Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+	global $post;
+
+	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 
 	Pronamic_Google_Maps_GeoMicroformat::render($latitude, $longitude);
 }
