@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.4
+Stable tag: 1.5.1.1
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -70,21 +70,50 @@ The plugin uses the latest [GEO microformat standards](http://microformats.org/w
 
 **Dynamic Google Maps**
 
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 
-	));
+	<?php
 
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 
+		));
+	}
+
+	?>
 
 **Static Google Maps**
-	
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 ,
-		'static' => true ,
-		'color' => '0xFFD800' ,
-		'label' => 'M'
-	));
+
+	<?php
+
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 ,
+			'static' => true ,
+			'color' => '0xFFD800' ,
+			'label' => 'M'
+		));
+	}
+
+	?>
+
+**Google Maps Mashup**
+
+	<?php
+
+	if(function_exists('pronamic_google_maps_mashup')) {
+		pronamic_google_maps_mashup(
+			array(
+				'post_type' => 'post'
+			) , 
+			array(
+				'width' => 300 ,
+				'height' => 200 
+			)
+		);
+	}
+
+	?>
 
 
  [1]: http://codex.wordpress.org/Shortcode_API
@@ -100,13 +129,19 @@ You should add some code to you templates to add the Google Map.
 
 **Dynamic Google Maps**
 
+	<?php
+
 	pronamic_google_maps(array(
 		'width' => 290 ,
 		'height' => 200 
 	));
 
+	?>
+
 
 **Static Google Maps**
+
+	<?php
 	
 	pronamic_google_maps(array(
 		'width' => 290 ,
@@ -116,12 +151,13 @@ You should add some code to you templates to add the Google Map.
 		'label' => 'M'
 	));
 
+	?>
 
-If you don't want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
-latitude and longitude information you should add the folowing line off CSS to your stylesheet 
-file (style.css):
 
-	.pgm .geo { display: none; }
+If you want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
+latitude and longitude information you should call the following function in your template:
+
+	<?php pronamic_google_maps_geo_microformat(); ?>
 
 
 == Screenshots ==
@@ -134,6 +170,27 @@ file (style.css):
 
 
 == Changelog ==
+
+= 1.5.1.1 =
+*	Fixed a typo in the GEO micrformat render function.
+
+= 1.5.1 =
+*	Fixed bug in version 1.5, function get_the_ID() was not working in all cases, now back to global $post; and $post->ID;
+*	Updated the screenschots
+
+= 1.5 =
+*	Replaced all hidden HTML fields with one hidden field with JSON data
+*	Removed "Like this plugin?" from options page
+*	Removed "Donate $10, $20 or $50!" from options page
+*	Removed "Latest news from Pronamic" from options page
+*	Removed "Found a bug?" from options page
+*	Added a search field above the Google Map in the admin
+*	Added the pronamic_google_maps_is_active() function
+*	Added the pronamic_google_maps_title() function and the "pronamic_google_maps_item_title" filter
+*	Added the pronamic_google_maps_description() function and the "pronamic_google_maps_item_description" filter
+*	Added mashup function: pronamic_google_maps_mashup($query, $arguments)
+*	Added the 'pronamic_google_maps_mashup_item' filter
+*	Added 'nl_NL' translations
 
 = 1.4.1 =
 *	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))
@@ -180,9 +237,17 @@ file (style.css):
 
 == Links ==
 
+*	[Geocode with Google Maps API v3](http://tech.cibul.org/geocode-with-google-maps-api-v3/)
+*	[WordPress event locations](http://icalevents.anmari.com/2343-event-locations-geo-tags-for-custom-post-types/)
 *	[Pronamic](http://pronamic.eu/)
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *	[Markdown's Syntax Documentation][markdown syntax]
+
+**The plugin in the wild**
+
+*	[Metz Ameland](http://metz-ameland.nl/)
+*	[Earthcircuit](http://www.earthcircuit.org/blog/)
+*	
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
