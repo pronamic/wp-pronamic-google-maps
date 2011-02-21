@@ -15,7 +15,7 @@ class Pronamic_Google_Maps_GeoMicroformat {
 	 * @param float $latitude
 	 * @param float $longitude
 	 */
-	public static function remder($latitude, $longitude) {
+	public static function render($latitude, $longitude) {
 		?>
 		<div class="geo">
 			<abbr class="latitude" title="<?php printf('%.6f', $latitude); ?>"><?php echo Pronamic_Google_Maps_LatLng::convertToDegMinSec($latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE); ?></abbr> 

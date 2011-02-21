@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.5.1
+Stable tag: 1.5.1.1
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -170,6 +170,9 @@ latitude and longitude information you should call the following function in you
 
 
 == Changelog ==
+
+= 1.5.1.1 =
+*	Fixed a typo in the GEO micrformat render function.
 
 = 1.5.1 =
 *	Fixed bug in version 1.5, function get_the_ID() was not working in all cases, now back to global $post; and $post->ID;
