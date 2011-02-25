@@ -61,25 +61,25 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 
-			var options = jQuery.parseJSON(element.find("input[name=options]").val());
+			var mashupInfo = jQuery.parseJSON(element.find("input[name=pgmm-info]").val());
 
-			options = $.extend(defaultOptions, options);
+			mashupInfo = $.extend(defaultOptions, mashupInfo);
 
 			var canvas = element.find(".canvas").get(0);
 
 			if(canvas) {
-				if(options.hideList) {
+				if(mashupInfo.hideList) {
 					list.hide();
 				}
 
 				var mapOptions = {
-					zoom: options.zoom , 
-					mapTypeId: options.mapTypeId 
+					zoom: mashupInfo.zoom , 
+					mapTypeId: mashupInfo.mapTypeId 
 				};
 				
 				var map = new google.maps.Map(canvas, mapOptions);
-
 				var bounds = new google.maps.LatLngBounds();
+				var infoWindow = new google.maps.InfoWindow();
 
 				list.find("li").each(function() {
 					var item = jQuery(this);
@@ -90,14 +90,17 @@
 
 					bounds.extend(location);
 
-					var marker = new google.maps.Marker({
-						position: location , 
-						map: map 
-					});
+					var markerOptions = $.extend({
+							position: location , 
+							map: map 
+						} , 
+						mashupInfo.markerOptions
+					);
 
-					var infoWindow = new google.maps.InfoWindow({content: item.html()});
-				
+					var marker = new google.maps.Marker(markerOptions);
+
 					google.maps.event.addListener(marker, "click", function() {
+						infoWindow.setContent(item.html());
 						infoWindow.open(map, marker);
 					});
 				});

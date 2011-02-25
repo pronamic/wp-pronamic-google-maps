@@ -20,7 +20,10 @@ class Pronamic_Google_Maps_Mashup {
 			'height' => 300 , 
 			'zoom' => 8 , 
 			'map_type_id' => Pronamic_Google_Maps_MapTypeId::ROADMAP , 
-			'hide_list' => true
+			'hide_list' => true , 
+			'marker_options' => array(
+		
+			)
 		);
 	
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -34,11 +37,15 @@ class Pronamic_Google_Maps_Mashup {
 		$options->zoom = $arguments['zoom'];
 		$options->mapTypeId = $arguments['map_type_id'];
 		$options->hideList = $arguments['hide_list'];
+		$options->markerOptions = new stdClass();
+		foreach($arguments['marker_options'] as $key => $value) {
+			$options->markerOptions->$key = $value;
+		}
 
 		if($query->have_posts()): ?>
 		
 		<div class="pgmm">
-			<input type="hidden" name="options" value="<?php esc_attr_e(json_encode($options)); ?>" />
+			<input type="hidden" name="pgmm-info" value="<?php esc_attr_e(json_encode($options)); ?>" />
 		
 			<div class="canvas" style="width: <?php echo $options->width; ?>px; height: <?php echo $options->height; ?>px;">
 				
