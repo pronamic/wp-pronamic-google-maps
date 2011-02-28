@@ -3,7 +3,7 @@
 /**
  * Title: Pronamic Google Maps widget
  * Description: 
- * Copyright: Copyright (c) 2005 - 2010
+ * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
@@ -11,6 +11,24 @@
  *      http://codex.wordpress.org/Function_Reference/wp_enqueue_script
  */
 class Pronamic_Google_Maps_Widget extends WP_Widget {
+	/**
+	 * Bootstrap this widget
+	 */
+	public static function bootstrap() {
+		add_action('widgets_init', array(__CLASS__, 'initialize'));
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Initialize
+	 */
+	public static function initialize() {
+		register_widget(__CLASS__);
+	}
+
+	//////////////////////////////////////////////////
+
 	/**
 	 * Constructs and initialize the Google Maps meta box
 	 */
@@ -24,25 +42,22 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		if(is_admin()) {
 			wp_enqueue_script(
 				'pronamic-google-maps-widget', 
-				Pronamic_Google_Maps::$pluginUrl . 'js/widget.js' ,
+				plugins_url('js/widget.js', Pronamic_Google_Maps::$file) , 
 				array('google-maps', 'jquery') 
 			);
 		}
 	}
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render the widget
+	 * 
+	 * @param array $arguments
+	 * @param array $instance
+	 */
 	public function widget($arguments, $instance) {
 		extract($arguments);
-
-		$info = new Pronamic_Google_Maps_Info();
-		$info->title = $instance['title'];
-		$info->description = $instance['description'];
-		$info->width = $instance['width'];
-		$info->height = $instance['height'];
-		$info->zoom = $instance['zoom'];
-		$info->latitude = $instance['latitude'];
-		$info->longitude = $instance['longitude'];
-		$info->mapType = $instance['map-type'];
-		$info->static = $instance['static'];
 
 		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
@@ -51,11 +66,30 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		Pronamic_Google_Maps::renderMap($info);
+		$info = new Pronamic_Google_Maps_Info();
+		$info->title = $instance['title'];
+		$info->description = $instance['description'];
+		$info->width = $instance['width'];
+		$info->height = $instance['height'];
+		$info->zoom = (int) $instance['zoom'];
+		$info->latitude = (float) $instance['latitude'];
+		$info->longitude = (float) $instance['longitude'];
+		$info->mapType = $instance['map-type'];
+		$info->static = $instance['static'];
+
+		echo Pronamic_Google_Maps::getMapHtml($info);
 
 		echo $after_widget;
 	} 
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Update the widget data
+	 * 
+	 * @param array $newInstance
+	 * @param array $oldInstance
+	 */
 	public function update($newInstance, $oldInstance) {
 		$instance = $oldInstance;
 
@@ -72,6 +106,13 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
         return $instance;		
 	}
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render the widget form
+	 * 
+	 * @param array $instance
+	 */
 	public function form($instance) {
 		$instance = wp_parse_args((array) $instance, array(
 			'title' => '' , 
@@ -85,9 +126,17 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			'static' => false 
 		));
 
-		include Pronamic_Google_Maps::$pluginPath . 'views/widget-form.php';
+		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/widget-form.php';
 	}
 
+	//////////////////////////////////////////////////
+
+	/**
+	 * Render unit field
+	 * 
+	 * @param string $name
+	 * @param string $value
+	 */
 	public function renderUnitField($name, $value = null) {
 		$units = array(
 			array('value' => 'px', 'label' => __('pixels', Pronamic_Google_Maps::TEXT_DOMAIN)) , 
