@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.6
+Stable tag: 1.6.1
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -135,10 +135,12 @@ You should add some code to you templates to add the Google Map.
 
 	<?php
 
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 
-	));
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 
+		));
+	}
 
 	?>
 
@@ -146,14 +148,37 @@ You should add some code to you templates to add the Google Map.
 **Static Google Maps**
 
 	<?php
-	
-	pronamic_google_maps(array(
-		'width' => 290 ,
-		'height' => 200 ,
-		'static' => true ,
-		'color' => '0xFFD800' ,
-		'label' => 'M'
-	));
+
+	if(function_exists('pronamic_google_maps')) {
+		pronamic_google_maps(array(
+			'width' => 290 ,
+			'height' => 200 ,
+			'static' => true ,
+			'color' => '0xFFD800' ,
+			'label' => 'M'
+		));
+	}
+
+	?>
+
+
+**Filter the_content()**
+
+	<?php
+
+	if(function_exists('pronamic_google_maps')) {
+		function custom_pronamic_google_maps_the_content($content) {
+			$content .= pronamic_google_maps(array(
+				'width' => 500 , 
+				'height' => 500 , 
+				'echo' => false
+			));
+		
+			return $content;
+		}
+		
+		add_filter('the_content', 'custom_pronamic_google_maps_the_content', 9);
+	}
 
 	?>
 
@@ -162,6 +187,26 @@ If you want to display the [GEO microformat](http://microformats.org/wiki/geo) w
 latitude and longitude information you should call the following function in your template:
 
 	<?php pronamic_google_maps_geo_microformat(); ?>
+
+Or througt an filter
+	
+	<?php
+	
+	function custom_pronamic_google_maps_the_content($content) {
+		$content .= pronamic_google_maps(array(
+			'width' => 500 , 
+			'height' => 500 , 
+			'echo' => false
+		));
+	
+		$content .= pronamic_google_maps_geo_microformat(array(
+			'echo' => false
+		));
+	
+		return $content;
+	}
+	
+	add_filter('the_content', 'custom_pronamic_google_maps_the_content', 9);
 
 
 == Screenshots ==
@@ -174,6 +219,9 @@ latitude and longitude information you should call the following function in you
 
 
 == Changelog ==
+
+= 1.6.1 
+*	Added 'echo' argument in the pronamic_google_maps() and pronamic_google_maps_mashup() functions
 
 = 1.6 = 
 *	Share a single info window on the mashup map (Demo: [Single Info Windows](http://gmaps-samples-v3.googlecode.com/svn/trunk/single-infowindow/single-infowindow.html))

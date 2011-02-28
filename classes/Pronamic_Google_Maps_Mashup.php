@@ -9,11 +9,6 @@
  * @version 1.0
  */
 class Pronamic_Google_Maps_Mashup {
-	/**
-	 * Render an Google Maps for the current global post
-	 * 
-	 * @param mixed $arguments
-	 */
 	public static function render($q = array(), $arguments = array()) {
 		$defaults = array(
 			'width' => 500 ,
@@ -23,7 +18,8 @@ class Pronamic_Google_Maps_Mashup {
 			'hide_list' => true , 
 			'marker_options' => array(
 		
-			)
+			) , 
+			'echo' => true
 		);
 	
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -42,26 +38,20 @@ class Pronamic_Google_Maps_Mashup {
 			$options->markerOptions->$key = $value;
 		}
 
-		if($query->have_posts()): ?>
-		
-		<div class="pgmm">
-			<input type="hidden" name="pgmm-info" value="<?php esc_attr_e(json_encode($options)); ?>" />
-		
-			<div class="canvas" style="width: <?php echo $options->width; ?>px; height: <?php echo $options->height; ?>px;">
-				
-			</div>
+		if($query->have_posts()) {
+			$content = '<div class="pgmm">';
 
-			<ul>
+			$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));
 
-				<?php while($query->have_posts()): $query->the_post(); ?>
+			$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $options->width, $options->height);
+			$content .= sprintf('</div>');
 
-				<?php $pgm = Pronamic_Google_Maps::getMetaData(); ?>
+			$content .= '<ul>';
 
-				<?php if($pgm->active): ?>
+			while($query->have_posts()) { $query->the_post();
+				$pgm = Pronamic_Google_Maps::getMetaData();
 
-				<li>
-					<?php 
-		
+				if($pgm->active) {
 					$info = new Pronamic_Google_Maps_Info();
 					$info->title = $pgm->title;
 					$info->description = $pgm->description;
@@ -70,30 +60,29 @@ class Pronamic_Google_Maps_Mashup {
 					$info->mapType = $pgm->mapType;
 					$info->zoom = $pgm->zoom;
 					
-					?>
-					<input type="hidden" name="pgm-info" value="<?php echo esc_attr(json_encode($info)); ?>" />
+					$content .= '<li>';
+					$content .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
 
-					<?php 
-					
-					$content = sprintf(
+					$itemContent = sprintf(
 						'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
 						get_permalink() , 
 						sprintf(esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' )) , 
 						get_the_title()
 					);
 
-					echo apply_filters(Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $content);
-					
-					?>
-				</li>
+					$content .= apply_filters(Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $itemContent);
+					$content .= '</li>';
+				}
+			}
 
-				<?php endif; ?>
-		
-				<?php endwhile; ?>
-		
-			</ul>
-		</div>
+			$content .= '</ul>';
+			$content .= '</div>';
 
-		<?php endif;
+			if($arguments['echo']) {
+				echo $content;
+			} else {
+				return $content;
+			}
+		}
 	}
 }

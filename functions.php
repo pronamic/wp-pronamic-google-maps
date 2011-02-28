@@ -37,19 +37,19 @@ function pronamic_google_maps_location() {
 	echo $latitude, ', ', $longitude;
 }
 
-function pronamic_google_maps_geo_microformat() {
+function pronamic_google_maps_geo_microformat($arguments = array()) {
 	global $post;
 
 	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
 	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 
-	Pronamic_Google_Maps_GeoMicroformat::render($latitude, $longitude);
+	return Pronamic_Google_Maps_GeoMicroformat::render($latitude, $longitude, $arguments);
 }
 
-function pronamic_google_maps($arguments) {
-	Pronamic_Google_Maps::render($arguments);
+function pronamic_google_maps($arguments = array()) {
+	return Pronamic_Google_Maps::render($arguments);
 }
 
 function pronamic_google_maps_mashup($query = array(), $arguments = array()) {
-	Pronamic_Google_Maps_Mashup::render($query, $arguments);
+	return Pronamic_Google_Maps_Mashup::render($query, $arguments);
 }

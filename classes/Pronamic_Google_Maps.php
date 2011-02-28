@@ -193,25 +193,22 @@ class Pronamic_Google_Maps {
 	 * 
 	 * @param Pronamic_Google_Maps_Info $info
 	 */
-	public static function renderMap(Pronamic_Google_Maps_Info $info) {
-		?>
-		<div class="pgm">
+	public static function getMapHtml(Pronamic_Google_Maps_Info $info) {
+		$content = '<div class="pgm">';
 
-			<?php if($info->isDynamic()):  ?>
+		if($info->isDynamic()) {
+			$content .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
 
-			<input type="hidden" name="pgm-info" value="<?php echo esc_attr(json_encode($info)); ?>" />
+			$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $info->width, $info->height);
+			$content .= sprintf('  <img src="" alt="" />', self::getStaticMapUrl($info));
+			$content .= sprintf('</div>');
+		} else {
+			$content .= sprintf('<img src="" alt="" />', self::getStaticMapUrl($info));
+		}
 
-			<div class="canvas" style="width: <?php echo $info->width; ?>px; height: <?php echo $info->height; ?>px;">
-				<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
-			</div>
+		$content .= '</div>';
 
-			<?php else: ?>
-
-			<img src="<?php echo self::getStaticMapUrl($info); ?>" alt="" />
-
-			<?php endif; ?>
-		</div>
-		<?php 
+		return $content;
 	}
 
 	//////////////////////////////////////////////////
@@ -221,13 +218,14 @@ class Pronamic_Google_Maps {
 	 * 
 	 * @param mixed $arguments
 	 */
-	public static function render($arguments) {
+	public static function render($arguments = array()) {
 		$defaults = array(
 			'width' => 500 ,
 			'height' => 300 , 
 			'static' => false , 
 			'label' => null , 
-			'color' => null
+			'color' => null , 
+			'echo' => true
 		);
 	
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -255,7 +253,13 @@ class Pronamic_Google_Maps {
 			$info->label = $arguments['label'];
 			$info->color = $arguments['color'];
 
-			self::renderMap($info);
+			$html = self::getMapHtml($info);
+
+			if($arguments['echo']) {
+				echo $html;
+			} else {
+				return $html;
+			}
 		}
 	}
 }
