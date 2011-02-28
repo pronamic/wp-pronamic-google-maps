@@ -15,28 +15,42 @@ class Pronamic_Google_Maps_GeoMicroformat {
 	 * @param float $latitude
 	 * @param float $longitude
 	 */
-	public static function render($latitude, $longitude, $arguments = array()) {
+	public static function render($arguments = array()) {
+		// Arguments
 		$defaults = array(
 			'echo' => true
 		);
 	
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		$content = sprintf('
-			<div class="geo">
-				<abbr class="latitude" title="%.6f">%s</abbr> 
-				<abbr class="longitude" title="%.6f">%s</abbr>
-			</div>' , 
-			$latitude ,
-			Pronamic_Google_Maps_LatLng::convertToDegMinSec($latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE) , 
-			$longitude ,
-			Pronamic_Google_Maps_LatLng::convertToDegMinSec($longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE) 
-		);
+		// Options
+		$options = Pronamic_Google_Maps::getOptions();
+		$pgm = Pronamic_Google_Maps::getMetaData();
+	
+		$activeTypes = $options['active'];
+	
+		global $post;
+	
+		$active = isset($activeTypes[$post->post_type]) && $activeTypes[$post->post_type];
 
-		if($arguments['echo']) {
-			echo $content;
-		} else {
-			return $content;
+		// Active
+		if($active && $pgm->active) {
+			$content = sprintf('
+				<div class="geo">
+					<abbr class="latitude" title="%.6f">%s</abbr> 
+					<abbr class="longitude" title="%.6f">%s</abbr>
+				</div>' , 
+				$pgm->latitude ,
+				Pronamic_Google_Maps_LatLng::convertToDegMinSec($pgm->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE) , 
+				$pgm->longitude ,
+				Pronamic_Google_Maps_LatLng::convertToDegMinSec($pgm->longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE) 
+			);
+
+			if($arguments['echo']) {
+				echo $content;
+			} else {
+				return $content;
+			}
 		}
 	}
 }

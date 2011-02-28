@@ -222,6 +222,7 @@ Or througt an filter
 
 = 1.6.1 
 *	Added 'echo' argument in the pronamic_google_maps() and pronamic_google_maps_mashup() functions
+*	Fixed the 'pronamic_google_maps_geo_microformat()' function, if Google Maps is not active for the current post or post type don't render the microformat
 
 = 1.6 = 
 *	Share a single info window on the mashup map (Demo: [Single Info Windows](http://gmaps-samples-v3.googlecode.com/svn/trunk/single-infowindow/single-infowindow.html))

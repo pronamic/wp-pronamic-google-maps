@@ -38,12 +38,7 @@ function pronamic_google_maps_location() {
 }
 
 function pronamic_google_maps_geo_microformat($arguments = array()) {
-	global $post;
-
-	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
-
-	return Pronamic_Google_Maps_GeoMicroformat::render($latitude, $longitude, $arguments);
+	return Pronamic_Google_Maps_GeoMicroformat::render($arguments);
 }
 
 function pronamic_google_maps($arguments = array()) {
