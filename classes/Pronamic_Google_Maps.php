@@ -200,10 +200,10 @@ class Pronamic_Google_Maps {
 			$content .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
 
 			$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $info->width, $info->height);
-			$content .= sprintf('  <img src="" alt="" />', self::getStaticMapUrl($info));
+			$content .= sprintf('  <img src="%s" alt="" />', self::getStaticMapUrl($info));
 			$content .= sprintf('</div>');
 		} else {
-			$content .= sprintf('<img src="" alt="" />', self::getStaticMapUrl($info));
+			$content .= sprintf('<img src="%s" alt="" />', self::getStaticMapUrl($info));
 		}
 
 		$content .= '</div>';
