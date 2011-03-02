@@ -30,7 +30,7 @@
 				};
 
 				var map = new google.maps.Map(canvas, mapOptions);
-			
+
 				var marker = new google.maps.Marker({
 					position: location , 
 					map: map 
@@ -139,7 +139,11 @@
  * Check the document for Pronamic Google Maps and mashups
  */
 jQuery(document).ready(function($) {
-	$(".pgm").pronamicGoogleMaps();
 
-	$(".pgmm").pronamicGoogleMapsMashup();
+});
+
+jQuery(window).load(function($) {
+	jQuery(".pgm").pronamicGoogleMaps();
+
+	jQuery(".pgmm").pronamicGoogleMapsMashup();
 });
