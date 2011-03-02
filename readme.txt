@@ -226,7 +226,7 @@ Or througt an filter
 	instead of the [ready event](http://api.jquery.com/ready//). If we use the read event the markers will not 
 	show up on the map (thanks to SweetManiac).
 
-= 1.6.1 
+= 1.6.1 =
 *	Added 'echo' argument in the pronamic_google_maps() and pronamic_google_maps_mashup() functions
 *	Fixed the 'pronamic_google_maps_geo_microformat()' function, if Google Maps is not active for the current post or post type don't render the microformat
 
