@@ -10,7 +10,7 @@
  */
 class Pronamic_Google_Maps_Admin {
 	/**
-	 * Constructs and initliaze an Google Maps admin
+	 * Bootstrap the Google Maps admin
 	 */
 	public static function bootstrap() {
 		// Actions and hooks
