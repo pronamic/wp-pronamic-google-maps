@@ -131,15 +131,15 @@
 			methods.buildMashup(this);
 		});
 	};
+	
+	//////////////////////////////////////////////////
+	
+	/**
+	* Check the document for Pronamic Google Maps and mashups
+	*/
+	$(window).load(function() {
+		$(".pgm").pronamicGoogleMaps();
+	
+		$(".pgmm").pronamicGoogleMapsMashup();
+	});
 })(jQuery);
-
-//////////////////////////////////////////////////
-
-/**
- * Check the document for Pronamic Google Maps and mashups
- */
-jQuery(window).load(function() {
-	jQuery(".pgm").pronamicGoogleMaps();
-
-	jQuery(".pgmm").pronamicGoogleMapsMashup();
-});
