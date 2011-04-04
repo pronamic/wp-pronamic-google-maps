@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.6.1.3
+Stable tag: 1.6.2
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -220,8 +220,9 @@ Or througt an filter
 
 == Changelog ==
 
-= 1.6.1.3 = 
+= 1.6.2 = 
 *	Changed the scope of some JavaScript functions in site.js and admin.js
+*	Changed some JavaScripts so the Google Maps object is binded to some DOM elements (http://api.jquery.com/data/)
 
 = 1.6.1.2 =
 *	Removed some unnecessary JavaScript, in response to problems in IE6 and 7.
@@ -316,7 +317,8 @@ Or througt an filter
 
 *	[Metz Ameland](http://metz-ameland.nl/)
 *	[Earthcircuit](http://www.earthcircuit.org/blog/)
-*	
+*	[Comando Lechuga] (http://www.comandolechuga.com/)
+*	[Professionele Fotografie](http://pf.nl/)
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
