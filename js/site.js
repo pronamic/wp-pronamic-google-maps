@@ -21,8 +21,10 @@
 			var canvas = element.find(".canvas").get(0);
 
 			if(canvas) {
+				// Location
 				var location =  new google.maps.LatLng(info.latitude, info.longitude);
 
+				// Map
 				var mapOptions = {
 					zoom: info.zoom , 
 					center: location , 
@@ -31,6 +33,9 @@
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
+				element.data("google-maps", map);
+
+				// Marker
 				var marker = new google.maps.Marker({
 					position: location , 
 					map: map 
@@ -78,6 +83,9 @@
 				};
 				
 				var map = new google.maps.Map(canvas, mapOptions);
+
+				element.data("google-maps", map);
+
 				var bounds = new google.maps.LatLngBounds();
 				var infoWindow = new google.maps.InfoWindow();
 
@@ -131,19 +139,15 @@
 			methods.buildMashup(this);
 		});
 	};
+	
+	//////////////////////////////////////////////////
+	
+	/**
+	* Check the document for Pronamic Google Maps and mashups
+	*/
+	$(window).load(function() {
+		$(".pgm").pronamicGoogleMaps();
+	
+		$(".pgmm").pronamicGoogleMapsMashup();
+	});
 })(jQuery);
-
-//////////////////////////////////////////////////
-
-/**
- * Check the document for Pronamic Google Maps and mashups
- */
-jQuery(document).ready(function($) {
-
-});
-
-jQuery(window).load(function($) {
-	jQuery(".pgm").pronamicGoogleMaps();
-
-	jQuery(".pgmm").pronamicGoogleMapsMashup();
-});
