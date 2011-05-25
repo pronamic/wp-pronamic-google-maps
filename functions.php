@@ -12,7 +12,7 @@ function pronamic_google_maps_is_active() {
 	return filter_var($active, FILTER_VALIDATE_BOOLEAN);
 }
 
-function pronamic_google_maps_title($arguments) {
+function pronamic_google_maps_title() {
 	global $post;
 
 	$title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
@@ -20,7 +20,7 @@ function pronamic_google_maps_title($arguments) {
 	echo apply_filters(Pronamic_Google_Maps_Filters::FILTER_TITLE, $title);
 }
 
-function pronamic_google_maps_description($arguments) {
+function pronamic_google_maps_description() {
 	global $post;
 
 	$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);

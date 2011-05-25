@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.6.1.1
+Stable tag: 1.7.1
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -220,6 +220,28 @@ Or througt an filter
 
 == Changelog ==
 
+= 1.7.1 =
+*	Added an wp_reset_postdata() call after the custom query in the mashup class in request
+	of [ezlxq73](http://wordpress.org/support/topic/bug-in-pronamic_google_maps_mashup?replies=1#post-2128808)
+
+= 1.7 =
+*	Changed 'WP_query' to the 'WP_Query' class name 
+*	Improved the way the frontend JavaScripts are enqueued, on singular pages only when Google Maps is active.
+	If your Google Maps mashup is not working anymore you probably have to call 
+	wp_enqueue_script('pronamic-google-maps-site') in your mashup template. We adjusted this in request 
+	of [MrVictor](http://wordpress.org/support/topic/plugin-pronamic-google-maps-load-script-only-on-pages-post-types-with-maps?replies=2#post-2096660)
+
+= 1.6.3 =
+*	Made it possible to use HTML in the title and description field (uses [function wp_kses_post()](http://codex.wordpress.org/Data_Validation)),
+	request of [Paul Craig](http://fusio.net/) and [bigchiefrandomchaos](http://wordpress.org/support/profile/bigchiefrandomchaos).
+
+= 1.6.2 = 
+*	Changed the scope of some JavaScript functions in site.js and admin.js
+*	Changed some JavaScripts so the Google Maps object is binded to some DOM elements (http://api.jquery.com/data/)
+
+= 1.6.1.2 =
+*	Removed some unnecessary JavaScript, in response to problems in IE6 and 7.
+
 = 1.6.1.1 =
 *	Fixed the static map the image source attribute was empty since version 1.6.1.
 *	Fixed a bug in Internet Explorer 8, we now use the window [load event](http://api.jquery.com/load-event/) 
@@ -306,11 +328,21 @@ Or througt an filter
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *	[Markdown's Syntax Documentation][markdown syntax]
 
-**The plugin in the wild**
+[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
+            "Markdown is what the parser uses to process much of the readme file"
+
+== Plugin in the wild ==
 
 *	[Metz Ameland](http://metz-ameland.nl/)
 *	[Earthcircuit](http://www.earthcircuit.org/blog/)
-*	
+*	[Comando Lechuga](http://www.comandolechuga.com/)
+*	[Professionele Fotografie](http://pf.nl/)
 
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+== Pronamic plugins ==
+
+*	[Pronamic Google Maps](http://wordpress.org/extend/plugins/pronamic-google-maps/)
+*	[Gravity Forms (nl)](http://wordpress.org/extend/plugins/gravityforms-nl/)
+*	[Pronamic Page Widget](http://wordpress.org/extend/plugins/pronamic-page-widget/)
+*	[Pronamic Page Teasers](http://wordpress.org/extend/plugins/pronamic-page-teasers/)
+*	[Maildit](http://wordpress.org/extend/plugins/maildit/)
+*	[Pronamic Framework](http://wordpress.org/extend/plugins/pronamic-framework/)

@@ -24,7 +24,7 @@ class Pronamic_Google_Maps_Mashup {
 	
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		$query = new WP_query();
+		$query = new WP_Query();
 		$query->query($q);
 
 		$options = new stdClass();
@@ -74,6 +74,8 @@ class Pronamic_Google_Maps_Mashup {
 					$content .= '</li>';
 				}
 			}
+
+			wp_reset_postdata();
 
 			$content .= '</ul>';
 			$content .= '</div>';
