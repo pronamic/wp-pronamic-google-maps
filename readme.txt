@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.7
+Stable tag: 1.7.1
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -220,10 +220,12 @@ Or througt an filter
 
 == Changelog ==
 
-= 1.7 =
-*	Changed 'WP_query' to the 'WP_Query' class name 
+= 1.7.1 =
 *	Added an wp_reset_postdata() call after the custom query in the mashup class in request
 	of [ezlxq73](http://wordpress.org/support/topic/bug-in-pronamic_google_maps_mashup?replies=1#post-2128808)
+
+= 1.7 =
+*	Changed 'WP_query' to the 'WP_Query' class name 
 *	Improved the way the frontend JavaScripts are enqueued, on singular pages only when Google Maps is active.
 	If your Google Maps mashup is not working anymore you probably have to call 
 	wp_enqueue_script('pronamic-google-maps-site') in your mashup template. We adjusted this in request 

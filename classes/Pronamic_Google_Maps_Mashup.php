@@ -75,6 +75,8 @@ class Pronamic_Google_Maps_Mashup {
 				}
 			}
 
+			wp_reset_postdata();
+
 			$content .= '</ul>';
 			$content .= '</div>';
 
