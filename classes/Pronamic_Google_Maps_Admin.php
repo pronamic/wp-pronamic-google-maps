@@ -91,20 +91,34 @@ class Pronamic_Google_Maps_Admin {
 			}
 		}
 
+		// Active
 		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
-		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
-		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
-		$title = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_SANITIZE_STRING);
-		$description = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_SANITIZE_STRING);
-
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : 'false');
+
+		// Latitude
+		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude);
+
+		// Longitude
+		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude);
+
+		// Map type
+		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, $mapType);
+
+		// Zoom
+		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ZOOM, $zoom);
+
+		// Title
+		$title = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_UNSAFE_RAW);
+		$title = wp_kses_post($title);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_TITLE, $title);
+
+		// Description
+		$description = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_UNSAFE_RAW);
+		$description = wp_kses_post($description);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description);
 	}
 

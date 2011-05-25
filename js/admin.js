@@ -121,8 +121,8 @@
 			methods.buildMetaBox(this);
 		});
 	};
-})(jQuery);
 
-jQuery(document).ready(function() {
-	jQuery("#pronamic-google-maps-meta-box").pronamicGoogleMapsMetaBox();
-});
+	$(document).ready(function() {
+		$("#pronamic-google-maps-meta-box").pronamicGoogleMapsMetaBox();
+	});
+})(jQuery);
