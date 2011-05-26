@@ -16,7 +16,7 @@
 		buildMap: function(s) {
 			var element = jQuery(s);
 
-			var info = jQuery.parseJSON(element.find("input[name=pgm-info]").val());
+			var info = jQuery.parseJSON(element.find('input[name="pgm-info"]').val());
 
 			var canvas = element.find(".canvas").get(0);
 
@@ -66,7 +66,7 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 
-			var mashupInfo = jQuery.parseJSON(element.find("input[name=pgmm-info]").val());
+			var mashupInfo = jQuery.parseJSON(element.find('input[name="pgmm-info"]').val());
 
 			mashupInfo = $.extend(defaultOptions, mashupInfo);
 
@@ -92,7 +92,7 @@
 				list.find("li").each(function() {
 					var item = jQuery(this);
 
-					var info = jQuery.parseJSON(item.find("input[name=pgm-info]").val());
+					var info = jQuery.parseJSON(item.find('input[name="pgm-info"]').val());
 
 					var location =  new google.maps.LatLng(info.latitude, info.longitude);
 

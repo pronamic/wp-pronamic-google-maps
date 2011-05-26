@@ -82,5 +82,5 @@ jQuery(document).ready(function() {
 		});
 	};
 
-	jQuery("div[id$='_pronamic_google_maps-__i__']").bind("dragstop", checkNewWidgets);
+	jQuery('div[id$="_pronamic_google_maps-__i__"]').bind("dragstop", checkNewWidgets);
 });

@@ -220,6 +220,9 @@ Or througt an filter
 
 == Changelog ==
 
+= 1.7.2 =
+*	Changed jQuery selectors [property=value] to [property="value"], jQuery 1.5.0 no longer allows these selectors
+
 = 1.7.1 =
 *	Added an wp_reset_postdata() call after the custom query in the mashup class in request
 	of [ezlxq73](http://wordpress.org/support/topic/bug-in-pronamic_google_maps_mashup?replies=1#post-2128808)
