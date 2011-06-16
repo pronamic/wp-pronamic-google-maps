@@ -77,6 +77,10 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$info->mapType = $instance['map-type'];
 		$info->static = $instance['static'];
 
+		if($info->isDynamic()) {
+			Pronamic_Google_Maps_Site::$printScripts = true;
+		}
+
 		echo Pronamic_Google_Maps::getMapHtml($info);
 
 		echo $after_widget;

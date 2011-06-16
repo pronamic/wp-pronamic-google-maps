@@ -228,8 +228,6 @@ class Pronamic_Google_Maps {
 	 * @param mixed $arguments
 	 */
 	public static function render($arguments = array()) {
-		Pronamic_Google_Maps_Site::$printScripts = true;
-
 		$defaults = array(
 			'width' => 500 ,
 			'height' => 300 , 
@@ -265,6 +263,10 @@ class Pronamic_Google_Maps {
 			$info->color = $arguments['color'];
 
 			$html = self::getMapHtml($info);
+
+			if($info->isDynamic()) {
+				Pronamic_Google_Maps_Site::$printScripts = true;
+			}
 
 			if($arguments['echo']) {
 				echo $html;
