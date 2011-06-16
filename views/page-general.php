@@ -2,8 +2,6 @@
 
 $options = Pronamic_Google_Maps::getOptions();
 
-$title = __('Configuration - Pronamic Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN);
-
 $types = get_post_types(array(
 	'public' => true
 ) , 'objects');
@@ -12,14 +10,12 @@ $activeTypes = $options['active'];
 
 ?>
 <div id="pgm" class="wrap">
-	<?php screen_icon(); ?>
+	<?php screen_icon(Pronamic_Google_Maps::SLUG); ?>
 
-	<h2><?php echo esc_html($title); ?></h2>
+	<h2><?php echo esc_html(__('Configuration - Pronamic Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN)); ?></h2>
 
 	<form action="" method="post">
 		<?php wp_nonce_field('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME); ?>
-
-		<div class="tablenav"></div>
 
 		<table cellspacing="0" class="widefat page fixed">
 
@@ -60,9 +56,8 @@ $activeTypes = $options['active'];
 			</tbody>
 		</table>
 
-		<p class="submit">
-			<input type="hidden" name="pronamic_google_maps_action" value="update" />
-			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e(__('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>" />
-		</p>
+		<input type="hidden" name="pronamic_google_maps_action" value="update" />
+
+		<?php submit_button(__('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>
 	</form>
 </div>

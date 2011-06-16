@@ -16,6 +16,13 @@ class Pronamic_Google_Maps {
 	 */
 	const TEXT_DOMAIN = 'pronamic-google-maps';
 
+	/**
+	 * The slug
+	 *
+	 * @var string
+	 */
+	const SLUG = 'pronamic-google-maps';
+
 	//////////////////////////////////////////////////
 
 	/**
@@ -146,6 +153,8 @@ class Pronamic_Google_Maps {
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
 		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+
+		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);
 		
 		return $meta;
 	}
@@ -219,6 +228,8 @@ class Pronamic_Google_Maps {
 	 * @param mixed $arguments
 	 */
 	public static function render($arguments = array()) {
+		Pronamic_Google_Maps_Site::$printScripts = true;
+
 		$defaults = array(
 			'width' => 500 ,
 			'height' => 300 , 

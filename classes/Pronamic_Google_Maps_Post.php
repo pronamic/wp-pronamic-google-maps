@@ -31,6 +31,13 @@ class Pronamic_Google_Maps_Post {
 	const META_KEY_LONGITUDE = '_pronamic_google_maps_longitude';
 
 	/**
+	 * Meta key for the Google Map address meta data
+	 *
+	 * @var string
+	 */
+	const META_KEY_ADDRESS = '_pronamic_google_maps_address';
+
+	/**
 	 * Meta key for the Google Maps title meta data
 	 *
 	 * @var string
@@ -57,4 +64,11 @@ class Pronamic_Google_Maps_Post {
 	 * @var string
 	 */
 	const META_KEY_ZOOM = '_pronamic_google_maps_zoom';
+
+	/**
+	 * Meta key for the Google Maps geocode status
+	 *
+	 * @var string
+	 */
+	const META_KEY_GEOCODE_STATUS = '_pronamic_google_maps_geocode_status';
 }

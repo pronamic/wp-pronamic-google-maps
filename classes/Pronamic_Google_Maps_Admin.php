@@ -16,7 +16,11 @@ class Pronamic_Google_Maps_Admin {
 		// Actions and hooks
 		add_action('admin_init', array(__CLASS__, 'initialize'));
 
+		add_action('admin_menu', array(__CLASS__, 'menu'));
+
 		add_action('save_post', array(__CLASS__, 'savePost'));
+
+		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
 
 		// Scripts
 		wp_enqueue_script(
@@ -30,9 +34,6 @@ class Pronamic_Google_Maps_Admin {
 			'pronamic-google-maps-admin' , 
 			plugins_url('css/admin.css', Pronamic_Google_Maps::$file)
 		);
-
-		// Other
-		Pronamic_Google_Maps_OptionPage::bootstrap();
 	}
 
 	//////////////////////////////////////////////////
@@ -46,6 +47,54 @@ class Pronamic_Google_Maps_Admin {
 
 		// Try to save the options if they are posted
 		self::saveOptions();
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Admin menu
+	 */
+	public static function menu() {
+		add_menu_page(
+			$pageTitle = __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN) ,
+			$menuTitle = __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN) ,
+			$capability = 'manage_options' , 
+			$menuSlug = Pronamic_Google_Maps::SLUG , 
+			$function = array(__CLASS__, 'pageGeneral') , 
+			// http://www.veryicon.com/icons/system/palm/google-maps.html
+			$iconUrl = plugins_url('images/icon-16x16.png', Pronamic_Google_Maps::$file)
+		);
+
+		// @see _add_post_type_submenus()
+		// @see wp-admin/menu.php
+		add_submenu_page(
+			$parentSlug = Pronamic_Google_Maps::SLUG , 
+			$pageTitle = __('Geocoder', Pronamic_Google_Maps::TEXT_DOMAIN) , 
+			$menuTitle = __('Geocoder', Pronamic_Google_Maps::TEXT_DOMAIN) , 
+			$capability = 'manage_options' , 
+			$menuSlug = Pronamic_Google_Maps::SLUG . '-geocoder' , 
+			$function = array(__CLASS__, 'pageGeocoder')
+		);
+
+		global $submenu;
+
+		if(isset($submenu[Pronamic_Google_Maps::SLUG])) {
+			$submenu[Pronamic_Google_Maps::SLUG][0][0] = __('General', Pronamic_Google_Maps::TEXT_DOMAIN);
+		}
+	}
+
+	/**
+	 * Render general page
+	 */
+	public static function pageGeneral() {
+		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/page-general.php';
+	}
+
+	/**
+	 * Render geocoder page
+	 */
+	public static function pageGeocoder() {
+		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/page-geocoder.php';
 	}
 
 	//////////////////////////////////////////////////
@@ -90,6 +139,9 @@ class Pronamic_Google_Maps_Admin {
 				return $postId;
 			}
 		}
+		
+		// Original values
+		$pgm = pronamic_get_google_maps_meta();
 
 		// Active
 		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
@@ -120,6 +172,103 @@ class Pronamic_Google_Maps_Admin {
 		$description = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_UNSAFE_RAW);
 		$description = wp_kses_post($description);
 		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description);
+
+		// Description
+		$address = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, FILTER_UNSAFE_RAW);
+		$address = wp_kses_post($address);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, $address);
+
+		// Status
+		if(!empty($latitude) && !empty($longitude)) {
+			$pgm->status = Pronamic_Google_Maps_GeocoderStatus::OK;
+		}
+
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $pgm->status);
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Get the geocode query arguments
+	 * 
+	 * @return array
+	 */
+	public static function getGeocodeQueryArgs() {
+		return array(
+			'post_type' => 'any' , 
+			'posts_per_page' => 1 , 
+			'meta_query' => array(
+				// The address should not be empty
+				array(
+					'key' => Pronamic_Google_Maps_Post::META_KEY_ADDRESS , 
+					'value' => '' , 
+					'compare' => '!='
+				) , 
+				// The geocoder status should not be OK
+				array(
+					'key' => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ,
+					'value' => array(Pronamic_Google_Maps_GeocoderStatus::OK, Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS) , 
+					'compare' => 'NOT IN'
+				) 
+			)
+		);
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * AJAX geocode
+	 */
+	public static function ajaxGeocode() {
+		// ID
+		$postId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
+
+		// Latitude
+		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude);
+
+		// Longitude
+		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude);
+
+		// Status
+		$status = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING);
+		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
+
+		// Result
+		$result = new stdClass();
+		$result->success = true;
+
+		// Next post
+		$query = new \WP_Query();
+		$query->query(Pronamic_Google_Maps_Admin::getGeocodeQueryArgs());
+
+		$result->foundPosts = $query->found_posts;
+
+		while($query->have_posts()) {
+			$query->the_post();
+
+			$pgm = pronamic_get_google_maps_meta();
+
+			$result->nextPost = new stdClass();
+			$result->nextPost->ID = get_the_ID();
+			$result->nextPost->title = get_the_title();
+			$result->nextPost->address = $pgm->address;
+			$result->nextPost->latitude = $pgm->latitude;
+			$result->nextPost->longitude = $pgm->longitude;
+		}
+
+		$response = json_encode($result);
+
+		header('Content-Type: application/json');
+
+		exit($response);
+		
+		/*
+		 Queries to empty latitude, longitude and geocode status meta
+		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('_pronamic_google_maps_latitude', '_pronamic_google_maps_longitude');
+		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key = '_pronamic_google_maps_geocode_status';
+		 */
 	}
 
 	//////////////////////////////////////////////////

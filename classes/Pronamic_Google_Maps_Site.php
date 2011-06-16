@@ -10,11 +10,20 @@
  */
 class Pronamic_Google_Maps_Site {
 	/**
+	 * Flag for printing the scripts or not
+	 * 
+	 * @var boolean
+	 */
+	public static $printScripts = false;
+
+	//////////////////////////////////////////////////
+
+	/**
 	 * Constructs and initliaze an Google Maps admin
 	 */
 	public static function bootstrap() {
 		// Actions and hooks
-		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueueScripts'));
+		add_action('wp_footer', array(__CLASS__, 'printScripts'));
 
 		// Scripts
 		wp_register_script(
@@ -22,21 +31,16 @@ class Pronamic_Google_Maps_Site {
 			plugins_url('js/site.js', Pronamic_Google_Maps::$file) ,
 			array('google-maps', 'jquery')
 		);
-
-		// Styles
-		
 	}
+
+	//////////////////////////////////////////////////
 	
 	/**
-	 * Enqueue scripts
+	 * Print scripts
 	 */
-	public static function enqueueScripts() {
-		if(is_singular()) {
-			if(pronamic_google_maps_is_active()) {
-				wp_enqueue_script('pronamic-google-maps-site');
-			}
-		} else {
-			wp_enqueue_script('pronamic-google-maps-site');
+	public static function printScripts() {
+		if(self::$printScripts) {
+			wp_print_scripts('pronamic-google-maps-site');
 		}
 	}
 }
