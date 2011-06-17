@@ -18,6 +18,7 @@ class Pronamic_Google_Maps_Mashup {
 			'zoom' => 8 , 
 			'map_type_id' => Pronamic_Google_Maps_MapTypeId::ROADMAP , 
 			'hide_list' => true , 
+			'fit_founds' => true , 
 			'marker_options' => array(
 		
 			) , 
@@ -35,6 +36,7 @@ class Pronamic_Google_Maps_Mashup {
 		$options->zoom = $arguments['zoom'];
 		$options->mapTypeId = $arguments['map_type_id'];
 		$options->hideList = $arguments['hide_list'];
+		$options->fitBounds = $arguments['fit_founds'];
 		$options->markerOptions = new stdClass();
 		foreach($arguments['marker_options'] as $key => $value) {
 			$options->markerOptions->$key = $value;

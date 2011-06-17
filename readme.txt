@@ -222,6 +222,14 @@ Or througt an filter
 
 == Changelog ==
 
+= 1.9 =
+*	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts
+*	Thanks to the Google JavaScript API loader you can now use the "google.loader.ClientLocation" JavaScript variable
+*	Replaced some "jQuery" JavaScript variables to the shorter notation "$"
+*	Added all required map options (center, mapTypeId and zoom) to the creation of mashup maps
+*	Added 'fit_bounds' option for the pronamic_google_maps_mashup($query, $arguments) function
+*	Combined the JavaScript file widget.js into admin.js and did some improvements
+ 
 = 1.8 =
 *	Changed jQuery selectors [property=value] to [property="value"], jQuery 1.5.0 no longer allows these selectors
 *	Added extra meta data field for address information
@@ -356,6 +364,8 @@ Or througt an filter
 *	[Bouwwereld](http://bouwwereld.nl/)
 *	[Architectuur](http://architectuur.nl/)
 *	[Longboard.no](http://longboard.no/)
+*	[Professionele Fotografie](http://pf.nl/)
+*	[Emonta](http://emonta.nl/)
 
 == Pronamic plugins ==
 
