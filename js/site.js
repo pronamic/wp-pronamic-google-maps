@@ -23,12 +23,15 @@
 			if(canvas) {
 				// Location
 				var location =  new google.maps.LatLng(info.latitude, info.longitude);
-
+console.log(location);
 				// Map
 				var mapOptions = {
-					zoom: info.zoom , 
-					center: location , 
-					mapTypeId: info.mapType 
+					// The initial Map center. Required.
+					center: location ,
+					// The initial Map mapTypeId. Required.
+					mapTypeId: info.mapType , 
+					// The initial Map zoom level. Required.
+					zoom: info.zoom 
 				};
 
 				var map = new google.maps.Map(canvas, mapOptions);

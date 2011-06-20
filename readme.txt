@@ -222,6 +222,10 @@ Or througt an filter
 
 == Changelog ==
 
+= 1.9.1 =
+*	Added default zoom and map type values in the constants: Pronamic_Google_Maps::MAP_ZOOM_DEFAULT and Pronamic_Google_Maps::MAP_TYPE_DEFAULT
+*	If there is no meta information about the zoom level and the map type the default values will be set 
+
 = 1.9 =
 *	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts
 *	Thanks to the Google JavaScript API loader we can now use the "google.loader.ClientLocation" JavaScript variable

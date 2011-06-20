@@ -42,6 +42,22 @@ class Pronamic_Google_Maps {
 	const NONCE_NAME = 'Pronamic_Google_Maps_Leap_of_faith';
 
 	//////////////////////////////////////////////////
+	
+	/**
+	 * Default zoom value
+	 * 
+	 * @var int
+	 */
+	const MAP_ZOOM_DEFAULT = 8;
+
+	/**
+	 * Default map type
+	 * 
+	 * @var string
+	 */
+	const MAP_TYPE_DEFAULT = Pronamic_Google_Maps_MapTypeId::ROADMAP;
+	
+	//////////////////////////////////////////////////
 
 	/**
 	 * The plugin file
@@ -151,11 +167,28 @@ class Pronamic_Google_Maps {
 		$active = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
 		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
 		
-		$meta->latitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-		$meta->longitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+		$meta->latitude = null;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+		if($value != '') {
+			$meta->latitude = (float) $value;
+		}
+		$meta->longitude = null;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+		if($value != '') {
+			$meta->longitude = (float) $value;
+		}
 		
-		$meta->mapType = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
-		$meta->zoom = (int) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		$meta->mapType = self::MAP_TYPE_DEFAULT;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
+		if($value != '') {
+			$meta->mapType = $value;
+		}
+
+		$meta->zoom = self::MAP_ZOOM_DEFAULT;
+		$zoom = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		if($value != '') {
+			$meta->zoom = (int) $zoom;
+		}
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
 		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
