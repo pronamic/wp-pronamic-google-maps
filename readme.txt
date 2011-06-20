@@ -1,9 +1,9 @@
 === Pronamic Google Maps ===
 Contributors: pronamic, remcotolsma 
-Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location
+Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Requires at least: 3.0
-Tested up to: 3.0
-Stable tag: 1.7.1
+Tested up to: 3.2
+Stable tag: 1.9
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -211,17 +211,45 @@ Or througt an filter
 
 == Screenshots ==
 
-1. The Google Maps widget
+1. The Google Maps widget.
 
-2. The configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+2. Meta box where you can easily manage the Google Maps / GEO data.
 
-3. The metabox where you can easily manage the GEO meta data.
+3. Configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+
+4. The geocoder can be used to geocode multiple posts at once.
 
 
 == Changelog ==
 
-= 1.7.2 =
+= 1.9 =
+*	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts
+*	Thanks to the Google JavaScript API loader we can now use the "google.loader.ClientLocation" JavaScript variable
+*	Replaced some "jQuery" JavaScript variables to the shorter notation "$"
+*	Added all required map options (center, mapTypeId and zoom) to the creation of mashup maps
+*	Added 'fit_bounds' option for the pronamic_google_maps_mashup($query, $arguments) function
+*	Combined the JavaScript file widget.js into admin.js and did some improvements
+*	Browser check after changing some core JavaScripts:
+	*	Mozilla Firefox 3.6.17
+	*	Google Chrome 12.0.742.100
+	*	Opera 11.11
+	*	Safari 5.0.5
+	*	Internet Explorer 9.0.8112.16421
+	*	Internet Explorer 8.0.6001.19088
+	*	Intenret Explorer 7.0.5730.11
+
+= 1.8 =
 *	Changed jQuery selectors [property=value] to [property="value"], jQuery 1.5.0 no longer allows these selectors
+*	Added extra meta data field for address information
+*	Added address field
+*	Added geocode and reverse geocode buttons
+*	Removed search field and button 
+*	Combined the latitude and longitude fields into one form table row
+*	Replaced the add_options_page() with an add_menu_page() call
+*	Combined the class Pronamic_Google_Maps_OptionPage into the Pronamic_Google_Maps_Admin class 
+*	Replaced the HTML buttons in the options pages with the function submit_button()
+*	Added geocoder page to bulk geocode posts
+*	Changed the way the JavaScript are loaded, we use a solution from Scribu: "[How to load JavaScript like a WordPress Master](http://scribu.net/wordpress/optimal-script-loading.html)"
 
 = 1.7.1 =
 *	Added an wp_reset_postdata() call after the custom query in the mashup class in request
@@ -327,6 +355,7 @@ Or througt an filter
 
 *	[Geocode with Google Maps API v3](http://tech.cibul.org/geocode-with-google-maps-api-v3/)
 *	[WordPress event locations](http://icalevents.anmari.com/2343-event-locations-geo-tags-for-custom-post-types/)
+*	[JavaScript Regular Expression](http://lawrence.ecorp.net/inet/samples/regexp-format.php)
 *	[Pronamic](http://pronamic.eu/)
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *	[Markdown's Syntax Documentation][markdown syntax]
@@ -340,6 +369,11 @@ Or througt an filter
 *	[Earthcircuit](http://www.earthcircuit.org/blog/)
 *	[Comando Lechuga](http://www.comandolechuga.com/)
 *	[Professionele Fotografie](http://pf.nl/)
+*	[Bouwwereld](http://bouwwereld.nl/)
+*	[Architectuur](http://architectuur.nl/)
+*	[Longboard.no](http://longboard.no/)
+*	[Professionele Fotografie](http://pf.nl/)
+*	[Emonta](http://emonta.nl/)
 
 == Pronamic plugins ==
 

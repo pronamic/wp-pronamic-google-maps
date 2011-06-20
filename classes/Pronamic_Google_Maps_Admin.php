@@ -26,7 +26,7 @@ class Pronamic_Google_Maps_Admin {
 		wp_enqueue_script(
 			'pronamic-google-maps-admin' , 
 			plugins_url('js/admin.js', Pronamic_Google_Maps::$file) , 
-			array('google-maps', 'jquery')
+			array('jquery', 'google-jsapi')
 		);
 
 		// Styles

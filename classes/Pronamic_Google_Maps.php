@@ -83,6 +83,12 @@ class Pronamic_Google_Maps {
 
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
+		// Register the Google Maps JavaScript API loader script
+		wp_register_script(
+			'google-jsapi' , 
+			'http://www.google.com/jsapi'
+		);
+
 		// Register the Google Maps API script
 		wp_register_script(
 			'google-maps' , 

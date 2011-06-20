@@ -29,7 +29,7 @@ class Pronamic_Google_Maps_Site {
 		wp_register_script(
 			'pronamic-google-maps-site' , 
 			plugins_url('js/site.js', Pronamic_Google_Maps::$file) ,
-			array('google-maps', 'jquery')
+			array('jquery', 'google-jsapi')
 		);
 	}
 
