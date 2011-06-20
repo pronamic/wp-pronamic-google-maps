@@ -18,7 +18,7 @@ class Pronamic_Google_Maps_Mashup {
 			'zoom' => 8 , 
 			'map_type_id' => Pronamic_Google_Maps_MapTypeId::ROADMAP , 
 			'hide_list' => true , 
-			'fit_founds' => true , 
+			'fit_bounds' => true , 
 			'marker_options' => array(
 		
 			) , 

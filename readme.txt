@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 1.8
+Stable tag: 1.9
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -224,12 +224,20 @@ Or througt an filter
 
 = 1.9 =
 *	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts
-*	Thanks to the Google JavaScript API loader you can now use the "google.loader.ClientLocation" JavaScript variable
+*	Thanks to the Google JavaScript API loader we can now use the "google.loader.ClientLocation" JavaScript variable
 *	Replaced some "jQuery" JavaScript variables to the shorter notation "$"
 *	Added all required map options (center, mapTypeId and zoom) to the creation of mashup maps
 *	Added 'fit_bounds' option for the pronamic_google_maps_mashup($query, $arguments) function
 *	Combined the JavaScript file widget.js into admin.js and did some improvements
- 
+*	Browser check after changing some core JavaScripts:
+	*	Mozilla Firefox 3.6.17
+	*	Google Chrome 12.0.742.100
+	*	Opera 11.11
+	*	Safari 5.0.5
+	*	Internet Explorer 9.0.8112.16421
+	*	Internet Explorer 8.0.6001.19088
+	*	Intenret Explorer 7.0.5730.11
+
 = 1.8 =
 *	Changed jQuery selectors [property=value] to [property="value"], jQuery 1.5.0 no longer allows these selectors
 *	Added extra meta data field for address information
