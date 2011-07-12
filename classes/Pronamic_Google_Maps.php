@@ -65,6 +65,22 @@ class Pronamic_Google_Maps {
 	 * @var string
 	 */
 	public static $file;
+	
+	//////////////////////////////////////////////////
+
+	/**
+	 * The default width
+	 * 
+	 * @var int
+	 */
+	public static $defaultWidth = 500;
+	
+	/**
+	 * The default height
+	 * 
+	 * @var int
+	 */
+	public static $defaultHeight = 375;
 
 	//////////////////////////////////////////////////
 
@@ -78,9 +94,16 @@ class Pronamic_Google_Maps {
 
 		Pronamic_Google_Maps_Plugin::bootstrap();
 		Pronamic_Google_Maps_Widget::bootstrap();
+		Pronamic_Google_Maps_Shortcode::bootstrap();
 
 		// Actions and hooks
 		add_action('init', array(__CLASS__, 'initialize'));
+
+		// Options
+		$embedSize = wp_embed_defaults();
+		
+		self::$defaultWidth = $embedSize['width'];
+		self::$defaultHeight = $embedSize['height'];
 	}
 
 	//////////////////////////////////////////////////
@@ -103,14 +126,6 @@ class Pronamic_Google_Maps {
 		wp_register_script(
 			'google-jsapi' , 
 			'http://www.google.com/jsapi'
-		);
-
-		// Register the Google Maps API script
-		wp_register_script(
-			'google-maps' , 
-			'http://maps.google.com/maps/api/js?sensor=true' , 
-			false , 
-			'3'
 		);
 
 		if(is_admin()) {
@@ -268,14 +283,14 @@ class Pronamic_Google_Maps {
 	 */
 	public static function render($arguments = array()) {
 		$defaults = array(
-			'width' => 500 ,
-			'height' => 300 , 
+			'width' => self::$defaultWidth ,
+			'height' => self::$defaultHeight , 
 			'static' => false , 
 			'label' => null , 
 			'color' => null , 
 			'echo' => true
 		);
-	
+
 		$arguments = wp_parse_args($arguments, $defaults);
 		
 		$options = Pronamic_Google_Maps::getOptions();
@@ -297,7 +312,7 @@ class Pronamic_Google_Maps {
 			$info->zoom = $pgm->zoom;
 			$info->width = $arguments['width'];
 			$info->height = $arguments['height'];
-			$info->static = $arguments['static'];
+			$info->static = filter_var($arguments['static'], FILTER_VALIDATE_BOOLEAN);
 			$info->label = $arguments['label'];
 			$info->color = $arguments['color'];
 

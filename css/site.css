@@ -1,0 +1,6 @@
+.entry-content .pgmm img ,
+.entry-content .pgm img {
+	background-color: transparent;
+
+	max-width: none;
+}

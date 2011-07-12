@@ -10,21 +10,17 @@ Author URI: http://pronamic.eu/
 License: GPL
 */
 
-require_once 'classes/Pronamic_Google_Maps.php';
-require_once 'classes/Pronamic_Google_Maps_Plugin.php';
-require_once 'classes/Pronamic_Google_Maps_MapTypeId.php';
-require_once 'classes/Pronamic_Google_Maps_Post.php';
-require_once 'classes/Pronamic_Google_Maps_Filters.php';
-require_once 'classes/Pronamic_Google_Maps_LatLng.php';
-require_once 'classes/Pronamic_Google_Maps_Info.php';
-require_once 'classes/Pronamic_Google_Maps_Site.php';
-require_once 'classes/Pronamic_Google_Maps_Admin.php';
-require_once 'classes/Pronamic_Google_Maps_MetaBox.php';
-require_once 'classes/Pronamic_Google_Maps_Widget.php';
-require_once 'classes/Pronamic_Google_Maps_Mashup.php';
-require_once 'classes/Pronamic_Google_Maps_GeoMicroformat.php';
-require_once 'classes/Pronamic_Google_Maps_GeocoderStatus.php';
+function pronamic_google_maps_autoload($name) {
+	$file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
+	$file = str_replace('\\', DIRECTORY_SEPARATOR, $file);
+
+	if(is_readable($file)) {
+		require_once $file;
+	}
+}
 
 require_once 'functions.php';
+
+spl_autoload_register('pronamic_google_maps_autoload');
 
 Pronamic_Google_Maps::bootstrap(__FILE__);

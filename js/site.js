@@ -23,7 +23,7 @@
 			if(canvas) {
 				// Location
 				var location =  new google.maps.LatLng(info.latitude, info.longitude);
-console.log(location);
+
 				// Map
 				var mapOptions = {
 					// The initial Map center. Required.
@@ -49,6 +49,9 @@ console.log(location);
 				google.maps.event.addListener(marker, "click", function() {
 					infoWindow.open(map, marker);
 				});
+				
+				// Trigger ready event
+				element.trigger("pronamic-google-maps-ready", map);
 			}
 		} , 
 
@@ -70,7 +73,6 @@ console.log(location);
 			};
 
 			var mashupInfo = $.parseJSON(element.find('input[name="pgmm-info"]').val());
-
 			mashupInfo = $.extend(defaultOptions, mashupInfo);
 
 			var canvas = element.find(".canvas").get(0);
@@ -79,17 +81,22 @@ console.log(location);
 				if(mashupInfo.hideList) {
 					list.hide();
 				}
+				
+				var center = new google.maps.LatLng(mashupInfo.center.latitude, mashupInfo.center.longitude);
+				if(google.loader.ClientLocation) {
+					center = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+				}
 
 				// Create an map object according the options that are specified
 				var mapOptions = {
 					// The initial Map center. Required.
-					center: new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude) ,
+					center: center ,
 					// The initial Map mapTypeId. Required.
 					mapTypeId: mashupInfo.mapTypeId , 
 					// The initial Map zoom level. Required.
 					zoom: mashupInfo.zoom 
 				};
-				
+
 				var map = new google.maps.Map(canvas, mapOptions);
 
 				// Associated the Google Maps with the element so other developers can easily retrieve the Google Maps object
@@ -131,6 +138,9 @@ console.log(location);
 				if(mashupInfo.fitBounds) {
 					map.fitBounds(bounds);
 				}
+
+				// Trigger ready event
+				element.trigger("pronamic-google-maps-ready", map);
 			}
 		}
 	};

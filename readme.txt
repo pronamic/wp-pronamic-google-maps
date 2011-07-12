@@ -222,9 +222,17 @@ Or througt an filter
 
 == Changelog ==
 
-= 1.9.1 =
+= ? =
+*	Fixed Notice: Undefined index: fit_founds
+*	Removed wp_register_script('google-maps', ...), we now only use the Google JavaScript load API
+*	Fix issue with the JavaScript variabel google.loader.ClientLocation wich can be null
 *	Added default zoom and map type values in the constants: Pronamic_Google_Maps::MAP_ZOOM_DEFAULT and Pronamic_Google_Maps::MAP_TYPE_DEFAULT
 *	If there is no meta information about the zoom level and the map type the default values will be set 
+*	Replaced all the require once statements for the classes with an SPL autoload function
+*	Changed the default width and height values, now based on the output of the wp_embed_defaults() function
+*	Added shortcode [google-maps] functionality
+*	Added JavaScript event trigger "pronamic-google-maps-ready"
+*	Fixed the rendering of the mashup, if there are no posts found the empty ul element will not be added
 
 = 1.9 =
 *	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts
