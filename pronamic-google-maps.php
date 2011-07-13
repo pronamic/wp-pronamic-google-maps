@@ -11,10 +11,11 @@ License: GPL
 */
 
 function pronamic_google_maps_autoload($name) {
-	$file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
-	$file = str_replace('\\', DIRECTORY_SEPARATOR, $file);
+	$name = str_replace('\\', DIRECTORY_SEPARATOR, $name);
 
-	if(is_readable($file)) {
+	$file = __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
+
+	if(is_file($file)) {
 		require_once $file;
 	}
 }
