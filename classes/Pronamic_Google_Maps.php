@@ -288,7 +288,10 @@ class Pronamic_Google_Maps {
 			'static' => false , 
 			'label' => null , 
 			'color' => null , 
-			'echo' => true
+			'echo' => true , 
+			'marker_options' => array(
+
+			) , 
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -314,7 +317,11 @@ class Pronamic_Google_Maps {
 			$info->height = $arguments['height'];
 			$info->static = filter_var($arguments['static'], FILTER_VALIDATE_BOOLEAN);
 			$info->label = $arguments['label'];
-			$info->color = $arguments['color'];
+			$info->color = $arguments['color'];	
+			$info->markerOptions = new stdClass();
+			foreach($arguments['marker_options'] as $key => $value) {
+				$info->markerOptions->$key = $value;
+			}
 
 			$html = self::getMapHtml($info);
 

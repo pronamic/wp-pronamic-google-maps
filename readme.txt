@@ -233,6 +233,8 @@ Or througt an filter
 *	Added shortcode [google-maps] functionality
 *	Added JavaScript event trigger "pronamic-google-maps-ready"
 *	Fixed the rendering of the mashup, if there are no posts found the empty ul element will not be added
+*	Added 'marker_options' as argument for the pronamic_google_maps() function
+*	Added the new Google Maps favicon to the WordPress admin menu
 
 = 1.9 =
 *	Replaced the normal Google Maps v3 JavaScripts with the Google JavaScript API loader scripts

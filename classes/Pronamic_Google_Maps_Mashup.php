@@ -29,7 +29,7 @@ class Pronamic_Google_Maps_Mashup {
 
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		$query = new WP_Query($query);
+		$query = new \WP_Query($q);
 
 		$options = new stdClass();
 		$options->width = $arguments['width'];

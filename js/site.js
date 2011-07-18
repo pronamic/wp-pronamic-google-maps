@@ -36,13 +36,18 @@
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
-				element.data("google-maps", map);
-
 				// Marker
-				var marker = new google.maps.Marker({
-					position: location , 
-					map: map 
-				});
+				var markerOptions = $.extend({
+						position: location , 
+						map: map 
+					} , 
+					info.markerOptions
+				);
+
+				var marker = new google.maps.Marker(markerOptions);
+
+				element.data("google-maps", map);
+				element.data("google-maps-marker", marker);
 			
 				var infoWindow = new google.maps.InfoWindow({content: info.description});
 
@@ -125,6 +130,8 @@
 					);
 
 					var marker = new google.maps.Marker(markerOptions);
+
+					item.data("google-maps-marker", marker);
 
 					google.maps.event.addListener(marker, "click", function() {
 						infoWindow.setContent(item.html());
