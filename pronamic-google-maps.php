@@ -10,18 +10,22 @@ Author URI: http://pronamic.eu/
 License: GPL
 */
 
+if(function_exists('spl_autoload_register')):
+
 function pronamic_google_maps_autoload($name) {
 	$name = str_replace('\\', DIRECTORY_SEPARATOR, $name);
 
-	$file = __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
+	$file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
 
 	if(is_file($file)) {
 		require_once $file;
 	}
 }
 
-require_once 'functions.php';
-
 spl_autoload_register('pronamic_google_maps_autoload');
 
+require_once 'functions.php';
+
 Pronamic_Google_Maps::bootstrap(__FILE__);
+
+endif;

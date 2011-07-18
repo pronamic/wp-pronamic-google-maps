@@ -24,12 +24,13 @@ the available plugins have a few drawbacks:
 	uses the Google Maps version 3 API. Wich no longer requires an API key, so you don't have 
 	to configure this plugin.
 
-*	**No confusing shortcodes**
-	This plugin does *not* work with the [WordPress shortcode API][1]. Although it's an very powerful 
-	technique, it's not always very user friendly. Not all users understand the shortcodes like;
+*	**Shortcode**
+	Easily integrate a Google Maps in your post content:
 
-		[google-map-sc external_links="true" zoom="3"]
-
+		[google-maps]
+		[google-maps static=true]
+		[google-maps static=true label=M]
+		[google-maps width=200 height=200]
 
 *   **No extra tables**
 	Some plugin create additional tables in your WordPress database to store additional data. In many
