@@ -26,7 +26,7 @@ class Pronamic_Google_Maps_Admin {
 		wp_enqueue_script(
 			'pronamic-google-maps-admin' , 
 			plugins_url('js/admin.js', Pronamic_Google_Maps::$file) , 
-			array('google-maps', 'jquery')
+			array('jquery', 'google-jsapi')
 		);
 
 		// Styles
@@ -62,7 +62,7 @@ class Pronamic_Google_Maps_Admin {
 			$menuSlug = Pronamic_Google_Maps::SLUG , 
 			$function = array(__CLASS__, 'pageGeneral') , 
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			$iconUrl = plugins_url('images/icon-16x16.png', Pronamic_Google_Maps::$file)
+			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps::$file)
 		);
 
 		// @see _add_post_type_submenus()

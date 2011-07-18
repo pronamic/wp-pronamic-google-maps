@@ -42,6 +42,22 @@ class Pronamic_Google_Maps {
 	const NONCE_NAME = 'Pronamic_Google_Maps_Leap_of_faith';
 
 	//////////////////////////////////////////////////
+	
+	/**
+	 * Default zoom value
+	 * 
+	 * @var int
+	 */
+	const MAP_ZOOM_DEFAULT = 8;
+
+	/**
+	 * Default map type
+	 * 
+	 * @var string
+	 */
+	const MAP_TYPE_DEFAULT = Pronamic_Google_Maps_MapTypeId::ROADMAP;
+	
+	//////////////////////////////////////////////////
 
 	/**
 	 * The plugin file
@@ -49,6 +65,22 @@ class Pronamic_Google_Maps {
 	 * @var string
 	 */
 	public static $file;
+	
+	//////////////////////////////////////////////////
+
+	/**
+	 * The default width
+	 * 
+	 * @var int
+	 */
+	public static $defaultWidth = 500;
+	
+	/**
+	 * The default height
+	 * 
+	 * @var int
+	 */
+	public static $defaultHeight = 375;
 
 	//////////////////////////////////////////////////
 
@@ -62,9 +94,16 @@ class Pronamic_Google_Maps {
 
 		Pronamic_Google_Maps_Plugin::bootstrap();
 		Pronamic_Google_Maps_Widget::bootstrap();
+		Pronamic_Google_Maps_Shortcode::bootstrap();
 
 		// Actions and hooks
 		add_action('init', array(__CLASS__, 'initialize'));
+
+		// Options
+		$embedSize = wp_embed_defaults();
+		
+		self::$defaultWidth = $embedSize['width'];
+		self::$defaultHeight = $embedSize['height'];
 	}
 
 	//////////////////////////////////////////////////
@@ -83,12 +122,10 @@ class Pronamic_Google_Maps {
 
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
-		// Register the Google Maps API script
+		// Register the Google Maps JavaScript API loader script
 		wp_register_script(
-			'google-maps' , 
-			'http://maps.google.com/maps/api/js?sensor=true' , 
-			false , 
-			'3'
+			'google-jsapi' , 
+			'http://www.google.com/jsapi'
 		);
 
 		if(is_admin()) {
@@ -145,11 +182,28 @@ class Pronamic_Google_Maps {
 		$active = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
 		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
 		
-		$meta->latitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-		$meta->longitude = (float) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+		$meta->latitude = null;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+		if($value != '') {
+			$meta->latitude = (float) $value;
+		}
+		$meta->longitude = null;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
+		if($value != '') {
+			$meta->longitude = (float) $value;
+		}
 		
-		$meta->mapType = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
-		$meta->zoom = (int) get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		$meta->mapType = self::MAP_TYPE_DEFAULT;
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
+		if($value != '') {
+			$meta->mapType = $value;
+		}
+
+		$meta->zoom = self::MAP_ZOOM_DEFAULT;
+		$zoom = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		if($value != '') {
+			$meta->zoom = (int) $zoom;
+		}
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
 		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
@@ -229,14 +283,17 @@ class Pronamic_Google_Maps {
 	 */
 	public static function render($arguments = array()) {
 		$defaults = array(
-			'width' => 500 ,
-			'height' => 300 , 
+			'width' => self::$defaultWidth ,
+			'height' => self::$defaultHeight , 
 			'static' => false , 
 			'label' => null , 
 			'color' => null , 
-			'echo' => true
+			'echo' => true , 
+			'marker_options' => array(
+
+			) , 
 		);
-	
+
 		$arguments = wp_parse_args($arguments, $defaults);
 		
 		$options = Pronamic_Google_Maps::getOptions();
@@ -258,9 +315,13 @@ class Pronamic_Google_Maps {
 			$info->zoom = $pgm->zoom;
 			$info->width = $arguments['width'];
 			$info->height = $arguments['height'];
-			$info->static = $arguments['static'];
+			$info->static = filter_var($arguments['static'], FILTER_VALIDATE_BOOLEAN);
 			$info->label = $arguments['label'];
-			$info->color = $arguments['color'];
+			$info->color = $arguments['color'];	
+			$info->markerOptions = new stdClass();
+			foreach($arguments['marker_options'] as $key => $value) {
+				$info->markerOptions->$key = $value;
+			}
 
 			$html = self::getMapHtml($info);
 
