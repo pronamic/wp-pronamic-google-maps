@@ -223,6 +223,10 @@ Or througt an filter
 
 == Changelog ==
 
+= 2.1 =
+*	Mmashup map is now also rendered if there are no posts found
+*	First parameter of the pronamic_google_maps_mashup() function now also be an WP_Query object 
+
 = 2.0 =
 *	Fixed Notice: Undefined index: fit_founds
 *	Removed wp_register_script('google-maps', ...), we now only use the Google JavaScript load API

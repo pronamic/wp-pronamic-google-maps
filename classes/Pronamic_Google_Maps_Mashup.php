@@ -29,7 +29,11 @@ class Pronamic_Google_Maps_Mashup {
 
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		$query = new \WP_Query($q);
+		if($q instanceof \WP_Query) {
+			$query = $q;
+		} else {
+			$query = new \WP_Query($q);
+		}
 
 		$options = new stdClass();
 		$options->width = $arguments['width'];
@@ -46,57 +50,55 @@ class Pronamic_Google_Maps_Mashup {
 			$options->markerOptions->$key = $value;
 		}
 
-		if($query->have_posts()) {
-			$content = '<div class="pgmm">';
+		$content = '<div class="pgmm">';
 
-			$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));
+		$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));
 
-			$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $options->width, $options->height);
-			$content .= sprintf('</div>');
+		$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $options->width, $options->height);
+		$content .= sprintf('</div>');
 
-			$items = '';
-			while($query->have_posts()) { $query->the_post();
-				$pgm = Pronamic_Google_Maps::getMetaData();
+		$items = '';
+		while($query->have_posts()) { $query->the_post();
+			$pgm = Pronamic_Google_Maps::getMetaData();
 
-				if($pgm->active) {
-					$info = new Pronamic_Google_Maps_Info();
-					$info->title = $pgm->title;
-					$info->description = $pgm->description;
-					$info->latitude = $pgm->latitude;
-					$info->longitude = $pgm->longitude;
-					$info->mapType = $pgm->mapType;
-					$info->zoom = $pgm->zoom;
-					
-					$items .= '<li>';
-					$items .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
+			if($pgm->active) {
+				$info = new Pronamic_Google_Maps_Info();
+				$info->title = $pgm->title;
+				$info->description = $pgm->description;
+				$info->latitude = $pgm->latitude;
+				$info->longitude = $pgm->longitude;
+				$info->mapType = $pgm->mapType;
+				$info->zoom = $pgm->zoom;
+				
+				$items .= '<li>';
+				$items .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
 
-					$item = sprintf(
-						'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
-						get_permalink() , 
-						sprintf(esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' )) , 
-						get_the_title()
-					);
+				$item = sprintf(
+					'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
+					get_permalink() , 
+					sprintf(esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' )) , 
+					get_the_title()
+				);
 
-					$items .= apply_filters(Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $item);
-					$items .= '</li>';
-				}
+				$items .= apply_filters(Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $item);
+				$items .= '</li>';
 			}
+		}
 
-			wp_reset_postdata();
+		wp_reset_postdata();
 
-			if(!empty($items)) {
-				$content .= '<ul>';
-				$content .= $items;
-				$content .= '</ul>';
-			}
+		if(!empty($items)) {
+			$content .= '<ul>';
+			$content .= $items;
+			$content .= '</ul>';
+		}
 
-			$content .= '</div>';
+		$content .= '</div>';
 
-			if($arguments['echo']) {
-				echo $content;
-			} else {
-				return $content;
-			}
+		if($arguments['echo']) {
+			echo $content;
+		} else {
+			return $content;
 		}
 	}
 }
