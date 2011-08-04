@@ -177,7 +177,13 @@ class Pronamic_Google_Maps_LatLng {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	
+
+	/**
+	 * Convert the specified decimail to deg min sec
+	 * 
+	 * @param float $decimal
+	 * @param stromg $direction
+	 */
 	public static function convertToDegMinSec($decimal, $direction = null) {
 		$string = (string) $decimal;
 

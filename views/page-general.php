@@ -17,7 +17,7 @@ $activeTypes = $options['active'];
 	<form action="" method="post">
 		<?php wp_nonce_field('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME); ?>
 
-		<table cellspacing="0" class="widefat page fixed">
+		<table cellspacing="0" class="widefat fixed">
 
 			<?php foreach(array('thead', 'tfoot') as $tag): ?>
 
@@ -60,4 +60,6 @@ $activeTypes = $options['active'];
 
 		<?php submit_button(__('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>
 	</form>
+	
+	<?php include 'uninstall-form.php'; ?>
 </div>

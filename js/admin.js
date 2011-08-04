@@ -139,6 +139,90 @@
 		fields.description.keyup(function() { infoWindow.setContent(fields.description.val()); });
 		fields.description.change(function() { infoWindow.setContent(fields.description.val()); });
 	};
+	
+	//////////////////////////////////////////////////
+
+	/**
+	 * Pronamic Google Maps widget prototype
+	 */
+	var PronamicGoogleMapsWidget = function(element, options) {
+		var obj = this;
+		var element = $(element);
+
+		// Fields
+		var fields = {};
+		fields.latitude = element.find(".latitude-field");
+		fields.longitude = element.find(".longitude-field");
+		fields.description = element.find(".description-field");
+		fields.mapType = element.find(".map-type-field");
+		fields.zoom = element.find(".zoom-field");
+
+		// Canvas
+		var canvas = element.find(".google-maps-canvas");
+
+		var location =  new google.maps.LatLng(fields.latitude.val(), fields.longitude.val());
+
+		var zoom = parseInt(fields.zoom.val());
+		if(isNaN(zoom)) { zoom = 0; }
+		
+		var mapType = fields.mapType.val();
+		if(mapType == "") { mapType = google.maps.MapTypeId.ROADMAP; }
+
+		var options = {
+			zoom: zoom , 
+			center: location , 
+			mapTypeId: mapType 
+		};
+
+		var map = new google.maps.Map(canvas.get(0), options);
+
+		var marker = new google.maps.Marker({
+			position: location , 
+			map: map , 
+			draggable: true
+		});
+		
+		var infoWindow = new google.maps.InfoWindow({content: fields.description.val()});
+		infoWindow.open(map, marker);
+
+		var updateMarker = function() {
+			var location =  new google.maps.LatLng(fields.latitude.val(), fields.longitude.val());
+
+			marker.setPosition(location);
+			map.setCenter(location);
+		};
+
+		var updateFields = function() {
+			var location = marker.getPosition();
+
+			fields.latitude.val(location.lat());
+			fields.longitude.val(location.lng());
+			fields.zoom.val(map.getZoom());
+			fields.mapType.val(map.getMapTypeId());
+		};
+
+		google.maps.event.addListener(map, "maptypeid_changed", updateFields);
+		google.maps.event.addListener(map, "zoom_changed", updateFields);
+		google.maps.event.addListener(marker, "drag", updateFields);
+		google.maps.event.addListener(marker, "dragend", updateFields);
+
+		fields.latitude.keyup(updateMarker).change(updateMarker);
+		fields.longitude.keyup(updateMarker).change(updateMarker);
+
+		fields.description.change(function() { infoWindow.setContent(fields.description.val()); });
+		fields.description.keyup(function() { infoWindow.setContent(fields.description.val()); });
+
+		// The widget area is resized, wich is causing a buggy Google Maps, this function fixes that issue
+		var fixMap = function() {
+			google.maps.event.trigger(map, "resize");
+
+			map.setCenter(location);
+		}
+
+		element.closest(".widget").find(".widget-action").click(function() { setTimeout(fixMap, 1000); });
+	};
+	
+	//////////////////////////////////////////////////
 
 	/**
 	 * Pronamic Google Maps geocoder prototype
@@ -216,6 +300,8 @@
 			} 
 		}
 	};
+	
+	//////////////////////////////////////////////////
 
 	/**
 	 * jQuery plugin - Pronamic Google Maps meta box
@@ -231,6 +317,25 @@
 			element.data('pgm-meta-box', geocoder);
 		});
 	};
+	
+	//////////////////////////////////////////////////
+
+	/**
+	 * jQuery plugin - Pronamic Google Maps geocoder
+	 */
+	$.fn.pronamicGoogleMapsWidget = function(options) {
+		return this.each(function() {
+			var element = $(this);
+
+			if(element.data('pgm-widget')) return;
+
+			var widget = new PronamicGoogleMapsWidget(this, options);
+
+			element.data('pgm-widget', widget);
+		});
+	};
+	
+	//////////////////////////////////////////////////
 
 	/**
 	 * jQuery plugin - Pronamic Google Maps geocoder
@@ -246,9 +351,31 @@
 			element.data('pgm-geocoder', geocoder);
 		});
 	};
+	
+	//////////////////////////////////////////////////
 
-	$(document).ready(function() {
+	/**
+	 * Initialize
+	 */
+	var initialize = function() {
 		$("#pronamic-google-maps-meta-box").pronamicGoogleMapsMetaBox();
+
 		$("#pgm-geocoder").pronamicGoogleMapsGeocoder();
+
+		$("#widgets-right .pronamic-google-maps-widget").pronamicGoogleMapsWidget();
+
+		jQuery('div[id$="_pronamic_google_maps-__i__"]').bind("dragstop", function() {
+			$("#widgets-right .pronamic-google-maps-widget").pronamicGoogleMapsWidget();
+		});
+	};
+
+	/**
+	 * Ready
+	 */
+	$(document).ready(function() {
+		google.load("maps", "3",  {
+			callback: initialize , 
+			other_params: "sensor=false"
+		});
 	});
 })(jQuery);

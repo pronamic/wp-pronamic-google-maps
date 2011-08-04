@@ -32,4 +32,34 @@ class Pronamic_Google_Maps_Plugin {
 
 		return $links;
 	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Uninstall
+	 */
+	public static function uninstall() {
+		global $wpdb;
+
+		// Delete meta
+		$metaKeys = "'" . implode("', '", array(
+			Pronamic_Google_Maps_Post::META_KEY_ACTIVE ,
+			Pronamic_Google_Maps_Post::META_KEY_ADDRESS , 
+			Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION , 
+			Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ,
+			Pronamic_Google_Maps_Post::META_KEY_LATITUDE , 
+			Pronamic_Google_Maps_Post::META_KEY_LONGITUDE , 
+			Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE , 
+			Pronamic_Google_Maps_Post::META_KEY_TITLE , 
+			Pronamic_Google_Maps_Post::META_KEY_ZOOM 
+		)) . "'";
+
+		$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key IN ($metaKeys)");
+
+		// Delete options
+		delete_option(Pronamic_Google_Maps::OPTION_NAME);
+
+		// Deactivate plugin
+		deactivate_plugins(Pronamic_Google_Maps::$file);
+	}
 }

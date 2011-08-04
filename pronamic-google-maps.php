@@ -3,28 +3,29 @@
 Plugin Name: Pronamic Google Maps
 Plugin URI: http://pronamic.eu/wordpress/google-maps/
 Description: This plugin makes it simple to add Google Maps to your WordPress post, pages or other custom post types.
-Version: 1.8
+Version: 2.1
 Requires at least: 3.0
 Author: Pronamic
 Author URI: http://pronamic.eu/
 License: GPL
 */
 
-require_once 'classes/Pronamic_Google_Maps.php';
-require_once 'classes/Pronamic_Google_Maps_Plugin.php';
-require_once 'classes/Pronamic_Google_Maps_MapTypeId.php';
-require_once 'classes/Pronamic_Google_Maps_Post.php';
-require_once 'classes/Pronamic_Google_Maps_Filters.php';
-require_once 'classes/Pronamic_Google_Maps_LatLng.php';
-require_once 'classes/Pronamic_Google_Maps_Info.php';
-require_once 'classes/Pronamic_Google_Maps_Site.php';
-require_once 'classes/Pronamic_Google_Maps_Admin.php';
-require_once 'classes/Pronamic_Google_Maps_MetaBox.php';
-require_once 'classes/Pronamic_Google_Maps_Widget.php';
-require_once 'classes/Pronamic_Google_Maps_Mashup.php';
-require_once 'classes/Pronamic_Google_Maps_GeoMicroformat.php';
-require_once 'classes/Pronamic_Google_Maps_GeocoderStatus.php';
+if(function_exists('spl_autoload_register')):
+
+function pronamic_google_maps_autoload($name) {
+	$name = str_replace('\\', DIRECTORY_SEPARATOR, $name);
+
+	$file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
+
+	if(is_file($file)) {
+		require_once $file;
+	}
+}
+
+spl_autoload_register('pronamic_google_maps_autoload');
 
 require_once 'functions.php';
 
 Pronamic_Google_Maps::bootstrap(__FILE__);
+
+endif;
