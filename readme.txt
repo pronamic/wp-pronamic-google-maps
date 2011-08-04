@@ -224,8 +224,10 @@ Or througt an filter
 == Changelog ==
 
 = 2.1 =
-*	Mmashup map is now also rendered if there are no posts found
-*	First parameter of the pronamic_google_maps_mashup() function now also be an WP_Query object 
+*	Mashup map is now also rendered if there are no posts found
+*	First parameter of the pronamic_google_maps_mashup() function now also be an WP_Query object
+*	Fixed issue with the Google Maps shortcode, in most cases it was not returning the output from the shortcode function
+*	Added an uninstall form so you can easily delete options and meta data
 
 = 2.0 =
 *	Fixed Notice: Undefined index: fit_founds

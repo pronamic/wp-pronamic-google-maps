@@ -31,7 +31,9 @@ class Pronamic_Google_Maps_Shortcode {
 	/**
 	 * Render
 	 */
-	public static function render($atts) {       
+	public static function render($atts) {
+		$atts['echo'] = false;
+
 		return Pronamic_Google_Maps::render($atts);
 	}
 }
