@@ -64,6 +64,11 @@ wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
 				&deg; 
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2">
+				<span class="description"><?php _e('Tip: Change the zoom level and map type to your own wishes.', Pronamic_Google_Maps::TEXT_DOMAIN); ?></span>
+			</td>
+		</tr>
 	</table>
 
 	<div id="pgm-canvas" style="width: 100%; height: 500px;"></div>

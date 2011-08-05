@@ -223,6 +223,9 @@ Or througt an filter
 
 == Changelog ==
 
+= ? =
+*	Added a short description to the meta box, thanks to [andrewhouse](http://wordpress.org/support/profile/andrewhouse)
+
 = 2.1 =
 *	Mashup map is now also rendered if there are no posts found
 *	First parameter of the pronamic_google_maps_mashup() function now also be an WP_Query object
