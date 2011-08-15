@@ -60,6 +60,4 @@ $activeTypes = $options['active'];
 
 		<?php submit_button(__('Save Changes', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>
 	</form>
-	
-	<?php include 'uninstall-form.php'; ?>
 </div>

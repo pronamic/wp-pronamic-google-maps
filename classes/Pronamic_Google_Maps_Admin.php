@@ -22,10 +22,7 @@ class Pronamic_Google_Maps_Admin {
 
 		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
 
-		add_action('load-post-new.php', array(__CLASS__, 'loadPost'));
-		add_action('load-post.php', array(__CLASS__, 'loadPost'));
-		add_action('load-toplevel_page_pronamic-google-maps', array(__CLASS__, 'enqueueAssets'));
-		add_action('load-google-maps_page_pronamic-google-maps-geocoder', array(__CLASS__, 'enqueueAssets'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueScripts'));
 
 		// Scripts
 		wp_register_script(
@@ -44,26 +41,28 @@ class Pronamic_Google_Maps_Admin {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Load post
+	 * Enqueue scripts
 	 */
-	public static function loadPost() {
-		$screen = get_current_screen();
+	public static function enqueueScripts($hook) {
+		$enqueue = false;
 
-		$options = Pronamic_Google_Maps::getOptions();
-		$types = $options['active'];
+		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder'))) {
+			$enqueue = true;
+		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
+			$screen = get_current_screen();
+	
+			$options = Pronamic_Google_Maps::getOptions();
+			$types = $options['active'];
+			
+			if(isset($types[$screen->post_type])) {
+				$enqueue = $types[$screen->post_type];
+			}
+		} 
 
-		if(in_array($screen->post_type, $types)) {
+		if($enqueue) {
 			wp_enqueue_script('pronamic-google-maps-admin');
 			wp_enqueue_style('pronamic-google-maps-admin');
 		}
-	}
-
-	/**
-	 * Enqueue assets
-	 */
-	public static function enqueueAssets() {
-		wp_enqueue_script('pronamic-google-maps-admin');
-		wp_enqueue_style('pronamic-google-maps-admin');
 	}
 
 	//////////////////////////////////////////////////

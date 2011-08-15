@@ -16,6 +16,8 @@ class Pronamic_Google_Maps_Plugin {
 		$plugin = plugin_basename(Pronamic_Google_Maps::$file);
 
 		add_filter('plugin_action_links_' . $plugin, array(__CLASS__, 'actionLinks'));
+		
+		register_uninstall_hook(Pronamic_Google_Maps::$file, 'uninstall');
 	}
 
 	//////////////////////////////////////////////////
@@ -58,8 +60,5 @@ class Pronamic_Google_Maps_Plugin {
 
 		// Delete options
 		delete_option(Pronamic_Google_Maps::OPTION_NAME);
-
-		// Deactivate plugin
-		deactivate_plugins(Pronamic_Google_Maps::$file);
 	}
 }
