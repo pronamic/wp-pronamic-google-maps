@@ -29,10 +29,10 @@ class Pronamic_Google_Maps_Mashup {
 
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		if($q instanceof \WP_Query) {
+		if($q instanceof WP_Query) {
 			$query = $q;
 		} else {
-			$query = new \WP_Query($q);
+			$query = new WP_Query($q);
 		}
 
 		$options = new stdClass();

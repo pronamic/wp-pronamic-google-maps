@@ -269,7 +269,7 @@ class Pronamic_Google_Maps_Admin {
 		$result->success = true;
 
 		// Next post
-		$query = new \WP_Query();
+		$query = new WP_Query();
 		$query->query(Pronamic_Google_Maps_Admin::getGeocodeQueryArgs());
 
 		$result->foundPosts = $query->found_posts;
