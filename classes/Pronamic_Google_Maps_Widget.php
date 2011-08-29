@@ -38,14 +38,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$controlOptions = array('width' => 500);
 
 		parent::WP_Widget('pronamic_google_maps', __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN), $widgetOptions, $controlOptions);
-
-		if(is_admin()) {
-			wp_enqueue_script(
-				'pronamic-google-maps-widget', 
-				plugins_url('js/widget.js', Pronamic_Google_Maps::$file) , 
-				array('google-maps', 'jquery') 
-			);
-		}
 	}
 
 	//////////////////////////////////////////////////
