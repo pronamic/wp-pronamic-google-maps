@@ -294,6 +294,9 @@ class Pronamic_Google_Maps {
 			'marker_options' => array(
 
 			) , 
+			'map_options' => array(
+
+			) , 
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
