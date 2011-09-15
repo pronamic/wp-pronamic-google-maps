@@ -395,6 +395,7 @@ Or througt an filter
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
 
+
 == Plugin in the wild ==
 
 *	[Metz Ameland](http://metz-ameland.nl/)
@@ -407,6 +408,7 @@ Or througt an filter
 *	[Professionele Fotografie](http://pf.nl/)
 *	[Emonta](http://emonta.nl/)
 
+
 == Pronamic plugins ==
 
 *	[Pronamic Google Maps](http://wordpress.org/extend/plugins/pronamic-google-maps/)
@@ -415,3 +417,5 @@ Or througt an filter
 *	[Pronamic Page Teasers](http://wordpress.org/extend/plugins/pronamic-page-teasers/)
 *	[Maildit](http://wordpress.org/extend/plugins/maildit/)
 *	[Pronamic Framework](http://wordpress.org/extend/plugins/pronamic-framework/)
+*	[Pronamic iDEAL](http://wordpress.org/extend/plugins/pronamic-ideal/)
+
