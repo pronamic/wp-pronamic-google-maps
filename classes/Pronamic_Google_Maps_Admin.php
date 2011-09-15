@@ -22,18 +22,47 @@ class Pronamic_Google_Maps_Admin {
 
 		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
 
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueScripts'));
+
 		// Scripts
-		wp_enqueue_script(
+		wp_register_script(
 			'pronamic-google-maps-admin' , 
 			plugins_url('js/admin.js', Pronamic_Google_Maps::$file) , 
-			array('google-maps', 'jquery')
+			array('jquery', 'google-jsapi')
 		);
 
 		// Styles
-		wp_enqueue_style(
+		wp_register_style(
 			'pronamic-google-maps-admin' , 
 			plugins_url('css/admin.css', Pronamic_Google_Maps::$file)
 		);
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Enqueue scripts
+	 */
+	public static function enqueueScripts($hook) {
+		$enqueue = false;
+
+		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder', 'widgets.php'))) {
+			$enqueue = true;
+		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
+			$screen = get_current_screen();
+	
+			$options = Pronamic_Google_Maps::getOptions();
+			$types = $options['active'];
+			
+			if(isset($types[$screen->post_type])) {
+				$enqueue = $types[$screen->post_type];
+			}
+		} 
+
+		if($enqueue) {
+			wp_enqueue_script('pronamic-google-maps-admin');
+			wp_enqueue_style('pronamic-google-maps-admin');
+		}
 	}
 
 	//////////////////////////////////////////////////
@@ -62,7 +91,7 @@ class Pronamic_Google_Maps_Admin {
 			$menuSlug = Pronamic_Google_Maps::SLUG , 
 			$function = array(__CLASS__, 'pageGeneral') , 
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			$iconUrl = plugins_url('images/icon-16x16.png', Pronamic_Google_Maps::$file)
+			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps::$file)
 		);
 
 		// @see _add_post_type_submenus()
@@ -240,7 +269,7 @@ class Pronamic_Google_Maps_Admin {
 		$result->success = true;
 
 		// Next post
-		$query = new \WP_Query();
+		$query = new WP_Query();
 		$query->query(Pronamic_Google_Maps_Admin::getGeocodeQueryArgs());
 
 		$result->foundPosts = $query->found_posts;
