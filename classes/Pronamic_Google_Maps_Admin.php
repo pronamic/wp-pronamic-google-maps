@@ -46,7 +46,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function enqueueScripts($hook) {
 		$enqueue = false;
 
-		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder'))) {
+		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder', 'widgets.php'))) {
 			$enqueue = true;
 		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
 			$screen = get_current_screen();

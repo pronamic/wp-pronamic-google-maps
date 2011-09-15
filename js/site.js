@@ -24,19 +24,16 @@
 				// Location
 				var location =  new google.maps.LatLng(info.latitude, info.longitude);
 
-				// Map
-				var mapOptions = {
-					// The initial Map center. Required.
-					center: location ,
-					// The initial Map mapTypeId. Required.
-					mapTypeId: info.mapType , 
-					// The initial Map zoom level. Required.
-					zoom: info.zoom 
-				};
-
+				// Map options
+				var mapOptions = $.extend({
+						center: location 
+					} , 
+					info.mapOptions
+				);
+console.log(info.mapOptions);
 				var map = new google.maps.Map(canvas, mapOptions);
 
-				// Marker
+				// Marker options
 				var markerOptions = $.extend({
 						position: location , 
 						map: map 
@@ -126,7 +123,7 @@
 							position: location , 
 							map: map 
 						} , 
-						mashupInfo.markerOptions
+						info.markerOptions
 					);
 
 					var marker = new google.maps.Marker(markerOptions);

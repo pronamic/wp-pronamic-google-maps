@@ -45,10 +45,6 @@ class Pronamic_Google_Maps_Mashup {
 		$options->mapTypeId = $arguments['map_type_id'];
 		$options->hideList = $arguments['hide_list'];
 		$options->fitBounds = $arguments['fit_bounds'];
-		$options->markerOptions = new stdClass();
-		foreach($arguments['marker_options'] as $key => $value) {
-			$options->markerOptions->$key = $value;
-		}
 
 		$content = '<div class="pgmm">';
 
@@ -69,6 +65,12 @@ class Pronamic_Google_Maps_Mashup {
 				$info->longitude = $pgm->longitude;
 				$info->mapType = $pgm->mapType;
 				$info->zoom = $pgm->zoom;
+				$info->markerOptions = new stdClass();
+				foreach($arguments['marker_options'] as $key => $value) {
+					$value = apply_filters('pronamic_google_maps_marker_options_' . $key, $value);
+		
+					$info->markerOptions->$key = $value;
+				}
 				
 				$items .= '<li>';
 				$items .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));

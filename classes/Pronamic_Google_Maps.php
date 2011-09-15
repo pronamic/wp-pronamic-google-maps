@@ -209,7 +209,9 @@ class Pronamic_Google_Maps {
 		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
 
 		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);
-		
+
+		$meta = apply_filters('pronamic_google_maps_post_meta', $meta);
+
 		return $meta;
 	}
 
@@ -311,16 +313,28 @@ class Pronamic_Google_Maps {
 			$info->description = $pgm->description;
 			$info->latitude = $pgm->latitude;
 			$info->longitude = $pgm->longitude;
-			$info->mapType = $pgm->mapType;
-			$info->zoom = $pgm->zoom;
 			$info->width = $arguments['width'];
 			$info->height = $arguments['height'];
 			$info->static = filter_var($arguments['static'], FILTER_VALIDATE_BOOLEAN);
 			$info->label = $arguments['label'];
-			$info->color = $arguments['color'];	
+			$info->color = $arguments['color'];
+
+			// Marker options
 			$info->markerOptions = new stdClass();
 			foreach($arguments['marker_options'] as $key => $value) {
+				$value = apply_filters('pronamic_google_maps_marker_options_' . $key, $value);
+
 				$info->markerOptions->$key = $value;
+			}
+			
+			// Map options
+			$info->mapOptions = new stdClass();
+			$info->mapOptions->mapTypeId = $pgm->mapType;
+			$info->mapOptions->zoom = $pgm->zoom;
+			foreach($arguments['map_options'] as $key => $value) {
+				$value = apply_filters('pronamic_google_maps_map_options_' . $key, $value);
+
+				$info->mapOptions->$key = $value;
 			}
 
 			$html = self::getMapHtml($info);
