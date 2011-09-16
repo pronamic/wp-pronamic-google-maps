@@ -24,6 +24,9 @@ class Pronamic_Google_Maps_Mashup {
 			'marker_options' => array(
 
 			) , 
+			'map_options' => array(
+
+			) ,
 			'echo' => true
 		);
 

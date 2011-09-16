@@ -296,7 +296,7 @@ class Pronamic_Google_Maps {
 			) , 
 			'map_options' => array(
 
-			) , 
+			) 
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -323,7 +323,6 @@ class Pronamic_Google_Maps {
 			$info->color = $arguments['color'];
 
 			// Marker options
-			$info->markerOptions = new stdClass();
 			foreach($arguments['marker_options'] as $key => $value) {
 				$value = apply_filters('pronamic_google_maps_marker_options_' . $key, $value);
 
@@ -331,7 +330,6 @@ class Pronamic_Google_Maps {
 			}
 			
 			// Map options
-			$info->mapOptions = new stdClass();
 			$info->mapOptions->mapTypeId = $pgm->mapType;
 			$info->mapOptions->zoom = $pgm->zoom;
 			foreach($arguments['map_options'] as $key => $value) {

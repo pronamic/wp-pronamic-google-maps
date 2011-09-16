@@ -51,22 +51,6 @@ class Pronamic_Google_Maps_Info {
 	//////////////////////////////////////////////////
 
 	/**
-	 * The desired zoom level
-	 * 
-	 * @var int
-	 */
-	public $zoom;
-
-	/**
-	 * The desired map types
-	 * 
-	 * @var int
-	 */
-	public $mapType;
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * The label
 	 * 
 	 * @var string
@@ -79,6 +63,34 @@ class Pronamic_Google_Maps_Info {
 	 * @var string
 	 */
 	public $color;
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * The map options
+	 * 
+	 * @var stdClass
+	 */
+	public $mapOptions;
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * The marker options
+	 * 
+	 * @var stdClass
+	 */
+	public $markerOptions;
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Constructs and initialize an info object
+	 */
+	public function __construct() {
+		$this->mapOptions = new stdClass();
+		$this->markerOptions = new stdClass();
+	}
 
 	//////////////////////////////////////////////////
 

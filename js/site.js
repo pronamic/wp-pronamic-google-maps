@@ -30,7 +30,7 @@
 					} , 
 					info.mapOptions
 				);
-console.log(info.mapOptions);
+
 				var map = new google.maps.Map(canvas, mapOptions);
 
 				// Marker options
