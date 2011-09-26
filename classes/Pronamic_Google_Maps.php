@@ -206,7 +206,10 @@ class Pronamic_Google_Maps {
 		}
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
-		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+		
+		$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+		$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+		$meta->description = $description; 
 
 		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);
 

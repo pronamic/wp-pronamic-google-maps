@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -223,6 +223,10 @@ Or througt an filter
 
 == Changelog ==
 
+= 2.1.4 =
+*	Added Polish translation by [Marcin Modestowicz](http://modestowicz.com/)
+*	Improved the use of the 'pronamic_google_maps_item_description' filter
+
 = 2.1.3 =
 *	Fixed some notices caused by the new 'map_options' settings key
 *	Improved the Pronamic Google Maps widget
@@ -386,6 +390,12 @@ Or througt an filter
 
 = 1.0 =
 *	Initial release
+
+
+== Translations ==
+
+*	pl_PL by [Marcin Modestowicz](http://modestowicz.com/)
+
 
 == Links ==
 
