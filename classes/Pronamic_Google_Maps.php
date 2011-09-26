@@ -206,7 +206,10 @@ class Pronamic_Google_Maps {
 		}
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
-		$meta->description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+		
+		$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+		$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+		$meta->description = $description; 
 
 		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);
 
@@ -296,7 +299,7 @@ class Pronamic_Google_Maps {
 			) , 
 			'map_options' => array(
 
-			) , 
+			) 
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -323,7 +326,6 @@ class Pronamic_Google_Maps {
 			$info->color = $arguments['color'];
 
 			// Marker options
-			$info->markerOptions = new stdClass();
 			foreach($arguments['marker_options'] as $key => $value) {
 				$value = apply_filters('pronamic_google_maps_marker_options_' . $key, $value);
 
@@ -331,7 +333,6 @@ class Pronamic_Google_Maps {
 			}
 			
 			// Map options
-			$info->mapOptions = new stdClass();
 			$info->mapOptions->mapTypeId = $pgm->mapType;
 			$info->mapOptions->zoom = $pgm->zoom;
 			foreach($arguments['map_options'] as $key => $value) {
