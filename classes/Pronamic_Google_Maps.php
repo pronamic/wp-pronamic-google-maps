@@ -200,9 +200,9 @@ class Pronamic_Google_Maps {
 		}
 
 		$meta->zoom = self::MAP_ZOOM_DEFAULT;
-		$zoom = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
+		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
 		if($value != '') {
-			$meta->zoom = (int) $zoom;
+			$meta->zoom = (int) $value;
 		}
 		
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);

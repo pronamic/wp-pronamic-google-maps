@@ -69,13 +69,7 @@
 
 			var list = element.find("ul");
 
-			var defaultOptions = {
-				zoom: 8 , 
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-
 			var mashupInfo = $.parseJSON(element.find('input[name="pgmm-info"]').val());
-			mashupInfo = $.extend(defaultOptions, mashupInfo);
 
 			var canvas = element.find(".canvas").get(0);
 
@@ -89,15 +83,12 @@
 					center = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
 				}
 
-				// Create an map object according the options that are specified
-				var mapOptions = {
-					// The initial Map center. Required.
-					center: center ,
-					// The initial Map mapTypeId. Required.
-					mapTypeId: mashupInfo.mapTypeId , 
-					// The initial Map zoom level. Required.
-					zoom: mashupInfo.zoom 
-				};
+				// Map options
+				var mapOptions = $.extend({
+						center: center 
+					} , 
+					mashupInfo.mapOptions
+				);
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
