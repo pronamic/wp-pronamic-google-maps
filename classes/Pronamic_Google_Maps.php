@@ -231,9 +231,9 @@ class Pronamic_Google_Maps {
 
 		$parameters = array();
 		$parameters['center'] = $info->latitude . ',' . $info->longitude;
-		$parameters['zoom'] = $info->zoom;
+		$parameters['zoom'] = $info->mapOptions->zoom;
 		$parameters['size'] = $info->width . 'x' . $info->height;
-		$parameters['maptype'] = $info->mapType;
+		$parameters['maptype'] = $info->mapOptions->mapTypeId;
 		$parameters['sensor'] = 'false';
 
 		$markers = '';
