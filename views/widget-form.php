@@ -72,3 +72,13 @@ $static = $instance['static'];
 		<label for="<?php echo $this->get_field_id('static-true'); ?>"><?php _e('Static', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
 	</p>	
 </div>
+
+<?php if(defined('DOING_AJAX')): ?>
+
+<script type="text/javascript">
+	<!--//--><![CDATA[//><!--
+	jQuery("#<?php echo $this->get_field_id('pgm'); ?>").pronamicGoogleMapsWidget();
+	//--><!]]>
+</script>
+
+<?php endif; ?>
