@@ -27,7 +27,10 @@ class Pronamic_Google_Maps_Mashup {
 			'map_options' => array(
 
 			) ,
-			'echo' => true
+			'marker_cluster_options' => array(
+			
+			) , 
+			'echo' => true 
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -56,7 +59,20 @@ class Pronamic_Google_Maps_Mashup {
 
 			$options->mapOptions->$key = $value;
 		}
+		
+		// Marker cluster options
+		if(!empty($arguments['marker_clusterer_options'])) {
+			wp_enqueue_script('google-maps-markerclustererplus');
+			
+			$options->markerClustererOptions = new stdClass();
+			foreach($arguments['marker_clusterer_options'] as $key => $value) {
+				$value = apply_filters('pronamic_google_maps_marker_clusterer_options_' . $key, $value);
+	
+				$options->markerClustererOptions->$key = $value;
+			}
+		}
 
+		// HTML
 		$content = '<div class="pgmm">';
 
 		$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));

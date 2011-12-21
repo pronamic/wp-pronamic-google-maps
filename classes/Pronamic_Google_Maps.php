@@ -122,17 +122,42 @@ class Pronamic_Google_Maps {
 
 		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
 
+		// Scripts
+		self::registerScripts();
+
+		// Other
+		if(is_admin()) {
+			Pronamic_Google_Maps_Admin::bootstrap();
+		} else {
+			Pronamic_Google_Maps_Site::bootstrap();
+		}
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Register scripts
+	 */
+	public static function registerScripts() {
 		// Register the Google Maps JavaScript API loader script
 		wp_register_script(
 			'google-jsapi' , 
 			'http://www.google.com/jsapi'
 		);
 
-		if(is_admin()) {
-			Pronamic_Google_Maps_Admin::bootstrap();
-		} else {
-			Pronamic_Google_Maps_Site::bootstrap();
-		}
+		// MarkerClustererPlus
+		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
+		wp_register_script(
+			'google-maps-markerclustererplus' , 
+			plugins_url('js/markerclustererplus.js', Pronamic_Google_Maps::$file)
+		);
+
+		// MarkerManager
+		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markermanager/1.0/
+		wp_register_script(
+			'google-maps-markermanager' , 
+			plugins_url('js/markermanager.js', Pronamic_Google_Maps::$file)
+		);
 	}
 
 	//////////////////////////////////////////////////

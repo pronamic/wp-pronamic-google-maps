@@ -92,6 +92,12 @@
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
+				// MarkerClustererPlus options
+				var markerClusterer = false;
+				if(mashupInfo.markerClustererOptions) {
+					var markerClusterer = new MarkerClusterer(map, [], mashupInfo.markerClustererOptions);
+				}
+				
 				// Associated the Google Maps with the element so other developers can easily retrieve the Google Maps object
 				element.data("google-maps", map);
 
@@ -111,8 +117,7 @@
 					var location =  new google.maps.LatLng(info.latitude, info.longitude);
 
 					var markerOptions = $.extend({
-							position: location , 
-							map: map 
+							position: location 
 						} , 
 						info.markerOptions
 					);
@@ -125,10 +130,20 @@
 						infoWindow.setContent(item.html());
 						infoWindow.open(map, marker);
 					});
-					
+
+					if(markerClusterer) {
+						markerClusterer.addMarker(marker, false);
+					} else {
+						marker.setMap(map);
+					}
+
 					// Extends the bounds object with this location so we can fit the map to show all posts
 					bounds.extend(location);
 				});
+
+				if(markerClusterer) {
+					markerClusterer.repaint();
+				}
 
 				if(mashupInfo.fitBounds) {
 					map.fitBounds(bounds);
