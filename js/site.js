@@ -78,8 +78,8 @@
 					list.hide();
 				}
 				
-				var center = new google.maps.LatLng(mashupInfo.center.latitude, mashupInfo.center.longitude);
-				if(google.loader.ClientLocation) {
+				var center = new google.maps.LatLng(mashupInfo.latitude, mashupInfo.longitude);
+				if(mashupInfo.centerClientLocation && google.loader.ClientLocation) {
 					center = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
 				}
 

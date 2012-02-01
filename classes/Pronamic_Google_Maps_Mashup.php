@@ -21,6 +21,7 @@ class Pronamic_Google_Maps_Mashup {
 			'map_type_id' => Pronamic_Google_Maps::MAP_TYPE_DEFAULT , 
 			'hide_list' => true , 
 			'fit_bounds' => true , 
+			'center_client_location' => false , 
 			'marker_options' => array(
 
 			) , 
@@ -44,11 +45,11 @@ class Pronamic_Google_Maps_Mashup {
 		$options = new stdClass();
 		$options->width = $arguments['width'];
 		$options->height = $arguments['height'];
-		$options->center = new stdClass();
-		$options->center->latitude = $arguments['latitude'];
-		$options->center->longitude = $arguments['longitude'];
+		$options->latitude = $arguments['latitude'];
+		$options->longitude = $arguments['longitude'];
 		$options->hideList = $arguments['hide_list'];
 		$options->fitBounds = $arguments['fit_bounds'];
+		$options->centerClientLocation = $arguments['center_client_location'];
 			
 		// Map options
 		$options->mapOptions = new stdClass();

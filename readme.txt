@@ -227,6 +227,15 @@ Or througt an filter
 *	Fix issue with the descript filter
 *	Add options for different dimension types pixels, percentages, etc.
 
+= 2.2 =
+*	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)
+*	Added support for [MarkerClustererPlus](http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/)
+*	Added support for [MarkerManager](http://google-maps-utility-library-v3.googlecode.com/svn/tags/markermanager/1.0/)
+*	Fixed bug with an fixed zoom level wich was not set in the pronamic_google_maps_mashup() function
+*	If you disbale the 'fit_bounds' option in the mashup the mashup will no longer center the client location
+*	Added extra option 'center_client_location' to center the mashup center to the client location, default false
+*	Added 'geo' shortcode wich will display the latitude and longitude in the microformat of the post in wich it is placed
+
 = 2.1.6 =
 *	Fixed notice undefined property in the Pronamic_Google_Maps class related to zoom and map type ID values
 
@@ -410,6 +419,7 @@ Or througt an filter
 
 == Links ==
 
+*	[google-maps-utility-library-v3](http://code.google.com/p/google-maps-utility-library-v3/)
 *	[Geocode with Google Maps API v3](http://tech.cibul.org/geocode-with-google-maps-api-v3/)
 *	[WordPress event locations](http://icalevents.anmari.com/2343-event-locations-geo-tags-for-custom-post-types/)
 *	[JavaScript Regular Expression](http://lawrence.ecorp.net/inet/samples/regexp-format.php)
