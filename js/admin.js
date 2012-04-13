@@ -217,7 +217,7 @@
 			google.maps.event.trigger(map, "resize");
 
 			map.setCenter(location);
-		}
+		};
 
 		element.closest(".widget").find(".widget-action").click(function() { setTimeout(fixMap, 1000); });
 	};

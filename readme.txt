@@ -228,6 +228,8 @@ Or througt an filter
 = todo =
 *	Fix issue with the descript filter
 *	Add options for different dimension types pixels, percentages, etc.
+*	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
+*	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)
