@@ -29,10 +29,14 @@ the available plugins have a few drawbacks:
 *	**Shortcode**
 	Easily integrate a Google Maps in your post content:
 
-		[google-maps]
-		[google-maps static=true]
-		[google-maps static=true label=M]
-		[google-maps width=200 height=200]
+		[googlemaps]
+		[googlemaps static=true]
+		[googlemaps static=true label=M]
+		[googlemaps width=200 height=200]
+
+	Also easily integrate an Google Maps mashup in your post content:
+
+		[googlemapsmashup query="post_tpe=company&nopaging=true" map_type_id="satellite"]
 
 *   **No extra tables**
 	Some plugin create additional tables in your WordPress database to store additional data. In many
@@ -226,10 +230,15 @@ Or througt an filter
 == Changelog ==
 
 = todo =
-*	Fix issue with the descript filter
 *	Add options for different dimension types pixels, percentages, etc.
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
+
+= 2.3 =
+*	Apply the 'pronamic_google_maps_item_description' filter not in admin
+*	Added shortcode 'googlemapsmashup' for an Google Maps mashup
+*	Changed shortcode 'google-maps' to 'googlemaps'
+*	Deprecated the 'google-maps' shortcode, changed it to 'googlemaps', [hyphen use can cause collisions](http://codex.wordpress.org/Shortcode_API)
 
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)

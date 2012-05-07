@@ -85,8 +85,8 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function menu() {
 		add_menu_page(
-			$pageTitle = __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN) ,
-			$menuTitle = __('Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN) ,
+			$pageTitle = __('Google Maps', 'pronamic_google_maps') ,
+			$menuTitle = __('Google Maps', 'pronamic_google_maps') ,
 			$capability = 'manage_options' , 
 			$menuSlug = Pronamic_Google_Maps::SLUG , 
 			$function = array(__CLASS__, 'pageGeneral') , 
@@ -98,8 +98,8 @@ class Pronamic_Google_Maps_Admin {
 		// @see wp-admin/menu.php
 		add_submenu_page(
 			$parentSlug = Pronamic_Google_Maps::SLUG , 
-			$pageTitle = __('Geocoder', Pronamic_Google_Maps::TEXT_DOMAIN) , 
-			$menuTitle = __('Geocoder', Pronamic_Google_Maps::TEXT_DOMAIN) , 
+			$pageTitle = __('Geocoder', 'pronamic_google_maps') , 
+			$menuTitle = __('Geocoder', 'pronamic_google_maps') , 
 			$capability = 'manage_options' , 
 			$menuSlug = Pronamic_Google_Maps::SLUG . '-geocoder' , 
 			$function = array(__CLASS__, 'pageGeocoder')
@@ -108,7 +108,7 @@ class Pronamic_Google_Maps_Admin {
 		global $submenu;
 
 		if(isset($submenu[Pronamic_Google_Maps::SLUG])) {
-			$submenu[Pronamic_Google_Maps::SLUG][0][0] = __('General', Pronamic_Google_Maps::TEXT_DOMAIN);
+			$submenu[Pronamic_Google_Maps::SLUG][0][0] = __('General', 'pronamic_google_maps');
 		}
 	}
 

@@ -14,7 +14,7 @@ class Pronamic_Google_Maps {
 	 *
 	 * @var string
 	 */
-	const TEXT_DOMAIN = 'pronamic-google-maps';
+	const TEXT_DOMAIN = 'pronamic_google_maps';
 
 	/**
 	 * The slug
@@ -120,7 +120,7 @@ class Pronamic_Google_Maps {
 		// Load plugin text domain
 		$relPath = dirname(plugin_basename(self::$file)) . '/languages/';
 
-		load_plugin_textdomain(self::TEXT_DOMAIN, false, $relPath);
+		load_plugin_textdomain('pronamic_google_maps', false, $relPath);
 
 		// Scripts
 		self::registerScripts();
@@ -237,7 +237,9 @@ class Pronamic_Google_Maps {
 		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
 		
 		$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
-		$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+		if(!is_admin()) {
+			$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+		}
 		$meta->description = $description; 
 
 		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);

@@ -1,7 +1,7 @@
 <div id="pgm" class="wrap">
 	<?php screen_icon(Pronamic_Google_Maps::SLUG); ?>
 
-	<h2><?php echo esc_html(__('Geocoder - Pronamic Google Maps', Pronamic_Google_Maps::TEXT_DOMAIN)); ?></h2>
+	<h2><?php echo esc_html(__('Geocoder - Pronamic Google Maps', 'pronamic_google_maps')); ?></h2>
 
 	<?php 
 	
@@ -13,7 +13,7 @@
 	<p>
 		<?php 
 
-		printf(__('Number posts to geocode: %s', Pronamic_Google_Maps::TEXT_DOMAIN) ,
+		printf(__('Number posts to geocode: %s', 'pronamic_google_maps') ,
 			sprintf('<strong id="pgm-found-posts">%s</strong>', $query->found_posts)
 		); 
 
@@ -27,7 +27,7 @@
 			<?php $pgm = pronamic_get_google_maps_meta(); ?>
 			<tr>
 				<th scope="row">
-					<label for="pgm-id-field"><?php _e('ID', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+					<label for="pgm-id-field"><?php _e('ID', 'pronamic_google_maps'); ?></label>
 				</th>
 				<td>
 					<input name="action" value="pgm_geocode" type="hidden"  />
@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="pgm-title-field"><?php _e('Title', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+					<label for="pgm-title-field"><?php _e('Title', 'pronamic_google_maps'); ?></label>
 				</th>
 				<td>
 					<input id="pgm-title-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_TITLE; ?>" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="pgm-address-field"><?php _e('Address', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+					<label for="pgm-address-field"><?php _e('Address', 'pronamic_google_maps'); ?></label>
 				</th>
 				<td>
 					<textarea id="pgm-address-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ADDRESS; ?>" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr($pgm->address); ?></textarea>
@@ -53,7 +53,7 @@
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="pgm-status-field"><?php _e('Status', Pronamic_Google_Maps::TEXT_DOMAIN); ?></label>
+					<label for="pgm-status-field"><?php _e('Status', 'pronamic_google_maps'); ?></label>
 				</th>
 				<td>
 					<input id="pgm-status-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS; ?>" value="" class="regular-text readonly" type="text" readonly="readonly" />
@@ -61,7 +61,7 @@
 			</tr>
 			<tr>
 				<th scope="row">
-					<?php _e('Location', Pronamic_Google_Maps::TEXT_DOMAIN); ?>
+					<?php _e('Location', 'pronamic_google_maps'); ?>
 				</th>
 				<td>
 					<input id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr($pgm->latitude); ?>" type="text" class="readonly" readonly="readonly" />
@@ -72,7 +72,7 @@
 			</tr>
 		</table>
 
-		<?php submit_button(__('Geocode', Pronamic_Google_Maps::TEXT_DOMAIN)); ?>
+		<?php submit_button(__('Geocode', 'pronamic_google_maps')); ?>
 	</form>
 
 	<?php endif; 
@@ -93,7 +93,7 @@
 	
 	if($query->have_posts()): ?>
 
-	<h2><?php echo esc_html(__('Zero results', Pronamic_Google_Maps::TEXT_DOMAIN)); ?></h2>
+	<h2><?php echo esc_html(__('Zero results', 'pronamic_google_maps')); ?></h2>
 
 	<p>
 		<?php 
@@ -112,8 +112,8 @@
 
 		<<?php echo $tag; ?>>
 			<tr>
-				<th scope="col" class="manage-column"><?php _e('Title', Pronamic_Google_Maps::TEXT_DOMAIN); ?></th>
-				<th scope="col" class="manage-column"><?php _e('Address', Pronamic_Google_Maps::TEXT_DOMAIN); ?></th>
+				<th scope="col" class="manage-column"><?php _e('Title', 'pronamic_google_maps'); ?></th>
+				<th scope="col" class="manage-column"><?php _e('Address', 'pronamic_google_maps'); ?></th>
 			</tr>
 		</<?php echo $tag; ?>>
 

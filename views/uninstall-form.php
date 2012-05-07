@@ -9,18 +9,18 @@ if(!empty($_POST) && check_admin_referer('pronamic_google_maps_uninstall', 'pron
 	<?php wp_nonce_field('pronamic_google_maps_uninstall', 'pronamic_google_maps_nonce'); ?>
 
 	<h3>
-		<?php _e('Delete plugin', Pronamic_Google_Maps::TEXT_DOMAIN); ?>
+		<?php _e('Delete plugin', 'pronamic_google_maps'); ?>
 	</h3>
 
 	<div class="delete-alert">
 		<p>
-			<?php _e('Warning! This will delete all Pronamic Google Maps data and options.', Pronamic_Google_Maps::TEXT_DOMAIN); ?>
+			<?php _e('Warning! This will delete all Pronamic Google Maps data and options.', 'pronamic_google_maps'); ?>
 		</p>
 
 		<?php 
 		
 		submit_button(
-			__('Uninstall', Pronamic_Google_Maps::TEXT_DOMAIN) , 
+			__('Uninstall', 'pronamic_google_maps') , 
 			'delete'
 		);
 		
