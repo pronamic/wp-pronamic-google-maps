@@ -10,7 +10,7 @@
  */
 class Pronamic_Google_Maps_Mashup {
 	public static function render($q = array(), $arguments = array()) {
-		Pronamic_Google_Maps_Site::$printScripts = true;
+		Pronamic_Google_Maps_Site::requireSiteScript();
 
 		$defaults = array(
 			'width' => Pronamic_Google_Maps::$defaultWidth ,

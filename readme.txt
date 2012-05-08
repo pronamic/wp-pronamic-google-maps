@@ -3,8 +3,8 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 2.1.6
+Tested up to: 3.3.2
+Stable tag: 2.2
 Text Domain: pronamic_google_maps
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
@@ -263,14 +263,6 @@ Or througt an filter
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 
-= 2.3 =
-*	Apply the 'pronamic_google_maps_item_description' filter not in admin
-*	Added shortcode 'googlemapsmashup' for an Google Maps mashup
-*	Changed shortcode 'google-maps' to 'googlemaps'
-*	Deprecated the 'google-maps' shortcode, changed it to 'googlemaps', [hyphen use can cause collisions](http://codex.wordpress.org/Shortcode_API)
-*	Changed the text domain from 'pronamic-google-maps' to 'pronamic_google_maps'
-*	Replaced all references to class constant TEXT_DOMAIN to an string
-
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)
 *	Added support for [MarkerClustererPlus](http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/)
@@ -279,6 +271,13 @@ Or througt an filter
 *	If you disbale the 'fit_bounds' option in the mashup the mashup will no longer center the client location
 *	Added extra option 'center_client_location' to center the mashup center to the client location, default false
 *	Added 'geo' shortcode wich will display the latitude and longitude in the microformat of the post in wich it is placed
+*	Apply the 'pronamic_google_maps_item_description' filter not in admin
+*	Added shortcode 'googlemapsmashup' for an Google Maps mashup
+*	Changed shortcode 'google-maps' to 'googlemaps'
+*	Deprecated the 'google-maps' shortcode, changed it to 'googlemaps', [hyphen use can cause collisions](http://codex.wordpress.org/Shortcode_API)
+*	Changed the text domain from 'pronamic-google-maps' to 'pronamic_google_maps'
+*	Replaced all references to class constant TEXT_DOMAIN to an string
+*	Improved the way we enqueue te frontend script becease the way wp_enqueue_script() works is changed since WordPress 3.3
 
 = 2.1.6 =
 *	Fixed notice undefined property in the Pronamic_Google_Maps class related to zoom and map type ID values
