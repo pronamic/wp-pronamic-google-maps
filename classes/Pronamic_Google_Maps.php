@@ -10,13 +10,6 @@
  */
 class Pronamic_Google_Maps {
 	/**
-	 * The text domain
-	 *
-	 * @var string
-	 */
-	const TEXT_DOMAIN = 'pronamic_google_maps';
-
-	/**
 	 * The slug
 	 *
 	 * @var string
