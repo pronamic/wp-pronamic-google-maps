@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 3.2.1
+Tested up to: 3.3.2
 Stable tag: 2.2
 Text Domain: pronamic_google_maps
 
