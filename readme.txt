@@ -23,14 +23,12 @@ There are quite a few Google Maps plugins available in the WordPress Plugin Dire
 use the Pronamic Google Maps plugin:
 
 *	**Google Maps API version 3**
-
 	Most of the available plugins still use the Google Maps version 2 API. To use the Google Maps v2 API you 
 	have to require an API key and include this in the plugin configuration.  The Pronamic Google Maps plugin 
 	uses the Google Maps version 3 API. Wich no longer requires an API key, so you don't have 
 	to configure this plugin.
 
 *	**Shortcode**
-
 	Easily integrate a Google Maps in your post content:
 
 		[googlemaps]
@@ -43,25 +41,21 @@ use the Pronamic Google Maps plugin:
 		[googlemapsmashup query="post_tpe=company&nopaging=true" map_type_id="satellite"]
 
 *   **No extra tables**
-
 	Some plugin create additional tables in your WordPress database to store additional data. In many
 	cases this is not necessary, it's only pollutes your database. WordPress offers enough [functions to 
 	store additional data](http://codex.wordpress.org/Custom_Fields).
 
 *	**Custom Post Types**
-
 	A lot of the WordPress plugins are developed before WordPress 3 was launched. These plugins not
 	always use the new features of WordPress 3. Many plugins only focus on posts and pages, but not 
 	on other custom post types. This plugin does!
 
 *	**Mashup**
-
 	Easily create an Google Maps mashup to show all your posts on Google Maps. You can use an very powerfull 
 	pronamic_google_maps_mashup() function or the shortcode. Both methods allow you to pass [custom 
 	WordPress query parameters](http://codex.wordpress.org/Function_Reference/WP_Query#Parameters).
 
 *	**No notices or warning**
-
 	Pronamic is one of the few companies that develope all WordPress plugins in debug mode. This results
 	in high quality plugins with no errors, warnings or notices. 
 
