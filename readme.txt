@@ -5,7 +5,6 @@ Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&sourc
 Requires at least: 3.0
 Tested up to: 3.3.2
 Stable tag: 2.2
-Text Domain: pronamic_google_maps
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
