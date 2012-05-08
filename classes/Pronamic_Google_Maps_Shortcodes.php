@@ -84,9 +84,9 @@ class Pronamic_Google_Maps_Shortcodes {
 	 * Shortcode map
 	 */
 	public static function shortcodeMashup($atts) {
-		$atts = wp_parse_args(array(
+		$atts = wp_parse_args($atts, array(
 			'query' => array()
-		), $atts);
+		));
 
 		// Query
 		$query = $atts['query'];
