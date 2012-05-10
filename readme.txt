@@ -55,7 +55,7 @@ use the Pronamic Google Maps plugin:
 	WordPress query parameters](http://codex.wordpress.org/Function_Reference/WP_Query#Parameters).
 
 *	**No notices or warning**
-	Pronamic is one of the few companies that develope all WordPress plugins in debug mode. This results
+	Pronamic is one of the few companies that develop all WordPress plugins in debug mode. This results
 	in high quality plugins with no errors, warnings or notices. 
 
 
