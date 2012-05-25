@@ -256,6 +256,9 @@ Or througt an filter
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 
+= trunk =
+*	Added Portuguese Brazil translation by [Ruan Mer](http://ruanmer.com/)
+
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)
 *	Added support for [MarkerClustererPlus](http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/)
