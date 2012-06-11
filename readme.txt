@@ -37,7 +37,7 @@ use the Pronamic Google Maps plugin:
 
 	Also easily integrate an Google Maps mashup in your post content:
 
-		[googlemapsmashup query="post_tpe=company&nopaging=true" map_type_id="satellite"]
+		[googlemapsmashup query="post_type=company&nopaging=true" map_type_id="satellite"]
 
 *   **No extra tables**
 	Some plugin create additional tables in your WordPress database to store additional data. In many
@@ -258,6 +258,7 @@ Or througt an filter
 
 = trunk =
 *	Added Portuguese Brazil translation by [Ruan Mer](http://ruanmer.com/)
+*	Apply html_entity_decode() to the query attribute in the mashup shortcode
 
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)

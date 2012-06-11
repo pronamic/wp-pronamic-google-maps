@@ -90,6 +90,11 @@ class Pronamic_Google_Maps_Shortcodes {
 
 		// Query
 		$query = $atts['query'];
+
+		if(is_string($query)) {
+			$query = html_entity_decode($query);
+		}
+
 		unset($atts['$query']);
 
 		// Override echo
