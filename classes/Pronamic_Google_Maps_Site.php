@@ -12,6 +12,7 @@ class Pronamic_Google_Maps_Site {
 	/**
 	 * Flag for printing the scripts or not
 	 * 
+	 * @deprecated
 	 * @var boolean
 	 */
 	public static $printScripts = false;
@@ -22,8 +23,12 @@ class Pronamic_Google_Maps_Site {
 	 * Constructs and initliaze an Google Maps admin
 	 */
 	public static function bootstrap() {
+		global $wp_version;
+
 		// Actions and hooks
-		add_action('wp_footer', array(__CLASS__, 'printScripts'));
+		if(version_compare($wp_version, '3.3', '<')) {
+			add_action('wp_footer', array(__CLASS__, 'printScripts'));
+		}
 
 		// Scripts
 		wp_register_style(
@@ -40,9 +45,24 @@ class Pronamic_Google_Maps_Site {
 	}
 
 	//////////////////////////////////////////////////
+
+	/**
+	 * Require site script
+	 */
+	public static function requireSiteScript() {
+		self::$printScripts = true;
+
+		// As of WordPress 3.3 wp_enqueue_script() can be called mid-page (in the HTML body). 
+		// This will load the script in the footer. 
+		wp_enqueue_script('pronamic-google-maps-site');
+	}
+
+	//////////////////////////////////////////////////
 	
 	/**
 	 * Print scripts
+	 * 
+	 * @deprecated
 	 */
 	public static function printScripts() {
 		if(self::$printScripts) {
