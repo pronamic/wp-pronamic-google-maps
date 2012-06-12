@@ -255,6 +255,8 @@ Or througt an filter
 *	Add options for different dimension types pixels, percentages, etc.
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
+*	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
+*	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
 = 2.2.1 =
 *	Added Portuguese Brazil translation by [Ruan Mer](http://ruanmer.com/)
