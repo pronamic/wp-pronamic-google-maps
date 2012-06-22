@@ -368,7 +368,7 @@ class Pronamic_Google_Maps {
 			$html = self::getMapHtml($info);
 
 			if($info->isDynamic()) {
-				Pronamic_Google_Maps_Site::$printScripts = true;
+				Pronamic_Google_Maps_Site::requireSiteScript();
 			}
 
 			if($arguments['echo']) {

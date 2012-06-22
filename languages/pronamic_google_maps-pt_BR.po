@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Pronamic Google Maps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-24 18:06+0100\n"
-"PO-Revision-Date: 2011-09-24 18:47+0100\n"
+"PO-Revision-Date: 2012-05-24 15:35-0300\n"
 "Last-Translator: Marcin Modestowicz\n"
 "Language-Team: Marcin Modestowicz\n"
 "MIME-Version: 1.0\n"
@@ -21,101 +21,101 @@ msgstr ""
 #: classes/Pronamic_Google_Maps_Admin.php:89
 #: classes/Pronamic_Google_Maps_MetaBox.php:27
 msgid "Google Maps"
-msgstr "Mapy Google"
+msgstr "Google Maps"
 
 #: classes/Pronamic_Google_Maps_Admin.php:101
 #: classes/Pronamic_Google_Maps_Admin.php:102
 msgid "Geocoder"
-msgstr "Geokodowanie"
+msgstr "Geocoder"
 
 #: classes/Pronamic_Google_Maps_Admin.php:111
 msgid "General"
-msgstr "Ogólne"
+msgstr "Geral"
 
 #: classes/Pronamic_Google_Maps_Plugin.php:31
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr "Configurações"
 
 #: classes/Pronamic_Google_Maps_Widget.php:36
 msgid "Use this widget to add an Google Maps as a widget."
-msgstr "Użyj tego widgetu, żeby dodać widok Map Google."
+msgstr "Use este widget para adicionar o Google Maps como um widget."
 
 #: classes/Pronamic_Google_Maps_Widget.php:138
 msgid "pixels"
-msgstr "piksele"
+msgstr "pixels"
 
 #: classes/Pronamic_Google_Maps_Widget.php:139
 msgid "percent"
-msgstr "procenty"
+msgstr "porcento"
 
 #: views/meta-box.php:15
 #: views/page-general.php:27
 msgid "Active"
-msgstr "Aktywacja"
+msgstr "Ativo"
 
 #: views/meta-box.php:19
 msgid "Show Google Maps"
-msgstr "Pokaż Mapy Google"
+msgstr "Mostrar Google Maps"
 
 #: views/meta-box.php:24
 #: views/page-geocoder.php:40
 #: views/page-geocoder.php:115
 #: views/widget-form.php:20
 msgid "Title"
-msgstr "Tytuł"
+msgstr "Título"
 
 #: views/meta-box.php:32
 #: views/widget-form.php:28
 msgid "Description"
-msgstr "Opis"
+msgstr "Descrição"
 
 #: views/meta-box.php:40
 #: views/page-geocoder.php:48
 #: views/page-geocoder.php:116
 msgid "Address"
-msgstr "Adres"
+msgstr "Endereço"
 
 #: views/meta-box.php:51
 msgid "Geocode &darr;"
-msgstr "Wyszukaj współrzędne z adresu &darr;"
+msgstr "Geocode &darr;"
 
 #: views/meta-box.php:53
 msgid "Reverse Geocode &uarr;"
-msgstr "Wyszukaj adres ze współrzędnych &uarr;"
+msgstr "Reverter Geocode &uarr;"
 
 #: views/meta-box.php:58
 #: views/page-geocoder.php:64
 msgid "Location"
-msgstr "Lokalizacja"
+msgstr "Localização"
 
 #: views/meta-box.php:69
 msgid "Tip: Change the zoom level and map type to your own wishes."
-msgstr "Dostosuj zbliżenie i typ mapy do swoich potrzeb."
+msgstr "Dica: Mude o nível do zoom e o tipo do mapa de acordo com sua vontade."
 
 #: views/page-general.php:15
 msgid "Configuration - Pronamic Google Maps"
-msgstr "Konfiguracja - Pronamic Google Maps"
+msgstr "Configuração - Pronamic Google Maps"
 
 #: views/page-general.php:26
 msgid "Post type"
-msgstr "Typ wpisu"
+msgstr "Post type"
 
 #: views/page-general.php:49
 msgid "Activate Google Maps"
-msgstr "Aktywuj Google Maps"
+msgstr "Ativar Google Maps"
 
 #: views/page-general.php:61
 msgid "Save Changes"
-msgstr "Zapisz zmiany"
+msgstr "Salvar Mudanças"
 
 #: views/page-geocoder.php:4
 msgid "Geocoder - Pronamic Google Maps"
-msgstr "Geokoder - Pronamic Google Maps"
+msgstr "Geocoder - Pronamic Google Maps"
 
 #: views/page-geocoder.php:16
 #, php-format
 msgid "Number posts to geocode: %s"
-msgstr "Liczba wpisów do geokodowania: %s"
+msgstr "Number posts to geocode: %s"
 
 #: views/page-geocoder.php:30
 msgid "ID"
@@ -127,52 +127,52 @@ msgstr "Status"
 
 #: views/page-geocoder.php:75
 msgid "Geocode"
-msgstr "Szukaj"
+msgstr "Geocode"
 
 #: views/page-geocoder.php:96
 msgid "Zero results"
-msgstr "Brak"
+msgstr "Nenhum resultado"
 
 #: views/page-geocoder.php:102
 #, php-format
 msgid "We found no geocoding results for the following %s posts, adjust them manually if needed."
-msgstr "Nie znaleziono żadnych rezultatów dla wskazanych %s wpisów. Wprowadź dane samodzielnie, jeśli to konieczne."
+msgstr "Não encontramos geocodificação para os seguintes %s posts, ajuste eles manualmente se necessário. "
 
 #: views/uninstall-form.php:12
 msgid "Delete plugin"
-msgstr "Usuń wtyczkę"
+msgstr "Deletar plugin"
 
 #: views/uninstall-form.php:17
 msgid "Warning! This will delete all Pronamic Google Maps data and options."
-msgstr "Uwaga! Ta operacja spowoduje usunięcie wszystkich danych i opcji konfiguracyjnych wtyczki Pronamic Google Maps."
+msgstr "Alerta! Isto vai deletar todos os dados e opções do Pronamic Google Maps."
 
 #: views/uninstall-form.php:23
 msgid "Uninstall"
-msgstr "Odinstaluj"
+msgstr "Desinstalar"
 
 #: views/widget-form.php:36
 msgid "Latitude"
-msgstr "Szerokość geograficzna"
+msgstr "Latitude"
 
 #: views/widget-form.php:42
 msgid "Longitude"
-msgstr "Długość geograficzna"
+msgstr "Longitude"
 
 #: views/widget-form.php:52
 msgid "Width"
-msgstr "Szerokość"
+msgstr "Largura"
 
 #: views/widget-form.php:60
 msgid "Height"
-msgstr "Wysokość"
+msgstr "Altura"
 
 #: views/widget-form.php:69
 msgid "Dynamic"
-msgstr "Dynamiczna"
+msgstr "Dinâmico"
 
 #: views/widget-form.php:72
 msgid "Static"
-msgstr "Statyczna"
+msgstr "Estatísticas"
 
 #~ msgid "Search"
 #~ msgstr "Zoeken"
