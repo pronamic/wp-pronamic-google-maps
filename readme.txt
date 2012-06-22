@@ -3,8 +3,8 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 3.3.2
-Stable tag: 2.2.1
+Tested up to: 3.4
+Stable tag: 2.2.2
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -257,6 +257,9 @@ Or througt an filter
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
+
+= 2.2.2 =
+*	Allow other units (percent, em, etc.) for the width and height attributes in the Google Maps mashup
 
 = 2.2.1 =
 *	Added Portuguese Brazil translation by [Ruan Mer](http://ruanmer.com/)
