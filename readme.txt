@@ -258,6 +258,10 @@ Or througt an filter
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
+= trunk =
+*	Added WordPress query parameters 'pronamic_latitude' and 'pronamic_longitude'
+*	Register the default Google Maps script in addition to the Google API loader script
+
 = 2.2.2 =
 *	Allow other units (percent, em, etc.) for the width and height attributes in the Google Maps mashup
 
