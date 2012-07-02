@@ -3,9 +3,8 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, latitude, longitude, location, geocoder, reverse geocode, gecode, bulk
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 2.1.6
-Text Domain: pronamic_google_maps
+Tested up to: 3.4.1
+Stable tag: 2.2.3
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -23,14 +22,12 @@ There are quite a few Google Maps plugins available in the WordPress Plugin Dire
 use the Pronamic Google Maps plugin:
 
 *	**Google Maps API version 3**
-
 	Most of the available plugins still use the Google Maps version 2 API. To use the Google Maps v2 API you 
 	have to require an API key and include this in the plugin configuration.  The Pronamic Google Maps plugin 
 	uses the Google Maps version 3 API. Wich no longer requires an API key, so you don't have 
 	to configure this plugin.
 
 *	**Shortcode**
-
 	Easily integrate a Google Maps in your post content:
 
 		[googlemaps]
@@ -40,29 +37,25 @@ use the Pronamic Google Maps plugin:
 
 	Also easily integrate an Google Maps mashup in your post content:
 
-		[googlemapsmashup query="post_tpe=company&nopaging=true" map_type_id="satellite"]
+		[googlemapsmashup query="post_type=company&nopaging=true" map_type_id="satellite"]
 
 *   **No extra tables**
-
 	Some plugin create additional tables in your WordPress database to store additional data. In many
 	cases this is not necessary, it's only pollutes your database. WordPress offers enough [functions to 
 	store additional data](http://codex.wordpress.org/Custom_Fields).
 
 *	**Custom Post Types**
-
 	A lot of the WordPress plugins are developed before WordPress 3 was launched. These plugins not
 	always use the new features of WordPress 3. Many plugins only focus on posts and pages, but not 
 	on other custom post types. This plugin does!
 
 *	**Mashup**
-
 	Easily create an Google Maps mashup to show all your posts on Google Maps. You can use an very powerfull 
 	pronamic_google_maps_mashup() function or the shortcode. Both methods allow you to pass [custom 
 	WordPress query parameters](http://codex.wordpress.org/Function_Reference/WP_Query#Parameters).
 
 *	**No notices or warning**
-
-	Pronamic is one of the few companies that develope all WordPress plugins in debug mode. This results
+	Pronamic is one of the few companies that develop all WordPress plugins in debug mode. This results
 	in high quality plugins with no errors, warnings or notices. 
 
 
@@ -262,14 +255,19 @@ Or througt an filter
 *	Add options for different dimension types pixels, percentages, etc.
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
+*	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
+*	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
-= 2.3 =
-*	Apply the 'pronamic_google_maps_item_description' filter not in admin
-*	Added shortcode 'googlemapsmashup' for an Google Maps mashup
-*	Changed shortcode 'google-maps' to 'googlemaps'
-*	Deprecated the 'google-maps' shortcode, changed it to 'googlemaps', [hyphen use can cause collisions](http://codex.wordpress.org/Shortcode_API)
-*	Changed the text domain from 'pronamic-google-maps' to 'pronamic_google_maps'
-*	Replaced all references to class constant TEXT_DOMAIN to an string
+= 2.2.3 =
+*	Added WordPress query parameters 'pronamic_latitude' and 'pronamic_longitude'
+*	Register the default Google Maps script in addition to the Google API loader script
+
+= 2.2.2 =
+*	Allow other units (percent, em, etc.) for the width and height attributes in the Google Maps mashup
+
+= 2.2.1 =
+*	Added Portuguese Brazil translation by [Ruan Mer](http://ruanmer.com/)
+*	Apply html_entity_decode() to the query attribute in the mashup shortcode
 
 = 2.2 =
 *	Added support for some [google-maps-utility-library-v3 libraries](http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries)
@@ -279,6 +277,13 @@ Or througt an filter
 *	If you disbale the 'fit_bounds' option in the mashup the mashup will no longer center the client location
 *	Added extra option 'center_client_location' to center the mashup center to the client location, default false
 *	Added 'geo' shortcode wich will display the latitude and longitude in the microformat of the post in wich it is placed
+*	Apply the 'pronamic_google_maps_item_description' filter not in admin
+*	Added shortcode 'googlemapsmashup' for an Google Maps mashup
+*	Changed shortcode 'google-maps' to 'googlemaps'
+*	Deprecated the 'google-maps' shortcode, changed it to 'googlemaps', [hyphen use can cause collisions](http://codex.wordpress.org/Shortcode_API)
+*	Changed the text domain from 'pronamic-google-maps' to 'pronamic_google_maps'
+*	Replaced all references to class constant TEXT_DOMAIN to an string
+*	Improved the way we enqueue te frontend script becease the way wp_enqueue_script() works is changed since WordPress 3.3
 
 = 2.1.6 =
 *	Fixed notice undefined property in the Pronamic_Google_Maps class related to zoom and map type ID values
