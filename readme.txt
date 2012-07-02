@@ -4,7 +4,7 @@ Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, la
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
