@@ -381,8 +381,8 @@ class Pronamic_Google_Maps_Maps {
 
 		$arguments = wp_parse_args($arguments, $defaults);
 
-		$options = Pronamic_Google_Maps::getOptions();
-		$pgm = Pronamic_Google_Maps::getMetaData();
+		$options = Pronamic_Google_Maps_Maps::getOptions();
+		$pgm = Pronamic_Google_Maps_Maps::getMetaData();
 
 		$activeTypes = $options['active'];
 
