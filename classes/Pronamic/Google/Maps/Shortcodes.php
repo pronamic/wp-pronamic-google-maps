@@ -52,7 +52,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	public static function shortcodeMap($atts) {
 		$atts['echo'] = false;
 
-		return Pronamic_Google_Maps::render($atts);
+		return Pronamic_Google_Maps_Maps::render($atts);
 	}
 
 	/**

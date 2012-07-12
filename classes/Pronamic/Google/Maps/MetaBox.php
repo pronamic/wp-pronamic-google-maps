@@ -38,6 +38,6 @@ class Pronamic_Google_Maps_MetaBox {
 	 * Render the option page
 	 */
 	public static function render() {
-		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/meta-box.php';
+		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/meta-box.php';
 	}
 }

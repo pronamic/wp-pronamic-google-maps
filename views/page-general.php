@@ -1,6 +1,6 @@
 <?php
 
-$options = Pronamic_Google_Maps::getOptions();
+$options = Pronamic_Google_Maps_Maps::getOptions();
 
 $types = get_post_types(array(
 	'public' => true
@@ -10,12 +10,12 @@ $activeTypes = $options['active'];
 
 ?>
 <div id="pgm" class="wrap">
-	<?php screen_icon(Pronamic_Google_Maps::SLUG); ?>
+	<?php screen_icon(Pronamic_Google_Maps_Maps::SLUG); ?>
 
 	<h2><?php echo esc_html(__('Configuration - Pronamic Google Maps', 'pronamic_google_maps')); ?></h2>
 
 	<form action="" method="post">
-		<?php wp_nonce_field('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME); ?>
+		<?php wp_nonce_field('pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME); ?>
 
 		<table cellspacing="0" class="widefat fixed">
 

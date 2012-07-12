@@ -19,6 +19,7 @@ class Pronamic_Google_Maps_Admin {
 		add_action('admin_menu', array(__CLASS__, 'menu'));
 
 		add_action('save_post', array(__CLASS__, 'savePost'));
+		add_action('save_post', array(__CLASS__, 'savePostTryGeocode'), 200);
 
 		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
 
@@ -27,14 +28,14 @@ class Pronamic_Google_Maps_Admin {
 		// Scripts
 		wp_register_script(
 			'pronamic-google-maps-admin' , 
-			plugins_url('js/admin.js', Pronamic_Google_Maps::$file) , 
+			plugins_url('js/admin.js', Pronamic_Google_Maps_Maps::$file) , 
 			array('jquery', 'google-jsapi')
 		);
 
 		// Styles
 		wp_register_style(
 			'pronamic-google-maps-admin' , 
-			plugins_url('css/admin.css', Pronamic_Google_Maps::$file)
+			plugins_url('css/admin.css', Pronamic_Google_Maps_Maps::$file)
 		);
 	}
 
@@ -51,7 +52,7 @@ class Pronamic_Google_Maps_Admin {
 		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
 			$screen = get_current_screen();
 	
-			$options = Pronamic_Google_Maps::getOptions();
+			$options = Pronamic_Google_Maps_Maps::getOptions();
 			$types = $options['active'];
 			
 			if(isset($types[$screen->post_type])) {
@@ -88,27 +89,27 @@ class Pronamic_Google_Maps_Admin {
 			$pageTitle = __('Google Maps', 'pronamic_google_maps') ,
 			$menuTitle = __('Google Maps', 'pronamic_google_maps') ,
 			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps::SLUG , 
+			$menuSlug = Pronamic_Google_Maps_Maps::SLUG , 
 			$function = array(__CLASS__, 'pageGeneral') , 
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps::$file)
+			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file)
 		);
 
 		// @see _add_post_type_submenus()
 		// @see wp-admin/menu.php
 		add_submenu_page(
-			$parentSlug = Pronamic_Google_Maps::SLUG , 
+			$parentSlug = Pronamic_Google_Maps_Maps::SLUG , 
 			$pageTitle = __('Geocoder', 'pronamic_google_maps') , 
 			$menuTitle = __('Geocoder', 'pronamic_google_maps') , 
 			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps::SLUG . '-geocoder' , 
+			$menuSlug = Pronamic_Google_Maps_Maps::SLUG . '-geocoder' , 
 			$function = array(__CLASS__, 'pageGeocoder')
 		);
 
 		global $submenu;
 
-		if(isset($submenu[Pronamic_Google_Maps::SLUG])) {
-			$submenu[Pronamic_Google_Maps::SLUG][0][0] = __('General', 'pronamic_google_maps');
+		if(isset($submenu[Pronamic_Google_Maps_Maps::SLUG])) {
+			$submenu[Pronamic_Google_Maps_Maps::SLUG][0][0] = __('General', 'pronamic_google_maps');
 		}
 	}
 
@@ -116,14 +117,14 @@ class Pronamic_Google_Maps_Admin {
 	 * Render general page
 	 */
 	public static function pageGeneral() {
-		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/page-general.php';
+		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/page-general.php';
 	}
 
 	/**
 	 * Render geocoder page
 	 */
 	public static function pageGeocoder() {
-		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/page-geocoder.php';
+		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/page-geocoder.php';
 	}
 
 	//////////////////////////////////////////////////
@@ -132,7 +133,7 @@ class Pronamic_Google_Maps_Admin {
 	 * Add the meta box
 	 */
 	public static function addMetaBox() {
-		$options = Pronamic_Google_Maps::getOptions();
+		$options = Pronamic_Google_Maps_Maps::getOptions();
 
 		$types = $options['active'];
 
@@ -149,7 +150,7 @@ class Pronamic_Google_Maps_Admin {
 	 * @param int $postId
 	 */
 	public static function savePost($postId) {
-		$nonce = filter_input(INPUT_POST, Pronamic_Google_Maps::NONCE_NAME, FILTER_SANITIZE_STRING);
+		$nonce = filter_input(INPUT_POST, Pronamic_Google_Maps_Maps::NONCE_NAME, FILTER_SANITIZE_STRING);
 
 		if(!wp_verify_nonce($nonce, 'save-post')) {
 			return $postId;
@@ -212,6 +213,32 @@ class Pronamic_Google_Maps_Admin {
 			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
 			update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
+		}
+	}
+
+	public static function savePostTryGeocode( $post_id ) {
+		$address = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true );
+		$latitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
+		$longitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
+
+		if( ! empty( $address ) ) {
+			if( empty( $latitude) && empty( $longitude ) ) {
+				$apiClient = new Pronamic_Google_Maps_ApiClient();
+				
+				$data = $apiClient->geocodeAddress($address);
+	
+				foreach($data->results as $result) {
+					$location = $result->geometry->location;
+	
+					$latitude = $location->lat;
+					$longitude = $location->lng;
+					$status = Pronamic_Google_Maps_GeocoderStatus::OK;
+	
+					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
+					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
+					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+				}
+			}
 		}
 	}
 
@@ -308,8 +335,8 @@ class Pronamic_Google_Maps_Admin {
 	public static function saveOptions() {
 		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
 
-		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps::NONCE_NAME)) {
-			$options = Pronamic_Google_Maps::getOptions();
+		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME)) {
+			$options = Pronamic_Google_Maps_Maps::getOptions();
 
 			$active = array();
 
@@ -320,7 +347,7 @@ class Pronamic_Google_Maps_Admin {
 
 			$options['active'] = $active;
 
-			update_option(Pronamic_Google_Maps::OPTION_NAME, $options);
+			update_option(Pronamic_Google_Maps_Maps::OPTION_NAME, $options);
 		}
 	}
 

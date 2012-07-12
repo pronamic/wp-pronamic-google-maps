@@ -13,12 +13,12 @@ class Pronamic_Google_Maps_Mashup {
 		Pronamic_Google_Maps_Site::requireSiteScript();
 
 		$defaults = array(
-			'width' => Pronamic_Google_Maps::$defaultWidth ,
-			'height' => Pronamic_Google_Maps::$defaultHeight , 
+			'width' => Pronamic_Google_Maps_Maps::$defaultWidth ,
+			'height' => Pronamic_Google_Maps_Maps::$defaultHeight , 
 			'latitude' => 0 , 
 			'longitude' => 0 , 
-			'zoom' => Pronamic_Google_Maps::MAP_ZOOM_DEFAULT , 
-			'map_type_id' => Pronamic_Google_Maps::MAP_TYPE_DEFAULT , 
+			'zoom' => Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT , 
+			'map_type_id' => Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT , 
 			'hide_list' => true , 
 			'fit_bounds' => true , 
 			'center_client_location' => false , 
@@ -89,7 +89,7 @@ class Pronamic_Google_Maps_Mashup {
 
 		$items = '';
 		while($query->have_posts()) { $query->the_post();
-			$pgm = Pronamic_Google_Maps::getMetaData();
+			$pgm = Pronamic_Google_Maps_Maps::getMetaData();
 
 			if($pgm->active) {
 				$info = new Pronamic_Google_Maps_Info();

@@ -73,7 +73,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			Pronamic_Google_Maps_Site::requireSiteScript();
 		}
 
-		echo Pronamic_Google_Maps::getMapHtml($info);
+		echo Pronamic_Google_Maps_Maps::getMapHtml($info);
 
 		echo $after_widget;
 	} 
@@ -122,7 +122,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			'static' => false 
 		));
 
-		include plugin_dir_path(Pronamic_Google_Maps::$file) . 'views/widget-form.php';
+		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/widget-form.php';
 	}
 
 	//////////////////////////////////////////////////

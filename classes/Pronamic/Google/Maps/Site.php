@@ -33,13 +33,13 @@ class Pronamic_Google_Maps_Site {
 		// Scripts
 		wp_register_style(
 			'pronamic-google-maps-fix' , 
-			plugins_url('css/fix.css', Pronamic_Google_Maps::$file) 
+			plugins_url('css/fix.css', Pronamic_Google_Maps_Maps::$file) 
 		);
 
 		// Scripts
 		wp_register_script(
 			'pronamic-google-maps-site' , 
-			plugins_url('js/site.js', Pronamic_Google_Maps::$file) ,
+			plugins_url('js/site.js', Pronamic_Google_Maps_Maps::$file) ,
 			array('jquery', 'google-jsapi')
 		);
 	}

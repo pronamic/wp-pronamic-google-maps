@@ -1,7 +1,7 @@
 <?php
 
 function pronamic_get_google_maps_meta() {
-	return Pronamic_Google_Maps::getMetaData();
+	return Pronamic_Google_Maps_Maps::getMetaData();
 }
 
 function pronamic_google_maps_is_active() {
@@ -42,7 +42,7 @@ function pronamic_google_maps_geo_microformat($arguments = array()) {
 }
 
 function pronamic_google_maps($arguments = array()) {
-	return Pronamic_Google_Maps::render($arguments);
+	return Pronamic_Google_Maps_Maps::render($arguments);
 }
 
 function pronamic_google_maps_mashup($query = array(), $arguments = array()) {

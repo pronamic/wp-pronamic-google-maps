@@ -8,7 +8,7 @@
  * @author Remco Tolsma
  * @version 1.0
  */
-class Pronamic_Google_Maps {
+class Pronamic_Google_Maps_Maps {
 	/**
 	 * The slug
 	 *
@@ -195,7 +195,7 @@ class Pronamic_Google_Maps {
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
 		wp_register_script(
 			'google-maps-markerclustererplus' ,
-			plugins_url('js/markerclustererplus.js', Pronamic_Google_Maps::$file) ,
+			plugins_url('js/markerclustererplus.js', Pronamic_Google_Maps_Maps::$file) ,
 			array() ,
 			'2.0.6'
 		);
@@ -204,7 +204,7 @@ class Pronamic_Google_Maps {
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markermanager/1.0/
 		wp_register_script(
 			'google-maps-markermanager' ,
-			plugins_url('js/markermanager.js', Pronamic_Google_Maps::$file) ,
+			plugins_url('js/markermanager.js', Pronamic_Google_Maps_Maps::$file) ,
 			array() ,
 			'1.0'
 		);

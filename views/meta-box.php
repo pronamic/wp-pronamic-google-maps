@@ -2,7 +2,7 @@
 
 $pgm = pronamic_get_google_maps_meta();
 
-wp_nonce_field('save-post', Pronamic_Google_Maps::NONCE_NAME);
+wp_nonce_field('save-post', Pronamic_Google_Maps_Maps::NONCE_NAME);
 
 ?>
 <div id="pgm">

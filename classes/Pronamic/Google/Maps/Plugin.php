@@ -13,11 +13,11 @@ class Pronamic_Google_Maps_Plugin {
 	 * Bootstrap
 	 */
 	public static function bootstrap() {
-		$plugin = plugin_basename(Pronamic_Google_Maps::$file);
+		$plugin = plugin_basename(Pronamic_Google_Maps_Maps::$file);
 
 		add_filter('plugin_action_links_' . $plugin, array(__CLASS__, 'actionLinks'));
 		
-		register_uninstall_hook(Pronamic_Google_Maps::$file, 'uninstall');
+		register_uninstall_hook(Pronamic_Google_Maps_Maps::$file, 'uninstall');
 	}
 
 	//////////////////////////////////////////////////
@@ -26,7 +26,7 @@ class Pronamic_Google_Maps_Plugin {
 	 * Render the option page
 	 */
 	public static function actionLinks($links) {
-		$url = admin_url('options-general.php?page=' . Pronamic_Google_Maps::SLUG);
+		$url = admin_url('options-general.php?page=' . Pronamic_Google_Maps_Maps::SLUG);
 
 		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
 
@@ -59,6 +59,6 @@ class Pronamic_Google_Maps_Plugin {
 		$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key IN ($metaKeys)");
 
 		// Delete options
-		delete_option(Pronamic_Google_Maps::OPTION_NAME);
+		delete_option(Pronamic_Google_Maps_Maps::OPTION_NAME);
 	}
 }
