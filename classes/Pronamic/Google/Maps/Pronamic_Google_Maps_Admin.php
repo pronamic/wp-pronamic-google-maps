@@ -209,10 +209,10 @@ class Pronamic_Google_Maps_Admin {
 
 		// Status
 		if(!empty($latitude) && !empty($longitude)) {
-			$pgm->status = Pronamic_Google_Maps_GeocoderStatus::OK;
-		}
+			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $pgm->status);
+			update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
+		}
 	}
 
 	//////////////////////////////////////////////////
