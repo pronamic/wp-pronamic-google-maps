@@ -322,6 +322,10 @@ class Pronamic_Google_Maps_Maps {
 			$markers .= 'label:' . $info->label . '|';
 		}
 
+		if( ! empty( $info->markerOptions->icon ) ) {
+			$markers .= 'icon:' . $info->markerOptions->icon . '|';
+		}
+
 		$markers .= $info->latitude . ',' . $info->longitude;
 
 		$parameters['markers'] = $markers;
