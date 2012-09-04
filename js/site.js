@@ -78,8 +78,8 @@
 					list.hide();
 				}
 				
-				var center = new google.maps.LatLng(mashupInfo.latitude, mashupInfo.longitude);
-				if(mashupInfo.centerClientLocation && google.loader.ClientLocation) {
+				var center = new google.maps.LatLng(mashupInfo.center.latitude, mashupInfo.center.longitude);
+				if(google.loader.ClientLocation) {
 					center = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
 				}
 
@@ -107,28 +107,22 @@
 				// Create an bounds object so we can fit the map to show all posts
 				var bounds = new google.maps.LatLngBounds();
 
-				// Create markers for all the posts
-				list.find("li").each(function() {
-					var item = $(this);
-
-					// Retrieve location information from an (hidden) input field with JSON data
-					var info = $.parseJSON(item.find('input[name="pgm-info"]').val());
-
-					var location =  new google.maps.LatLng(info.latitude, info.longitude);
+				$.each(mashupInfo.markers, function(i, info) {
+					var location =  new google.maps.LatLng(info.lat, info.lng);
 
 					var markerOptions = $.extend({
 							position: location 
 						} , 
-						info.markerOptions
+						info.options
 					);
 
 					var marker = new google.maps.Marker(markerOptions);
 
-					item.data("google-maps-marker", marker);
-
 					google.maps.event.addListener(marker, "click", function() {
-						infoWindow.setContent(item.html());
+						infoWindow.setContent(info.description);
 						infoWindow.open(map, marker);
+
+						element.trigger("pronamic-google-maps-infowindow-open", infoWindow);
 					});
 
 					if(markerClusterer) {

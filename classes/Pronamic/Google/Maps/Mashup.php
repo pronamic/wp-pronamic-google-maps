@@ -51,8 +51,9 @@ class Pronamic_Google_Maps_Mashup {
 		if(is_numeric($options->height)) {
 			$options->height = '' . $options->height . 'px'; 
 		}
-		$options->latitude = $arguments['latitude'];
-		$options->longitude = $arguments['longitude'];
+		$options->center = new stdClass();
+		$options->center->latitude = $arguments['latitude'];
+		$options->center->longitude = $arguments['longitude'];
 		$options->hideList = $arguments['hide_list'];
 		$options->fitBounds = $arguments['fit_bounds'];
 		$options->centerClientLocation = $arguments['center_client_location'];
@@ -78,20 +79,24 @@ class Pronamic_Google_Maps_Mashup {
 				$options->markerClustererOptions->$key = $value;
 			}
 		}
+		
+		$options->markers = array();
 
 		// HTML
-		$content = '<div class="pgmm">';
-
-		$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));
-
-		$content .= sprintf('<div class="canvas" style="width: %s; height: %s;">', $options->width, $options->height);
-		$content .= sprintf('</div>');
-
 		$items = '';
 		while($query->have_posts()) { $query->the_post();
 			$pgm = Pronamic_Google_Maps_Maps::getMetaData();
 
 			if($pgm->active) {
+				$description = sprintf(
+					'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
+					get_permalink() , 
+					sprintf(esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' )) , 
+					get_the_title()
+				);
+
+				$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $description);
+
 				$info = new Pronamic_Google_Maps_Info();
 				$info->title = $pgm->title;
 				$info->description = $pgm->description;
@@ -103,7 +108,16 @@ class Pronamic_Google_Maps_Mashup {
 		
 					$info->markerOptions->$key = $value;
 				}
+
+				$marker = new stdClass();
+				$marker->options = $info->markerOptions;
+				$marker->lat = $pgm->latitude;
+				$marker->lng = $pgm->longitude;
+				$marker->title = $pgm->title;
+				$marker->description = $description;
 				
+				$options->markers[] = $marker;
+
 				$items .= '<li>';
 				$items .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
 
@@ -120,6 +134,12 @@ class Pronamic_Google_Maps_Mashup {
 		}
 
 		wp_reset_postdata();
+
+		$content = '<div class="pgmm">';
+		$content .= sprintf('<input type="hidden" name="pgmm-info" value="%s" />', esc_attr(json_encode($options)));
+
+		$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $options->width, $options->height);
+		$content .= sprintf('</div>');
 
 		if(!empty($items)) {
 			$content .= '<ul>';
