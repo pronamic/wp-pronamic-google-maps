@@ -31,7 +31,7 @@ if ( function_exists( 'spl_autoload_register' ) ) {
 	
 	spl_autoload_register( 'pronamic_google_maps_autoload' );
 	
-	require_once 'functions.php';
+	require_once 'includes/functions.php';
 	
 	Pronamic_Google_Maps_Maps::bootstrap( __FILE__ );
 
