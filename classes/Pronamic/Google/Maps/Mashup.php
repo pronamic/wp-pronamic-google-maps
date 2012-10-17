@@ -105,7 +105,12 @@ class Pronamic_Google_Maps_Mashup {
 				$info->latitude = $pgm->latitude;
 				$info->longitude = $pgm->longitude;
 				$info->markerOptions = new stdClass();
-				foreach ( $arguments['marker_options'] as $key => $value ) {
+
+				// Marker options
+				$marker_options = $arguments['marker_options'];
+				$marker_options = apply_filters( 'pronamic_google_maps_marker_options', $marker_options );
+
+				foreach ( $marker_options as $key => $value ) {
 					$value = apply_filters( 'pronamic_google_maps_marker_options_' . $key, $value );
 		
 					$info->markerOptions->$key = $value;
