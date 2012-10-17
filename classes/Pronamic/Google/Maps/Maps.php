@@ -407,8 +407,11 @@ class Pronamic_Google_Maps_Maps {
 			$info->color = $arguments['color'];
 
 			// Marker options
-			foreach($arguments['marker_options'] as $key => $value) {
-				$value = apply_filters('pronamic_google_maps_marker_options_' . $key, $value);
+			$marker_options = $arguments['marker_options'];
+			$marker_options = apply_filters( 'pronamic_google_maps_marker_options', $marker_options );
+
+			foreach ( $marker_options as $key => $value ) {
+				$value = apply_filters( 'pronamic_google_maps_marker_options_' . $key, $value );
 
 				$info->markerOptions->$key = $value;
 			}
