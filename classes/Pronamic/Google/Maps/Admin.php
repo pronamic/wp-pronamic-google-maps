@@ -19,7 +19,6 @@ class Pronamic_Google_Maps_Admin {
 		add_action('admin_menu', array(__CLASS__, 'menu'));
 
 		add_action('save_post', array(__CLASS__, 'savePost'));
-		add_action('save_post', array(__CLASS__, 'savePostTryGeocode'), 200);
 
 		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
 
@@ -213,32 +212,6 @@ class Pronamic_Google_Maps_Admin {
 			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
 			update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
-		}
-	}
-
-	public static function savePostTryGeocode( $post_id ) {
-		$address = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true );
-		$latitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
-		$longitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
-
-		if( ! empty( $address ) ) {
-			if( empty( $latitude) && empty( $longitude ) ) {
-				$apiClient = new Pronamic_Google_Maps_ApiClient();
-				
-				$data = $apiClient->geocodeAddress($address);
-	
-				foreach($data->results as $result) {
-					$location = $result->geometry->location;
-	
-					$latitude = $location->lat;
-					$longitude = $location->lng;
-					$status = Pronamic_Google_Maps_GeocoderStatus::OK;
-	
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
-				}
-			}
 		}
 	}
 
