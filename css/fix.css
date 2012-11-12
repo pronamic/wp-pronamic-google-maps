@@ -1,13 +1,17 @@
+/* Mashup */ 
+.pgmm img,
 /* Mashup - Twenty Ten / Eleven */ 
-.entry-content .pgmm img ,
-.comment-content .pgmm img , 
-.widget .pgmm img ,
+.entry-content .pgmm img,
+.comment-content .pgmm img,
+.widget .pgmm img,
 /* Mashup - Colorway */
-.content .pgmm img ,
+.content .pgmm img,
+/* Map */ 
+.pgm img,
 /* Map - Twenty Ten / Eleven */ 
-.entry-content .pgm img , 
-.comment-content .pgm img , 
-.widget .pgm img , 
+.entry-content .pgm img,
+.comment-content .pgm img,
+.widget .pgm img,
 /* Map - Colorway */
 .content .pgm img {
 	background-color: transparent;
