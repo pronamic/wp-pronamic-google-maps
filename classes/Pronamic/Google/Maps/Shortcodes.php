@@ -11,37 +11,14 @@
  */
 class Pronamic_Google_Maps_Shortcodes {
 	/**
-	 * The name of the shortcode
-	 * 
-	 * @var string
-	 */
-	const SHORTCODE_MAP = 'googlemaps';
-
-	/**
-	 * The name of the shortcode
-	 * 
-	 * @var string
-	 */
-	const SHORTCODE_GEO = 'geo';
-
-	/**
-	 * The name of the shortcode
-	 * 
-	 * @var string
-	 */
-	const SHORTCODE_MASHUP = 'googlemapsmashup';
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * Bootstrap
 	 */
 	public static function bootstrap() {
-		add_shortcode(self::SHORTCODE_MAP, array(__CLASS__, 'shortcodeMap'));
-		add_shortcode('google-maps', array(__CLASS__, 'shortcodeMapHyphen'));
-
-		add_shortcode(self::SHORTCODE_GEO, array(__CLASS__, 'shortcodeGeo'));
-		add_shortcode(self::SHORTCODE_MASHUP, array(__CLASS__, 'shortcodeMashup'));
+		add_shortcode( 'googlemaps',       array( __CLASS__, 'shortcode_map' ) );
+		// The shortcode with hyphen is @deprecated
+		add_shortcode( 'google-maps',      array( __CLASS__, 'shortcode_map_hyphen' ) );
+		add_shortcode( 'geo',              array( __CLASS__, 'shortcode_geo' ) );
+		add_shortcode( 'googlemapsmashup', array( __CLASS__, 'shortcodeMashup' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -49,10 +26,10 @@ class Pronamic_Google_Maps_Shortcodes {
 	/**
 	 * Shortcode map
 	 */
-	public static function shortcodeMap($atts) {
+	public static function shortcode_map( $atts ) {
 		$atts['echo'] = false;
 
-		return Pronamic_Google_Maps_Maps::render($atts);
+		return Pronamic_Google_Maps_Maps::render( $atts );
 	}
 
 	/**
@@ -60,22 +37,22 @@ class Pronamic_Google_Maps_Shortcodes {
 	 * 
 	 * @deprecated 2.3
 	 */
-	public static function shortcodeMapHyphen($atts) {
+	public static function shortcode_map_hyphen( $atts ) {
 		// _deprecated_function('Pronamic Google Maps shortcode [google-maps]', '2.3', 'Pronamic Google Maps shortcode [googlemaps]');
 
-		return self::shortcodeMap($atts);
+		return self::shortcode_map( $atts );
 	}
 
 	//////////////////////////////////////////////////
 
 	/**
-	 * Shortcode map
+	 * Shortcode GEO
 	 */
-	public static function shortcodeGeo($atts) {
+	public static function shortcode_geo( $atts ) {
 		// Override echo
 		$atts['echo'] = false;
 
-		return Pronamic_Google_Maps_GeoMicroformat::render($atts);
+		return Pronamic_Google_Maps_GeoMicroformat::render( $atts );
 	}
 
 	//////////////////////////////////////////////////
@@ -83,23 +60,23 @@ class Pronamic_Google_Maps_Shortcodes {
 	/**
 	 * Shortcode map
 	 */
-	public static function shortcodeMashup($atts) {
-		$atts = wp_parse_args($atts, array(
+	public static function shortcode_mashup( $atts ) {
+		$atts = wp_parse_args( $atts, array(
 			'query' => array()
-		));
+		) );
 
 		// Query
 		$query = $atts['query'];
 
-		if(is_string($query)) {
-			$query = html_entity_decode($query);
+		if ( is_string( $query ) ) {
+			$query = html_entity_decode( $query );
 		}
 
-		unset($atts['$query']);
+		unset( $atts['$query'] );
 
 		// Override echo
 		$atts['echo'] = false;
 
-		return Pronamic_Google_Maps_Mashup::render($query, $atts);
+		return Pronamic_Google_Maps_Mashup::render( $query, $atts );
 	}
 }
