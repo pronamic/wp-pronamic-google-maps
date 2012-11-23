@@ -18,7 +18,7 @@ class Pronamic_Google_Maps_Shortcodes {
 		// The shortcode with hyphen is @deprecated
 		add_shortcode( 'google-maps',      array( __CLASS__, 'shortcode_map_hyphen' ) );
 		add_shortcode( 'geo',              array( __CLASS__, 'shortcode_geo' ) );
-		add_shortcode( 'googlemapsmashup', array( __CLASS__, 'shortcodeMashup' ) );
+		add_shortcode( 'googlemapsmashup', array( __CLASS__, 'shortcode_mashup' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -35,6 +35,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	/**
 	 * Shortcode map hyphen
 	 * 
+	 * @see http://codex.wordpress.org/Shortcode_API#Hyphens
 	 * @deprecated 2.3
 	 */
 	public static function shortcode_map_hyphen( $atts ) {
