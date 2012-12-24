@@ -181,31 +181,31 @@ class Pronamic_Google_Maps_Maps {
 	public static function registerScripts() {
 		// Register the Google JavaScript API loader script
 		wp_register_script(
-			'google-jsapi' ,
+			'google-jsapi',
 			'http://www.google.com/jsapi'
 		);
 	
 		// Register the Google Maps script
 		wp_register_script(
-			'google-maps' ,
+			'google-maps',
 			'https://maps.googleapis.com/maps/api/js?sensor=false'
 		);
 
 		// MarkerClustererPlus
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
 		wp_register_script(
-			'google-maps-markerclustererplus' ,
-			plugins_url('js/markerclustererplus.js', Pronamic_Google_Maps_Maps::$file) ,
-			array() ,
+			'google-maps-markerclustererplus',
+			plugins_url( 'js/markerclustererplus.js', Pronamic_Google_Maps_Maps::$file ),
+			array(),
 			'2.0.6'
 		);
 
 		// MarkerManager
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markermanager/1.0/
 		wp_register_script(
-			'google-maps-markermanager' ,
-			plugins_url('js/markermanager.js', Pronamic_Google_Maps_Maps::$file) ,
-			array() ,
+			'google-maps-markermanager',
+			plugins_url( 'js/markermanager.js', Pronamic_Google_Maps_Maps::$file ),
+			array(),
 			'1.0'
 		);
 	}
@@ -218,7 +218,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @return array
 	 */
 	public static function getOptions() {
-		return get_option(self::OPTION_NAME);
+		return get_option( self::OPTION_NAME );
 	}
 
 	/**
