@@ -51,7 +51,7 @@
 				google.maps.event.addListener(marker, "click", function() {
 					infoWindow.open(map, marker);
 				});
-				
+
 				// Trigger ready event
 				element.trigger("pronamic-google-maps-ready", map);
 			}
