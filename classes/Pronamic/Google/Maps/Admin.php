@@ -224,19 +224,19 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function getGeocodeQueryArgs() {
 		return array(
-			'post_type' => 'any' , 
-			'posts_per_page' => 1 , 
-			'meta_query' => array(
+			'post_type'      => 'any', 
+			'posts_per_page' => 1,
+			'meta_query'     => array(
 				// The address should not be empty
 				array(
-					'key' => Pronamic_Google_Maps_Post::META_KEY_ADDRESS , 
-					'value' => '' , 
+					'key'     => Pronamic_Google_Maps_Post::META_KEY_ADDRESS,
+					'value'   => '',
 					'compare' => '!='
 				) , 
 				// The geocoder status should not be OK
 				array(
-					'key' => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ,
-					'value' => array(Pronamic_Google_Maps_GeocoderStatus::OK, Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS) , 
+					'key'     => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS,
+					'value'   => array( Pronamic_Google_Maps_GeocoderStatus::OK, Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS ),
 					'compare' => 'NOT IN'
 				) 
 			)
