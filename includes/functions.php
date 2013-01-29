@@ -23,15 +23,15 @@ function pronamic_google_maps_title() {
 function pronamic_google_maps_description() {
 	global $post;
 
-	$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
+	$description = get_post_meta( $post->ID, '_pronamic_google_maps_description', true );
 
-	echo apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+	echo apply_filters( 'pronamic_google_maps_item_description', $description);
 }
 
 function pronamic_google_maps_location() {
 	global $post;
 
-	$latitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
+	$latitude  = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
 	$longitude = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
 
 	echo $latitude, ', ', $longitude;

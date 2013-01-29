@@ -254,43 +254,43 @@ class Pronamic_Google_Maps_Maps {
 
 		$meta = new stdClass();
 
-		$active = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true);
-		$meta->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
+		$active = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true );
+		$meta->active = filter_var( $active, FILTER_VALIDATE_BOOLEAN );
 
 		$meta->latitude = null;
-		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true);
-		if($value != '') {
+		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
+		if ( $value != '' ) {
 			$meta->latitude = (float) $value;
 		}
 		$meta->longitude = null;
-		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true);
-		if($value != '') {
+		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
+		if ( $value != '' ) {
 			$meta->longitude = (float) $value;
 		}
 
 		$meta->mapType = self::MAP_TYPE_DEFAULT;
-		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true);
-		if($value != '') {
+		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true );
+		if ( $value != '' ) {
 			$meta->mapType = $value;
 		}
 
 		$meta->zoom = self::MAP_ZOOM_DEFAULT;
-		$value = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true);
-		if($value != '') {
+		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true );
+		if ( $value != '' ) {
 			$meta->zoom = (int) $value;
 		}
 
-		$meta->title = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true);
+		$meta->title = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true );
 
-		$description = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true);
-		if(!is_admin()) {
-			$description = apply_filters(Pronamic_Google_Maps_Filters::FILTER_DESCRIPTION, $description);
+		$description = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true );
+		if ( ! is_admin() ) {
+			$description = apply_filters( 'pronamic_google_maps_item_description', $description );
 		}
 		$meta->description = $description;
 
-		$meta->address = get_post_meta($post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true);
+		$meta->address = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true );
 
-		$meta = apply_filters('pronamic_google_maps_post_meta', $meta);
+		$meta = apply_filters( 'pronamic_google_maps_post_meta', $meta );
 
 		return $meta;
 	}
