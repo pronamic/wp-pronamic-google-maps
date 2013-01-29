@@ -48,6 +48,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps info meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_DESCRIPTION = '_pronamic_google_maps_description';
 

@@ -27,6 +27,7 @@ class Pronamic_Google_Maps_Filters {
 	 * Filter name for the the description
 	 * 
 	 * @var string
+	 * @deprecated
 	 */
 	const FILTER_DESCRIPTION = 'pronamic_google_maps_item_description';
 }
