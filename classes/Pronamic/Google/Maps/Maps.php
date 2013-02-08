@@ -179,16 +179,28 @@ class Pronamic_Google_Maps_Maps {
 	 * Register scripts
 	 */
 	public static function registerScripts() {
+		$protocol = is_ssl() ? 'https' : 'http';
+		
 		// Register the Google JavaScript API loader script
 		wp_register_script(
 			'google-jsapi',
-			'http://www.google.com/jsapi'
+			add_query_arg(
+				array(
+					
+				),
+				$protocol . '://www.google.com/jsapi'
+			)
 		);
 	
 		// Register the Google Maps script
 		wp_register_script(
 			'google-maps',
-			'https://maps.googleapis.com/maps/api/js?sensor=false'
+			add_query_arg(
+				array(
+					'sensor' => 'false'
+				),
+				$protocol . '://maps.googleapis.com/maps/api/js'
+			)
 		);
 
 		// MarkerClustererPlus
