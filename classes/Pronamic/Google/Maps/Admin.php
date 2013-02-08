@@ -14,27 +14,27 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function bootstrap() {
 		// Actions and hooks
-		add_action('admin_init', array(__CLASS__, 'initialize'));
+		add_action( 'admin_init',            array( __CLASS__, 'initialize' ) );
 
-		add_action('admin_menu', array(__CLASS__, 'menu'));
+		add_action( 'admin_menu',            array( __CLASS__, 'menu' ) );
 
-		add_action('save_post', array(__CLASS__, 'savePost'));
+		add_action( 'save_post',             array( __CLASS__, 'savePost' ) );
 
-		add_action('wp_ajax_pgm_geocode', array(__CLASS__, 'ajaxGeocode'));
+		add_action( 'wp_ajax_pgm_geocode',   array( __CLASS__, 'ajaxGeocode' ) );
 
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueScripts'));
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts') );
 
 		// Scripts
 		wp_register_script(
-			'pronamic-google-maps-admin' , 
-			plugins_url('js/admin.js', Pronamic_Google_Maps_Maps::$file) , 
-			array('jquery', 'google-jsapi')
+			'pronamic-google-maps-admin',
+			plugins_url( 'js/admin.js', Pronamic_Google_Maps_Maps::$file ),
+			array( 'jquery', 'google-jsapi' )
 		);
 
 		// Styles
 		wp_register_style(
-			'pronamic-google-maps-admin' , 
-			plugins_url('css/admin.css', Pronamic_Google_Maps_Maps::$file)
+			'pronamic-google-maps-admin',
+			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file )
 		);
 	}
 
@@ -43,7 +43,7 @@ class Pronamic_Google_Maps_Admin {
 	/**
 	 * Enqueue scripts
 	 */
-	public static function enqueueScripts($hook) {
+	public static function enqueueScripts( $hook ) {
 		$enqueue = false;
 
 		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder', 'widgets.php'))) {
