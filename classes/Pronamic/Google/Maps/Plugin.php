@@ -13,13 +13,13 @@ class Pronamic_Google_Maps_Plugin {
 	 * Bootstrap
 	 */
 	public static function bootstrap() {
-		$plugin = plugin_basename(Pronamic_Google_Maps_Maps::$file);
+		$plugin = plugin_basename( Pronamic_Google_Maps_Maps::$file );
 
-		add_filter('plugin_action_links_' . $plugin, array(__CLASS__, 'actionLinks'));
+		add_filter( 'plugin_action_links_' . $plugin, array( __CLASS__, 'actionLinks' ) );
 
-		add_action('save_post', array(__CLASS__, 'savePostTryGeocode'), 200);
+		add_action( 'save_post', array( __CLASS__, 'savePostTryGeocode' ), 200 );
 		
-		register_uninstall_hook(Pronamic_Google_Maps_Maps::$file, 'uninstall');
+		register_uninstall_hook( Pronamic_Google_Maps_Maps::$file, 'uninstall' );
 	}
 
 	//////////////////////////////////////////////////
@@ -27,8 +27,8 @@ class Pronamic_Google_Maps_Plugin {
 	/**
 	 * Render the option page
 	 */
-	public static function actionLinks($links) {
-		$url = admin_url('options-general.php?page=' . Pronamic_Google_Maps_Maps::SLUG);
+	public static function actionLinks( $links ) {
+		$url = admin_url( 'options-general.php?page=' . Pronamic_Google_Maps_Maps::SLUG );
 
 		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
 
