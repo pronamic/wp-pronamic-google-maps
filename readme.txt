@@ -4,7 +4,8 @@ Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, la
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 2.2.3
+Stable tag: 2.2.4
+License: GPLv2 or later
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
@@ -84,8 +85,8 @@ manage location data for that post type. It comes in handy for all kind of custo
 The plugin uses the latest [GEO microformat standards](http://microformats.org/wiki/geo).
 
 	<div class="geo">
-		<abbr class="latitude" title="37.408183">N 37Â° 24.491</abbr> 
-		<abbr class="longitude" title="-122.13855">W 122Â° 08.313</abbr>
+		<abbr class="latitude" title="37.408183">N 37° 24.491</abbr> 
+		<abbr class="longitude" title="-122.13855">W 122° 08.313</abbr>
 	</div>
 
 
@@ -107,7 +108,7 @@ plugin.
 
 = Rate Us =
 
-Please [rate us](http://wordpress.org/extend/plugins/[pronamic-google-maps/)!
+Please [rate us](http://wordpress.org/extend/plugins/pronamic-google-maps/)!
 Give us a chance to <a href="http://pronamic.eu/contact/">address your concerns</a> 
 if we didn't earn 5 stars.
 
@@ -134,11 +135,11 @@ You should add some code to you templates to add the Google Map.
 
 	<?php
 
-	if(function_exists('pronamic_google_maps')) {
-		pronamic_google_maps(array(
-			'width' => 290 ,
+	if ( function_exists( 'pronamic_google_maps' ) ) {
+		pronamic_google_maps( array(
+			'width'  => 290,
 			'height' => 200 
-		));
+		) );
 	}
 
 	?>
@@ -149,14 +150,14 @@ You should add some code to you templates to add the Google Map.
 
 	<?php
 
-	if(function_exists('pronamic_google_maps')) {
-		pronamic_google_maps(array(
-			'width' => 290 ,
-			'height' => 200 ,
-			'static' => true ,
-			'color' => '0xFFD800' ,
-			'label' => 'M'
-		));
+	if ( function_exists( 'pronamic_google_maps' ) ) {
+		pronamic_google_maps( array(
+			'width'  => 290,
+			'height' => 200,
+			'static' => true,
+			'color'  => '0xFFD800',
+			'label'  => 'M'
+		) );
 	}
 
 	?>
@@ -167,18 +168,18 @@ You should add some code to you templates to add the Google Map.
 
 	<?php
 
-	if(function_exists('pronamic_google_maps')) {
-		function custom_pronamic_google_maps_the_content($content) {
-			$content .= pronamic_google_maps(array(
-				'width' => 500 , 
-				'height' => 500 , 
-				'echo' => false
-			));
+	if ( function_exists( 'pronamic_google_maps' ) ) {
+		function custom_pronamic_google_maps_the_content( $content ) {
+			$content .= pronamic_google_maps( array(
+				'width'  => 500,
+				'height' => 500,
+				'echo'   => false
+			) );
 		
 			return $content;
 		}
 		
-		add_filter('the_content', 'custom_pronamic_google_maps_the_content', 9);
+		add_filter( 'the_content', 'custom_pronamic_google_maps_the_content', 9 );
 	}
 
 	?>
@@ -188,15 +189,15 @@ You should add some code to you templates to add the Google Map.
 
 	<?php
 
-	if(function_exists('pronamic_google_maps_mashup')) {
+	if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 		pronamic_google_maps_mashup(
 			array(
 				'post_type' => 'post'
-			) , 
+			), 
 			array(
-				'width' => 300 ,
-				'height' => 200 , 
-				'map_type_id' => 'satellite' , 
+				'width'          => 300,
+				'height'         => 200, 
+				'map_type_id'    => 'satellite', 
 				'marker_options' => array(
 					'icon' => 'http://google-maps-icons.googlecode.com/files/photo.png'
 				)
@@ -219,33 +220,39 @@ Or througt an filter
 	
 	<?php
 	
-	function custom_pronamic_google_maps_the_content($content) {
-		$content .= pronamic_google_maps(array(
-			'width' => 500 , 
+	function custom_pronamic_google_maps_the_content( $content ) {
+		$content .= pronamic_google_maps( array(
+			'width'  => 500 , 
 			'height' => 500 , 
-			'echo' => false
-		));
+			'echo'   => false
+		) );
 	
-		$content .= pronamic_google_maps_geo_microformat(array(
+		$content .= pronamic_google_maps_geo_microformat( array(
 			'echo' => false
-		));
+		) );
 	
 		return $content;
 	}
 
-	add_filter('the_content', 'custom_pronamic_google_maps_the_content', 9);
+	add_filter( 'the_content', 'custom_pronamic_google_maps_the_content', 9 );
+
+
+
+== Frequently Asked Questions ==
+
+1.	Have a question? Make a thread in the support forum and we will get back to you.
 
 
 
 == Screenshots ==
 
-1. The Google Maps widget.
+1.	The Google Maps widget.
 
-2. Meta box where you can easily manage the Google Maps / GEO data.
+2.	Meta box where you can easily manage the Google Maps / GEO data.
 
-3. Configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
+3.	Configuration panel of the Pronamic Google Maps plugin. Within this panel you can easily activate the Google Maps functionality for the registered post types.
 
-4. The geocoder can be used to geocode multiple posts at once.
+4.	The geocoder can be used to geocode multiple posts at once.
 
 
 
@@ -258,9 +265,11 @@ Or througt an filter
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
-= trunk =
+= 2.2.4 =
 *	Changed the directory structure of the PHP classes files
+*	Added support for https:// (SSL)
 *	Added API client for backend geocode
+*	Fixed notice on saving an post (visible in debug mode)
 
 = 2.2.3 =
 *	Added WordPress query parameters 'pronamic_latitude' and 'pronamic_longitude'
@@ -463,6 +472,13 @@ Or througt an filter
 
 = 1.0 =
 *	Initial release
+
+
+
+== Upgrade Notice ==
+
+= 2.2.4 =
+Thanks for using the Pronamic Google Maps plugin! As always, this update is very strongly recommended.
 
 
 
