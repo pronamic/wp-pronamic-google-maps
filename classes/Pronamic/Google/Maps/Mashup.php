@@ -55,7 +55,7 @@ class Pronamic_Google_Maps_Mashup {
 		$options->center->latitude = $arguments['latitude'];
 		$options->center->longitude = $arguments['longitude'];
 		$options->hideList = $arguments['hide_list'];
-		$options->fitBounds = $arguments['fit_bounds'];
+		$options->fitBounds = filter_var( $arguments['fit_bounds'], FILTER_VALIDATE_BOOLEAN );
 		$options->centerClientLocation = $arguments['center_client_location'];
 			
 		// Map options
