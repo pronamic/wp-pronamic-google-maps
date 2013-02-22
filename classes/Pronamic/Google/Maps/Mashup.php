@@ -13,25 +13,25 @@ class Pronamic_Google_Maps_Mashup {
 		Pronamic_Google_Maps_Site::requireSiteScript();
 
 		$defaults = array(
-			'width'                  => Pronamic_Google_Maps_Maps::$defaultWidth ,
-			'height'                 => Pronamic_Google_Maps_Maps::$defaultHeight , 
-			'latitude'               => 0 , 
-			'longitude'              => 0 , 
-			'zoom'                   => Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT , 
-			'map_type_id'            => Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT , 
-			'hide_list'              => true , 
-			'fit_bounds'             => true , 
-			'center_client_location' => false , 
+			'width'                  => Pronamic_Google_Maps_Maps::$defaultWidth,
+			'height'                 => Pronamic_Google_Maps_Maps::$defaultHeight,
+			'latitude'               => 0,
+			'longitude'              => 0,
+			'zoom'                   => Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT,
+			'map_type_id'            => Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT,
+			'hide_list'              => true,
+			'fit_bounds'             => true,
+			'center_client_location' => false,
 			'marker_options'         => array(
 
-			) , 
+			),
 			'map_options'            => array(
 
-			) ,
+			),
 			'marker_cluster_options' => array(
 				
-			) , 
-			'echo'                   => true 
+			),
+			'echo'                   => true
 		);
 
 		$arguments = wp_parse_args( $arguments, $defaults );
