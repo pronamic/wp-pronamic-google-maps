@@ -145,7 +145,7 @@ class Pronamic_Google_Maps_Mashup {
 		$content = '<div class="pgmm">';
 		$content .= sprintf( '<input type="hidden" name="pgmm-info" value="%s" />', esc_attr( json_encode( $options ) ) );
 
-		$content .= sprintf( '<div class="canvas" style="width: %dpx; height: %dpx;">', $options->width, $options->height );
+		$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $options->width, $options->height );
 		$content .= sprintf( '</div>' );
 
 		if ( ! empty( $items ) ) {
