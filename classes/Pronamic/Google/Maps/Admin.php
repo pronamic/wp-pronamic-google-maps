@@ -144,28 +144,45 @@ class Pronamic_Google_Maps_Admin {
 	//////////////////////////////////////////////////
 
 	/**
+	 * Update post meta, only store post meta when there is meta to store
+	 * @see http://core.trac.wordpress.org/browser/tags/3.4.2/wp-includes/post.php#L1533
+	 * 
+	 * @param string $post_id
+	 * @param string $meta_key
+	 * @param string $meta_value
+	 * @param string $prev_value
+	 */
+	public static function update_post_meta( $post_id, $meta_key, $meta_value, $prev_value = '' ) {
+		if ( empty( $meta_value ) ) {
+			delete_post_meta( $post_id, $meta_key );
+		} else {
+			update_post_meta( $post_id, $meta_key, $meta_value, $prev_value );
+		}			
+	}
+
+	/**
 	 * Save the specified post (ID)
 	 *
 	 * @param int $postId
 	 */
-	public static function savePost($postId) {
-		$nonce = filter_input(INPUT_POST, Pronamic_Google_Maps_Maps::NONCE_NAME, FILTER_SANITIZE_STRING);
+	public static function savePost( $post_id ) {
+		$nonce = filter_input( INPUT_POST, Pronamic_Google_Maps_Maps::NONCE_NAME, FILTER_SANITIZE_STRING );
 
-		if(!wp_verify_nonce($nonce, 'save-post')) {
-			return $postId;
+		if ( ! wp_verify_nonce( $nonce, 'save-post' ) ) {
+			return $post_id;
 		}
 
-		if(self::doingAutosave()) {
-			return $postId;
+		if ( self::doingAutosave() ) {
+			return $post_id;
 		}
 
-		if('page' == $_POST['post_type']) {
-			if(!current_user_can('edit_page', $postId)) {
-				return $postId;
+		if ( 'page' == $_POST['post_type'] ) {
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return $post_id;
 			}
 		} else {
-			if(!current_user_can('edit_post', $postId)) {
-				return $postId;
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return $post_id;
 			}
 		}
 		
@@ -173,45 +190,45 @@ class Pronamic_Google_Maps_Admin {
 		$pgm = pronamic_get_google_maps_meta();
 
 		// Active
-		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : 'false');
+		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : null );
 
 		// Latitude
-		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude);
+		$latitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
 
 		// Longitude
-		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude);
+		$longitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
 
 		// Map type
-		$mapType = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, $mapType);
+		$map_type = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, $map_type == Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT ? null : $map_type );
 
 		// Zoom
-		$zoom = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ZOOM, $zoom);
+		$zoom = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ZOOM, $zoom == Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT ? null : $zoom );
 
 		// Title
-		$title = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_UNSAFE_RAW);
-		$title = wp_kses_post($title);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_TITLE, $title);
+		$title = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_UNSAFE_RAW );
+		$title = wp_kses_post( $title );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_TITLE, $title );
 
 		// Description
-		$description = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_UNSAFE_RAW);
-		$description = wp_kses_post($description);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description);
+		$description = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_UNSAFE_RAW );
+		$description = wp_kses_post( $description );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description );
 
 		// Description
-		$address = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, FILTER_UNSAFE_RAW);
-		$address = wp_kses_post($address);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, $address);
+		$address = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, FILTER_UNSAFE_RAW );
+		$address = wp_kses_post( $address );
+		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, $address );
 
 		// Status
-		if(!empty($latitude) && !empty($longitude)) {
+		if ( ! empty( $latitude ) && ! empty( $longitude ) ) {
 			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
-			update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
+			self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
 		}
 	}
 
@@ -332,6 +349,6 @@ class Pronamic_Google_Maps_Admin {
 	 * @return boolean true if autosave is in progress, false otherwise
 	 */
 	public static function doingAutosave() {
-		return defined('DOING_AUTOSAVE') && DOING_AUTOSAVE;
+		return defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE;
 	}
 }
