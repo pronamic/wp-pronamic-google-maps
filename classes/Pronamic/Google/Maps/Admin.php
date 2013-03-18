@@ -267,19 +267,19 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function ajaxGeocode() {
 		// ID
-		$postId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
+		$post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT );
 
 		// Latitude
-		$latitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude);
+		$latitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
 
 		// Longitude
-		$longitude = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude);
+		$longitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
 
 		// Status
-		$status = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING);
-		update_post_meta($postId, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status);
+		$status = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING);
+		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
 
 		// Result
 		$result = new stdClass();
@@ -297,18 +297,18 @@ class Pronamic_Google_Maps_Admin {
 			$pgm = pronamic_get_google_maps_meta();
 
 			$result->nextPost = new stdClass();
-			$result->nextPost->ID = get_the_ID();
-			$result->nextPost->title = get_the_title();
-			$result->nextPost->address = $pgm->address;
-			$result->nextPost->latitude = $pgm->latitude;
+			$result->nextPost->ID        = get_the_ID();
+			$result->nextPost->title     = get_the_title();
+			$result->nextPost->address   = $pgm->address;
+			$result->nextPost->latitude  = $pgm->latitude;
 			$result->nextPost->longitude = $pgm->longitude;
 		}
 
-		$response = json_encode($result);
+		$response = json_encode( $result );
 
-		header('Content-Type: application/json');
+		header( 'Content-Type: application/json' );
 
-		exit($response);
+		exit( $response );
 		
 		/*
 		 Queries to empty latitude, longitude and geocode status meta
