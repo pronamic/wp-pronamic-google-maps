@@ -108,20 +108,20 @@ class Pronamic_Google_Maps_Maps {
 	 */
 	public static function init() {
 		$options = self::getOptions();
-		if($options === false) {
+		if ( $options === false ) {
 			self::setDefaultOptions();
 		}
 
 		// Load plugin text domain
-		$relPath = dirname(plugin_basename(self::$file)) . '/languages/';
+		$rel_path = dirname( plugin_basename( self::$file ) ) . '/languages/';
 
-		load_plugin_textdomain('pronamic_google_maps', false, $relPath);
+		load_plugin_textdomain( 'pronamic_google_maps', false, $rel_path );
 
 		// Scripts
 		self::registerScripts();
 
 		// Other
-		if(is_admin()) {
+		if ( is_admin() ) {
 			Pronamic_Google_Maps_Admin::bootstrap();
 		} else {
 			Pronamic_Google_Maps_Site::bootstrap();
@@ -240,14 +240,14 @@ class Pronamic_Google_Maps_Maps {
 	 */
 	public static function setDefaultOptions() {
 		$options = array(
-			'installed' => true ,
+			'installed' => true,
 			'active' => array(
-				'page' => true ,
+				'page' => true,
 				'post' => true
 			)
 		);
 
-		update_option(self::OPTION_NAME, $options);
+		update_option( self::OPTION_NAME, $options );
 
 		return $options;
 	}
