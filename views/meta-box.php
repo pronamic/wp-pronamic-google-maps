@@ -15,7 +15,7 @@ wp_nonce_field( 'save-post', Pronamic_Google_Maps_Maps::NONCE_NAME );
 				<label for="pgm-active-field"><?php _e( 'Active', 'pronamic_google_maps' ); ?></label>
 			</th>
 			<td>
-				<input id="pgm-active-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ACTIVE; ?>" value="true" type="checkbox" <?php if($pgm->active): ?>checked="checked"<?php endif; ?> /> 
+				<input id="pgm-active-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ACTIVE; ?>" value="true" type="checkbox" <?php checked( $pgm->active ); ?> /> 
 				<label for="pgm-active-field"><?php _e('Show Google Maps', 'pronamic_google_maps'); ?></label>
 			</td>
 		</tr>
