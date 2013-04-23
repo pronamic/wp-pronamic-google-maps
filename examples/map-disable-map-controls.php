@@ -13,7 +13,7 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 			'navigationControl' => false,
 			'streetViewControl' => false,
 			'scrollwheel'       => false,
-			'zoomControl'		=> false			
+			'zoomControl'       => false			
 		)
 	) );
 }
