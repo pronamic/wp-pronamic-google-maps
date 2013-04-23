@@ -8,7 +8,8 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 		array(
 			'post_type'   => 'post',
 			'nopaging'    => true
-		), array(
+		),
+		array(
 			'width'       => 800,
 			'height'      => 800,
 			'map_type_id' => 'satellite',
