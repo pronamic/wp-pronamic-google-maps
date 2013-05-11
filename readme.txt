@@ -197,6 +197,7 @@ You should add some code to you templates to add the Google Map.
 			array(
 				'width'          => 300,
 				'height'         => 200, 
+				'nopaging'       => true,
 				'map_type_id'    => 'satellite', 
 				'marker_options' => array(
 					'icon' => 'http://google-maps-icons.googlecode.com/files/photo.png'
