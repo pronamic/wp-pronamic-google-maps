@@ -35,6 +35,7 @@ use the Pronamic Google Maps plugin:
 		[googlemaps static=true]
 		[googlemaps static=true label=M]
 		[googlemaps width=200 height=200]
+		[googlemaps new_design=true]
 
 	Also easily integrate an Google Maps mashup in your post content:
 
@@ -265,6 +266,9 @@ Or througt an filter
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
+
+= /develop/ =
+*	Support new Google Maps Design parameter. In Shortcode use new_design="true" or in functions use 'new_design' => true
 
 = 2.2.5 =
 *	Improved post meta data saving, only save meta data if needed
