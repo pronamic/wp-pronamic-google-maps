@@ -63,6 +63,14 @@ class Pronamic_Google_Maps_Info {
 	 * @var string
 	 */
 	public $color;
+	
+	/**
+	 * Whether to use the new
+	 * google maps design
+	 * 
+	 * @var boolean
+	 */
+	public $newDesign;
 
 	//////////////////////////////////////////////////
 
