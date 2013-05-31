@@ -392,7 +392,8 @@ class Pronamic_Google_Maps_Maps {
 			),
 			'map_options' => array(
 
-			)
+			),
+			'new_design'    => false
 		);
 
 		$arguments = wp_parse_args($arguments, $defaults);
@@ -417,6 +418,7 @@ class Pronamic_Google_Maps_Maps {
 			$info->static      = filter_var($arguments['static'], FILTER_VALIDATE_BOOLEAN);
 			$info->label       = $arguments['label'];
 			$info->color       = $arguments['color'];
+			$info->newDesign   = filter_var( $arguments['new_design'], FILTER_VALIDATE_BOOLEAN );
 
 			// Marker options
 			$marker_options = $arguments['marker_options'];

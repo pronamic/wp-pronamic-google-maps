@@ -30,6 +30,9 @@
 					} , 
 					info.mapOptions
 				);
+				
+				if ( true === info.newDesign )
+					google.maps.visualRefresh = true;
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -89,6 +92,9 @@
 					} , 
 					mashupInfo.mapOptions
 				);
+				
+				if ( true === info.newDesign )
+					google.maps.visualRefresh = true;
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
