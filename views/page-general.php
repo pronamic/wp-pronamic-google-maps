@@ -1,7 +1,7 @@
 <div id="pgm" class="wrap">
 	<?php screen_icon( Pronamic_Google_Maps_Maps::SLUG ); ?>
 
-	<h2><?php echo esc_html( __( 'Configuration - Pronamic Google Maps', 'pronamic_google_maps' ) ); ?></h2>
+	<h2><?php echo get_admin_page_title(); ?></h2>
 
 	<form action="options.php" method="post">
 		<?php settings_fields( 'pronamic_google_maps_settings' ); ?>
