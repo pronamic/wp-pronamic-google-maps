@@ -222,5 +222,4 @@ class Pronamic_Google_Maps_Settings {
 		</label>
 		<?php
 	}
-	
 }
