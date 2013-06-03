@@ -30,11 +30,6 @@
 					} , 
 					info.mapOptions
 				);
-				
-				// Check to see if the localization is valid
-				if(Pronamic_Google_Maps_Vars !== undefined){
-					google.maps.visualRefresh = ( Pronamic_Google_Maps_Vars.freshDesign === "true" );
-				}
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -94,11 +89,6 @@
 					} , 
 					mashupInfo.mapOptions
 				);
-				
-				// Check to see if the localization is valid
-				if(Pronamic_Google_Maps_Vars !== undefined){
-					google.maps.visualRefresh = ( Pronamic_Google_Maps_Vars.freshDesign === "true" );
-				}
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -186,7 +176,9 @@
 	/**
 	 * Initialize
 	 */
-	var initialize = function() {
+	var initialize = function() {		
+		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
+
 		$(".pgm").pronamicGoogleMaps();
 		
 		$(".pgmm").pronamicGoogleMapsMashup();

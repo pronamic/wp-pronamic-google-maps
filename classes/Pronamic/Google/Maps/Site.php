@@ -32,16 +32,21 @@ class Pronamic_Google_Maps_Site {
 
 		// Scripts
 		wp_register_style(
-			'pronamic-google-maps-fix' , 
+			'pronamic_google_maps_fix' , 
 			plugins_url('css/fix.css', Pronamic_Google_Maps_Maps::$file) 
 		);
 
 		// Scripts
 		wp_register_script(
-			'pronamic-google-maps-site' , 
+			'pronamic_google_maps_site' , 
 			plugins_url('js/site.js', Pronamic_Google_Maps_Maps::$file) ,
 			array('jquery', 'google-jsapi')
 		);
+		
+		// Add the localization for giving the settings.
+		wp_localize_script( 'pronamic_google_maps_site', 'pronamic_google_maps_settings', array(
+			'visualRefresh' => Pronamic_Google_Maps_Settings::is_fresh_design()
+		) );
 	}
 
 	//////////////////////////////////////////////////
@@ -54,7 +59,7 @@ class Pronamic_Google_Maps_Site {
 
 		// As of WordPress 3.3 wp_enqueue_script() can be called mid-page (in the HTML body). 
 		// This will load the script in the footer. 
-		wp_enqueue_script('pronamic-google-maps-site');
+		wp_enqueue_script( 'pronamic_google_maps_site' );
 	}
 
 	//////////////////////////////////////////////////
@@ -66,7 +71,7 @@ class Pronamic_Google_Maps_Site {
 	 */
 	public static function printScripts() {
 		if(self::$printScripts) {
-			wp_print_scripts('pronamic-google-maps-site');
+			wp_print_scripts('pronamic_google_maps_site');
 		}
 	}
 }

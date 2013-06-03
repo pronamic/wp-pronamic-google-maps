@@ -219,11 +219,6 @@ class Pronamic_Google_Maps_Maps {
 			array(),
 			'1.0'
 		);
-		
-		// Add the localization for giving the settings.
-		wp_localize_script( 'google-jsapi', 'Pronamic_Google_Maps_Vars', array(
-			'freshDesign' => Pronamic_Google_Maps_Settings::is_fresh_design()
-		) );
 	}
 
 	//////////////////////////////////////////////////
