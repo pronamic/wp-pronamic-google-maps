@@ -48,7 +48,7 @@ class Pronamic_Google_Maps_Settings {
 		// General settings section
 		add_settings_section(
 			'pronamic_google_maps_settings_section_general',
-			__( 'General Settings', 'pronamic_google_maps' ),
+			__( 'General', 'pronamic_google_maps' ),
 			array( $this, 'callback_section_general' ),
 			'pronamic-google-maps'
 		);
