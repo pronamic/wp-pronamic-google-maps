@@ -192,13 +192,24 @@ class Pronamic_Google_Maps_Settings {
 			'public' => true
 		), 'objects' );
 		
-		foreach ( $post_types as $name => $type ) : ?>
-		<label for="pronamic-google-maps-type-<?php echo $name; ?>" title="<?php _e( 'Activate Google Maps', 'pronamic_google_maps' ); ?>">
-			<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php if ( self::is_active_post_type( $name ) ) : ?> checked="checked" <?php endif; ?> />
-			<?php echo $type->labels->singular_name; ?>
-		</label>
-		<br/>
-		<?php endforeach;
+		if ( $post_types ) : ?>
+
+			<ul style="margin: 0;">
+			
+				<?php foreach ( $post_types as $name => $type ) : ?>
+	
+					<li>
+						<label for="pronamic-google-maps-type-<?php echo $name; ?>" title="<?php _e( 'Activate Google Maps', 'pronamic_google_maps' ); ?>">
+							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php if ( self::is_active_post_type( $name ) ) : ?> checked="checked" <?php endif; ?> />
+							<?php echo $type->labels->singular_name; ?>
+						</label>
+					</li>
+
+				<?php endforeach; ?>
+			
+			</ul>
+		
+		<?php endif;
 	}
 	
 	/**
