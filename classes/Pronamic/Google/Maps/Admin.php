@@ -79,9 +79,6 @@ class Pronamic_Google_Maps_Admin {
 	public static function initialize() {
 		// Actions and hooks
 		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
-
-		// Try to save the options if they are posted
-		//self::saveOptions();
 	}
 
 	//////////////////////////////////////////////////
@@ -321,31 +318,6 @@ class Pronamic_Google_Maps_Admin {
 		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('_pronamic_google_maps_latitude', '_pronamic_google_maps_longitude');
 		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key = '_pronamic_google_maps_geocode_status';
 		 */
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Save the options
-	 */
-	public static function saveOptions() {
-		_deprecated_function( 'saveOptions', '2.3' );
-		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
-
-		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME)) {
-			$options = Pronamic_Google_Maps_Maps::getOptions();
-
-			$active = array();
-
-			$activeTypes = filter_input(INPUT_POST, '_pronamic_google_maps_active', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
-			foreach($activeTypes as $type) {
-				$active[$type] = true;
-			}
-
-			$options['active'] = $active;
-
-			update_option(Pronamic_Google_Maps_Maps::OPTION_NAME, $options);
-		}
 	}
 
 	//////////////////////////////////////////////////
