@@ -52,7 +52,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function enqueueScripts( $hook ) {
 		$enqueue = false;
 
-		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder', 'widgets.php'))) {
+		if(in_array($hook, array('toplevel_page_pronamic_google_maps', 'google-maps_page_pronamic_google_maps_geocoder', 'widgets.php'))) {
 			$enqueue = true;
 		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
 			$screen = get_current_screen();
@@ -91,30 +91,30 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function menu() {
 		add_menu_page(
-			$pageTitle = __('Google Maps', 'pronamic_google_maps') ,
-			$menuTitle = __('Google Maps', 'pronamic_google_maps') ,
-			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps_Maps::SLUG , 
-			$function = array(__CLASS__, 'pageGeneral') , 
+			__( 'Google Maps', 'pronamic_google_maps' ), // page title
+			__( 'Google Maps', 'pronamic_google_maps' ), // menu title
+			'manage_options', // capability 
+			'pronamic_google_maps', // menu slug
+			array( __CLASS__, 'pageGeneral' ), // function 
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file)
+			plugins_url( 'images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file ) // icon url
 		);
 
 		// @see _add_post_type_submenus()
 		// @see wp-admin/menu.php
 		add_submenu_page(
-			$parentSlug = Pronamic_Google_Maps_Maps::SLUG , 
-			$pageTitle = __('Geocoder', 'pronamic_google_maps') , 
-			$menuTitle = __('Geocoder', 'pronamic_google_maps') , 
-			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps_Maps::SLUG . '-geocoder' , 
-			$function = array(__CLASS__, 'pageGeocoder')
+			'pronamic_google_maps', // parent slug
+			__( 'Geocoder', 'pronamic_google_maps' ), // page title 
+			__( 'Geocoder', 'pronamic_google_maps' ), // menu title 
+			'manage_options', // capability 
+			'pronamic_google_maps_geocoder', // menu slug 
+			array( __CLASS__, 'pageGeocoder' ) // function
 		);
 
 		global $submenu;
 
-		if(isset($submenu[Pronamic_Google_Maps_Maps::SLUG])) {
-			$submenu[Pronamic_Google_Maps_Maps::SLUG][0][0] = __('General', 'pronamic_google_maps');
+		if ( isset( $submenu['pronamic_google_maps'] ) ) {
+			$submenu['pronamic_google_maps'][0][0] = __( 'General', 'pronamic_google_maps' );
 		}
 	}
 
