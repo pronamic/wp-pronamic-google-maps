@@ -200,7 +200,7 @@ class Pronamic_Google_Maps_Settings {
 	
 					<li>
 						<label for="pronamic-google-maps-type-<?php echo $name; ?>" title="<?php _e( 'Activate Google Maps', 'pronamic_google_maps' ); ?>">
-							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php if ( self::is_active_post_type( $name ) ) : ?> checked="checked" <?php endif; ?> />
+							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php checked( self::is_active_post_type( $name ) ); ?> />
 							<?php echo $type->labels->singular_name; ?>
 						</label>
 					</li>
