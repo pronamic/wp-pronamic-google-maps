@@ -174,7 +174,7 @@ class Pronamic_Google_Maps_Settings {
 				<?php foreach ( $post_types as $name => $type ) : ?>
 	
 					<li>
-						<label for="pronamic-google-maps-type-<?php echo $name; ?>" title="<?php _e( 'Activate Google Maps', 'pronamic_google_maps' ); ?>">
+						<label for="pronamic-google-maps-type-<?php echo $name; ?>">
 							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php checked( self::is_active_post_type( $name ) ); ?> />
 							<?php echo $type->labels->singular_name; ?>
 						</label>
@@ -194,7 +194,7 @@ class Pronamic_Google_Maps_Settings {
 	 */
 	public function setting_google_maps_visual_refresh() {
 		?>
-		<label for="pronamic-google-maps-visual-refresh" title="<?php _e( 'Design', 'pronamic_google_maps' ); ?>">
+		<label for="pronamic-google-maps-visual-refresh">
 			<input id="pronamic-google-maps-visual-refresh" name="pronamic_google_maps_visual_refresh" value="true" type="checkbox" <?php checked( get_option( 'pronamic_google_maps_visual_refresh' ) ); ?> />
 			<?php _e( 'Use Visual Refresh', 'pronamic_google_maps' ); ?> 
 			
