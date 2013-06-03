@@ -10,7 +10,7 @@
  * name format as not to break previous versions of the plugin.
  * 
  * All new plugin settings will be stored with a naming scheme similar
- * to the new setting '_pronamic_google_maps_fresh_design'
+ * to the new setting 'pronamic_google_maps_visual_refresh'
  * 
  * @package Pronamic Google Maps
  * @subpackage Settings
@@ -63,17 +63,17 @@ class Pronamic_Google_Maps_Settings {
 		);
 		
 		add_settings_field(
-			'_pronamic_google_maps_fresh_design',
+			'pronamic_google_maps_visual_refresh',
 			__( 'Visual Refresh', 'pronamic_google_maps' ),
-			array( $this, 'setting_google_maps_fresh_design' ),
+			array( $this, 'setting_google_maps_visual_refresh' ),
 			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
-			array( 'label_for' => 'pronamic-google-maps-fresh-design' )
+			array( 'label_for' => 'pronamic-google-maps-visual-refresh' )
 		);
 		
 		// Register those settings
 		register_setting( 'pronamic_google_maps_settings', 'Pronamic_Google_maps' );
-		register_setting( 'pronamic_google_maps_settings', '_pronamic_google_maps_fresh_design' );
+		register_setting( 'pronamic_google_maps_settings', 'pronamic_google_maps_visual_refresh', array( $this, 'sanitize_boolean' ) );
 	}
 	
 	/**
@@ -112,17 +112,6 @@ class Pronamic_Google_Maps_Settings {
 	}
 	
 	/**
-	 * Conditional check to see if the user wants
-	 * to use the new Google Maps design
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public static function is_fresh_design() {
-		return self::get_fresh_design();
-	}
-	
-	/**
 	 * Conditional check to see if the passed post type
 	 * has been selected to be a google maps post type
 	 * 
@@ -146,17 +135,6 @@ class Pronamic_Google_Maps_Settings {
 	 */
 	public static function get_settings() {
 		return get_option( 'Pronamic_Google_maps' );
-	}
-	
-	/**
-	 * Returns if the user chose to use the new Google Maps design
-	 * or not.
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public static function get_fresh_design() {
-		return get_option( '_pronamic_google_maps_fresh_design' );
 	}
 	
 	/**
@@ -214,12 +192,27 @@ class Pronamic_Google_Maps_Settings {
 	 * 
 	 * @setting-name _pronamic_google_maps_fresh_design
 	 */
-	public function setting_google_maps_fresh_design() {
+	public function setting_google_maps_visual_refresh() {
 		?>
-		<label for="pronamic-google-maps-fresh-design" title="<?php _e( 'Design', 'pronamic_google_maps' ); ?>">
-			<input id="pronamic-google-maps-fresh-design" name="_pronamic_google_maps_fresh_design" value="true" type="checkbox" <?php if ( self::is_fresh_design() ) : ?>checked="checked"<?php endif; ?> />
-			<?php _e( 'Use Fresh Design', 'pronamic_google_maps' ); ?> <p class="description"><?php printf( __( 'A new flat design from Google to incorperate the new design from Google Maps. You can find an example <a href="%s" title="External Link Example">here</a>', 'pronamic_google_maps' ), 'https://developers.google.com/maps/documentation/javascript/examples/map-simple-refresh' ); ?></p>
+		<label for="pronamic-google-maps-visual-refresh" title="<?php _e( 'Design', 'pronamic_google_maps' ); ?>">
+			<input id="pronamic-google-maps-visual-refresh" name="pronamic_google_maps_visual_refresh" value="true" type="checkbox" <?php checked( get_option( 'pronamic_google_maps_visual_refresh' ) ); ?> />
+			<?php _e( 'Use Visual Refresh', 'pronamic_google_maps' ); ?> 
+			
+			<p class="description">
+				<?php 
+				
+				printf( 
+					__( 'A new flat design from Google to incorperate the new design from Google Maps. You can find an example <a href="%s" title="External Link Example">here</a>', 'pronamic_google_maps' ),
+					'https://developers.google.com/maps/documentation/javascript/examples/map-simple-refresh' 
+ 				);
+ 				
+ 				?>
+ 			</p>
 		</label>
 		<?php
+	}
+
+	public function sanitize_boolean( $input ) {
+		return filter_var( $input, FILTER_VALIDATE_BOOLEAN );
 	}
 }
