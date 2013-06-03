@@ -49,7 +49,7 @@ class Pronamic_Google_Maps_Settings {
 		add_settings_section(
 			'pronamic_google_maps_settings_section_general',
 			__( 'General', 'pronamic_google_maps' ),
-			array( $this, 'callback_section_general' ),
+			'__return_false',
 			'pronamic_google_maps'
 		);
 		
@@ -75,8 +75,6 @@ class Pronamic_Google_Maps_Settings {
 		register_setting( 'pronamic_google_maps_settings', 'Pronamic_Google_maps' );
 		register_setting( 'pronamic_google_maps_settings', '_pronamic_google_maps_fresh_design' );
 	}
-	
-	public function callback_section_general() {}
 	
 	/**
 	 * Sets the default options for the plugin. This function
