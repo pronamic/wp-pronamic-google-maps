@@ -1,12 +1,3 @@
-<?php
-$options = Pronamic_Google_Maps_Maps::getOptions();
-
-$types = get_post_types( array(
-	'public' => true
-	), 'objects' );
-
-$activeTypes = $options['active'];
-?>
 <div id="pgm" class="wrap">
 	<?php screen_icon( Pronamic_Google_Maps_Maps::SLUG ); ?>
 
