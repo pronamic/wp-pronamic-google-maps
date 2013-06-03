@@ -91,7 +91,6 @@ class Pronamic_Google_Maps_Settings {
 	 */
 	public static function set_default_options() {
 		update_option( 'Pronamic_Google_maps', array( 'active' => array( 'post' => true, 'page' => true ) ) );
-		update_option( '_pronamic_google_maps_fresh_design', false );
 	}
 	
 	/**
