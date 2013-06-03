@@ -267,10 +267,8 @@ Or througt an filter
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
-= /develop/ =
-*	Support new Google Maps Design parameter. In Shortcode use new_design="true" or in functions use 'new_design' => true
-
 = 2.2.5 =
+*	Added support for new Google Maps Visual Refresh setting
 *	Improved post meta data saving, only save meta data if needed
 *	Mashup width and height can now be in percents (for responsive designs)
 
