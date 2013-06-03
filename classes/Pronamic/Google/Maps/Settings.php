@@ -68,7 +68,8 @@ class Pronamic_Google_Maps_Settings {
 			__( 'Visual Refresh', 'pronamic_google_maps' ),
 			array( $this, 'setting_google_maps_fresh_design' ),
 			'pronamic-google-maps',
-			'pronamic_google_maps_settings_section_general'
+			'pronamic_google_maps_settings_section_general',
+			array( 'label_for' => 'pronamic-google-maps-fresh-design' )
 		);
 		
 		// Register those settings
