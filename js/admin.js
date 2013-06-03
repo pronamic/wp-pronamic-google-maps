@@ -31,6 +31,11 @@
 				center: location , 
 				mapTypeId: mapType 
 			};
+			
+			// Check to see if the localization is valid
+			if(Pronamic_Google_Maps_Vars !== undefined){
+				google.maps.visualRefresh = ( Pronamic_Google_Maps_Vars.freshDesign === "true" );
+			}
 
 			var map = new google.maps.Map(canvas, options);
 			var geocoder = new google.maps.Geocoder();

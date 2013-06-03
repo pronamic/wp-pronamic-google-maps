@@ -31,8 +31,10 @@
 					info.mapOptions
 				);
 				
-				if ( true === info.newDesign )
-					google.maps.visualRefresh = true;
+				// Check to see if the localization is valid
+				if(Pronamic_Google_Maps_Vars !== undefined){
+					google.maps.visualRefresh = ( Pronamic_Google_Maps_Vars.freshDesign === "true" );
+				}
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -93,8 +95,10 @@
 					mashupInfo.mapOptions
 				);
 				
-				if ( true === info.newDesign )
-					google.maps.visualRefresh = true;
+				// Check to see if the localization is valid
+				if(Pronamic_Google_Maps_Vars !== undefined){
+					google.maps.visualRefresh = ( Pronamic_Google_Maps_Vars.freshDesign === "true" );
+				}
 
 				var map = new google.maps.Map(canvas, mapOptions);
 

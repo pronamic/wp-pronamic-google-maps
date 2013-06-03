@@ -12,50 +12,9 @@ $activeTypes = $options['active'];
 
 	<h2><?php echo esc_html( __( 'Configuration - Pronamic Google Maps', 'pronamic_google_maps' ) ); ?></h2>
 
-	<form action="" method="post">
-		<?php wp_nonce_field( 'pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME ); ?>
-
-		<table cellspacing="0" class="widefat fixed">
-
-			<?php foreach ( array( 'thead', 'tfoot' ) as $tag ): ?>
-
-				<<?php echo $tag; ?>>
-				<tr>
-					<th scope="col" class="manage-column"><?php _e( 'Post type', 'pronamic_google_maps' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Active', 'pronamic_google_maps' ); ?></th>
-				</tr>
-				</<?php echo $tag; ?>>
-
-			<?php endforeach; ?>
-
-			<tbody>
-
-				<?php foreach ( $types as $name => $type ): ?>
-
-					<tr>
-						<th scope="row">
-							<label for="pronamic-google-maps-type-<?php echo $name; ?>">
-								<?php echo $type->labels->singular_name; ?>
-							</label>
-						</th>
-						<td>
-							<?php $active = isset( $activeTypes[$name] ) && $activeTypes[$name]; ?>
-
-							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="_pronamic_google_maps_active[]" value="<?php echo $name; ?>" type="checkbox" <?php if ( $active ): ?>checked="checked"<?php endif; ?> />
-
-							<label for="pronamic-google-maps-type-<?php echo $name; ?>">
-								<?php _e( 'Activate Google Maps', 'pronamic_google_maps' ); ?>
-							</label>
-						</td>
-					</tr>
-
-				<?php endforeach; ?>
-
-			</tbody>
-		</table>
-
-		<input type="hidden" name="pronamic_google_maps_action" value="update" />
-
+	<form action="options.php" method="post">
+		<?php settings_fields( 'pronamic_google_maps_settings' ); ?>
+		<?php do_settings_sections( 'pronamic-google-maps' ); ?>
 		<?php submit_button( __( 'Save Changes', 'pronamic_google_maps' ) ); ?>
 	</form>
 </div>

@@ -93,5 +93,7 @@ class Pronamic_Google_Maps_Plugin {
 
 		// Delete options
 		delete_option(Pronamic_Google_Maps_Maps::OPTION_NAME);
+		
+		delete_option( '_pronamic_google_maps_fresh_design' );
 	}
 }

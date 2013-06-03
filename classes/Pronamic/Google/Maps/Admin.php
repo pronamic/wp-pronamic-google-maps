@@ -9,6 +9,9 @@
  * @version 1.0
  */
 class Pronamic_Google_Maps_Admin {
+	
+	public static $pronamic_google_maps_settings;
+	
 	/**
 	 * Bootstrap the Google Maps admin
 	 */
@@ -36,6 +39,9 @@ class Pronamic_Google_Maps_Admin {
 			'pronamic-google-maps-admin',
 			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file )
 		);
+		
+		// Load the Settings Class
+		self::$pronamic_google_maps_settings = new Pronamic_Google_Maps_Settings();
 	}
 
 	//////////////////////////////////////////////////
@@ -75,7 +81,7 @@ class Pronamic_Google_Maps_Admin {
 		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
 
 		// Try to save the options if they are posted
-		self::saveOptions();
+		//self::saveOptions();
 	}
 
 	//////////////////////////////////////////////////
@@ -323,6 +329,7 @@ class Pronamic_Google_Maps_Admin {
 	 * Save the options
 	 */
 	public static function saveOptions() {
+		_deprecated_function( 'saveOptions', '2.3' );
 		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
 
 		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME)) {
