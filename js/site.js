@@ -176,7 +176,7 @@
 	/**
 	 * Initialize
 	 */
-	var initialize = function() {		
+	var initialize = function() {
 		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
 
 		$(".pgm").pronamicGoogleMaps();
