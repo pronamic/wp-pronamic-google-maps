@@ -50,7 +50,7 @@ class Pronamic_Google_Maps_Settings {
 			'pronamic_google_maps_settings_section_general',
 			__( 'General', 'pronamic_google_maps' ),
 			array( $this, 'callback_section_general' ),
-			'pronamic-google-maps'
+			'pronamic_google_maps'
 		);
 		
 		// Settings fields for the general settings section
@@ -58,7 +58,7 @@ class Pronamic_Google_Maps_Settings {
 			'Pronamic_Google_maps',
 			__( 'Activate Google Maps', 'pronamic_google_maps' ),
 			array( $this, 'setting_google_maps_active' ),
-			'pronamic-google-maps',
+			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general'
 		);
 		
@@ -66,7 +66,7 @@ class Pronamic_Google_Maps_Settings {
 			'_pronamic_google_maps_fresh_design',
 			__( 'Visual Refresh', 'pronamic_google_maps' ),
 			array( $this, 'setting_google_maps_fresh_design' ),
-			'pronamic-google-maps',
+			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
 			array( 'label_for' => 'pronamic-google-maps-fresh-design' )
 		);
