@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pronamic Google Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 14:04+0100\n"
-"PO-Revision-Date: 2013-06-03 14:04+0100\n"
+"POT-Creation-Date: 2013-06-03 16:31+0100\n"
+"PO-Revision-Date: 2013-06-03 16:32+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -16,51 +16,52 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/Pronamic/Google/Maps/Admin.php:94
-#: classes/Pronamic/Google/Maps/Admin.php:95
+#: classes/Pronamic/Google/Maps/Admin.php:96
+#: classes/Pronamic/Google/Maps/Admin.php:97
 #: classes/Pronamic/Google/Maps/MetaBox.php:27
 #: classes/Pronamic/Google/Maps/Widget.php:40
 msgid "Google Maps"
 msgstr "Google Maps"
 
-#: classes/Pronamic/Google/Maps/Admin.php:107
-#: classes/Pronamic/Google/Maps/Admin.php:108 views/meta-box.php:48
+#: classes/Pronamic/Google/Maps/Admin.php:109
+#: classes/Pronamic/Google/Maps/Admin.php:110 views/meta-box.php:48
 msgid "Geocoder"
 msgstr "Geocoder"
 
-#: classes/Pronamic/Google/Maps/Admin.php:117
+#: classes/Pronamic/Google/Maps/Admin.php:119
 #: classes/Pronamic/Google/Maps/Settings.php:51
 msgid "General"
 msgstr "Algemeen"
 
-#: classes/Pronamic/Google/Maps/Plugin.php:33
+#: classes/Pronamic/Google/Maps/Plugin.php:31
 msgid "Settings"
 msgstr "Instellingen"
 
 #: classes/Pronamic/Google/Maps/Settings.php:59
-#: classes/Pronamic/Google/Maps/Settings.php:196
-msgid "Activate Google Maps"
-msgstr "Activeer Google Maps"
+msgid "Post Types"
+msgstr "Bericht typen"
 
-#: classes/Pronamic/Google/Maps/Settings.php:67
+#: classes/Pronamic/Google/Maps/Settings.php:64
+msgid "Enable Google Maps for the selected post types."
+msgstr "Google Maps inschakelen voor de geselecteerde bericht typen."
+
+#: classes/Pronamic/Google/Maps/Settings.php:70
 msgid "Visual Refresh"
-msgstr "Visual Refresh"
+msgstr "Visuele verfrissing"
 
-#: classes/Pronamic/Google/Maps/Settings.php:211
-msgid "Design"
-msgstr ""
-
-#: classes/Pronamic/Google/Maps/Settings.php:213
-msgid "Use Fresh Design"
-msgstr ""
-
-#: classes/Pronamic/Google/Maps/Settings.php:213
+#: classes/Pronamic/Google/Maps/Settings.php:76
 #, php-format
 msgid ""
-"A new flat design from Google to incorperate the new design from Google "
-"Maps. You can find an example <a href=\"%s\" title=\"External Link Example"
-"\">here</a>"
+"The <a href=\"%s\" target=\"_blank\">Google Maps visual refresh</a> brings a "
+"fresh new look to applications using the Google Maps JavaScript API."
 msgstr ""
+"De <a href=\"%s\" target=\"_blank\">Google Maps visuele verfrissing</a> "
+"brengt een frisse nieuwe uitstraling aan applicaties die de Google Maps "
+"JavaScript API gebruiken."
+
+#: classes/Pronamic/Google/Maps/Settings.php:214
+msgid "Use Google Maps Visual Refresh"
+msgstr "Gebruik Google Maps visuele verfrissing"
 
 #: classes/Pronamic/Google/Maps/Widget.php:36
 msgid "Use this widget to add an Google Maps as a widget."
@@ -112,17 +113,9 @@ msgstr "Locatie"
 msgid "Tip: Change the zoom level and map type to your own wishes."
 msgstr "Tip: wijzig het zoomniveau en map type naar je eigen wens."
 
-#: views/page-general.php:13
-msgid "Configuration - Pronamic Google Maps"
-msgstr "Configuratie - Pronamic Google Maps"
-
-#: views/page-general.php:18
+#: views/page-general.php:11
 msgid "Save Changes"
 msgstr "Wijzigingen opslaan"
-
-#: views/page-geocoder.php:4
-msgid "Geocoder - Pronamic Google Maps"
-msgstr "Geocoder - Pronamic Google Maps"
 
 #: views/page-geocoder.php:16
 #, php-format
@@ -154,19 +147,6 @@ msgstr ""
 "We konden geen gecode resultaten vinden voor de volgende%s berichten, pas "
 "deze handmatig aan wanneer nodig."
 
-#: views/uninstall-form.php:12
-msgid "Delete plugin"
-msgstr "Verwijder plugin"
-
-#: views/uninstall-form.php:17
-msgid "Warning! This will delete all Pronamic Google Maps data and options."
-msgstr ""
-"Waarschuwing! Dit zal alle Pronamic Google Maps data en opties verwijderen."
-
-#: views/uninstall-form.php:23
-msgid "Uninstall"
-msgstr "Verwijderen"
-
 #: views/widget-form.php:36
 msgid "Latitude"
 msgstr "Breedtegraad"
@@ -191,8 +171,25 @@ msgstr "Dynamisch"
 msgid "Static"
 msgstr "Statisch"
 
-#~ msgid "Post type"
-#~ msgstr "Bericht type"
+#~ msgid "Activate Google Maps"
+#~ msgstr "Activeer Google Maps"
+
+#~ msgid "Configuration - Pronamic Google Maps"
+#~ msgstr "Configuratie - Pronamic Google Maps"
+
+#~ msgid "Geocoder - Pronamic Google Maps"
+#~ msgstr "Geocoder - Pronamic Google Maps"
+
+#~ msgid "Delete plugin"
+#~ msgstr "Verwijder plugin"
+
+#~ msgid "Warning! This will delete all Pronamic Google Maps data and options."
+#~ msgstr ""
+#~ "Waarschuwing! Dit zal alle Pronamic Google Maps data en opties "
+#~ "verwijderen."
+
+#~ msgid "Uninstall"
+#~ msgstr "Verwijderen"
 
 #~ msgid "Search"
 #~ msgstr "Zoeken"

@@ -56,10 +56,13 @@ class Pronamic_Google_Maps_Settings {
 		// Settings fields for the general settings section
 		add_settings_field(
 			'Pronamic_Google_maps',
-			__( 'Activate Google Maps', 'pronamic_google_maps' ),
+			__( 'Post Types', 'pronamic_google_maps' ),
 			array( $this, 'setting_google_maps_active' ),
 			'pronamic_google_maps',
-			'pronamic_google_maps_settings_section_general'
+			'pronamic_google_maps_settings_section_general',
+			array( 
+				'description' => __( 'Enable Google Maps for the selected post types.', 'pronamic_google_maps' )
+			)
 		);
 		
 		add_settings_field(
@@ -68,7 +71,13 @@ class Pronamic_Google_Maps_Settings {
 			array( $this, 'setting_google_maps_visual_refresh' ),
 			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
-			array( 'label_for' => 'pronamic-google-maps-visual-refresh' )
+			array( 
+				'description' => sprintf( 
+					__( 'The <a href="%s" target="_blank">Google Maps visual refresh</a> brings a fresh new look to applications using the Google Maps JavaScript API.', 'pronamic_google_maps' ),
+					'https://developers.google.com/maps/documentation/javascript/basics#VisualRefresh'
+				),
+				'label_for'   => 'pronamic_google_maps_visual_refresh'
+			)
 		);
 		
 		// Register those settings
@@ -162,7 +171,7 @@ class Pronamic_Google_Maps_Settings {
 	 * 
 	 * @setting-name Pronamic_Google_maps
 	 */
-	public function setting_google_maps_active() {
+	public function setting_google_maps_active( $args ) {
 		$post_types = get_post_types( array(
 			'public' => true
 		), 'objects' );
@@ -183,8 +192,14 @@ class Pronamic_Google_Maps_Settings {
 				<?php endforeach; ?>
 			
 			</ul>
+	
+			<?php if ( isset( $args['description'] ) ) : ?>
+	
+				<p class="description"><?php echo $args['description']; ?></p>
+	
+			<?php endif;
 		
-		<?php endif;
+		endif;
 	}
 	
 	/**
@@ -192,24 +207,18 @@ class Pronamic_Google_Maps_Settings {
 	 * 
 	 * @setting-name _pronamic_google_maps_fresh_design
 	 */
-	public function setting_google_maps_visual_refresh() {
+	public function setting_google_maps_visual_refresh( $args ) {
 		?>
-		<label for="pronamic-google-maps-visual-refresh">
-			<input id="pronamic-google-maps-visual-refresh" name="pronamic_google_maps_visual_refresh" value="true" type="checkbox" <?php checked( get_option( 'pronamic_google_maps_visual_refresh' ) ); ?> />
-			<?php _e( 'Use Visual Refresh', 'pronamic_google_maps' ); ?> 
-			
-			<p class="description">
-				<?php 
-				
-				printf( 
-					__( 'A new flat design from Google to incorperate the new design from Google Maps. You can find an example <a href="%s" title="External Link Example">here</a>', 'pronamic_google_maps' ),
-					'https://developers.google.com/maps/documentation/javascript/examples/map-simple-refresh' 
- 				);
- 				
- 				?>
- 			</p>
+		<label for="pronamic_google_maps_visual_refresh">
+			<input id="pronamic_google_maps_visual_refresh" name="pronamic_google_maps_visual_refresh" value="true" type="checkbox" <?php checked( get_option( 'pronamic_google_maps_visual_refresh' ) ); ?> />
+			<?php _e( 'Use Google Maps Visual Refresh', 'pronamic_google_maps' ); ?>
 		</label>
-		<?php
+
+		<?php if ( isset( $args['description'] ) ) : ?>
+
+			<p class="description"><?php echo $args['description']; ?></p>
+
+		<?php endif;
 	}
 
 	public function sanitize_boolean( $input ) {
