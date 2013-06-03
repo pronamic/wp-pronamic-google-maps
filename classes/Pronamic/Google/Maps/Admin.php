@@ -9,6 +9,9 @@
  * @version 1.0
  */
 class Pronamic_Google_Maps_Admin {
+	
+	public static $pronamic_google_maps_settings;
+	
 	/**
 	 * Bootstrap the Google Maps admin
 	 */
@@ -36,6 +39,9 @@ class Pronamic_Google_Maps_Admin {
 			'pronamic-google-maps-admin',
 			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file )
 		);
+		
+		// Load the Settings Class
+		self::$pronamic_google_maps_settings = new Pronamic_Google_Maps_Settings();
 	}
 
 	//////////////////////////////////////////////////
@@ -46,7 +52,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function enqueueScripts( $hook ) {
 		$enqueue = false;
 
-		if(in_array($hook, array('toplevel_page_pronamic-google-maps', 'google-maps_page_pronamic-google-maps-geocoder', 'widgets.php'))) {
+		if(in_array($hook, array('toplevel_page_pronamic_google_maps', 'google-maps_page_pronamic_google_maps_geocoder', 'widgets.php'))) {
 			$enqueue = true;
 		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
 			$screen = get_current_screen();
@@ -73,9 +79,6 @@ class Pronamic_Google_Maps_Admin {
 	public static function initialize() {
 		// Actions and hooks
 		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
-
-		// Try to save the options if they are posted
-		self::saveOptions();
 	}
 
 	//////////////////////////////////////////////////
@@ -85,30 +88,30 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function menu() {
 		add_menu_page(
-			$pageTitle = __('Google Maps', 'pronamic_google_maps') ,
-			$menuTitle = __('Google Maps', 'pronamic_google_maps') ,
-			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps_Maps::SLUG , 
-			$function = array(__CLASS__, 'pageGeneral') , 
+			__( 'Google Maps', 'pronamic_google_maps' ), // page title
+			__( 'Google Maps', 'pronamic_google_maps' ), // menu title
+			'manage_options', // capability 
+			'pronamic_google_maps', // menu slug
+			array( __CLASS__, 'pageGeneral' ), // function 
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			$iconUrl = plugins_url('images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file)
+			plugins_url( 'images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file ) // icon url
 		);
 
 		// @see _add_post_type_submenus()
 		// @see wp-admin/menu.php
 		add_submenu_page(
-			$parentSlug = Pronamic_Google_Maps_Maps::SLUG , 
-			$pageTitle = __('Geocoder', 'pronamic_google_maps') , 
-			$menuTitle = __('Geocoder', 'pronamic_google_maps') , 
-			$capability = 'manage_options' , 
-			$menuSlug = Pronamic_Google_Maps_Maps::SLUG . '-geocoder' , 
-			$function = array(__CLASS__, 'pageGeocoder')
+			'pronamic_google_maps', // parent slug
+			__( 'Geocoder', 'pronamic_google_maps' ), // page title 
+			__( 'Geocoder', 'pronamic_google_maps' ), // menu title 
+			'manage_options', // capability 
+			'pronamic_google_maps_geocoder', // menu slug 
+			array( __CLASS__, 'pageGeocoder' ) // function
 		);
 
 		global $submenu;
 
-		if(isset($submenu[Pronamic_Google_Maps_Maps::SLUG])) {
-			$submenu[Pronamic_Google_Maps_Maps::SLUG][0][0] = __('General', 'pronamic_google_maps');
+		if ( isset( $submenu['pronamic_google_maps'] ) ) {
+			$submenu['pronamic_google_maps'][0][0] = __( 'General', 'pronamic_google_maps' );
 		}
 	}
 
@@ -315,30 +318,6 @@ class Pronamic_Google_Maps_Admin {
 		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('_pronamic_google_maps_latitude', '_pronamic_google_maps_longitude');
 		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key = '_pronamic_google_maps_geocode_status';
 		 */
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Save the options
-	 */
-	public static function saveOptions() {
-		$action = filter_input(INPUT_POST, 'pronamic_google_maps_action', FILTER_SANITIZE_STRING);
-
-		if($action == 'update' && check_admin_referer('pronamic_google_maps_update_options', Pronamic_Google_Maps_Maps::NONCE_NAME)) {
-			$options = Pronamic_Google_Maps_Maps::getOptions();
-
-			$active = array();
-
-			$activeTypes = filter_input(INPUT_POST, '_pronamic_google_maps_active', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
-			foreach($activeTypes as $type) {
-				$active[$type] = true;
-			}
-
-			$options['active'] = $active;
-
-			update_option(Pronamic_Google_Maps_Maps::OPTION_NAME, $options);
-		}
 	}
 
 	//////////////////////////////////////////////////

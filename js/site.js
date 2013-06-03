@@ -30,9 +30,6 @@
 					} , 
 					info.mapOptions
 				);
-				
-				if ( true === info.newDesign )
-					google.maps.visualRefresh = true;
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -92,9 +89,6 @@
 					} , 
 					mashupInfo.mapOptions
 				);
-				
-				if ( true === info.newDesign )
-					google.maps.visualRefresh = true;
 
 				var map = new google.maps.Map(canvas, mapOptions);
 
@@ -182,7 +176,9 @@
 	/**
 	 * Initialize
 	 */
-	var initialize = function() {
+	var initialize = function() {		
+		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
+
 		$(".pgm").pronamicGoogleMaps();
 		
 		$(".pgmm").pronamicGoogleMapsMashup();
