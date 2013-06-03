@@ -45,11 +45,10 @@ class Pronamic_Google_Maps_Settings {
 	 * @return void
 	 */
 	public function register_settings() {
-		
 		// General settings section
 		add_settings_section(
 			'pronamic_google_maps_settings_section_general',
-			__( 'Pronamic Google Maps General Settings', 'pronamic_google_maps' ),
+			__( 'General Settings', 'pronamic_google_maps' ),
 			array( $this, 'callback_section_general' ),
 			'pronamic-google-maps'
 		);
