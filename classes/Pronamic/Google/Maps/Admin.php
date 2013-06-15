@@ -42,7 +42,7 @@ class Pronamic_Google_Maps_Admin {
 		
 		// Add the localization for giving the settings.
 		wp_localize_script( 'pronamic_google_maps_admin', 'pronamic_google_maps_settings', array(
-			'visualRefresh' => get_option( '_pronamic_google_maps_visual_refresh' )
+			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' )
 		) );
 		
 		// Load the Settings Class
