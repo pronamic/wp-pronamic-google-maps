@@ -43,9 +43,20 @@ class Pronamic_Google_Maps_Site {
 			array('jquery', 'google-jsapi')
 		);
 		
-		// Add the localization for giving the settings.
+		// Settings
+		$other_params_array =  array(
+			'sensor' => 'false'
+		);
+
+		$other_params_array  = apply_filters( 'pronamic_google_maps_load_other_params_array', $other_params_array );
+
+		$other_params_string = _http_build_query( $other_params_array, null, '&' );
+		
+		$other_params_string  = apply_filters( 'pronamic_google_maps_load_other_params_string', $other_params_string );
+
 		wp_localize_script( 'pronamic_google_maps_site', 'pronamic_google_maps_settings', array(
-			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' )
+			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
+			'other_params'  => $other_params_string
 		) );
 	}
 
