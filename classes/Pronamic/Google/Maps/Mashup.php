@@ -100,10 +100,10 @@ class Pronamic_Google_Maps_Mashup {
 				$description = apply_filters( Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $description );
 
 				$info = new Pronamic_Google_Maps_Info();
-				$info->title = $pgm->title;
-				$info->description = $pgm->description;
-				$info->latitude = $pgm->latitude;
-				$info->longitude = $pgm->longitude;
+				$info->title         = $pgm->title;
+				$info->description   = $pgm->description;
+				$info->latitude      = $pgm->latitude;
+				$info->longitude     = $pgm->longitude;
 				$info->markerOptions = new stdClass();
 
 				// Marker options
