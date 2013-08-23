@@ -122,6 +122,7 @@ class Pronamic_Google_Maps_Mashup {
 				$marker->lng = $pgm->longitude;
 				$marker->title = $pgm->title;
 				$marker->description = $description;
+				$marker->post_id = get_the_ID();
 				
 				$options->markers[] = $marker;
 
