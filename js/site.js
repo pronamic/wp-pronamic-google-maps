@@ -177,18 +177,20 @@
 	 * Initialize
 	 */
 	var initialize = function() {
-		$(".pgm").pronamicGoogleMaps();
+		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
+
+		$( '.pgm' ).pronamicGoogleMaps();
 		
-		$(".pgmm").pronamicGoogleMapsMashup();
+		$( '.pgmm' ).pronamicGoogleMapsMashup();
 	};
 
 	/**
 	 * Ready
 	 */
-	$(document).ready(function() {
-		google.load("maps", "3",  {
-			callback: initialize , 
-			other_params: "sensor=false"
-		});
-	});
-})(jQuery);
+	$( document ).ready( function() {
+		google.load( 'maps', '3',  {
+			callback: initialize, 
+			other_params: pronamic_google_maps_settings.other_params
+		} );
+	} );
+} )( jQuery );

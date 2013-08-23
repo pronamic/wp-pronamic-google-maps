@@ -32,16 +32,32 @@ class Pronamic_Google_Maps_Site {
 
 		// Scripts
 		wp_register_style(
-			'pronamic-google-maps-fix' , 
+			'pronamic_google_maps_fix' , 
 			plugins_url('css/fix.css', Pronamic_Google_Maps_Maps::$file) 
 		);
 
 		// Scripts
 		wp_register_script(
-			'pronamic-google-maps-site' , 
+			'pronamic_google_maps_site' , 
 			plugins_url('js/site.js', Pronamic_Google_Maps_Maps::$file) ,
 			array('jquery', 'google-jsapi')
 		);
+		
+		// Settings
+		$other_params_array =  array(
+			'sensor' => 'false'
+		);
+
+		$other_params_array  = apply_filters( 'pronamic_google_maps_load_other_params_array', $other_params_array );
+
+		$other_params_string = _http_build_query( $other_params_array, null, '&' );
+		
+		$other_params_string  = apply_filters( 'pronamic_google_maps_load_other_params_string', $other_params_string );
+
+		wp_localize_script( 'pronamic_google_maps_site', 'pronamic_google_maps_settings', array(
+			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
+			'other_params'  => $other_params_string
+		) );
 	}
 
 	//////////////////////////////////////////////////
@@ -54,7 +70,7 @@ class Pronamic_Google_Maps_Site {
 
 		// As of WordPress 3.3 wp_enqueue_script() can be called mid-page (in the HTML body). 
 		// This will load the script in the footer. 
-		wp_enqueue_script('pronamic-google-maps-site');
+		wp_enqueue_script( 'pronamic_google_maps_site' );
 	}
 
 	//////////////////////////////////////////////////
@@ -66,7 +82,7 @@ class Pronamic_Google_Maps_Site {
 	 */
 	public static function printScripts() {
 		if(self::$printScripts) {
-			wp_print_scripts('pronamic-google-maps-site');
+			wp_print_scripts('pronamic_google_maps_site');
 		}
 	}
 }

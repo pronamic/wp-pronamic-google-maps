@@ -24,7 +24,8 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 		array(
 			'post_type'      => array( 'post_type_a', 'post_type_b' ), 
 			'nopaging'       => true
-		), array(
+		),
+		array(
 			'width'          => 800,
 			'height'         => 800,
 			'map_type_id'    => 'satellite',

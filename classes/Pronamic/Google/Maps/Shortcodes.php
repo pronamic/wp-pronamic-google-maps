@@ -23,10 +23,78 @@ class Pronamic_Google_Maps_Shortcodes {
 
 	//////////////////////////////////////////////////
 
+	public static function parse_map_options( $atts ) {
+		$map_options = array();
+
+		if ( isset( $atts['map_options'] ) ) {
+			$value = $atts['map_options'];
+			
+			if ( is_array( $value ) ) {
+				$map_options = $value;
+			} else {
+				$map_options = json_decode( $value, true );
+			}
+		}
+		
+		$map_options_keys = array(
+			'backgroundColor'        => FILTER_SANITIZE_STRING,
+			// 'center' => ?,
+			'disableDefaultUI'       => FILTER_VALIDATE_BOOLEAN,
+			'disableDoubleClickZoom' => FILTER_VALIDATE_BOOLEAN,
+			'draggable'              => FILTER_VALIDATE_BOOLEAN,
+			'draggableCursor'        => FILTER_SANITIZE_STRING,
+			'draggingCursor'         => FILTER_SANITIZE_STRING,
+			'heading'                => FILTER_VALIDATE_INT,
+			'keyboardShortcuts'      => FILTER_VALIDATE_BOOLEAN,
+			'mapMaker'               => FILTER_VALIDATE_BOOLEAN,
+			'mapTypeControl'         => FILTER_VALIDATE_BOOLEAN,
+			// 'mapTypeControlOptions' => ?,
+			'mapTypeId'              => FILTER_SANITIZE_STRING,
+			'maxZoom'                => FILTER_VALIDATE_INT,
+			'minZoom'                => FILTER_VALIDATE_INT,
+			'noClear'                => FILTER_VALIDATE_BOOLEAN,
+			'overviewMapControl'     => FILTER_VALIDATE_BOOLEAN,
+			// 'overviewMapControlOptions' => ?,
+			'panControl'             => FILTER_VALIDATE_BOOLEAN,
+			// 'panControlOptions' => ?,
+			'rotateControl'          => FILTER_VALIDATE_BOOLEAN,
+			// 'rotateControlOptions' => ?,
+			'scaleControl'           => FILTER_VALIDATE_BOOLEAN,
+			// 'scaleControlOptions' => ?,
+			'scrollwheel'            => FILTER_VALIDATE_BOOLEAN,
+			// 'streetView' => ?,
+			'streetViewControl'      => FILTER_VALIDATE_BOOLEAN,
+			// 'streetViewControlOptions' => ?,
+			// 'styles' => ?,
+			'tilt'                   => FILTER_VALIDATE_INT,
+			'zoom'                   => FILTER_VALIDATE_INT,
+			'zoomControl'            => FILTER_VALIDATE_BOOLEAN,
+			// 'zoomControlOptions' => ?
+		);
+		
+		foreach ( $map_options_keys as $key => $filter ) {
+			// Shortcode attributes are always lower case
+			// @see http://core.trac.wordpress.org/browser/tags/3.5.1/wp-includes/shortcodes.php#L255
+			$key_lower = strtolower( $key );
+
+			if ( isset( $atts[$key_lower] ) ) {
+				$map_options[$key] = filter_var( $atts[$key_lower], $filter );
+			}
+		}
+
+		$atts['map_options'] = $map_options;
+		
+		return $atts;
+	}
+
+	//////////////////////////////////////////////////
+
 	/**
 	 * Shortcode map
 	 */
 	public static function shortcode_map( $atts ) {
+		$atts = self::parse_map_options( $atts );
+
 		$atts['echo'] = false;
 
 		return Pronamic_Google_Maps_Maps::render( $atts );
@@ -65,6 +133,8 @@ class Pronamic_Google_Maps_Shortcodes {
 		$atts = wp_parse_args( $atts, array(
 			'query' => array()
 		) );
+		
+		$atts = self::parse_map_options( $atts );
 
 		// Query
 		$query = $atts['query'];

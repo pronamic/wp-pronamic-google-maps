@@ -35,6 +35,7 @@ use the Pronamic Google Maps plugin:
 		[googlemaps static=true]
 		[googlemaps static=true label=M]
 		[googlemaps width=200 height=200]
+		[googlemaps new_design=true]
 
 	Also easily integrate an Google Maps mashup in your post content:
 
@@ -197,6 +198,7 @@ You should add some code to you templates to add the Google Map.
 			array(
 				'width'          => 300,
 				'height'         => 200, 
+				'nopaging'       => true,
 				'map_type_id'    => 'satellite', 
 				'marker_options' => array(
 					'icon' => 'http://google-maps-icons.googlecode.com/files/photo.png'
@@ -266,6 +268,7 @@ Or througt an filter
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
 = 2.2.5 =
+*	Added support for new Google Maps Visual Refresh setting
 *	Improved post meta data saving, only save meta data if needed
 *	Mashup width and height can now be in percents (for responsive designs)
 

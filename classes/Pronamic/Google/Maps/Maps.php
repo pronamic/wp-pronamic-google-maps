@@ -107,9 +107,8 @@ class Pronamic_Google_Maps_Maps {
 	 * Initialize the plugin
 	 */
 	public static function init() {
-		$options = self::getOptions();
-		if ( $options === false ) {
-			self::setDefaultOptions();
+		if ( ! Pronamic_Google_Maps_Settings::has_settings() ) {
+			Pronamic_Google_Maps_Settings::set_default_options();
 		}
 
 		// Load plugin text domain
@@ -230,7 +229,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @return array
 	 */
 	public static function getOptions() {
-		return get_option( self::OPTION_NAME );
+		return Pronamic_Google_Maps_Settings::get_settings();
 	}
 
 	/**
@@ -239,17 +238,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @return array the default options
 	 */
 	public static function setDefaultOptions() {
-		$options = array(
-			'installed' => true,
-			'active' => array(
-				'page' => true,
-				'post' => true
-			)
-		);
-
-		update_option( self::OPTION_NAME, $options );
-
-		return $options;
+		Pronamic_Google_Maps_Settings::set_default_options();
 	}
 
 	//////////////////////////////////////////////////

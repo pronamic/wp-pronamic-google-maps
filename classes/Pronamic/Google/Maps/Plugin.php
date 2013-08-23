@@ -18,8 +18,6 @@ class Pronamic_Google_Maps_Plugin {
 		add_filter( 'plugin_action_links_' . $plugin, array( __CLASS__, 'actionLinks' ) );
 
 		add_action( 'save_post', array( __CLASS__, 'savePostTryGeocode' ), 200 );
-		
-		register_uninstall_hook( Pronamic_Google_Maps_Maps::$file, 'uninstall' );
 	}
 
 	//////////////////////////////////////////////////
@@ -66,32 +64,5 @@ class Pronamic_Google_Maps_Plugin {
 				}
 			}
 		}
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Uninstall
-	 */
-	public static function uninstall() {
-		global $wpdb;
-
-		// Delete meta
-		$metaKeys = "'" . implode("', '", array(
-			Pronamic_Google_Maps_Post::META_KEY_ACTIVE ,
-			Pronamic_Google_Maps_Post::META_KEY_ADDRESS , 
-			Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION , 
-			Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ,
-			Pronamic_Google_Maps_Post::META_KEY_LATITUDE , 
-			Pronamic_Google_Maps_Post::META_KEY_LONGITUDE , 
-			Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE , 
-			Pronamic_Google_Maps_Post::META_KEY_TITLE , 
-			Pronamic_Google_Maps_Post::META_KEY_ZOOM 
-		)) . "'";
-
-		$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key IN ($metaKeys)");
-
-		// Delete options
-		delete_option(Pronamic_Google_Maps_Maps::OPTION_NAME);
 	}
 }
