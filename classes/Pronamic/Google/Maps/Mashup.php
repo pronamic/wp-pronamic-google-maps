@@ -117,13 +117,13 @@ class Pronamic_Google_Maps_Mashup {
 				}
 
 				$marker = new stdClass();
-				$marker->options = $info->markerOptions;
-				$marker->lat = $pgm->latitude;
-				$marker->lng = $pgm->longitude;
-				$marker->title = $pgm->title;
+				$marker->options     = $info->markerOptions;
+				$marker->lat         = $pgm->latitude;
+				$marker->lng         = $pgm->longitude;
+				$marker->title       = $pgm->title;
 				$marker->description = $description;
-				$marker->post_id = get_the_ID();
-				
+				$marker->post_id     = get_the_ID();
+
 				$options->markers[] = $marker;
 
 				$items .= '<li>';
