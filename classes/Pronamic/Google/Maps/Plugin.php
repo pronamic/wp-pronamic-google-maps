@@ -50,7 +50,7 @@ class Pronamic_Google_Maps_Plugin {
 				$apiClient = new Pronamic_Google_Maps_ApiClient();
 				
 				$data = $apiClient->geocodeAddress($address);
-	
+				
 				foreach($data->results as $result) {
 					$location = $result->geometry->location;
 	
