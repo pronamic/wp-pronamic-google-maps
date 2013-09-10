@@ -26,7 +26,7 @@ class Pronamic_Google_Maps_Plugin {
 	 * Render the option page
 	 */
 	public static function actionLinks( $links ) {
-		$url = admin_url( 'options-general.php?page=' . Pronamic_Google_Maps_Maps::SLUG );
+		$url = admin_url( 'admin.php?page=' . Pronamic_Google_Maps_Maps::SLUG );
 
 		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
 
