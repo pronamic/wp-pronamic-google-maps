@@ -63,7 +63,7 @@ class Pronamic_Google_Maps_Admin {
 			'widgets.php', // Widgets
 		);
 
-		if ( in_array( $hook, $hooks ) ) {
+		if ( in_array( $hook, $enqueue_shooks ) ) {
 			$enqueue = true;
 		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 			$screen = get_current_screen();
