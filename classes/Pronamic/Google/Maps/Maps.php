@@ -14,7 +14,7 @@ class Pronamic_Google_Maps_Maps {
 	 *
 	 * @var string
 	 */
-	const SLUG = 'pronamic-google-maps';
+	const SLUG = 'pronamic_google_maps';
 
 	//////////////////////////////////////////////////
 

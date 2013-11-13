@@ -57,15 +57,22 @@ class Pronamic_Google_Maps_Admin {
 	public static function enqueueScripts( $hook ) {
 		$enqueue = false;
 
-		if(in_array($hook, array('toplevel_page_pronamic_google_maps', 'google-maps_page_pronamic_google_maps_geocoder', 'widgets.php'))) {
+		$enqueue_shooks = array(
+			'toplevel_page_pronamic_google_maps', // Pronamic Google Maps
+			'google-maps_page_pronamic_google_maps_geocoder', // Geocoder
+			'widgets.php', // Widgets
+			'toplevel_page_shopp-products', // Shopp products edit page
+		);
+
+		if ( in_array( $hook, $enqueue_shooks ) ) {
 			$enqueue = true;
-		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
+		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 			$screen = get_current_screen();
 	
 			$options = Pronamic_Google_Maps_Maps::getOptions();
 			$types = $options['active'];
 			
-			if(isset($types[$screen->post_type])) {
+			if ( isset( $types[$screen->post_type] ) ) {
 				$enqueue = $types[$screen->post_type];
 			}
 		} 
@@ -237,6 +244,8 @@ class Pronamic_Google_Maps_Admin {
 			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
 			self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+		} else {
+			self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, null );
 		}
 	}
 
@@ -250,7 +259,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function getGeocodeQueryArgs() {
 		return array(
 			'post_type'      => 'any', 
-			'posts_per_page' => 1,
+			'posts_per_page' => -1,
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
@@ -261,8 +270,8 @@ class Pronamic_Google_Maps_Admin {
 				// The geocoder status should not be OK
 				array(
 					'key'     => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS,
-					'value'   => array( Pronamic_Google_Maps_GeocoderStatus::OK, Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS ),
-					'compare' => 'NOT IN'
+					'value'   => null,
+					'compare' => 'NOT EXISTS'
 				) 
 			)
 		);
