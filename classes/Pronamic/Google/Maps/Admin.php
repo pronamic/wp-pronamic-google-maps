@@ -61,6 +61,7 @@ class Pronamic_Google_Maps_Admin {
 			'toplevel_page_pronamic_google_maps', // Pronamic Google Maps
 			'google-maps_page_pronamic_google_maps_geocoder', // Geocoder
 			'widgets.php', // Widgets
+			'toplevel_page_shopp-products', // Shopp products edit page
 		);
 
 		if ( in_array( $hook, $enqueue_shooks ) ) {
