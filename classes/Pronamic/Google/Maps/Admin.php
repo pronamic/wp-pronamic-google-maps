@@ -57,15 +57,21 @@ class Pronamic_Google_Maps_Admin {
 	public static function enqueueScripts( $hook ) {
 		$enqueue = false;
 
-		if(in_array($hook, array('toplevel_page_pronamic_google_maps', 'google-maps_page_pronamic_google_maps_geocoder', 'widgets.php'))) {
+		$enqueue_shooks = array(
+			'toplevel_page_pronamic_google_maps', // Pronamic Google Maps
+			'google-maps_page_pronamic_google_maps_geocoder', // Geocoder
+			'widgets.php', // Widgets
+		);
+
+		if ( in_array( $hook, $hooks ) ) {
 			$enqueue = true;
-		} elseif(in_array($hook, array('post-new.php', 'post.php'))) {
+		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 			$screen = get_current_screen();
 	
 			$options = Pronamic_Google_Maps_Maps::getOptions();
 			$types = $options['active'];
 			
-			if(isset($types[$screen->post_type])) {
+			if ( isset( $types[$screen->post_type] ) ) {
 				$enqueue = $types[$screen->post_type];
 			}
 		} 
