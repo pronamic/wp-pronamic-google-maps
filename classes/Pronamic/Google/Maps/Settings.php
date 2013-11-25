@@ -153,8 +153,14 @@ class Pronamic_Google_Maps_Settings {
 	 * @return array
 	 */
 	public static function get_active_post_types() {
-		$legacy_saved_settings = get_option( 'Pronamic_Google_maps' );
-		return $legacy_saved_settings['active'];
+		$active = array();
+
+		$legacy_options = get_option( 'Pronamic_Google_maps' );
+		if ( isset( $legacy_options['active'] ) ) {
+			$active = $legacy_options['active'];
+		}
+		
+		return $active;
 	}
 	
 	/**
