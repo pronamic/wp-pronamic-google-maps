@@ -307,10 +307,13 @@ class Pronamic_Google_Maps_Maps {
 	public static function getStaticMapUrl(Pronamic_Google_Maps_Info $info) {
 		$url = 'http://maps.google.com/maps/api/staticmap?';
 
+		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
+		$height = Pronamic_Google_Maps_Size::parse( $info->height );
+
 		$parameters = array();
 		$parameters['center']  = $info->latitude . ',' . $info->longitude;
 		$parameters['zoom']    = $info->mapOptions->zoom;
-		$parameters['size']    = $info->width . 'x' . $info->height;
+		$parameters['size']    = $width->get_pixels( self::$defaultWidth ) . 'x' . $height->get_pixels( self::$defaultHeight );
 		$parameters['maptype'] = $info->mapOptions->mapTypeId;
 		$parameters['sensor']  = 'false';
 
@@ -346,14 +349,17 @@ class Pronamic_Google_Maps_Maps {
 	public static function getMapHtml( Pronamic_Google_Maps_Info $info ) {
 		$content = '<div class="pgm">';
 
-		if($info->isDynamic()) {
-			$content .= sprintf('<input type="hidden" name="pgm-info" value="%s" />', esc_attr(json_encode($info)));
+		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
+		$height = Pronamic_Google_Maps_Size::parse( $info->height );
 
-			$content .= sprintf('<div class="canvas" style="width: %dpx; height: %dpx;">', $info->width, $info->height);
-			$content .= sprintf('  <img src="%s" alt="" />', self::getStaticMapUrl($info));
-			$content .= sprintf('</div>');
+		if ( $info->isDynamic() ) {
+			$content .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
+
+			$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $width, $height );
+			$content .= sprintf( '  <img src="%s" alt="" />', self::getStaticMapUrl( $info ) );
+			$content .= sprintf( '</div>' );
 		} else {
-			$content .= sprintf('<img src="%s" alt="" />', self::getStaticMapUrl($info));
+			$content .= sprintf( '<img src="%s" alt="" />', self::getStaticMapUrl( $info ) );
 		}
 
 		$content .= '</div>';
@@ -428,7 +434,7 @@ class Pronamic_Google_Maps_Maps {
 
 			$html = self::getMapHtml($info);
 
-			if($info->isDynamic()) {
+			if ( $info->isDynamic() ) {
 				Pronamic_Google_Maps_Site::requireSiteScript();
 			}
 
