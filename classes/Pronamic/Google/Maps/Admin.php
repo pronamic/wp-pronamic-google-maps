@@ -149,10 +149,14 @@ class Pronamic_Google_Maps_Admin {
 	public static function addMetaBox() {
 		$options = Pronamic_Google_Maps_Maps::getOptions();
 
-		$types = $options['active'];
-
-		foreach($types as $name => $active) {
-			Pronamic_Google_Maps_MetaBox::register($name);
+		if ( isset( $options['active'] ) ) {
+			$types = $options['active'];
+	
+			if ( is_array( $types ) ) {
+				foreach ( $types as $name => $active ) {
+					Pronamic_Google_Maps_MetaBox::register( $name );
+				}
+			}
 		}
 	}
 
