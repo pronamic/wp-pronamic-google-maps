@@ -4,7 +4,7 @@ Tags: pronamic, google maps, widget, placemarker, geo, v3, api, custom types, la
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
 Tested up to: 3.7.1
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv2 or later
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
@@ -266,6 +266,9 @@ Or througt an filter
 *	$("#pronamic-google-maps-meta-box .handlediv").change(function() { google.maps.event.trigger(map, "resize"); });
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
+
+= 2.2.8 =
+*       Added a <noscript> tag around the fallback static map.
 
 = 2.2.7 =
 *	Fixed error on saving Pronamic Google Maps options.
