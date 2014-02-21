@@ -356,7 +356,7 @@ class Pronamic_Google_Maps_Maps {
 			$content .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
 
 			$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $width, $height );
-			$content .= sprintf( '  <img src="%s" alt="" />', self::getStaticMapUrl( $info ) );
+			$content .= sprintf( '	<noscript><img src="%s" alt="" /></noscript>', self::getStaticMapUrl( $info ) );
 			$content .= sprintf( '</div>' );
 		} else {
 			$content .= sprintf( '<img src="%s" alt="" />', self::getStaticMapUrl( $info ) );
