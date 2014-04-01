@@ -150,9 +150,11 @@ class Pronamic_Google_Maps_Mashup {
 		$content .= sprintf( '</div>' );
 
 		if ( ! empty( $items ) ) {
+			$content .= '<noscript>';
 			$content .= '<ul>';
 			$content .= $items;
 			$content .= '</ul>';
+			$content .= '</noscript>';
 		}
 
 		$content .= '</div>';
