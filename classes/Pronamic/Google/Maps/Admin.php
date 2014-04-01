@@ -68,9 +68,8 @@ class Pronamic_Google_Maps_Admin {
 			$enqueue = true;
 		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 			$screen = get_current_screen();
-	
-			$options = Pronamic_Google_Maps_Maps::getOptions();
-			$types = $options['active'];
+
+			$types = Pronamic_Google_Maps_Settings::get_active_post_types();
 			
 			if ( isset( $types[$screen->post_type] ) ) {
 				$enqueue = $types[$screen->post_type];
