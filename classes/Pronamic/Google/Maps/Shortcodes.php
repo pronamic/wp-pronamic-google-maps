@@ -2,7 +2,7 @@
 
 /**
  * Title: Pronamic Google Maps shortcodes
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
@@ -28,14 +28,14 @@ class Pronamic_Google_Maps_Shortcodes {
 
 		if ( isset( $atts['map_options'] ) ) {
 			$value = $atts['map_options'];
-			
+
 			if ( is_array( $value ) ) {
 				$map_options = $value;
 			} else {
 				$map_options = json_decode( $value, true );
 			}
 		}
-		
+
 		$map_options_keys = array(
 			'backgroundColor'        => FILTER_SANITIZE_STRING,
 			// 'center' => ?,
@@ -71,19 +71,19 @@ class Pronamic_Google_Maps_Shortcodes {
 			'zoomControl'            => FILTER_VALIDATE_BOOLEAN,
 			// 'zoomControlOptions' => ?
 		);
-		
+
 		foreach ( $map_options_keys as $key => $filter ) {
 			// Shortcode attributes are always lower case
 			// @see http://core.trac.wordpress.org/browser/tags/3.5.1/wp-includes/shortcodes.php#L255
 			$key_lower = strtolower( $key );
 
-			if ( isset( $atts[$key_lower] ) ) {
-				$map_options[$key] = filter_var( $atts[$key_lower], $filter );
+			if ( isset( $atts[ $key_lower ] ) ) {
+				$map_options[ $key ] = filter_var( $atts[ $key_lower ], $filter );
 			}
 		}
 
 		$atts['map_options'] = $map_options;
-		
+
 		return $atts;
 	}
 
@@ -102,7 +102,7 @@ class Pronamic_Google_Maps_Shortcodes {
 
 	/**
 	 * Shortcode map hyphen
-	 * 
+	 *
 	 * @see http://codex.wordpress.org/Shortcode_API#Hyphens
 	 * @deprecated 2.3
 	 */
@@ -133,7 +133,7 @@ class Pronamic_Google_Maps_Shortcodes {
 		$atts = wp_parse_args( $atts, array(
 			'query' => array()
 		) );
-		
+
 		$atts = self::parse_map_options( $atts );
 
 		// Query

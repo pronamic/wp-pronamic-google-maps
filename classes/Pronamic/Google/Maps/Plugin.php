@@ -2,7 +2,7 @@
 
 /**
  * Title: Pronamic Google Maps plugin
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
@@ -28,9 +28,9 @@ class Pronamic_Google_Maps_Plugin {
 	public static function actionLinks( $links ) {
 		$url = admin_url( 'admin.php?page=' . Pronamic_Google_Maps_Maps::SLUG );
 
-		$link = '<a href="' . $url . '">' . __('Settings') . '</a>';
+		$link = '<a href="' . $url . '">' . __( 'Settings', 'pronamic_google_maps' ) . '</a>';
 
-		array_unshift($links, $link);
+		array_unshift( $links, $link );
 
 		return $links;
 	}
@@ -45,19 +45,19 @@ class Pronamic_Google_Maps_Plugin {
 		$latitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
 		$longitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
 
-		if( ! empty( $address ) ) {
-			if( empty( $latitude) && empty( $longitude ) ) {
+		if ( ! empty( $address ) ) {
+			if ( empty( $latitude) && empty( $longitude ) ) {
 				$apiClient = new Pronamic_Google_Maps_ApiClient();
-				
-				$data = $apiClient->geocodeAddress($address);
-				
-				foreach($data->results as $result) {
+
+				$data = $apiClient->geocodeAddress( $address );
+
+				foreach ( $data->results as $result ) {
 					$location = $result->geometry->location;
-	
-					$latitude = $location->lat;
+
+					$latitude  = $location->lat;
 					$longitude = $location->lng;
-					$status = Pronamic_Google_Maps_GeocoderStatus::OK;
-	
+					$status    = Pronamic_Google_Maps_GeocoderStatus::OK;
+
 					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
 					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
 					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );

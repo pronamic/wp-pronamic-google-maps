@@ -28,11 +28,11 @@ if ( function_exists( 'spl_autoload_register' ) ) {
 			require_once $file;
 		}
 	}
-	
+
 	spl_autoload_register( 'pronamic_google_maps_autoload' );
-	
+
 	require_once 'includes/functions.php';
-	
+
 	Pronamic_Google_Maps_Maps::bootstrap( __FILE__ );
 
 }

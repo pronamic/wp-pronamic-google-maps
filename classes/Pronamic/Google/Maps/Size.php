@@ -2,7 +2,7 @@
 
 /**
  * Title: Pronamic Google Maps admin
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
@@ -11,14 +11,14 @@
 class Pronamic_Google_Maps_Size {
 	/**
 	 * The number
-	 * 
+	 *
 	 * @var int
 	 */
 	public $number;
 
 	/**
 	 * The unit (px, %, em, etc.)
-	 * 
+	 *
 	 * @var string
 	 */
 	public $unit;
@@ -27,7 +27,7 @@ class Pronamic_Google_Maps_Size {
 
 	/**
 	 * Pattern for size
-	 * 
+	 *
 	 * @see http://www.w3.org/TR/CSS2/syndata.html#value-def-length
 	 * @var string
 	 */
@@ -37,7 +37,7 @@ class Pronamic_Google_Maps_Size {
 
 	/**
 	 * Construct size
-	 * 
+	 *
 	 * @param string $value
 	 */
 	public function __construct( $number, $unit ) {
@@ -49,7 +49,7 @@ class Pronamic_Google_Maps_Size {
 
 	/**
 	 * Get pixels
-	 * 
+	 *
 	 * @param int $context
 	 * @return number
 	 */
@@ -58,10 +58,10 @@ class Pronamic_Google_Maps_Size {
 
 		if ( $this->unit == '%' ) {
 			$ratio = $context / 100;
-			
+
 			$pixels = $ratio * $this->number;
 		}
-		
+
 		return $pixels;
 	}
 
@@ -69,7 +69,7 @@ class Pronamic_Google_Maps_Size {
 
 	/**
 	 * To string
-	 * 
+	 *
 	 * @return string
 	 */
 	public function __toString() {
@@ -80,24 +80,24 @@ class Pronamic_Google_Maps_Size {
 
 	/**
 	 * Parse the specified value in to an size object
-	 * 
+	 *
 	 * @param string $value
 	 */
 	public static function parse( $value ) {
 		$value = trim( $value );
-		
+
 		preg_match( self::PATTERN, $value, $matches );
-		
+
 		$number = 0;
 		if ( isset( $matches['number'] ) ) {
 			$number = (int) $matches['number'];
 		}
-		
+
 		$unit = 'px';
 		if ( isset( $matches['unit'] ) ) {
 			$unit = $matches['unit'];
 		}
-		
+
 		return new self( $number, $unit );
 	}
 }

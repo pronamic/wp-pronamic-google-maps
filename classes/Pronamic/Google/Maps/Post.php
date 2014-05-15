@@ -2,7 +2,7 @@
 
 /**
  * Title: Pronamic Google Maps post
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma

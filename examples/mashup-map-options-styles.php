@@ -7,7 +7,7 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 	pronamic_google_maps_mashup(
 		array(
 			'post_type'   => 'post',
-			'nopaging'    => true
+			'nopaging'    => true,
 		),
 		array(
 			'width'       => 800,
@@ -20,11 +20,11 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 						'featureType' => 'water',
 						'stylers'     => array(
 							(object) array( 'visibility' => 'on' ),
-							(object) array( 'hue'        => '#ff0011' )
-						)
-					)
-				)
-			)
+							(object) array( 'hue' => '#ff0011' ),
+						),
+					),
+				),
+			),
 		)
 	);
 }

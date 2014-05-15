@@ -10,7 +10,7 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 		// https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 		'map_options' => array(
 			'minZoom' => 5,
-			'maxZoom' => 10			
-		)
+			'maxZoom' => 10,
+		),
 	) );
 }
