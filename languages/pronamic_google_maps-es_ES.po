@@ -1,0 +1,170 @@
+# Translation of 2.2.3 in Serbian
+# This file is distributed under the same license as the 2.2.3 package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2013-11-25 12:13+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.7\n"
+"Project-Id-Version: 2.2.3\n"
+"POT-Creation-Date: \n"
+"Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
+"Language-Team: \n"
+
+#: classes/Pronamic/Google/Maps/Admin.php:88
+#: classes/Pronamic/Google/Maps/Admin.php:89
+#: classes/Pronamic/Google/Maps/MetaBox.php:27
+msgid "Google Maps"
+msgstr "Google Maps"
+
+#: classes/Pronamic/Google/Maps/Admin.php:101
+#: classes/Pronamic/Google/Maps/Admin.php:102
+msgid "Geocoder"
+msgstr "Geocoder"
+
+#: classes/Pronamic/Google/Maps/Admin.php:111
+msgid "General"
+msgstr "General"
+
+#: classes/Pronamic/Google/Maps/Plugin.php:33
+msgid "Settings"
+msgstr "Ajustes"
+
+#: classes/Pronamic/Google/Maps/Widget.php:36
+msgid "Use this widget to add an Google Maps as a widget."
+msgstr "Utilice este widget para añadir Google Maps como un widget."
+
+#: classes/Pronamic/Google/Maps/Widget.php:138
+msgid "pixels"
+msgstr "pixeles"
+
+#: classes/Pronamic/Google/Maps/Widget.php:139
+msgid "percent"
+msgstr "porcentaje"
+
+#: views/meta-box.php:15 views/page-general.php:27
+msgid "Active"
+msgstr "Activo"
+
+#: views/meta-box.php:19
+msgid "Show Google Maps"
+msgstr "Mostrar Google Maps"
+
+#: views/meta-box.php:24 views/page-geocoder.php:40
+#: views/page-geocoder.php:115
+msgid "Title"
+msgstr "Título"
+
+#: views/meta-box.php:32
+msgid "Description"
+msgstr "Descripción"
+
+#: views/meta-box.php:40 views/page-geocoder.php:48
+#: views/page-geocoder.php:116
+msgid "Address"
+msgstr "Dirección"
+
+#: views/meta-box.php:51
+msgid "Geocode &darr;"
+msgstr "Geocode &darr;"
+
+#: views/meta-box.php:53
+msgid "Reverse Geocode &uarr;"
+msgstr "Geocode Reverso &uarr;"
+
+#: views/meta-box.php:58 views/page-geocoder.php:64
+msgid "Location"
+msgstr "Localización"
+
+#: views/meta-box.php:69
+msgid "Tip: Change the zoom level and map type to your own wishes."
+msgstr "Consejo: Cambie el nivel de zoom y el tipo de mapa como más le guste."
+
+#: views/page-general.php:15
+msgid "Configuration - Pronamic Google Maps"
+msgstr "Configuración - Pronamic de Google Maps"
+
+#: views/page-general.php:26
+msgid "Post type"
+msgstr "Tipo de post"
+
+#: views/page-general.php:49
+msgid "Activate Google Maps"
+msgstr "Activar Google Maps"
+
+#: views/page-general.php:61
+msgid "Save Changes"
+msgstr "Salvar los Cambios"
+
+#: views/page-geocoder.php:4
+msgid "Geocoder - Pronamic Google Maps"
+msgstr "Geocoder - Pronamic de Google Maps"
+
+#: views/page-geocoder.php:16
+msgid "Number posts to geocode: %s"
+msgstr "Número de posts para geocode: %s"
+
+#: views/page-geocoder.php:30
+msgid "ID"
+msgstr "ID"
+
+#: views/page-geocoder.php:56
+msgid "Status"
+msgstr "Estado"
+
+#: views/page-geocoder.php:75
+msgid "Geocode"
+msgstr "Geocode"
+
+#: views/page-geocoder.php:96
+msgid "Zero results"
+msgstr "Cero resultados"
+
+#: views/page-geocoder.php:102
+msgid ""
+"We found no geocoding results for the following %s posts, adjust them "
+"manually if needed."
+msgstr ""
+"No encontramos resultados para los siguientes %s posts, ajústelos "
+"manualmente si fuera necesario."
+
+#: views/uninstall-form.php:12
+msgid "Delete plugin"
+msgstr "Eliminar el plugin"
+
+#: views/uninstall-form.php:17
+msgid "Warning! This will delete all Pronamic Google Maps data and options."
+msgstr ""
+"¡Advertencia! Esto borrará todos los datos y opciones de Google Maps "
+"Pronamic."
+
+#: views/uninstall-form.php:23
+msgid "Uninstall"
+msgstr "Desinstalar"
+
+#: views/widget-form.php:36
+msgid "Latitude"
+msgstr "Latitud"
+
+#: views/widget-form.php:42
+msgid "Longitude"
+msgstr "Longitud"
+
+#: views/widget-form.php:52
+msgid "Width"
+msgstr "Ancho"
+
+#: views/widget-form.php:60
+msgid "Height"
+msgstr "Largo"
+
+#: views/widget-form.php:69
+msgid "Dynamic"
+msgstr "Dinámico"
+
+#: views/widget-form.php:72
+msgid "Static"
+msgstr "Estático"

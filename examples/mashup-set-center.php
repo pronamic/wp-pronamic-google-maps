@@ -7,7 +7,7 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 	pronamic_google_maps_mashup(
 		array(
 			'post_type'   => 'post',
-			'nopaging'    => true
+			'nopaging'    => true,
 		),
 		array(
 			'width'       => 800,
@@ -16,7 +16,7 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 			'latitude'    => 52,
 			'longitude'   => 8,
 			'zoom'        => 4,
-			'fit_bounds'  => false
+			'fit_bounds'  => false,
 		)
 	);
 }

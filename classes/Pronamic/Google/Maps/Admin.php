@@ -2,16 +2,16 @@
 
 /**
  * Title: Pronamic Google Maps admin
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
  * @version 1.0
  */
 class Pronamic_Google_Maps_Admin {
-	
+
 	public static $pronamic_google_maps_settings;
-	
+
 	/**
 	 * Bootstrap the Google Maps admin
 	 */
@@ -25,7 +25,7 @@ class Pronamic_Google_Maps_Admin {
 
 		add_action( 'wp_ajax_pgm_geocode',   array( __CLASS__, 'ajaxGeocode' ) );
 
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts') );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
 
 		// Scripts
 		wp_register_script(
@@ -39,12 +39,12 @@ class Pronamic_Google_Maps_Admin {
 			'pronamic_google_maps_admin',
 			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file )
 		);
-		
+
 		// Add the localization for giving the settings.
 		wp_localize_script( 'pronamic_google_maps_admin', 'pronamic_google_maps_settings', array(
 			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' )
 		) );
-		
+
 		// Load the Settings Class
 		self::$pronamic_google_maps_settings = new Pronamic_Google_Maps_Settings();
 	}
@@ -58,24 +58,27 @@ class Pronamic_Google_Maps_Admin {
 		$enqueue = false;
 
 		$enqueue_shooks = array(
-			'toplevel_page_pronamic_google_maps', // Pronamic Google Maps
-			'google-maps_page_pronamic_google_maps_geocoder', // Geocoder
-			'widgets.php', // Widgets
-			'toplevel_page_shopp-products', // Shopp products edit page
+			// Pronamic Google Maps
+			'toplevel_page_pronamic_google_maps',
+			// Geocoder
+			'google-maps_page_pronamic_google_maps_geocoder',
+			// Widgets
+			'widgets.php',
+			// Shopp products edit page
+			'toplevel_page_shopp-products',
 		);
 
 		if ( in_array( $hook, $enqueue_shooks ) ) {
 			$enqueue = true;
 		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 			$screen = get_current_screen();
-	
-			$options = Pronamic_Google_Maps_Maps::getOptions();
-			$types = $options['active'];
-			
-			if ( isset( $types[$screen->post_type] ) ) {
-				$enqueue = $types[$screen->post_type];
+
+			$types = Pronamic_Google_Maps_Settings::get_active_post_types();
+
+			if ( isset( $types[ $screen->post_type ] ) ) {
+				$enqueue = $types[ $screen->post_type ];
 			}
-		} 
+		}
 
 		if ( $enqueue ) {
 			wp_enqueue_script( 'pronamic_google_maps_admin' );
@@ -90,7 +93,7 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function initialize() {
 		// Actions and hooks
-		add_action('add_meta_boxes', array(__CLASS__, 'addMetaBox'));
+		add_action( 'add_meta_boxes', array( __CLASS__, 'addMetaBox' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -102,9 +105,9 @@ class Pronamic_Google_Maps_Admin {
 		add_menu_page(
 			__( 'Google Maps', 'pronamic_google_maps' ), // page title
 			__( 'Google Maps', 'pronamic_google_maps' ), // menu title
-			'manage_options', // capability 
+			'manage_options', // capability
 			'pronamic_google_maps', // menu slug
-			array( __CLASS__, 'pageGeneral' ), // function 
+			array( __CLASS__, 'pageGeneral' ), // function
 			// http://www.veryicon.com/icons/system/palm/google-maps.html
 			plugins_url( 'images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file ) // icon url
 		);
@@ -113,10 +116,10 @@ class Pronamic_Google_Maps_Admin {
 		// @see wp-admin/menu.php
 		add_submenu_page(
 			'pronamic_google_maps', // parent slug
-			__( 'Geocoder', 'pronamic_google_maps' ), // page title 
-			__( 'Geocoder', 'pronamic_google_maps' ), // menu title 
-			'manage_options', // capability 
-			'pronamic_google_maps_geocoder', // menu slug 
+			__( 'Geocoder', 'pronamic_google_maps' ), // page title
+			__( 'Geocoder', 'pronamic_google_maps' ), // menu title
+			'manage_options', // capability
+			'pronamic_google_maps_geocoder', // menu slug
 			array( __CLASS__, 'pageGeocoder' ) // function
 		);
 
@@ -131,14 +134,14 @@ class Pronamic_Google_Maps_Admin {
 	 * Render general page
 	 */
 	public static function pageGeneral() {
-		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/page-general.php';
+		include plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'views/page-general.php';
 	}
 
 	/**
 	 * Render geocoder page
 	 */
 	public static function pageGeocoder() {
-		include plugin_dir_path(Pronamic_Google_Maps_Maps::$file) . 'views/page-geocoder.php';
+		include plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'views/page-geocoder.php';
 	}
 
 	//////////////////////////////////////////////////
@@ -149,10 +152,14 @@ class Pronamic_Google_Maps_Admin {
 	public static function addMetaBox() {
 		$options = Pronamic_Google_Maps_Maps::getOptions();
 
-		$types = $options['active'];
+		if ( isset( $options['active'] ) ) {
+			$types = $options['active'];
 
-		foreach($types as $name => $active) {
-			Pronamic_Google_Maps_MetaBox::register($name);
+			if ( is_array( $types ) ) {
+				foreach ( $types as $name => $active ) {
+					Pronamic_Google_Maps_MetaBox::register( $name );
+				}
+			}
 		}
 	}
 
@@ -161,7 +168,7 @@ class Pronamic_Google_Maps_Admin {
 	/**
 	 * Update post meta, only store post meta when there is meta to store
 	 * @see http://core.trac.wordpress.org/browser/tags/3.4.2/wp-includes/post.php#L1533
-	 * 
+	 *
 	 * @param string $post_id
 	 * @param string $meta_key
 	 * @param string $meta_value
@@ -172,7 +179,7 @@ class Pronamic_Google_Maps_Admin {
 			delete_post_meta( $post_id, $meta_key );
 		} else {
 			update_post_meta( $post_id, $meta_key, $meta_value, $prev_value );
-		}			
+		}
 	}
 
 	/**
@@ -200,12 +207,12 @@ class Pronamic_Google_Maps_Admin {
 				return $post_id;
 			}
 		}
-		
+
 		// Original values
 		$pgm = pronamic_get_google_maps_meta();
 
 		// Active
-		$active = filter_input(INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN );
+		$active = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN );
 		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : null );
 
 		// Latitude
@@ -253,27 +260,27 @@ class Pronamic_Google_Maps_Admin {
 
 	/**
 	 * Get the geocode query arguments
-	 * 
+	 *
 	 * @return array
 	 */
 	public static function getGeocodeQueryArgs() {
 		return array(
-			'post_type'      => 'any', 
+			'post_type'      => 'any',
 			'posts_per_page' => -1,
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
 					'key'     => Pronamic_Google_Maps_Post::META_KEY_ADDRESS,
 					'value'   => '',
-					'compare' => '!='
-				) , 
+					'compare' => '!=',
+				),
 				// The geocoder status should not be OK
 				array(
 					'key'     => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS,
 					'value'   => null,
-					'compare' => 'NOT EXISTS'
-				) 
-			)
+					'compare' => 'NOT EXISTS',
+				),
+			),
 		);
 	}
 
@@ -295,7 +302,7 @@ class Pronamic_Google_Maps_Admin {
 		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
 
 		// Status
-		$status = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING);
+		$status = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING );
 		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
 
 		// Result
@@ -304,11 +311,11 @@ class Pronamic_Google_Maps_Admin {
 
 		// Next post
 		$query = new WP_Query();
-		$query->query(Pronamic_Google_Maps_Admin::getGeocodeQueryArgs());
+		$query->query( Pronamic_Google_Maps_Admin::getGeocodeQueryArgs() );
 
 		$result->foundPosts = $query->found_posts;
 
-		while($query->have_posts()) {
+		while ( $query->have_posts() ) {
 			$query->the_post();
 
 			$pgm = pronamic_get_google_maps_meta();
@@ -326,7 +333,7 @@ class Pronamic_Google_Maps_Admin {
 		header( 'Content-Type: application/json' );
 
 		exit( $response );
-		
+
 		/*
 		 Queries to empty latitude, longitude and geocode status meta
 		 UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('_pronamic_google_maps_latitude', '_pronamic_google_maps_longitude');

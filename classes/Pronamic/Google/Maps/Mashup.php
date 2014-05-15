@@ -2,7 +2,7 @@
 
 /**
  * Title: Pronamic Google Maps mashup
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
  * @author Remco Tolsma
@@ -22,16 +22,10 @@ class Pronamic_Google_Maps_Mashup {
 			'hide_list'              => true,
 			'fit_bounds'             => true,
 			'center_client_location' => false,
-			'marker_options'         => array(
-
-			),
-			'map_options'            => array(
-
-			),
-			'marker_cluster_options' => array(
-				
-			),
-			'echo'                   => true
+			'marker_options'         => array(),
+			'map_options'            => array(),
+			'marker_cluster_options' => array(),
+			'echo'                   => true,
 		);
 
 		$arguments = wp_parse_args( $arguments, $defaults );
@@ -45,11 +39,11 @@ class Pronamic_Google_Maps_Mashup {
 		$options = new stdClass();
 		$options->width = $arguments['width'];
 		if ( is_numeric( $options->width ) ) {
-			$options->width = '' . $options->width . 'px'; 
+			$options->width = '' . $options->width . 'px';
 		}
 		$options->height = $arguments['height'];
 		if ( is_numeric( $options->height ) ) {
-			$options->height = '' . $options->height . 'px'; 
+			$options->height = '' . $options->height . 'px';
 		}
 		$options->center = new stdClass();
 		$options->center->latitude = $arguments['latitude'];
@@ -57,7 +51,7 @@ class Pronamic_Google_Maps_Mashup {
 		$options->hideList = $arguments['hide_list'];
 		$options->fitBounds = filter_var( $arguments['fit_bounds'], FILTER_VALIDATE_BOOLEAN );
 		$options->centerClientLocation = $arguments['center_client_location'];
-			
+
 		// Map options
 		$options->mapOptions = new stdClass();
 		$options->mapOptions->mapTypeId = $arguments['map_type_id'];
@@ -67,7 +61,7 @@ class Pronamic_Google_Maps_Mashup {
 
 			$options->mapOptions->$key = $value;
 		}
-		
+
 		// Marker cluster options
 		if ( ! empty( $arguments['marker_clusterer_options'] ) ) {
 			wp_enqueue_script( 'google-maps-markerclustererplus' );
@@ -79,21 +73,21 @@ class Pronamic_Google_Maps_Mashup {
 				$options->markerClustererOptions->$key = $value;
 			}
 		}
-		
+
 		$options->markers = array();
 
 		// HTML
 		$items = '';
-		while ( $query->have_posts() ) { 
+		while ( $query->have_posts() ) {
 			$query->the_post();
 
 			$pgm = Pronamic_Google_Maps_Maps::getMetaData();
 
 			if ( $pgm->active ) {
 				$description = sprintf(
-					'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
-					get_permalink() , 
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) , 
+					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
+					get_permalink() ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 
@@ -112,7 +106,7 @@ class Pronamic_Google_Maps_Mashup {
 
 				foreach ( $marker_options as $key => $value ) {
 					$value = apply_filters( 'pronamic_google_maps_marker_options_' . $key, $value );
-		
+
 					$info->markerOptions->$key = $value;
 				}
 
@@ -130,9 +124,9 @@ class Pronamic_Google_Maps_Mashup {
 				$items .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
 
 				$item = sprintf(
-					'<a href="%s" title="%s" rel="bookmark">%s</a>' , 
-					get_permalink() , 
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) , 
+					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
+					get_permalink() ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 
@@ -150,9 +144,11 @@ class Pronamic_Google_Maps_Mashup {
 		$content .= sprintf( '</div>' );
 
 		if ( ! empty( $items ) ) {
+			$content .= '<noscript>';
 			$content .= '<ul>';
 			$content .= $items;
 			$content .= '</ul>';
+			$content .= '</noscript>';
 		}
 
 		$content .= '</div>';

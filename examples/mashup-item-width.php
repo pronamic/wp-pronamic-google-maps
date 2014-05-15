@@ -15,7 +15,7 @@ function prefix_pronamic_google_maps_mashup_item( $content ) {
 	);
 
 	$content .= '</div>';
-	
+
 	return $content;
 }
 

@@ -10,10 +10,10 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 		// https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 		'map_options' => array(
 			'minZoom' => 5,
-			'maxZoom' => 10			
-		)
+			'maxZoom' => 10,
+		),
 	) );
-	
+
 	$post_id   = get_the_ID();
 
 	$latitude  = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
