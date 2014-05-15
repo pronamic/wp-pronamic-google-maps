@@ -27,7 +27,7 @@ module.exports = function( grunt ) {
 
 		// JSHint
 		jshint: {
-			files: ['Gruntfile.js', 'admin/js/*.js' ],
+			files: ['Gruntfile.js' ],
 			options: {
 				// options here to override JSHint defaults
 				globals: {
@@ -76,15 +76,10 @@ module.exports = function( grunt ) {
 					'**',
 					'!.*',
 					'!.*/**',
-					'!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
-					'!phpunit.xml',
 					'!project.ruleset.xml',
-					'!readme.md',
-					'!documentation/**',
 					'!node_modules/**',
-					'!tests/**',
 					'!wp-svn/**'
 				],
 				dest: 'deploy',
