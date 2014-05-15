@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pronamic Google Maps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 16:32+0100\n"
-"PO-Revision-Date: 2013-06-03 17:01+0100\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/pronamic-google-"
+"maps\n"
+"POT-Creation-Date: 2014-05-15 12:17:12+00:00\n"
+"PO-Revision-Date: 2014-05-15 14:17+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -13,25 +14,30 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/Pronamic/Google/Maps/Admin.php:96
-#: classes/Pronamic/Google/Maps/Admin.php:97
+#: classes/Pronamic/Google/Maps/Admin.php:106
+#: classes/Pronamic/Google/Maps/Admin.php:107
 #: classes/Pronamic/Google/Maps/MetaBox.php:27
 #: classes/Pronamic/Google/Maps/Widget.php:40
 msgid "Google Maps"
 msgstr "Google Maps"
 
-#: classes/Pronamic/Google/Maps/Admin.php:109
-#: classes/Pronamic/Google/Maps/Admin.php:110 views/meta-box.php:48
+#: classes/Pronamic/Google/Maps/Admin.php:119
+#: classes/Pronamic/Google/Maps/Admin.php:120 views/meta-box.php:48
 msgid "Geocoder"
 msgstr "Geocoder"
 
-#: classes/Pronamic/Google/Maps/Admin.php:119
+#: classes/Pronamic/Google/Maps/Admin.php:129
 #: classes/Pronamic/Google/Maps/Settings.php:51
 msgid "General"
 msgstr "Algemeen"
+
+#: classes/Pronamic/Google/Maps/Mashup.php:90
+#: classes/Pronamic/Google/Maps/Mashup.php:129
+msgid "Permalink to %s"
+msgstr "Permalink naar %s"
 
 #: classes/Pronamic/Google/Maps/Plugin.php:31
 msgid "Settings"
@@ -50,7 +56,6 @@ msgid "Visual Refresh"
 msgstr "Visuele verfrissing"
 
 #: classes/Pronamic/Google/Maps/Settings.php:76
-#, php-format
 msgid ""
 "The <a href=\"%s\" target=\"_blank\">Google Maps visual refresh</a> brings a "
 "fresh new look to applications using the Google Maps JavaScript API."
@@ -59,7 +64,7 @@ msgstr ""
 "brengt een frisse nieuwe uitstraling aan applicaties die de Google Maps "
 "JavaScript API gebruiken."
 
-#: classes/Pronamic/Google/Maps/Settings.php:214
+#: classes/Pronamic/Google/Maps/Settings.php:221
 msgid "Use Google Maps Visual Refresh"
 msgstr "Gebruik Google Maps visuele verfrissing"
 
@@ -67,13 +72,18 @@ msgstr "Gebruik Google Maps visuele verfrissing"
 msgid "Use this widget to add an Google Maps as a widget."
 msgstr "Gebruik deze widget om Google Maps toe te voegen."
 
-#: classes/Pronamic/Google/Maps/Widget.php:138
+#: classes/Pronamic/Google/Maps/Widget.php:139
 msgid "pixels"
 msgstr "pixels"
 
-#: classes/Pronamic/Google/Maps/Widget.php:139
+#: classes/Pronamic/Google/Maps/Widget.php:140
 msgid "percent"
 msgstr "procent"
+
+#: examples/map-with-link-to-google.php:27
+#, fuzzy
+msgid "View Full-Size Map"
+msgstr "Bekijk op de kaart"
 
 #: views/meta-box.php:15
 msgid "Active"
@@ -118,7 +128,6 @@ msgid "Save Changes"
 msgstr "Wijzigingen opslaan"
 
 #: views/page-geocoder.php:16
-#, php-format
 msgid "Number posts to geocode: %s"
 msgstr "Aantel berichten te geocoderen: %s"
 
@@ -139,7 +148,6 @@ msgid "Zero results"
 msgstr "Geen resultaten"
 
 #: views/page-geocoder.php:102
-#, php-format
 msgid ""
 "We found no geocoding results for the following %s posts, adjust them "
 "manually if needed."
@@ -171,14 +179,33 @@ msgstr "Dynamisch"
 msgid "Static"
 msgstr "Statisch"
 
+#. Plugin Name of the plugin/theme
+msgid "Pronamic Google Maps"
+msgstr "Pronamic Google Maps"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.happywp.com/plugins/pronamic-google-maps/"
+msgstr "http://www.happywp.com/plugins/pronamic-google-maps/"
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin makes it simple to add Google Maps to your WordPress post, pages "
+"or other custom post types."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr "http://www.pronamic.nl/"
+
 #~ msgid "Activate Google Maps"
 #~ msgstr "Activeer Google Maps"
 
 #~ msgid "Configuration - Pronamic Google Maps"
 #~ msgstr "Configuratie - Pronamic Google Maps"
-
-#~ msgid "Geocoder - Pronamic Google Maps"
-#~ msgstr "Geocoder - Pronamic Google Maps"
 
 #~ msgid "Delete plugin"
 #~ msgstr "Verwijder plugin"
