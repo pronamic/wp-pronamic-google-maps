@@ -8,25 +8,25 @@ This plugin makes it easy to add Google Maps to your WordPress post, pages or ot
 
 #### status
 
-Type: `boolean`
+Type: `boolean`  
 Default: `false`
 
 #### label
 
-Type: `char`
+Type: `char`  
 Default: `null`
 
 #### width
 
-Type: `int|string`
+Type: `int|string`  
 Default: ``
 
 #### height
 
-Type: `int|string`
+Type: `int|string`  
 Default: ``
 
 #### new_design
 
-Type: `boolean`
+Type: `boolean`  
 Default: `false`
