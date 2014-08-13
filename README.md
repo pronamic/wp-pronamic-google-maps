@@ -2,24 +2,9 @@
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
-## Shortcode - [googlemaps]
+## Shortcode - [googlemaps] [googlemapsmashup]
 
 ### Parameters
-
-#### static
-
-Type: `boolean`  
-Default: `false`  
-
-#### label
-
-Type: `char`  
-Default: `null`  
-
-#### color
-
-Type: `string`  
-Default: `null`  
 
 #### width
 
@@ -45,6 +30,26 @@ Default: `array()`
 
 Type: `boolean`  
 Default: `false`  
+
+
+## Shortcode - [googlemaps]
+
+### Parameters
+
+#### static
+
+Type: `boolean`  
+Default: `false`  
+
+#### label
+
+Type: `char`  
+Default: `null`  
+
+#### color
+
+Type: `string`  
+Default: `null`  
 
 
 ## Shortcode - [googlemapsmashup]
