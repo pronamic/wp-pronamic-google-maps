@@ -65,3 +65,29 @@ Default: `null`
 
 Type: `string`  
 Default: `roadmap`  
+
+Map style, can be: `roadmap`, `satellite`, `hybrid`, `terrain`.
+
+#### latitude
+
+Type: `float`  
+Default: `0`  
+
+Latitude value for the map center, only works if `fit_bounds` is set to `false`. 
+
+#### longitude
+
+Type: `float`  
+Default: `0`  
+
+Longitude value for the map center, only works if `fit_bounds` is set to `false`.
+
+#### zoom
+
+Type: `int`  
+Default: `8`  
+
+#### fit_bounds
+
+Type: `boolean`  
+Default: `true`  
