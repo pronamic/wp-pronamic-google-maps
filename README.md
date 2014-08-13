@@ -6,7 +6,7 @@ This plugin makes it easy to add Google Maps to your WordPress post, pages or ot
 
 ### Parameters
 
-#### status
+#### static
 
 Type: `boolean`  
 Default: `false`  
@@ -54,7 +54,7 @@ Default: `false`
 #### query
 
 Type: `string`  
-Default: `?`  
+Default: `null`  
 
 #### map_type_id
 
