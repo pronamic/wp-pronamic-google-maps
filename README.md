@@ -117,7 +117,9 @@ Default: `false`
 Type: `string`  
 Default: `null`  
 
-The `label` parameter is only available for Static Maps (https://developers.google.com/maps/documentation/staticmaps/#MarkerStyles).
+The `label` parameter is only available for Static Maps, for more information 
+see the [Marker Styles](https://developers.google.com/maps/documentation/staticmaps/#MarkerStyles) section
+of the [Static Maps](https://developers.google.com/maps/documentation/staticmaps/) documentation page.
 
 #### color
 
@@ -134,7 +136,14 @@ Default: `true`
 Type: `array`  
 Default: `array()`  
 
+For all map options see the [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
+section on the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/reference) documentation page.
+
 #### map_options
 
 Type: `array`  
 Default: `array()`  
+
+For all map options see the [MapOptions](https://developers.google.com/maps/documentation/javascript/reference#MapOptions)
+section on the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/reference) documentation page.
+
