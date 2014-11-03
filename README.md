@@ -100,6 +100,8 @@ Default: `array`
 For all cluster marker options see the [MarkerClustererOptions](http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html)
 section on the [MarkerClustererPlus](http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html) documentation page.
 
+Example: `maxZoom=15&gridSize=30`  
+
 
 ## Function - `pronamic_google_maps()`
 
