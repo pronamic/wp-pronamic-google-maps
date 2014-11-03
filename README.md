@@ -136,7 +136,7 @@ Default: `true`
 Type: `array`  
 Default: `array()`  
 
-For all map options see the [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
+For all marker options see the [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
 section on the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/reference) documentation page.
 
 #### map_options
