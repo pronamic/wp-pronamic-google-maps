@@ -92,6 +92,14 @@ Default: `8`
 Type: `boolean`  
 Default: `true`  
 
+#### marker_clusterer_options
+
+Type: `string|array`  
+Default: `array`  
+
+For all cluster marker options see the [MarkerClustererOptions](http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html)
+section on the [MarkerClustererPlus](http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html) documentation page.
+
 
 ## Function - `pronamic_google_maps()`
 
