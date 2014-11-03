@@ -91,3 +91,50 @@ Default: `8`
 
 Type: `boolean`  
 Default: `true`  
+
+
+## Function - `pronamic_google_maps()`
+
+### Parameters
+
+#### width
+
+Type: `int|string`  
+Default: *WordPress default embed width*
+
+#### height
+
+Type: `int|string`  
+Default: *WordPress default embed height*
+
+#### static
+
+Type: `boolean`  
+Default: `false`  
+
+#### label
+
+Type: `string`  
+Default: `null`  
+
+The `label` parameter is only available for Static Maps (https://developers.google.com/maps/documentation/staticmaps/#MarkerStyles).
+
+#### color
+
+Type: `string`  
+Default: `null`  
+
+#### echo
+
+Type: `boolean`  
+Default: `true`  
+
+#### marker_options
+
+Type: `array`  
+Default: `array()`  
+
+#### map_options
+
+Type: `array`  
+Default: `array()`  
