@@ -87,6 +87,21 @@ class Pronamic_Google_Maps_Shortcodes {
 		return $atts;
 	}
 
+	public static function parse_marker_clusterer_options( $atts ) {
+		$options = array();
+
+		if ( isset( $atts['marker_clusterer_options'] ) ) {
+			$value = $atts['marker_clusterer_options'];
+			$value = html_entity_decode( $value );
+
+			wp_parse_str( $value, $options );
+		}
+
+		$atts['marker_clusterer_options'] = $options;
+
+		return $atts;
+	}
+
 	//////////////////////////////////////////////////
 
 	/**
@@ -94,6 +109,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	 */
 	public static function shortcode_map( $atts ) {
 		$atts = self::parse_map_options( $atts );
+		$atts = self::parse_marker_clusterer_options( $atts );
 
 		$atts['echo'] = false;
 
@@ -135,6 +151,7 @@ class Pronamic_Google_Maps_Shortcodes {
 		) );
 
 		$atts = self::parse_map_options( $atts );
+		$atts = self::parse_marker_clusterer_options( $atts );
 
 		// Query
 		$query = $atts['query'];
