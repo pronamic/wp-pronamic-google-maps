@@ -13,7 +13,7 @@ class Pronamic_Google_Maps_ApiClient {
 
 	const OUTPUT_XML = 'xml';
 
-	const API_END_POINT = 'http://maps.googleapis.com/maps/api/';
+	const API_END_POINT = 'https://maps.googleapis.com/maps/api/';
 
 	public function __construct() {
 
