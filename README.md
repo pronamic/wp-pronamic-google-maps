@@ -4,7 +4,7 @@ This plugin makes it easy to add Google Maps to your WordPress post, pages or ot
 
 ## Shortcode - [googlemaps] [googlemapsmashup]
 
-### Parameters
+### Attributes
 
 #### width
 
@@ -34,7 +34,7 @@ Default: `false`
 
 ## Shortcode - [googlemaps]
 
-### Parameters
+### Attributes
 
 #### static
 
@@ -54,7 +54,7 @@ Default: `null`
 
 ## Shortcode - [googlemapsmashup]
 
-### Parameters
+### Attributes
 
 #### query
 
