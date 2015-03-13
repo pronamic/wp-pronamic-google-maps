@@ -12,7 +12,5 @@
 
 		<!-- Use meta function is used in the current user example. -->
 		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta" />
-
-		<exclude name="WordPress.VIP.RestrictedFunctions.extract" />
 	</rule>
 </ruleset>

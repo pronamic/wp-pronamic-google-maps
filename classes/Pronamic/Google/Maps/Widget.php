@@ -49,15 +49,13 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $arguments, $instance ) {
-		extract( $arguments );
-
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		// @codingStandardsIgnoreStart
-		echo $before_widget;
+		echo $args['before_widget'];
 
 		if ( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
 		$info = new Pronamic_Google_Maps_Info();
@@ -77,7 +75,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 
 		echo Pronamic_Google_Maps_Maps::get_map_html( $info );
 
-		echo $after_widget;
+		echo $args['after_widget'];
 		// @codingStandardsIgnoreEnd
 	}
 
