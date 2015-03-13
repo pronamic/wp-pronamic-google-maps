@@ -29,7 +29,7 @@ class Pronamic_Google_Maps_ApiClient {
 			self::OUTPUT_JSON,
 			_http_build_query( array(
 				'address' => $address,
-				'sensor' => $sensor ? 'true' : 'false',
+				'sensor'  => $sensor ? 'true' : 'false',
 			) )
 		);
 
