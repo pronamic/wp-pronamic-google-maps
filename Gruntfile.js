@@ -16,10 +16,10 @@ module.exports = function( grunt ) {
 		// PHP Code Sniffer
 		phpcs: {
 			application: {
-				dir: [ './' ],
+				src: [ './' ],
 			},
 			options: {
-				standard: 'project.ruleset.xml',
+				standard: 'phpcs.ruleset.xml',
 				extensions: 'php',
 				ignore: 'wp-svn,deploy,node_modules'
 			}

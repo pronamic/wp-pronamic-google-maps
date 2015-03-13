@@ -1,15 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="Pronamic Google Maps">
-	<description>A custom set of rules to check for the Pronamic Google Maps WordPress plugin.</description>
-
-	<exclude-pattern>/includes/icepay</exclude-pattern>
-	<exclude-pattern>/includes/xmlseclibs</exclude-pattern>
-
 	<rule ref="WordPress">
 		<exclude name="WordPress.XSS.EscapeOutput" />
 
 		<exclude name="WordPress.NamingConventions.ValidFunctionName" />
-		<exclude name="WordPress.WhiteSpace.ScopeIndent" />
 
 		<exclude name="WordPress.VIP.DirectDatabaseQuery" />		
 		<exclude name="WordPress.VIP.RestrictedFunctions.wp_remote_get" />
