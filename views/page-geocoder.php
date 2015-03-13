@@ -4,7 +4,7 @@
 	<?php
 
 	$query = new WP_Query();
-	$query->query( Pronamic_Google_Maps_Admin::getGeocodeQueryArgs() );
+	$query->query( Pronamic_Google_Maps_Admin::get_geocode_query_args() );
 
 	?>
 
