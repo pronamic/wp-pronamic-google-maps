@@ -19,7 +19,7 @@ class Pronamic_Google_Maps_ApiClient {
 
 	}
 
-	public function geocodeAddress( $address, $sensor = false ) {
+	public function geocode_address( $address, $sensor = false ) {
 		$result = null;
 
 		// URL

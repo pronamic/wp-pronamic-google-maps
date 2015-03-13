@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Pronamic Google Maps">
 	<rule ref="WordPress">
-		<exclude name="WordPress.NamingConventions.ValidFunctionName" />
-
 		<!-- Direct database queries are used in the uninstall script. -->
 		<exclude name="WordPress.VIP.DirectDatabaseQuery" />
 

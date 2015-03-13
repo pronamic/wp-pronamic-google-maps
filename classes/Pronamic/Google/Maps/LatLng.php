@@ -133,7 +133,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param orbis_geo_LatLng $other a coordinate
 	 * @return double a distance
 	 */
-	public function distanceFrom( self $other ) {
+	public function distance_from( self $other ) {
 		return sqrt( sqrt( ( pow( $other->latitude - $this->latitude, 2 ) ) + pow( $other->longitude - $this->longitude, 2 ) ) );
 	}
 
@@ -145,7 +145,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param orbis_geo_LatLng $other a coordinate
 	 * @return geo_LatLng mid point
 	 */
-	public function midpointTo( self $other ) {
+	public function midpoint_to( self $other ) {
 		return new self(
 			( $other->latitude + $this->latitude ) / 2.0,
 			( $other->longitude + $this->longitude ) / 2.0
@@ -183,7 +183,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param float $decimal
 	 * @param stromg $direction
 	 */
-	public static function convertToDegMinSec( $decimal, $direction = null ) {
+	public static function convert_to_deg_min_sec( $decimal, $direction = null ) {
 		$string = (string) $decimal;
 
 		$degrees = $string;

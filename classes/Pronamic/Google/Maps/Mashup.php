@@ -10,7 +10,7 @@
  */
 class Pronamic_Google_Maps_Mashup {
 	public static function render( $q = array(), $arguments = array() ) {
-		Pronamic_Google_Maps_Site::requireSiteScript();
+		Pronamic_Google_Maps_Site::require_site_script();
 
 		$defaults = array(
 			'width'                  => Pronamic_Google_Maps_Maps::$defaultWidth,
@@ -81,7 +81,7 @@ class Pronamic_Google_Maps_Mashup {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$pgm = Pronamic_Google_Maps_Maps::getMetaData();
+			$pgm = Pronamic_Google_Maps_Maps::get_meta_data();
 
 			if ( $pgm->active ) {
 				$description = sprintf(

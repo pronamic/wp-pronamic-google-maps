@@ -107,7 +107,7 @@ class Pronamic_Google_Maps_Info {
 	 *
 	 * @return boolean true if static, false otherwise
 	 */
-	public function isStatic() {
+	public function is_static() {
 		return $this->static;
 	}
 
@@ -116,7 +116,7 @@ class Pronamic_Google_Maps_Info {
 	 *
 	 * @return boolean true if dynamic, false otherwise
 	 */
-	public function isDynamic() {
+	public function is_dynamic() {
 		return ! $this->static;
 	}
 }

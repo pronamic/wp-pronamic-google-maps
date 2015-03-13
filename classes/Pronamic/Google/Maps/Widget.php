@@ -71,11 +71,11 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$info->mapOptions->mapTypeId = $instance['map-type'];
 		$info->mapOptions->zoom      = (int) $instance['zoom'];
 
-		if ( $info->isDynamic() ) {
-			Pronamic_Google_Maps_Site::requireSiteScript();
+		if ( $info->is_dynamic() ) {
+			Pronamic_Google_Maps_Site::require_site_script();
 		}
 
-		echo Pronamic_Google_Maps_Maps::getMapHtml( $info );
+		echo Pronamic_Google_Maps_Maps::get_map_html( $info );
 
 		echo $after_widget;
 		// @codingStandardsIgnoreEnd

@@ -1,7 +1,7 @@
 <?php
 
 function pronamic_get_google_maps_meta() {
-	return Pronamic_Google_Maps_Maps::getMetaData();
+	return Pronamic_Google_Maps_Maps::get_meta_data();
 }
 
 function pronamic_google_maps_is_active() {
