@@ -7,7 +7,6 @@
 
 		<exclude name="WordPress.VIP.DirectDatabaseQuery" />		
 		<exclude name="WordPress.VIP.RestrictedFunctions.wp_remote_get" />
-		<exclude name="WordPress.VIP.SuperGlobalInputUsage" />
 		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.extract" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta" />
