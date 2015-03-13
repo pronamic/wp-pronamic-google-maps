@@ -41,9 +41,9 @@ class Pronamic_Google_Maps_Plugin {
 	 * Save post try geocode
 	 */
 	public static function save_post_try_geocode( $post_id ) {
-		$address = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true );
-		$latitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
-		$longitude = get_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
+		$address = get_post_meta( $post_id, '_pronamic_google_maps_address', true );
+		$latitude = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
+		$longitude = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
 
 		if ( ! empty( $address ) ) {
 			if ( empty( $latitude) && empty( $longitude ) ) {
@@ -59,9 +59,9 @@ class Pronamic_Google_Maps_Plugin {
 						$longitude = $location->lng;
 						$status    = Pronamic_Google_Maps_GeocoderStatus::OK;
 
-						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
-						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
-						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+						update_post_meta( $post_id, '_pronamic_google_maps_latitude', $latitude );
+						update_post_meta( $post_id, '_pronamic_google_maps_longitude', $longitude );
+						update_post_meta( $post_id, '_pronamic_google_maps_geocode_status', $status );
 					}
 				}
 			}

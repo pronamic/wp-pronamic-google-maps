@@ -253,41 +253,41 @@ class Pronamic_Google_Maps_Maps {
 
 		$meta = new stdClass();
 
-		$active = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, true );
+		$active = get_post_meta( $post->ID, '_pronamic_google_maps_active', true );
 		$meta->active = filter_var( $active, FILTER_VALIDATE_BOOLEAN );
 
 		$meta->latitude = null;
-		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, true );
+		$value = get_post_meta( $post->ID, '_pronamic_google_maps_latitude', true );
 		if ( $value != '' ) {
 			$meta->latitude = (float) $value;
 		}
 		$meta->longitude = null;
-		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, true );
+		$value = get_post_meta( $post->ID, '_pronamic_google_maps_longitude', true );
 		if ( $value != '' ) {
 			$meta->longitude = (float) $value;
 		}
 
 		$meta->mapType = self::MAP_TYPE_DEFAULT;
-		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, true );
+		$value = get_post_meta( $post->ID, '_pronamic_google_maps_map_type', true );
 		if ( $value != '' ) {
 			$meta->mapType = $value;
 		}
 
 		$meta->zoom = self::MAP_ZOOM_DEFAULT;
-		$value = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ZOOM, true );
+		$value = get_post_meta( $post->ID, '_pronamic_google_maps_zoom', true );
 		if ( $value != '' ) {
 			$meta->zoom = (int) $value;
 		}
 
-		$meta->title = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_TITLE, true );
+		$meta->title = get_post_meta( $post->ID, '_pronamic_google_maps_title', true );
 
-		$description = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, true );
+		$description = get_post_meta( $post->ID, '_pronamic_google_maps_description', true );
 		if ( ! is_admin() ) {
 			$description = apply_filters( 'pronamic_google_maps_item_description', $description );
 		}
 		$meta->description = $description;
 
-		$meta->address = get_post_meta( $post->ID, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, true );
+		$meta->address = get_post_meta( $post->ID, '_pronamic_google_maps_address', true );
 
 		$meta = apply_filters( 'pronamic_google_maps_post_meta', $meta );
 

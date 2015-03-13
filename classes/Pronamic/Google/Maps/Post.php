@@ -13,6 +13,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps active meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_ACTIVE = '_pronamic_google_maps_active';
 
@@ -20,6 +21,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps latitude meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_LATITUDE = '_pronamic_google_maps_latitude';
 
@@ -27,6 +29,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Map longitude meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_LONGITUDE = '_pronamic_google_maps_longitude';
 
@@ -34,6 +37,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Map address meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_ADDRESS = '_pronamic_google_maps_address';
 
@@ -41,6 +45,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps title meta data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_TITLE = '_pronamic_google_maps_title';
 
@@ -56,6 +61,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps map type data
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_MAP_TYPE = '_pronamic_google_maps_map_type';
 
@@ -63,6 +69,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps map zoom level
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_ZOOM = '_pronamic_google_maps_zoom';
 
@@ -70,6 +77,7 @@ class Pronamic_Google_Maps_Post {
 	 * Meta key for the Google Maps geocode status
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const META_KEY_GEOCODE_STATUS = '_pronamic_google_maps_geocode_status';
 }

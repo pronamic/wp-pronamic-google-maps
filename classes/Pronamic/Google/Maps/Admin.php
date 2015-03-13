@@ -211,47 +211,47 @@ class Pronamic_Google_Maps_Admin {
 		$pgm = pronamic_get_google_maps_meta();
 
 		// Active
-		$active = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, FILTER_VALIDATE_BOOLEAN );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ACTIVE, $active ? 'true' : null );
+		$active = filter_input( INPUT_POST, '_pronamic_google_maps_active', FILTER_VALIDATE_BOOLEAN );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_active', $active ? 'true' : null );
 
 		// Latitude
-		$latitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
+		$latitude = filter_input( INPUT_POST, '_pronamic_google_maps_latitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_latitude', $latitude );
 
 		// Longitude
-		$longitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
+		$longitude = filter_input( INPUT_POST, '_pronamic_google_maps_longitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_longitude', $longitude );
 
 		// Map type
-		$map_type = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, FILTER_SANITIZE_STRING );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE, $map_type == Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT ? null : $map_type );
+		$map_type = filter_input( INPUT_POST, '_pronamic_google_maps_map_type', FILTER_SANITIZE_STRING );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_map_type', $map_type == Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT ? null : $map_type );
 
 		// Zoom
-		$zoom = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ZOOM, FILTER_SANITIZE_NUMBER_INT );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ZOOM, $zoom == Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT ? null : $zoom );
+		$zoom = filter_input( INPUT_POST, '_pronamic_google_maps_zoom', FILTER_SANITIZE_NUMBER_INT );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_zoom', $zoom == Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT ? null : $zoom );
 
 		// Title
-		$title = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_TITLE, FILTER_UNSAFE_RAW );
+		$title = filter_input( INPUT_POST, '_pronamic_google_maps_title', FILTER_UNSAFE_RAW );
 		$title = wp_kses_post( $title );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_TITLE, $title );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_title', $title );
 
 		// Description
-		$description = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, FILTER_UNSAFE_RAW );
+		$description = filter_input( INPUT_POST, '_pronamic_google_maps_description', FILTER_UNSAFE_RAW );
 		$description = wp_kses_post( $description );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION, $description );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_description', $description );
 
 		// Description
-		$address = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, FILTER_UNSAFE_RAW );
+		$address = filter_input( INPUT_POST, '_pronamic_google_maps_address', FILTER_UNSAFE_RAW );
 		$address = wp_kses_post( $address );
-		self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_ADDRESS, $address );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_address', $address );
 
 		// Status
 		if ( ! empty( $latitude ) && ! empty( $longitude ) ) {
 			$status = Pronamic_Google_Maps_GeocoderStatus::OK;
 
-			self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+			self::update_post_meta( $post_id, '_pronamic_google_maps_geocode_status', $status );
 		} else {
-			self::update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, null );
+			self::update_post_meta( $post_id, '_pronamic_google_maps_geocode_status', null );
 		}
 	}
 
@@ -269,13 +269,13 @@ class Pronamic_Google_Maps_Admin {
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
-					'key'     => Pronamic_Google_Maps_Post::META_KEY_ADDRESS,
+					'key'     => '_pronamic_google_maps_address',
 					'value'   => '',
 					'compare' => '!=',
 				),
 				// The geocoder status should not be OK
 				array(
-					'key'     => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS,
+					'key'     => '_pronamic_google_maps_geocode_status',
 					'value'   => null,
 					'compare' => 'NOT EXISTS',
 				),
@@ -293,16 +293,16 @@ class Pronamic_Google_Maps_Admin {
 		$post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT );
 
 		// Latitude
-		$latitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
+		$latitude = filter_input( INPUT_POST, '_pronamic_google_maps_latitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		update_post_meta( $post_id, '_pronamic_google_maps_latitude', $latitude );
 
 		// Longitude
-		$longitude = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
+		$longitude = filter_input( INPUT_POST, '_pronamic_google_maps_longitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		update_post_meta( $post_id, '_pronamic_google_maps_longitude', $longitude );
 
 		// Status
-		$status = filter_input( INPUT_POST, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, FILTER_SANITIZE_STRING );
-		update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+		$status = filter_input( INPUT_POST, '_pronamic_google_maps_geocode_status', FILTER_SANITIZE_STRING );
+		update_post_meta( $post_id, '_pronamic_google_maps_geocode_status', $status );
 
 		// Result
 		$result = new stdClass();

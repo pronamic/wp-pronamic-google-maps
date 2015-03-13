@@ -38,7 +38,7 @@
 						<label for="pgm-title-field"><?php _e( 'Title', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<input id="pgm-title-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_TITLE ); ?>" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
+						<input id="pgm-title-field" name="_pronamic_google_maps_title" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +46,7 @@
 						<label for="pgm-address-field"><?php _e( 'Address', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<textarea id="pgm-address-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_ADDRESS ); ?>" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
+						<textarea id="pgm-address-field" name="_pronamic_google_maps_address" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -54,7 +54,7 @@
 						<label for="pgm-status-field"><?php _e( 'Status', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<input id="pgm-status-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ); ?>" value="" class="regular-text readonly" type="text" readonly="readonly" />
+						<input id="pgm-status-field" name="_pronamic_google_maps_geocode_status" value="" class="regular-text readonly" type="text" readonly="readonly" />
 					</td>
 				</tr>
 				<tr>
@@ -62,9 +62,9 @@
 						<?php _e( 'Location', 'pronamic_google_maps' ); ?>
 					</th>
 					<td>
-						<input id="pgm-lat-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_LATITUDE ); ?>" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" class="readonly" readonly="readonly" />
+						<input id="pgm-lat-field" name="_pronamic_google_maps_latitude" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" class="readonly" readonly="readonly" />
 						&deg;
-						<input id="pgm-lng-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_LONGITUDE ); ?>" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" class="readonly" readonly="readonly" />
+						<input id="pgm-lng-field" name="_pronamic_google_maps_longitude" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" class="readonly" readonly="readonly" />
 						&deg;
 					</td>
 				</tr>
@@ -83,7 +83,7 @@
 		'posts_per_page' => 10,
 		'meta_query'     => array(
 			array(
-				'key'   => Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS,
+				'key'   => '_pronamic_google_maps_geocode_status',
 				'value' => Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS,
 			),
 		),
