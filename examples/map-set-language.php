@@ -2,7 +2,7 @@
 
 /**
  * Filter snippet
- * 
+ *
  * @see https://developers.google.com/loader/?hl=nl#GoogleLoad
  * @see https://developers.google.com/maps/documentation/javascript/basics#Language
  */

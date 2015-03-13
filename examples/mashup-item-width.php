@@ -6,7 +6,7 @@
 function prefix_pronamic_google_maps_mashup_item( $content ) {
 	$content  = '';
 
-	$content .=	'<div style="width: 250px">';
+	$content .= '<div style="width: 250px">';
 
 	$content .= sprintf(
 		'<a href="%s">%s</a>',

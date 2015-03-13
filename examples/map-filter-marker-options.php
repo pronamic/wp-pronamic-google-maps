@@ -2,7 +2,7 @@
 
 /**
  * Filter snippet
- * 
+ *
  * @see https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions
  */
 function prefix_pronamic_google_maps_marker_options( $marker_options ) {

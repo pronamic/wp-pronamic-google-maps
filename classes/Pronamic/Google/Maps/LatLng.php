@@ -192,7 +192,7 @@ class Pronamic_Google_Maps_LatLng {
 		$cardinalDirection = null;
 
 		$position = strpos( $string, '.' );
-		if ( $position !== false ) {
+		if ( false !== $position ) {
 			$integral = (int) substr( $string, 0, $position );
 			$fractional = (float) ( '0.' . substr( $string, $position + 1 ) );
 
