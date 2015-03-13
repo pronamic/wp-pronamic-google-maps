@@ -51,16 +51,18 @@ class Pronamic_Google_Maps_Plugin {
 
 				$data = $apiClient->geocodeAddress( $address );
 
-				foreach ( $data->results as $result ) {
-					$location = $result->geometry->location;
+				if ( $data ) {
+					foreach ( $data->results as $result ) {
+						$location = $result->geometry->location;
 
-					$latitude  = $location->lat;
-					$longitude = $location->lng;
-					$status    = Pronamic_Google_Maps_GeocoderStatus::OK;
+						$latitude  = $location->lat;
+						$longitude = $location->lng;
+						$status    = Pronamic_Google_Maps_GeocoderStatus::OK;
 
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
-					update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LATITUDE, $latitude );
+						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_LONGITUDE, $longitude );
+						update_post_meta( $post_id, Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS, $status );
+					}
 				}
 			}
 		}

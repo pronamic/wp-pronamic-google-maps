@@ -47,7 +47,9 @@ class Pronamic_Google_Maps_GeoMicroformat {
 			);
 
 			if ( $arguments['echo'] ) {
+				// @codingStandardsIgnoreStart
 				echo $content;
+				// @codingStandardsIgnoreEnd
 			} else {
 				return $content;
 			}

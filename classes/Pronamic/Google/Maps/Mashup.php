@@ -154,7 +154,9 @@ class Pronamic_Google_Maps_Mashup {
 		$content .= '</div>';
 
 		if ( $arguments['echo'] ) {
+			// @codingStandardsIgnoreStart
 			echo $content;
+			// @codingStandardsIgnoreEnd
 		} else {
 			return $content;
 		}

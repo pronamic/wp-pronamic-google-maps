@@ -433,7 +433,9 @@ class Pronamic_Google_Maps_Maps {
 			}
 
 			if ( $arguments['echo'] ) {
+				// @codingStandardsIgnoreStart
 				echo $html;
+				// @codingStandardsIgnoreEnd
 			} else {
 				return $html;
 			}

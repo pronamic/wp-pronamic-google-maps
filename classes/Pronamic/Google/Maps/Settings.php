@@ -190,9 +190,9 @@ class Pronamic_Google_Maps_Settings {
 				<?php foreach ( $post_types as $name => $type ) : ?>
 
 					<li>
-						<label for="pronamic-google-maps-type-<?php echo $name; ?>">
-							<input id="pronamic-google-maps-type-<?php echo $name; ?>" name="Pronamic_Google_maps[active][<?php echo $name; ?>]" value="true" type="checkbox" <?php checked( self::is_active_post_type( $name ) ); ?> />
-							<?php echo $type->labels->singular_name; ?>
+						<label for="pronamic-google-maps-type-<?php echo esc_attr( $name ); ?>">
+							<input id="pronamic-google-maps-type-<?php echo esc_attr( $name ); ?>" name="Pronamic_Google_maps[active][<?php echo esc_attr( $name ); ?>]" value="true" type="checkbox" <?php checked( self::is_active_post_type( $name ) ); ?> />
+							<?php echo esc_html( $type->labels->singular_name ); ?>
 						</label>
 					</li>
 
@@ -202,7 +202,7 @@ class Pronamic_Google_Maps_Settings {
 
 			<?php if ( isset( $args['description'] ) ) : ?>
 
-				<p class="description"><?php echo $args['description']; ?></p>
+				<p class="description"><?php echo wp_kses_post( $args['description'] ); ?></p>
 
 			<?php endif;
 
@@ -223,7 +223,7 @@ class Pronamic_Google_Maps_Settings {
 
 		<?php if ( isset( $args['description'] ) ) : ?>
 
-			<p class="description"><?php echo $args['description']; ?></p>
+			<p class="description"><?php echo wp_kses_post( $args['description'] ); ?></p>
 
 		<?php endif;
 	}

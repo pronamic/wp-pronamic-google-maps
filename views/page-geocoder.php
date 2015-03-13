@@ -11,9 +11,9 @@
 	<p>
 		<?php
 
-		printf( __( 'Number posts to geocode: %s', 'pronamic_google_maps' ),
+		echo wp_kses( sprintf( __( 'Number posts to geocode: %s', 'pronamic_google_maps' ),
 			sprintf( '<strong id="pgm-found-posts">%s</strong>', $query->found_posts )
-		);
+		), array( 'strong' => array() ) );
 
 		?>
 	</p>
@@ -38,7 +38,7 @@
 						<label for="pgm-title-field"><?php _e( 'Title', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<input id="pgm-title-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_TITLE; ?>" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
+						<input id="pgm-title-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_TITLE ); ?>" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +46,7 @@
 						<label for="pgm-address-field"><?php _e( 'Address', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<textarea id="pgm-address-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ADDRESS; ?>" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
+						<textarea id="pgm-address-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_ADDRESS ); ?>" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -54,7 +54,7 @@
 						<label for="pgm-status-field"><?php _e( 'Status', 'pronamic_google_maps' ); ?></label>
 					</th>
 					<td>
-						<input id="pgm-status-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS; ?>" value="" class="regular-text readonly" type="text" readonly="readonly" />
+						<input id="pgm-status-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_GEOCODE_STATUS ); ?>" value="" class="regular-text readonly" type="text" readonly="readonly" />
 					</td>
 				</tr>
 				<tr>
@@ -62,9 +62,9 @@
 						<?php _e( 'Location', 'pronamic_google_maps' ); ?>
 					</th>
 					<td>
-						<input id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" class="readonly" readonly="readonly" />
+						<input id="pgm-lat-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_LATITUDE ); ?>" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" class="readonly" readonly="readonly" />
 						&deg;
-						<input id="pgm-lng-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" class="readonly" readonly="readonly" />
+						<input id="pgm-lng-field" name="<?php echo esc_attr( Pronamic_Google_Maps_Post::META_KEY_LONGITUDE ); ?>" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" class="readonly" readonly="readonly" />
 						&deg;
 					</td>
 				</tr>
@@ -96,26 +96,21 @@
 		<p>
 			<?php
 
-			printf(
+			echo wp_kses( sprintf(
 				__( 'We found no geocoding results for the following %s posts, adjust them manually if needed.' ),
 				sprintf( '<strong>%d</strong>', $query->found_posts )
-			);
+			), array( 'strong' => array() ) );
 
 			?>
 		</p>
 
 		<table cellspacing="0" class="widefat page fixed">
-
-			<?php foreach ( array( 'thead', 'tfoot' ) as $tag ) : ?>
-
-				<<?php echo $tag; ?>>
-					<tr>
-						<th scope="col" class="manage-column"><?php _e( 'Title', 'pronamic_google_maps' ); ?></th>
-						<th scope="col" class="manage-column"><?php _e( 'Address', 'pronamic_google_maps' ); ?></th>
-					</tr>
-				</<?php echo $tag; ?>>
-
-			<?php endforeach; ?>
+			<thead>
+				<tr>
+					<th scope="col" class="manage-column"><?php _e( 'Title', 'pronamic_google_maps' ); ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Address', 'pronamic_google_maps' ); ?></th>
+				</tr>
+			</thead>
 
 			<tbody>
 
@@ -125,12 +120,12 @@
 						<?php $pgm = pronamic_get_google_maps_meta(); ?>
 
 						<td>
-							<a href="<?php echo get_edit_post_link( get_the_ID() ); ?>">
+							<a href="<?php echo esc_attr( get_edit_post_link( get_the_ID() ) ); ?>">
 								<?php the_title(); ?>
 							</a>
 						</td>
 						<td>
-							<?php echo nl2br( $pgm->address ); ?>
+							<?php echo wp_kses( nl2br( $pgm->address ), array( 'br' => array() ) ); ?>
 						</td>
 					</tr>
 

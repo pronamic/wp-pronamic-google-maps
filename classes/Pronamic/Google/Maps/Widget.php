@@ -53,6 +53,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
+		// @codingStandardsIgnoreStart
 		echo $before_widget;
 
 		if ( $title ) {
@@ -77,6 +78,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		echo Pronamic_Google_Maps_Maps::getMapHtml( $info );
 
 		echo $after_widget;
+		// @codingStandardsIgnoreEnd
 	}
 
 	//////////////////////////////////////////////////
@@ -141,10 +143,10 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		);
 
 		?>
-		<select id="<?php echo $this->get_field_id( $name ); ?>" name="<?php echo $this->get_field_name( $name ); ?>">
+		<select id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>">
 			<?php foreach ( $units as $unit ) : ?>
-				<option value="<?php echo $unit['value']; ?>" <?php if ( $value == $unit['value'] ) : ?>selected="selected"<?php endif?>>
-					<?php echo $unit['label']; ?>
+				<option value="<?php echo esc_attr( $unit['value'] ); ?>" <?php if ( $value == $unit['value'] ) : ?>selected="selected"<?php endif?>>
+					<?php echo esc_html( $unit['label'] ); ?>
 				</option>
 			<?php endforeach; ?>
 		</select>
