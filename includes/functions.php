@@ -17,7 +17,7 @@ function pronamic_google_maps_title() {
 
 	$title = get_post_meta( $post->ID, '_pronamic_google_maps_title', true );
 
-	echo wp_kses_post( apply_filters( Pronamic_Google_Maps_Filters::FILTER_TITLE, $title ) );
+	echo wp_kses_post( apply_filters( 'pronamic_google_maps_item_title', $title ) );
 }
 
 function pronamic_google_maps_description() {
@@ -37,14 +37,14 @@ function pronamic_google_maps_location() {
 	echo esc_html( $latitude . ', ' . $longitude );
 }
 
-function pronamic_google_maps_geo_microformat( $arguments = array() ) {
-	return Pronamic_Google_Maps_GeoMicroformat::render( $arguments );
+function pronamic_google_maps_geo_microformat( $args = array() ) {
+	return Pronamic_Google_Maps_GeoMicroformat::render( $args );
 }
 
-function pronamic_google_maps( $arguments = array() ) {
-	return Pronamic_Google_Maps_Maps::render( $arguments );
+function pronamic_google_maps( $args = array() ) {
+	return Pronamic_Google_Maps_Maps::render( $args );
 }
 
-function pronamic_google_maps_mashup( $query = array(), $arguments = array() ) {
-	return Pronamic_Google_Maps_Mashup::render( $query, $arguments );
+function pronamic_google_maps_mashup( $query = array(), $args = array() ) {
+	return Pronamic_Google_Maps_Mashup::render( $query, $args );
 }

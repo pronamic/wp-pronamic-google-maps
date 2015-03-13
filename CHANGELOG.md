@@ -6,6 +6,8 @@
 *	Improved support for marker cluster options in shortcodes.
 *	WordPress Coding Standards optimizations.
 *	Removed deprecated screen_icon() function calls.
+*	Deprecated Pronamic_Google_Maps_Post::META_KEY_* constants.
+*	Deprecated Pronamic_Google_Maps_Filters::FILTER_* constants.
 
 ## 2.2.9
 *	WordPress Coding Standards optimizations and tested up to version 3.9.1.

@@ -13,6 +13,7 @@ class Pronamic_Google_Maps_Filters {
 	 * Filter name for an item in an mashup list
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const FILTER_MASHUP_ITEM = 'pronamic_google_maps_mashup_item';
 
@@ -20,6 +21,7 @@ class Pronamic_Google_Maps_Filters {
 	 * Filter name for the title
 	 *
 	 * @var string
+	 * @deprecated
 	 */
 	const FILTER_TITLE = 'pronamic_google_maps_item_title';
 

@@ -91,7 +91,7 @@ class Pronamic_Google_Maps_Mashup {
 					get_the_title()
 				);
 
-				$description = apply_filters( Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $description );
+				$description = apply_filters( 'pronamic_google_maps_mashup_item', $description );
 
 				$info = new Pronamic_Google_Maps_Info();
 				$info->title         = $pgm->title;
@@ -130,7 +130,7 @@ class Pronamic_Google_Maps_Mashup {
 					get_the_title()
 				);
 
-				$items .= apply_filters( Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $item );
+				$items .= apply_filters( 'pronamic_google_maps_mashup_item', $item );
 				$items .= '</li>';
 			}
 		}
