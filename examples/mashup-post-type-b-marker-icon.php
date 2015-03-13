@@ -7,7 +7,7 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 	pronamic_google_maps_mashup(
 		array(
 			'post_type'      => 'post_type_b',
-			'nopaging'       => true,
+			'posts_per_page' => 50,
 		),
 		array(
 			'width'          => 800,

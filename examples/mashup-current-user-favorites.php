@@ -12,9 +12,9 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 
 	// http://codex.wordpress.org/Function_Reference/WP_Query#Parameters
 	$query = new WP_Query( array(
-		'post_type' => 'villa',
-		'nopaging'  => true,
-		'post__in'  => $favorite_villas,
+		'post_type'      => 'villa',
+		'posts_per_page' => 50,
+		'post__in'       => $favorite_villas,
 	) );
 
 	// Mashup

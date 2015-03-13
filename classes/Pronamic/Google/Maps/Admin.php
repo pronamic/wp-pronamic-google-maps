@@ -266,7 +266,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function getGeocodeQueryArgs() {
 		return array(
 			'post_type'      => 'any',
-			'posts_per_page' => -1,
+			'posts_per_page' => 50,
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
