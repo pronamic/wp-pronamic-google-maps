@@ -1,14 +1,20 @@
 <?xml version="1.0"?>
 <ruleset name="Pronamic Google Maps">
 	<rule ref="WordPress">
-		<exclude name="WordPress.XSS.EscapeOutput" />
-
 		<exclude name="WordPress.NamingConventions.ValidFunctionName" />
 
-		<exclude name="WordPress.VIP.DirectDatabaseQuery" />		
+		<!-- Direct database queries are used in the uninstall script. -->
+		<exclude name="WordPress.VIP.DirectDatabaseQuery" />
+
+		<!-- The wp_remote_get() function is used to geocode addresses using the Google Maps API. -->
 		<exclude name="WordPress.VIP.RestrictedFunctions.wp_remote_get" />
+
+		<!-- Meta queries are used by the geocoder feature. -->
 		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.extract" />
+
+		<!-- Use meta function is used in the current user example. -->
 		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta" />
+
+		<exclude name="WordPress.VIP.RestrictedFunctions.extract" />
 	</rule>
 </ruleset>
