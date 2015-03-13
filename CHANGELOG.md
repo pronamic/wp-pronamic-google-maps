@@ -1,7 +1,11 @@
 # Changelog
 
 ## 2.3.0
-
+*	All serverside Google Maps API request now run via https://.
+*	Improved documentation in README.md file.
+*	Improved support for marker cluster options in shortcodes.
+*	WordPress Coding Standards optimizations.
+*	Removed deprecated screen_icon() function calls.
 
 ## 2.2.9
 *	WordPress Coding Standards optimizations and tested up to version 3.9.1.
