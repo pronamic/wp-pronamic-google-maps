@@ -21,7 +21,7 @@ class Pronamic_Google_Maps_Admin {
 
 		add_action( 'admin_menu',            array( __CLASS__, 'menu' ) );
 
-		add_action( 'save_post',             array( __CLASS__, 'savePost' ) );
+		add_action( 'save_post', array( __CLASS__, 'save_post' ) );
 
 		add_action( 'wp_ajax_pgm_geocode',   array( __CLASS__, 'ajaxGeocode' ) );
 
@@ -187,7 +187,7 @@ class Pronamic_Google_Maps_Admin {
 	 *
 	 * @param int $postId
 	 */
-	public static function savePost( $post_id ) {
+	public static function save_post( $post_id ) {
 		$nonce = filter_input( INPUT_POST, Pronamic_Google_Maps_Maps::NONCE_NAME, FILTER_SANITIZE_STRING );
 
 		if ( ! wp_verify_nonce( $nonce, 'save-post' ) ) {
@@ -198,7 +198,7 @@ class Pronamic_Google_Maps_Admin {
 			return $post_id;
 		}
 
-		if ( 'page' == $_POST['post_type'] ) {
+		if ( 'page' == get_post_type( $post_id ) ) {
 			if ( ! current_user_can( 'edit_page', $post_id ) ) {
 				return $post_id;
 			}
