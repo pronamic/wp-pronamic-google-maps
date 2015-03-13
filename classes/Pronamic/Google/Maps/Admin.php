@@ -328,11 +328,7 @@ class Pronamic_Google_Maps_Admin {
 			$result->nextPost->longitude = $pgm->longitude;
 		}
 
-		$response = json_encode( $result );
-
-		header( 'Content-Type: application/json' );
-
-		exit( $response );
+		wp_send_json( $result );
 
 		/*
 		 Queries to empty latitude, longitude and geocode status meta
