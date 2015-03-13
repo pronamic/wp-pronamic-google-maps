@@ -1,3 +1,4 @@
+/* jshint node:true */
 module.exports = function( grunt ) {
 	// Project configuration.
 	grunt.initConfig( {
@@ -16,7 +17,7 @@ module.exports = function( grunt ) {
 		// PHP Code Sniffer
 		phpcs: {
 			application: {
-				src: [ './' ],
+				src: [ './' ]
 			},
 			options: {
 				standard: 'phpcs.ruleset.xml',
@@ -27,15 +28,16 @@ module.exports = function( grunt ) {
 
 		// JSHint
 		jshint: {
-			files: ['Gruntfile.js' ],
-			options: {
-				// options here to override JSHint defaults
-				globals: {
-					jQuery: true,
-					console: true,
-					module: true,
-					document: true
-				}
+			options: grunt.file.readJSON( '.jshintrc' ),
+			grunt: {
+				src: [ 'Gruntfile.js' ]
+			},
+			core: {
+				expand: true,
+				cwd: 'src',
+				src: [
+					'js/*.js'
+				]
 			}
 		},
 
@@ -43,7 +45,7 @@ module.exports = function( grunt ) {
 		checkwpversion: {
 			options: {
 				readme: 'readme.txt',
-				plugin: 'pronamic-google-maps.php',
+				plugin: 'pronamic-google-maps.php'
 			},
 			check: {
 				version1: 'plugin',
@@ -64,13 +66,23 @@ module.exports = function( grunt ) {
 					cwd: '',
 					domainPath: 'languages',
 					type: 'wp-plugin',
-					exclude: [ 'deploy/.*', 'wp-svn/.*' ],
+					exclude: [ 'deploy/.*', 'wp-svn/.*' ]
 				}
 			}
 		},
 
 		// Copy
 		copy: {
+			build: {
+				files: [
+					{ // Theme JS
+						expand: true,
+						cwd: 'src/js/',
+						src: [ '**' ],
+						dest: 'js'
+					}
+				]
+			},
 			deploy: {
 				src: [
 					'**',
@@ -85,14 +97,24 @@ module.exports = function( grunt ) {
 				dest: 'deploy',
 				expand: true,
 				dot: true
-			},
+			}
+		},
+
+		// Uglify
+		uglify: {
+			build: {
+				files: {
+					'js/site.min.js': 'js/site.js',
+					'js/admin.min.js': 'js/admin.js'
+				}
+			}
 		},
 
 		// Clean
 		clean: {
 			deploy: {
 				src: [ 'deploy' ]
-			},
+			}
 		},
 
 		// WordPress deploy
@@ -103,10 +125,10 @@ module.exports = function( grunt ) {
 					svnDir: 'wp-svn',
 					svnUsername: 'pronamic',
 					deployDir: 'deploy',
-					version: '<%= pkg.version %>',
+					version: '<%= pkg.version %>'
 				}
 			}
-		},
+		}
 	} );
 
 	grunt.loadNpmTasks( 'grunt-phplint' );
@@ -114,6 +136,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-checkwpversion' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-shell' );
@@ -121,6 +144,12 @@ module.exports = function( grunt ) {
 
 	// Default task(s).
 	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpcs', 'checkwpversion' ] );
+	grunt.registerTask( 'build', [
+		'default',
+		'copy:build',
+		'uglify:build'
+	] );
+
 	grunt.registerTask( 'pot', [ 'makepot' ] );
 
 	grunt.registerTask( 'deploy', [
