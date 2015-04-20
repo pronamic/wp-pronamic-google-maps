@@ -246,10 +246,12 @@ class Pronamic_Google_Maps_Maps {
 	 *
 	 * @return stdClass
 	 */
-	public static function get_meta_data() {
+	public static function get_meta_data( $post = null ) {
 		// _deprecated_function( __FUNCTION__, '1.4.1');
 
-		global $post;
+		if( is_null( $post ) ) {
+			global $post;
+		}
 
 		$meta = new stdClass();
 
@@ -387,11 +389,17 @@ class Pronamic_Google_Maps_Maps {
 		$arguments = wp_parse_args( $arguments, $defaults );
 
 		$options = Pronamic_Google_Maps_Maps::get_options();
-		$pgm = Pronamic_Google_Maps_Maps::get_meta_data();
+		$pgm = Pronamic_Google_Maps_Maps::get_meta_data( $post );
 
 		$activeTypes = $options['active'];
 
-		global $post;
+		if( isset( $arguments['post_id'] ) ) {
+			$post_id = intval( $arguments['post_id'] );
+
+			$post = get_post( $post_id );
+		} else {
+			global $post;
+		}
 
 		$active = isset( $activeTypes[ $post->post_type ] ) && $activeTypes[ $post->post_type ];
 
