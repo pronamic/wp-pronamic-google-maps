@@ -149,7 +149,7 @@ class Pronamic_Google_Maps_Maps {
 			$meta_query_extra[] = array(
 				'key'     => '_pronamic_google_maps_latitude',
 				'compare' => 'BETWEEN',
-				'value'   => array( $latitude - $range, $latitude + $range )
+				'value'   => array( $latitude - $range, $latitude + $range ),
 			);
 		}
 
@@ -160,7 +160,7 @@ class Pronamic_Google_Maps_Maps {
 			$meta_query_extra[] = array(
 				'key'     => '_pronamic_google_maps_longitude',
 				'compare' => 'BETWEEN',
-				'value'   => array( $longitude - $range, $longitude + $range )
+				'value'   => array( $longitude - $range, $longitude + $range ),
 			);
 		}
 
@@ -246,50 +246,48 @@ class Pronamic_Google_Maps_Maps {
 	 *
 	 * @return stdClass
 	 */
-	public static function get_meta_data( $post = null ) {
+	public static function get_meta_data( $post_id = null ) {
 		// _deprecated_function( __FUNCTION__, '1.4.1');
 
-		if( is_null( $post ) ) {
-			global $post;
-		}
+		$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
 
 		$meta = new stdClass();
 
-		$active = get_post_meta( $post->ID, '_pronamic_google_maps_active', true );
+		$active = get_post_meta( $post_id, '_pronamic_google_maps_active', true );
 		$meta->active = filter_var( $active, FILTER_VALIDATE_BOOLEAN );
 
 		$meta->latitude = null;
-		$value = get_post_meta( $post->ID, '_pronamic_google_maps_latitude', true );
-		if ( $value != '' ) {
+		$value = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
+		if ( '' !== $value ) {
 			$meta->latitude = (float) $value;
 		}
 		$meta->longitude = null;
-		$value = get_post_meta( $post->ID, '_pronamic_google_maps_longitude', true );
-		if ( $value != '' ) {
+		$value = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
+		if ( '' !== $value ) {
 			$meta->longitude = (float) $value;
 		}
 
 		$meta->mapType = self::MAP_TYPE_DEFAULT;
-		$value = get_post_meta( $post->ID, '_pronamic_google_maps_map_type', true );
-		if ( $value != '' ) {
+		$value = get_post_meta( $post_id, '_pronamic_google_maps_map_type', true );
+		if ( '' !== $value ) {
 			$meta->mapType = $value;
 		}
 
 		$meta->zoom = self::MAP_ZOOM_DEFAULT;
-		$value = get_post_meta( $post->ID, '_pronamic_google_maps_zoom', true );
-		if ( $value != '' ) {
+		$value = get_post_meta( $post_id, '_pronamic_google_maps_zoom', true );
+		if ( '' !== $value ) {
 			$meta->zoom = (int) $value;
 		}
 
-		$meta->title = get_post_meta( $post->ID, '_pronamic_google_maps_title', true );
+		$meta->title = get_post_meta( $post_id, '_pronamic_google_maps_title', true );
 
-		$description = get_post_meta( $post->ID, '_pronamic_google_maps_description', true );
+		$description = get_post_meta( $post_id, '_pronamic_google_maps_description', true );
 		if ( ! is_admin() ) {
 			$description = apply_filters( 'pronamic_google_maps_item_description', $description );
 		}
 		$meta->description = $description;
 
-		$meta->address = get_post_meta( $post->ID, '_pronamic_google_maps_address', true );
+		$meta->address = get_post_meta( $post_id, '_pronamic_google_maps_address', true );
 
 		$meta = apply_filters( 'pronamic_google_maps_post_meta', $meta );
 
@@ -318,11 +316,11 @@ class Pronamic_Google_Maps_Maps {
 		$parameters['sensor']  = 'false';
 
 		$markers = '';
-		if ( $info->color != null ) {
+		if ( null !== $info->color ) {
 			$markers .= 'color:' . $info->color . '|';
 		}
 
-		if ( $info->label != null ) {
+		if ( null !== $info->label ) {
 			$markers .= 'label:' . $info->label . '|';
 		}
 
@@ -384,6 +382,7 @@ class Pronamic_Google_Maps_Maps {
 			'echo'           => true,
 			'marker_options' => array(),
 			'map_options'    => array(),
+			'post_id'        => null,
 		);
 
 		$arguments = wp_parse_args( $arguments, $defaults );
@@ -393,15 +392,12 @@ class Pronamic_Google_Maps_Maps {
 
 		$activeTypes = $options['active'];
 
-		if( isset( $arguments['post_id'] ) ) {
-			$post_id = intval( $arguments['post_id'] );
+		$post_id = $arguments['post_id'];
+		$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
 
-			$post = get_post( $post_id );
-		} else {
-			global $post;
-		}
+		$post_type = get_post_type( $post_id );
 
-		$active = isset( $activeTypes[ $post->post_type ] ) && $activeTypes[ $post->post_type ];
+		$active = isset( $activeTypes[ $post_type ] ) && $activeTypes[ $post_type ];
 
 		if ( $active && $pgm->active ) {
 			$info = new Pronamic_Google_Maps_Info();

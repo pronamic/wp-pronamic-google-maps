@@ -218,7 +218,7 @@ class Pronamic_Google_Maps_Settings {
 		?>
 		<label for="pronamic_google_maps_visual_refresh">
 			<input id="pronamic_google_maps_visual_refresh" name="pronamic_google_maps_visual_refresh" value="true" type="checkbox" <?php checked( get_option( 'pronamic_google_maps_visual_refresh' ) ); ?> />
-			<?php _e( 'Use Google Maps Visual Refresh', 'pronamic_google_maps' ); ?>
+			<?php esc_html_e( 'Use Google Maps Visual Refresh', 'pronamic_google_maps' ); ?>
 		</label>
 
 		<?php if ( isset( $args['description'] ) ) : ?>

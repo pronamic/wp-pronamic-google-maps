@@ -14,6 +14,7 @@
  * to compute another point, you have to create a new one.
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0
  * @doc
@@ -204,7 +205,7 @@ class Pronamic_Google_Maps_LatLng {
 			$seconds = round( $seconds );
 		}
 
-		if ( $direction !== null ) {
+		if ( null !== $direction ) {
 			switch ( $direction ) {
 				case self::DIRECTION_LATITUDE:
 					$cardinalDirection = $decimal < 0 ? self::CARDINAL_DIRECTION_SOUTH : self::CARDINAL_DIRECTION_NORTH;
@@ -217,7 +218,7 @@ class Pronamic_Google_Maps_LatLng {
 			}
 		}
 
-		if ( $cardinalDirection !== null ) {
+		if ( null !== $cardinalDirection ) {
 			return sprintf( '%s°%s\' %s" %s', $degrees, $minutes, $seconds, $cardinalDirection );
 		} else {
 			return sprintf( '%s°%s\' %s"', $degrees, $minutes, $seconds );

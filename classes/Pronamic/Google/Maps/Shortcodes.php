@@ -147,7 +147,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	 */
 	public static function shortcode_mashup( $atts ) {
 		$atts = wp_parse_args( $atts, array(
-			'query' => array()
+			'query' => array(),
 		) );
 
 		$atts = self::parse_map_options( $atts );

@@ -35,9 +35,7 @@ class Pronamic_Google_Maps_ApiClient {
 
 		$response = wp_remote_get( $url );
 
-		if ( is_wp_error( $response ) ) {
-
-		} else {
+		if ( ! is_wp_error( $response ) ) {
 			$body = $response['body'];
 
 			$result = json_decode( $body );

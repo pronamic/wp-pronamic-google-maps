@@ -56,7 +56,7 @@ class Pronamic_Google_Maps_Size {
 	public function get_pixels( $context ) {
 		$pixels = $this->number;
 
-		if ( $this->unit == '%' ) {
+		if ( '%' === $this->unit ) {
 			$ratio = $context / 100;
 
 			$pixels = $ratio * $this->number;

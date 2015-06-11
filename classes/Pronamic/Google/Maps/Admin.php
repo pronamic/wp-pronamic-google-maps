@@ -41,7 +41,7 @@ class Pronamic_Google_Maps_Admin {
 
 		// Add the localization for giving the settings.
 		wp_localize_script( 'pronamic_google_maps_admin', 'pronamic_google_maps_settings', array(
-			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' )
+			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
 		) );
 
 		// Load the Settings Class
@@ -166,6 +166,7 @@ class Pronamic_Google_Maps_Admin {
 
 	/**
 	 * Update post meta, only store post meta when there is meta to store
+	 *
 	 * @see http://core.trac.wordpress.org/browser/tags/3.4.2/wp-includes/post.php#L1533
 	 *
 	 * @param string $post_id
@@ -197,7 +198,7 @@ class Pronamic_Google_Maps_Admin {
 			return $post_id;
 		}
 
-		if ( 'page' == get_post_type( $post_id ) ) {
+		if ( 'page' === get_post_type( $post_id ) ) {
 			if ( ! current_user_can( 'edit_page', $post_id ) ) {
 				return $post_id;
 			}
@@ -224,11 +225,11 @@ class Pronamic_Google_Maps_Admin {
 
 		// Map type
 		$map_type = filter_input( INPUT_POST, '_pronamic_google_maps_map_type', FILTER_SANITIZE_STRING );
-		self::update_post_meta( $post_id, '_pronamic_google_maps_map_type', $map_type == Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT ? null : $map_type );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_map_type', Pronamic_Google_Maps_Maps::MAP_TYPE_DEFAULT === $map_type ? null : $map_type );
 
 		// Zoom
 		$zoom = filter_input( INPUT_POST, '_pronamic_google_maps_zoom', FILTER_SANITIZE_NUMBER_INT );
-		self::update_post_meta( $post_id, '_pronamic_google_maps_zoom', $zoom == Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT ? null : $zoom );
+		self::update_post_meta( $post_id, '_pronamic_google_maps_zoom', Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT === $zoom ? null : $zoom );
 
 		// Title
 		$title = filter_input( INPUT_POST, '_pronamic_google_maps_title', FILTER_UNSAFE_RAW );

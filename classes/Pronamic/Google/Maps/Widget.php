@@ -143,7 +143,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		?>
 		<select id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>">
 			<?php foreach ( $units as $unit ) : ?>
-				<option value="<?php echo esc_attr( $unit['value'] ); ?>" <?php if ( $value == $unit['value'] ) : ?>selected="selected"<?php endif?>>
+				<option value="<?php echo esc_attr( $unit['value'] ); ?>" <?php selected( $value, $unit['value'] ); ?>>
 					<?php echo esc_html( $unit['label'] ); ?>
 				</option>
 			<?php endforeach; ?>

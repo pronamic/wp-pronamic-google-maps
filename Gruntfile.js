@@ -17,12 +17,15 @@ module.exports = function( grunt ) {
 		// PHP Code Sniffer
 		phpcs: {
 			application: {
-				src: [ './' ]
+				src: [
+					'**/*.php',
+					'!deploy/**',
+					'!node_modules/**'
+				]
 			},
 			options: {
 				standard: 'phpcs.ruleset.xml',
-				extensions: 'php',
-				ignore: 'wp-svn,deploy,node_modules'
+				showSniffCodes: true
 			}
 		},
 

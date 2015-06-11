@@ -15,7 +15,7 @@ if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 			'map_type_id'    => 'satellite',
 			'marker_options' => array(
 				'icon' => 'http://google-maps-icons.googlecode.com/files/airport.png',
-			)
+			),
 		)
 	);
 }
