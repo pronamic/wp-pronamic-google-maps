@@ -387,13 +387,13 @@ class Pronamic_Google_Maps_Maps {
 
 		$arguments = wp_parse_args( $arguments, $defaults );
 
-		$options = Pronamic_Google_Maps_Maps::get_options();
-		$pgm = Pronamic_Google_Maps_Maps::get_meta_data( $post );
-
-		$activeTypes = $options['active'];
-
 		$post_id = $arguments['post_id'];
 		$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
+
+		$options = Pronamic_Google_Maps_Maps::get_options();
+		$pgm = Pronamic_Google_Maps_Maps::get_meta_data( $post_id );
+
+		$activeTypes = $options['active'];
 
 		$post_type = get_post_type( $post_id );
 
