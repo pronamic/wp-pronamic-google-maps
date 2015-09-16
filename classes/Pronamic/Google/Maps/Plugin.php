@@ -46,7 +46,7 @@ class Pronamic_Google_Maps_Plugin {
 		$longitude = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
 
 		if ( ! empty( $address ) ) {
-			if ( empty( $latitude) && empty( $longitude ) ) {
+			if ( empty( $latitude ) && empty( $longitude ) ) {
 				$apiClient = new Pronamic_Google_Maps_ApiClient();
 
 				$data = $apiClient->geocode_address( $address );
