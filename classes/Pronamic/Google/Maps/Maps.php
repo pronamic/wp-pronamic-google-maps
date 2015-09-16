@@ -217,6 +217,15 @@ class Pronamic_Google_Maps_Maps {
 			array(),
 			'1.0'
 		);
+
+		// OverlappingMarkerSpiderfier
+		// @see https://github.com/jawj/OverlappingMarkerSpiderfier
+		wp_register_script(
+			'google-maps-oms',
+			plugins_url( 'js/oms.min.js', Pronamic_Google_Maps_Maps::$file ),
+			array(),
+			'1.0'
+		);
 	}
 
 	//////////////////////////////////////////////////
