@@ -166,3 +166,9 @@ Default: `array()`
 For all map options see the [MapOptions](https://developers.google.com/maps/documentation/javascript/reference#MapOptions)
 section on the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/reference) documentation page.
 
+
+## Meta Keys
+
+### `_pronamic_google_maps_active`
+
+### `_pronamic_google_maps_latitude`
