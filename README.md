@@ -112,7 +112,7 @@ For all overlapping marker spiderfier options check the https://github.com/jawj/
 Example: `markersWontMove=true&markersWontHide=true`  
 
 
-## Function - `pronamic_google_maps()`
+## Function `pronamic_google_maps`
 
 ### Parameters
 
@@ -165,6 +165,10 @@ Default: `array()`
 
 For all map options see the [MapOptions](https://developers.google.com/maps/documentation/javascript/reference#MapOptions)
 section on the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/reference) documentation page.
+
+
+## Function `pronamic_google_maps_mashup`
+
 
 
 ## Meta Keys
