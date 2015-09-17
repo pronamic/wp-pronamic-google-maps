@@ -54,6 +54,19 @@ class Pronamic_Google_Maps_Settings {
 		);
 
 		// Settings fields for the general settings section
+		register_setting( 'pronamic_google_maps', 'pronamic_google_maps_key' );
+
+		add_settings_field(
+			'pronamic_google_maps_key',
+			__( 'Key', 'pronamic_google_maps' ),
+			array( $this, 'input_text' ),
+			'pronamic_google_maps',
+			'pronamic_google_maps_settings_section_general',
+			array(
+				'label_for'   => 'pronamic_google_maps_key',
+			)
+		);
+
 		add_settings_field(
 			'Pronamic_Google_maps',
 			__( 'Post Types', 'pronamic_google_maps' ),
@@ -81,8 +94,8 @@ class Pronamic_Google_Maps_Settings {
 		);
 
 		// Register those settings
-		register_setting( 'pronamic_google_maps_settings', 'Pronamic_Google_maps' );
-		register_setting( 'pronamic_google_maps_settings', 'pronamic_google_maps_visual_refresh', array( $this, 'sanitize_boolean' ) );
+		register_setting( 'pronamic_google_maps', 'Pronamic_Google_maps' );
+		register_setting( 'pronamic_google_maps', 'pronamic_google_maps_visual_refresh', array( $this, 'sanitize_boolean' ) );
 	}
 
 	/**
@@ -172,6 +185,22 @@ class Pronamic_Google_Maps_Settings {
 	 * ======
 	 */
 
+	public static function input_text( $args ) {
+		$defaults = array(
+			'type' => 'text',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		printf(
+			'<input name="%s" id="%s" type="%s" value="%s" class="%s" />',
+			esc_attr( $args['label_for'] ),
+			esc_attr( $args['label_for'] ),
+			esc_attr( $args['type'] ),
+			esc_attr( get_option( $args['label_for'] ) ),
+			'regular-text'
+		);
+	}
 
 	/**
 	 * Shows the input for the active post type settings

@@ -192,11 +192,15 @@ class Pronamic_Google_Maps_Maps {
 		);
 
 		// Register the Google Maps script
+		$key = get_option( 'pronamic_google_maps_key' );
+		$key = empty( $key ) ? false : $key;
+
 		wp_register_script(
 			'google-maps',
 			add_query_arg(
 				array(
 					'sensor' => 'false',
+					'key'    => $key,
 				),
 				$protocol . '://maps.googleapis.com/maps/api/js'
 			),
