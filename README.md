@@ -129,6 +129,8 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 		),
 	) );
 }
+```
+
 
 ### Parameters
 
