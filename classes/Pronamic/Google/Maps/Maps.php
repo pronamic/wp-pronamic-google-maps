@@ -182,15 +182,6 @@ class Pronamic_Google_Maps_Maps {
 
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		// Register the Google JavaScript API loader script
-		wp_register_script(
-			'google-jsapi',
-			add_query_arg(
-				array(),
-				$protocol . '://www.google.com/jsapi'
-			)
-		);
-
 		// Register the Google Maps script
 		$key = get_option( 'pronamic_google_maps_key' );
 		$key = empty( $key ) ? false : $key;

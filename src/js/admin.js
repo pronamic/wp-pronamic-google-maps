@@ -387,9 +387,6 @@
 	 * Ready
 	 */
 	$( document ).ready( function() {
-		google.load( 'maps', '3',  {
-			callback: initialize , 
-			other_params: 'sensor=false'
-		} );
+		initialize();
 	} );
 } )( jQuery );

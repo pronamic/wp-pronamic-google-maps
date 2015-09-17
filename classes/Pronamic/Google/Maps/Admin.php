@@ -28,21 +28,29 @@ class Pronamic_Google_Maps_Admin {
 
 		// Scripts
 		wp_register_script(
-			'pronamic_google_maps_admin',
+			'pronamic-google-maps-admin',
 			plugins_url( 'js/admin.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'jquery', 'google-jsapi' )
+			array( 'jquery', 'google-maps' ),
+			'2.3.0',
+			true
 		);
 
 		// Styles
 		wp_register_style(
-			'pronamic_google_maps_admin',
-			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file )
+			'pronamic-google-maps-admin',
+			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file ),
+			array(),
+			'2.3.0'
 		);
 
 		// Add the localization for giving the settings.
-		wp_localize_script( 'pronamic_google_maps_admin', 'pronamic_google_maps_settings', array(
-			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
-		) );
+		wp_localize_script(
+			'pronamic-google-maps-admin',
+			'pronamic_google_maps_settings',
+			array(
+				'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
+			)
+		);
 
 		// Load the Settings Class
 		self::$pronamic_google_maps_settings = new Pronamic_Google_Maps_Settings();
@@ -80,8 +88,8 @@ class Pronamic_Google_Maps_Admin {
 		}
 
 		if ( $enqueue ) {
-			wp_enqueue_script( 'pronamic_google_maps_admin' );
-			wp_enqueue_style( 'pronamic_google_maps_admin' );
+			wp_enqueue_script( 'pronamic-google-maps-admin' );
+			wp_enqueue_style( 'pronamic-google-maps-admin' );
 		}
 	}
 
