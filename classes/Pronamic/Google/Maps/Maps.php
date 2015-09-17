@@ -180,6 +180,8 @@ class Pronamic_Google_Maps_Maps {
 	public static function register_scripts() {
 		$protocol = is_ssl() ? 'https' : 'http';
 
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
 		// Register the Google JavaScript API loader script
 		wp_register_script(
 			'google-jsapi',
@@ -197,34 +199,36 @@ class Pronamic_Google_Maps_Maps {
 					'sensor' => 'false',
 				),
 				$protocol . '://maps.googleapis.com/maps/api/js'
-			)
+			),
+			array(),
+			null
 		);
 
 		// MarkerClustererPlus
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
 		wp_register_script(
-			'google-maps-markerclustererplus',
-			plugins_url( 'js/markerclustererplus.js', Pronamic_Google_Maps_Maps::$file ),
-			array(),
+			'google-maps-marker-clusterer-plus',
+			plugins_url( 'assets/google-maps-marker-clusterer-plus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
+			array( 'google-maps' ),
 			'2.0.6'
 		);
 
 		// MarkerManager
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markermanager/1.0/
 		wp_register_script(
-			'google-maps-markermanager',
-			plugins_url( 'js/markermanager.js', Pronamic_Google_Maps_Maps::$file ),
-			array(),
+			'google-maps-marker-manager',
+			plugins_url( 'assets/google-maps-marker-manager/markermanager' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
+			array( 'google-maps' ),
 			'1.0'
 		);
 
 		// OverlappingMarkerSpiderfier
 		// @see https://github.com/jawj/OverlappingMarkerSpiderfier
 		wp_register_script(
-			'google-maps-oms',
-			plugins_url( 'js/oms.min.js', Pronamic_Google_Maps_Maps::$file ),
-			array(),
-			'1.0'
+			'google-maps-overlapping-marker-spiderfier',
+			plugins_url( 'assets/google-maps-overlapping-marker-spiderfier/oms.min.js', Pronamic_Google_Maps_Maps::$file ),
+			array( 'google-maps' ),
+			'0.3.3'
 		);
 	}
 

@@ -64,7 +64,7 @@ class Pronamic_Google_Maps_Mashup {
 
 		// Marker cluster options
 		if ( ! empty( $arguments['marker_clusterer_options'] ) ) {
-			wp_enqueue_script( 'google-maps-markerclustererplus' );
+			wp_enqueue_script( 'google-maps-marker-clusterer-plus' );
 
 			$options->markerClustererOptions = new stdClass();
 			foreach ( $arguments['marker_clusterer_options'] as $key => $value ) {
@@ -74,6 +74,20 @@ class Pronamic_Google_Maps_Mashup {
 			}
 		}
 
+		// Overlapping marker spiderfier options
+		if ( isset( $arguments['overlapping_marker_spiderfier_options'] ) ) {
+			wp_enqueue_script( 'google-maps-overlapping-marker-spiderfier' );
+
+			$options->overlappingMarkerSpiderfierOptions = new stdClass();
+
+			if ( is_array( $arguments['overlapping_marker_spiderfier_options'] ) ) {
+				foreach ( $arguments['overlapping_marker_spiderfier_options'] as $key => $value ) {
+					$options->overlappingMarkerSpiderfierOptions->$key = $value;
+				}
+			}
+		}
+
+		// Markers
 		$options->markers = array();
 
 		// HTML

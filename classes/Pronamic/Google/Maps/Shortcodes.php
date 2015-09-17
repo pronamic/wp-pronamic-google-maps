@@ -102,6 +102,21 @@ class Pronamic_Google_Maps_Shortcodes {
 		return $atts;
 	}
 
+	public static function parse_overlapping_marker_spiderfier_options( $atts ) {
+		$options = array();
+
+		if ( isset( $atts['overlapping_marker_spiderfier_options'] ) ) {
+			$value = $atts['overlapping_marker_spiderfier_options'];
+			$value = html_entity_decode( $value );
+
+			wp_parse_str( $value, $options );
+		}
+
+		$atts['overlapping_marker_spiderfier_options'] = $options;
+
+		return $atts;
+	}
+
 	//////////////////////////////////////////////////
 
 	/**
@@ -110,6 +125,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	public static function shortcode_map( $atts ) {
 		$atts = self::parse_map_options( $atts );
 		$atts = self::parse_marker_clusterer_options( $atts );
+		$atts = self::parse_overlapping_marker_spiderfier_options( $atts );
 
 		$atts['echo'] = false;
 

@@ -40,7 +40,7 @@ class Pronamic_Google_Maps_Site {
 		wp_register_script(
 			'pronamic_google_maps_site' ,
 			plugins_url( 'js/site.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'jquery', 'google-jsapi' )
+			array( 'jquery', 'google-maps' )
 		);
 
 		// Settings

@@ -1,6 +1,7 @@
 /* global google */
 /* global pronamic_google_maps_settings */
 /* global MarkerClusterer */
+/* global OverlappingMarkerSpiderfier */
 (function( $ ) {
 	var methods = {
 		/**
@@ -74,9 +75,6 @@
 				}
 				
 				var center = new google.maps.LatLng( mashupInfo.center.latitude, mashupInfo.center.longitude );
-				if ( google.loader.ClientLocation ) {
-					center = new google.maps.LatLng( google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude );
-				}
 
 				// Map options
 				var mapOptions = $.extend( {
@@ -91,6 +89,12 @@
 				var markerClusterer = false;
 				if ( mashupInfo.markerClustererOptions ) {
 					markerClusterer = new MarkerClusterer( map, [], mashupInfo.markerClustererOptions );
+				}
+
+				// OverlappingMarkerSpiderfier
+				var overlappingMarkerSpiderfier = false;
+				if ( mashupInfo.overlappingMarkerSpiderfierOptions ) {
+					overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier( map, mashupInfo.overlappingMarkerSpiderfierOptions );
 				}
 				
 				// Associated the Google Maps with the element so other developers can easily retrieve the Google Maps object
@@ -122,9 +126,13 @@
 
 					if ( markerClusterer ) {
 						markerClusterer.addMarker( marker, false );
-					} else {
-						marker.setMap( map );
 					}
+					
+					if ( overlappingMarkerSpiderfier ) {
+						overlappingMarkerSpiderfier.addMarker( marker );
+					}
+
+					marker.setMap( map );
 
 					// Extends the bounds object with this location so we can fit the map to show all posts
 					bounds.extend( location );
@@ -183,9 +191,6 @@
 	 * Ready
 	 */
 	$( document ).ready( function() {
-		google.load( 'maps', '3',  {
-			callback: initialize, 
-			other_params: pronamic_google_maps_settings.other_params
-		} );
+		initialize();
 	} );
 } )( jQuery );
