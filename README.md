@@ -234,6 +234,38 @@ Type: `int|string`
 Default: *WordPress default embed height*
 
 
+## Overlapping Marker Spiderfier
+
+The Pronamic Google Maps plugin has builtin support for the [OverlappingMarkerSpiderfier](https://github.com/jawj/OverlappingMarkerSpiderfier) library.
+
+### Example
+
+```php
+<?php
+
+if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
+	pronamic_google_maps_mashup(
+		array(
+			'post_type'      => 'post',
+			'posts_per_page' => 50,
+		),
+		array(
+			'width'  => 800,
+			'height' => 800,
+			'overlapping_marker_spiderfier_options' => array(
+				'markersWontMove'        => false,
+				'markersWontHide'        => false,
+				'keepSpiderfied'         => false,
+				'nearbyDistance'         => 20,
+				'circleSpiralSwitchover' => 9,
+				'legWeight'              => 1.5,
+			),
+		)
+	);
+}
+```
+
+
 ## Meta Keys
 
 ### `_pronamic_google_maps_active`

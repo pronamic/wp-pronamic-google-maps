@@ -17,4 +17,7 @@ This plugin makes it easy to add Google Maps to your WordPress post, pages or ot
 <?php include 'function-pronamic_google_maps_mashup.php'; ?>
 
 
+<?php include 'overlapping-marker-spiderfier.php'; ?>
+
+
 <?php include 'meta_keys.php'; ?>
