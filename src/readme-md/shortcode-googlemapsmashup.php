@@ -1,4 +1,4 @@
-## Shortcode - [googlemapsmashup]
+## Shortcode `googlemapsmashup`
 
 ### Attributes
 
