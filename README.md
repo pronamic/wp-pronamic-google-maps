@@ -102,6 +102,15 @@ section on the [MarkerClustererPlus](http://google-maps-utility-library-v3.googl
 
 Example: `maxZoom=15&gridSize=30`  
 
+#### overlapping_marker_spiderfier_options
+
+Type: `string|array`  
+Default: `array`  
+
+For all overlapping marker spiderfier options check the https://github.com/jawj/OverlappingMarkerSpiderfier page.
+
+Example: `markersWontMove=true&markersWontHide=true`  
+
 
 ## Function - `pronamic_google_maps()`
 
