@@ -134,6 +134,8 @@ You should add some code to you templates to add the Google Map.
 
 **Dynamic Google Maps**
 
+<?php 
+echo <<<'PHP'
 	<?php
 
 	if ( function_exists( 'pronamic_google_maps' ) ) {
@@ -144,10 +146,15 @@ You should add some code to you templates to add the Google Map.
 	}
 
 	?>
+PHP;
+?>
+
 
 
 **Static Google Maps**
 
+<?php 
+echo <<<'PHP'
 	<?php
 
 	if ( function_exists( 'pronamic_google_maps' ) ) {
@@ -161,10 +168,15 @@ You should add some code to you templates to add the Google Map.
 	}
 
 	?>
+PHP;
+?>
+
 
 
 **Filter the_content()**
 
+<?php 
+echo <<<'PHP'
 	<?php
 
 	if ( function_exists( 'pronamic_google_maps' ) ) {
@@ -182,10 +194,15 @@ You should add some code to you templates to add the Google Map.
 	}
 
 	?>
+PHP;
+?>
+
 
 
 **Google Maps Mashup**
 
+<?php 
+echo <<<'PHP'
 	<?php
 
 	if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
@@ -206,6 +223,9 @@ You should add some code to you templates to add the Google Map.
 	}
 
 	?>
+PHP;
+?>
+
 
 
 **Microformat**
@@ -213,9 +233,15 @@ You should add some code to you templates to add the Google Map.
 If you want to display the [GEO microformat](http://microformats.org/wiki/geo) with the 
 latitude and longitude information you should call the following function in your template:
 
+<?php 
+echo <<<'PHP'
 	<?php pronamic_google_maps_geo_microformat(); ?>
+PHP;
+?>
+
 Or througt an filter
 
+<?php echo <<<'PHP'
 	<?php
 	
 	function custom_pronamic_google_maps_the_content( $content ) {
@@ -233,6 +259,9 @@ Or througt an filter
 	}
 
 	add_filter( 'the_content', 'custom_pronamic_google_maps_the_content', 9 );
+PHP;
+?>
+
 
 
 == Frequently Asked Questions ==
@@ -448,6 +477,8 @@ Or througt an filter
 = 1.4.1 =
 *	Fixed marker on frontend should not be draggable (thanks to [Pim Vellinga](http://twitter.com/brainscrewer))
 *	Added function pronamic_google_maps_location() for custom directions forms, template example:
+<?php
+echo <<<'PHP'
 		<form action="http://maps.google.com/maps" method="get"> 
 			<label for="saddr">From:</label> 
 			<input id="saddr" name="saddr" type="text" /> 
@@ -458,6 +489,9 @@ Or througt an filter
 
 			<input type="submit" value="Get Directions" /> 
 		</form>
+PHP;
+?>
+
 
 = 1.4 =
 *	Fixed bug dynamic map fixed width and height (thanks to [Joost Baaij](http://www.spacebabies.nl/))

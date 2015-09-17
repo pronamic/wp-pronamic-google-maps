@@ -1,5 +1,7 @@
 /* jshint node:true */
 module.exports = function( grunt ) {
+	require( 'load-grunt-tasks' )( grunt );
+
 	// Project configuration.
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -148,6 +150,24 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// Shell
+		shell: {
+			// Generate readme.txt
+			readme_txt: {
+				command: 'php src/readme-txt/readme.php > readme.txt'
+			},
+
+			// Generate README.md
+			readme_md: {
+				command: 'php src/readme-md/README.php > README.md'	
+			},
+
+			// Generate CHANGELOG.md
+			changelog_md: {
+				command: 'php src/changelog-md/CHANGELOG.php > CHANGELOG.md'	
+			}
+		},
+
 		// WordPress deploy
 		rt_wp_deploy: {
 			app: {
@@ -161,17 +181,6 @@ module.exports = function( grunt ) {
 			}
 		}
 	} );
-
-	grunt.loadNpmTasks( 'grunt-phplint' );
-	grunt.loadNpmTasks( 'grunt-phpcs' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-checkwpversion' );
-	grunt.loadNpmTasks( 'grunt-wp-i18n' );
-	grunt.loadNpmTasks( 'grunt-shell' );
-	grunt.loadNpmTasks( 'grunt-rt-wp-deploy' );
 
 	// Default task(s).
 	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpcs', 'checkwpversion' ] );
