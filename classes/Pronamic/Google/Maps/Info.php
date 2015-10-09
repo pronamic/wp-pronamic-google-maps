@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps info
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  */
 class Pronamic_Google_Maps_Info {
 	/**
@@ -107,7 +107,7 @@ class Pronamic_Google_Maps_Info {
 	 *
 	 * @return boolean true if static, false otherwise
 	 */
-	public function isStatic() {
+	public function is_static() {
 		return $this->static;
 	}
 
@@ -116,7 +116,7 @@ class Pronamic_Google_Maps_Info {
 	 *
 	 * @return boolean true if dynamic, false otherwise
 	 */
-	public function isDynamic() {
+	public function is_dynamic() {
 		return ! $this->static;
 	}
 }

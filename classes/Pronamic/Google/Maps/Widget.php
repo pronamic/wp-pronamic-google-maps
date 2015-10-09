@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps widget
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  * @doc http://codex.wordpress.org/Widgets_API
  *      http://codex.wordpress.org/Function_Reference/wp_enqueue_script
  */
@@ -33,11 +33,11 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * Constructs and initialize the Google Maps meta box
 	 */
 	public function Pronamic_Google_Maps_Widget() {
-		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic_google_maps' );
+		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic-google-maps' );
 		$widgetOptions  = array( 'classname' => 'pronamic_google_maps_widget', 'description' => $description );
 		$controlOptions = array( 'width' => 500 );
 
-		parent::WP_Widget( 'pronamic_google_maps', __( 'Google Maps', 'pronamic_google_maps' ), $widgetOptions, $controlOptions );
+		parent::__construct( 'pronamic_google_maps', __( 'Google Maps', 'pronamic-google-maps' ), $widgetOptions, $controlOptions );
 	}
 
 	//////////////////////////////////////////////////
@@ -49,14 +49,13 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $arguments, $instance ) {
-		extract( $arguments );
-
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
-		echo $before_widget;
+		// @codingStandardsIgnoreStart
+		echo $args['before_widget'];
 
 		if ( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
 		$info = new Pronamic_Google_Maps_Info();
@@ -70,13 +69,14 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		$info->mapOptions->mapTypeId = $instance['map-type'];
 		$info->mapOptions->zoom      = (int) $instance['zoom'];
 
-		if ( $info->isDynamic() ) {
-			Pronamic_Google_Maps_Site::requireSiteScript();
+		if ( $info->is_dynamic() ) {
+			Pronamic_Google_Maps_Site::require_site_script();
 		}
 
-		echo Pronamic_Google_Maps_Maps::getMapHtml( $info );
+		echo Pronamic_Google_Maps_Maps::get_map_html( $info );
 
-		echo $after_widget;
+		echo $args['after_widget'];
+		// @codingStandardsIgnoreEnd
 	}
 
 	//////////////////////////////////////////////////
@@ -136,15 +136,15 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 */
 	public function renderUnitField( $name, $value = null ) {
 		$units = array(
-			array( 'value' => 'px', 'label' => __( 'pixels', 'pronamic_google_maps' ) ),
-			array( 'value' => '%', 'label' => __( 'percent', 'pronamic_google_maps' ) ),
+			array( 'value' => 'px', 'label' => __( 'pixels', 'pronamic-google-maps' ) ),
+			array( 'value' => '%', 'label' => __( 'percent', 'pronamic-google-maps' ) ),
 		);
 
 		?>
-		<select id="<?php echo $this->get_field_id( $name ); ?>" name="<?php echo $this->get_field_name( $name ); ?>">
+		<select id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>">
 			<?php foreach ( $units as $unit ) : ?>
-				<option value="<?php echo $unit['value']; ?>" <?php if ( $value == $unit['value'] ) : ?>selected="selected"<?php endif?>>
-					<?php echo $unit['label']; ?>
+				<option value="<?php echo esc_attr( $unit['value'] ); ?>" <?php selected( $value, $unit['value'] ); ?>>
+					<?php echo esc_html( $unit['label'] ); ?>
 				</option>
 			<?php endforeach; ?>
 		</select>

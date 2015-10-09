@@ -1,8 +1,16 @@
+# Bower
+/bower_components/
+
 # Deploy
-deploy
+/deploy/
+
+# Eclipse
+/.buildpath
+/.project
+/.settings/
 
 # WordPress SVN
-wp-svn
+/wp-svn/
 
-# Grunt
-node_modules
+# Node.js
+/node_modules/

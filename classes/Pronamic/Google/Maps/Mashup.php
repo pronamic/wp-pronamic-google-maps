@@ -3,14 +3,14 @@
 /**
  * Title: Pronamic Google Maps mashup
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  */
 class Pronamic_Google_Maps_Mashup {
 	public static function render( $q = array(), $arguments = array() ) {
-		Pronamic_Google_Maps_Site::requireSiteScript();
+		Pronamic_Google_Maps_Site::require_site_script();
 
 		$defaults = array(
 			'width'                  => Pronamic_Google_Maps_Maps::$defaultWidth,
@@ -64,7 +64,7 @@ class Pronamic_Google_Maps_Mashup {
 
 		// Marker cluster options
 		if ( ! empty( $arguments['marker_clusterer_options'] ) ) {
-			wp_enqueue_script( 'google-maps-markerclustererplus' );
+			wp_enqueue_script( 'google-maps-marker-clusterer-plus' );
 
 			$options->markerClustererOptions = new stdClass();
 			foreach ( $arguments['marker_clusterer_options'] as $key => $value ) {
@@ -74,6 +74,20 @@ class Pronamic_Google_Maps_Mashup {
 			}
 		}
 
+		// Overlapping marker spiderfier options
+		if ( isset( $arguments['overlapping_marker_spiderfier_options'] ) ) {
+			wp_enqueue_script( 'google-maps-overlapping-marker-spiderfier' );
+
+			$options->overlappingMarkerSpiderfierOptions = new stdClass();
+
+			if ( is_array( $arguments['overlapping_marker_spiderfier_options'] ) ) {
+				foreach ( $arguments['overlapping_marker_spiderfier_options'] as $key => $value ) {
+					$options->overlappingMarkerSpiderfierOptions->$key = $value;
+				}
+			}
+		}
+
+		// Markers
 		$options->markers = array();
 
 		// HTML
@@ -81,17 +95,17 @@ class Pronamic_Google_Maps_Mashup {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$pgm = Pronamic_Google_Maps_Maps::getMetaData();
+			$pgm = Pronamic_Google_Maps_Maps::get_meta_data();
 
 			if ( $pgm->active ) {
 				$description = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
 					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 
-				$description = apply_filters( Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $description );
+				$description = apply_filters( 'pronamic_google_maps_mashup_item', $description );
 
 				$info = new Pronamic_Google_Maps_Info();
 				$info->title         = $pgm->title;
@@ -126,11 +140,11 @@ class Pronamic_Google_Maps_Mashup {
 				$item = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
 					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 
-				$items .= apply_filters( Pronamic_Google_Maps_Filters::FILTER_MASHUP_ITEM, $item );
+				$items .= apply_filters( 'pronamic_google_maps_mashup_item', $item );
 				$items .= '</li>';
 			}
 		}
@@ -154,7 +168,9 @@ class Pronamic_Google_Maps_Mashup {
 		$content .= '</div>';
 
 		if ( $arguments['echo'] ) {
+			// @codingStandardsIgnoreStart
 			echo $content;
+			// @codingStandardsIgnoreEnd
 		} else {
 			return $content;
 		}

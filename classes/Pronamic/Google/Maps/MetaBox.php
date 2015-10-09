@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps meta box
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  */
 class Pronamic_Google_Maps_MetaBox {
 	/**
@@ -24,7 +24,7 @@ class Pronamic_Google_Maps_MetaBox {
 	public static function register( $page, $context = 'advanced', $priority = 'default' ) {
 		add_meta_box(
 			self::ID,
-			__( 'Google Maps', 'pronamic_google_maps' ),
+			__( 'Google Maps', 'pronamic-google-maps' ),
 			array( __CLASS__, 'render' ),
 			$page,
 			$context,

@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps shortcodes
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  * @doc http://codex.wordpress.org/Shortcode_API
  */
 class Pronamic_Google_Maps_Shortcodes {
@@ -87,6 +87,36 @@ class Pronamic_Google_Maps_Shortcodes {
 		return $atts;
 	}
 
+	public static function parse_marker_clusterer_options( $atts ) {
+		$options = array();
+
+		if ( isset( $atts['marker_clusterer_options'] ) ) {
+			$value = $atts['marker_clusterer_options'];
+			$value = html_entity_decode( $value );
+
+			wp_parse_str( $value, $options );
+		}
+
+		$atts['marker_clusterer_options'] = $options;
+
+		return $atts;
+	}
+
+	public static function parse_overlapping_marker_spiderfier_options( $atts ) {
+		$options = array();
+
+		if ( isset( $atts['overlapping_marker_spiderfier_options'] ) ) {
+			$value = $atts['overlapping_marker_spiderfier_options'];
+			$value = html_entity_decode( $value );
+
+			wp_parse_str( $value, $options );
+		}
+
+		$atts['overlapping_marker_spiderfier_options'] = $options;
+
+		return $atts;
+	}
+
 	//////////////////////////////////////////////////
 
 	/**
@@ -94,6 +124,8 @@ class Pronamic_Google_Maps_Shortcodes {
 	 */
 	public static function shortcode_map( $atts ) {
 		$atts = self::parse_map_options( $atts );
+		$atts = self::parse_marker_clusterer_options( $atts );
+		$atts = self::parse_overlapping_marker_spiderfier_options( $atts );
 
 		$atts['echo'] = false;
 
@@ -131,10 +163,11 @@ class Pronamic_Google_Maps_Shortcodes {
 	 */
 	public static function shortcode_mashup( $atts ) {
 		$atts = wp_parse_args( $atts, array(
-			'query' => array()
+			'query' => array(),
 		) );
 
 		$atts = self::parse_map_options( $atts );
+		$atts = self::parse_marker_clusterer_options( $atts );
 
 		// Query
 		$query = $atts['query'];

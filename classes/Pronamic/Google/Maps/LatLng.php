@@ -14,6 +14,7 @@
  * to compute another point, you have to create a new one.
  * Copyright: Copyright (c) 2005 - 2011
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0
  * @doc
@@ -133,7 +134,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param orbis_geo_LatLng $other a coordinate
 	 * @return double a distance
 	 */
-	public function distanceFrom( self $other ) {
+	public function distance_from( self $other ) {
 		return sqrt( sqrt( ( pow( $other->latitude - $this->latitude, 2 ) ) + pow( $other->longitude - $this->longitude, 2 ) ) );
 	}
 
@@ -145,7 +146,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param orbis_geo_LatLng $other a coordinate
 	 * @return geo_LatLng mid point
 	 */
-	public function midpointTo( self $other ) {
+	public function midpoint_to( self $other ) {
 		return new self(
 			( $other->latitude + $this->latitude ) / 2.0,
 			( $other->longitude + $this->longitude ) / 2.0
@@ -183,7 +184,7 @@ class Pronamic_Google_Maps_LatLng {
 	 * @param float $decimal
 	 * @param stromg $direction
 	 */
-	public static function convertToDegMinSec( $decimal, $direction = null ) {
+	public static function convert_to_deg_min_sec( $decimal, $direction = null ) {
 		$string = (string) $decimal;
 
 		$degrees = $string;
@@ -192,7 +193,7 @@ class Pronamic_Google_Maps_LatLng {
 		$cardinalDirection = null;
 
 		$position = strpos( $string, '.' );
-		if ( $position !== false ) {
+		if ( false !== $position ) {
 			$integral = (int) substr( $string, 0, $position );
 			$fractional = (float) ( '0.' . substr( $string, $position + 1 ) );
 
@@ -204,7 +205,7 @@ class Pronamic_Google_Maps_LatLng {
 			$seconds = round( $seconds );
 		}
 
-		if ( $direction !== null ) {
+		if ( null !== $direction ) {
 			switch ( $direction ) {
 				case self::DIRECTION_LATITUDE:
 					$cardinalDirection = $decimal < 0 ? self::CARDINAL_DIRECTION_SOUTH : self::CARDINAL_DIRECTION_NORTH;
@@ -217,7 +218,7 @@ class Pronamic_Google_Maps_LatLng {
 			}
 		}
 
-		if ( $cardinalDirection !== null ) {
+		if ( null !== $cardinalDirection ) {
 			return sprintf( '%s°%s\' %s" %s', $degrees, $minutes, $seconds, $cardinalDirection );
 		} else {
 			return sprintf( '%s°%s\' %s"', $degrees, $minutes, $seconds );

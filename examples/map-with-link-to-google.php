@@ -23,7 +23,7 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 
 	printf(
 		'<a href="%s" target="_blank">%s</a>',
-		add_query_arg( 'q', $q, 'https://www.google.com/maps' ),
-		__( 'View Full-Size Map', 'text_domain' )
+		esc_attr( add_query_arg( 'q', $q, 'https://www.google.com/maps' ) ),
+		esc_html__( 'View Full-Size Map', 'text_domain' )
 	);
 }

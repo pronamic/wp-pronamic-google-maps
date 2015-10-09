@@ -6,67 +6,67 @@ wp_nonce_field( 'save-post', Pronamic_Google_Maps_Maps::NONCE_NAME );
 
 ?>
 <div id="pgm">
-	<input id="pgm-map-type-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_MAP_TYPE; ?>" value="<?php echo esc_attr( $pgm->mapType ); ?>" type="hidden" />
-	<input id="pgm-zoom-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ZOOM; ?>" value="<?php echo esc_attr( $pgm->zoom ); ?>" type="hidden" />
+	<input id="pgm-map-type-field" name="_pronamic_google_maps_map_type" value="<?php echo esc_attr( $pgm->mapType ); ?>" type="hidden" />
+	<input id="pgm-zoom-field" name="_pronamic_google_maps_zoom" value="<?php echo esc_attr( $pgm->zoom ); ?>" type="hidden" />
 
 	<table class="form-table">
 		<tr>
 			<th scope="row">
-				<label for="pgm-active-field"><?php _e( 'Active', 'pronamic_google_maps' ); ?></label>
+				<label for="pgm-active-field"><?php esc_html_e( 'Active', 'pronamic-google-maps' ); ?></label>
 			</th>
 			<td>
-				<input id="pgm-active-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ACTIVE; ?>" value="true" type="checkbox" <?php checked( $pgm->active ); ?> />
-				<label for="pgm-active-field"><?php _e( 'Show Google Maps', 'pronamic_google_maps' ); ?></label>
+				<input id="pgm-active-field" name="_pronamic_google_maps_active" value="true" type="checkbox" <?php checked( $pgm->active ); ?> />
+				<label for="pgm-active-field"><?php esc_html_e( 'Show Google Maps', 'pronamic-google-maps' ); ?></label>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="pgm-title-field"><?php _e( 'Title', 'pronamic_google_maps' ); ?></label>
+				<label for="pgm-title-field"><?php esc_html_e( 'Title', 'pronamic-google-maps' ); ?></label>
 			</th>
 			<td>
-				<input id="pgm-title-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_TITLE; ?>" value="<?php echo esc_attr( $pgm->title ); ?>" class="regular-text" type="text" />
+				<input id="pgm-title-field" name="_pronamic_google_maps_title" value="<?php echo esc_attr( $pgm->title ); ?>" class="regular-text" type="text" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="pgm-description-field"><?php _e( 'Description', 'pronamic_google_maps' ); ?></label>
+				<label for="pgm-description-field"><?php esc_html_e( 'Description', 'pronamic-google-maps' ); ?></label>
 			</th>
 			<td>
-				<textarea id="pgm-description-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_DESCRIPTION; ?>" rows="3" cols="50"><?php echo esc_attr( $pgm->description ); ?></textarea>
+				<textarea id="pgm-description-field" name="_pronamic_google_maps_description" rows="3" cols="50"><?php echo esc_attr( $pgm->description ); ?></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="pgm-address-field"><?php _e( 'Address', 'pronamic_google_maps' ); ?></label>
+				<label for="pgm-address-field"><?php esc_html_e( 'Address', 'pronamic-google-maps' ); ?></label>
 			</th>
 			<td>
-				<textarea id="pgm-address-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_ADDRESS; ?>" rows="3" cols="50"><?php echo esc_attr( $pgm->address ); ?></textarea>
+				<textarea id="pgm-address-field" name="_pronamic_google_maps_address" rows="3" cols="50"><?php echo esc_textarea( $pgm->address ); ?></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<?php _e( 'Geocoder', 'pronamic_google_maps' ); ?>
+				<?php esc_html_e( 'Geocoder', 'pronamic-google-maps' ); ?>
 			</th>
 			<td>
-				<input id="pgm-geocode-button" type="submit" value="<?php _e( 'Geocode &darr;', 'pronamic_google_maps' ); ?>" class="button" name="pgm_geocode" />
+				<input id="pgm-geocode-button" type="submit" value="<?php esc_attr_e( 'Geocode &darr;', 'pronamic-google-maps' ); ?>" class="button" name="pgm_geocode" />
 
-				<input id="pgm-reverse-geocode-button" type="submit" value="<?php echo _e( 'Reverse Geocode &uarr;', 'pronamic_google_maps' ); ?>" class="button" name="pgm_reverse_geocode" />
+				<input id="pgm-reverse-geocode-button" type="submit" value="<?php echo esc_attr_e( 'Reverse Geocode &uarr;', 'pronamic-google-maps' ); ?>" class="button" name="pgm_reverse_geocode" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<?php _e( 'Location', 'pronamic_google_maps' ); ?>
+				<?php esc_html_e( 'Location', 'pronamic-google-maps' ); ?>
 			</th>
 			<td>
-				<input id="pgm-lat-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_LATITUDE; ?>" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" />
+				<input id="pgm-lat-field" name="_pronamic_google_maps_latitude" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" />
 				&deg;
-				<input id="pgm-lng-field" name="<?php echo Pronamic_Google_Maps_Post::META_KEY_LONGITUDE; ?>" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" />
+				<input id="pgm-lng-field" name="_pronamic_google_maps_longitude" value="<?php echo esc_attr( $pgm->longitude ); ?>" type="text" />
 				&deg;
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<span class="description"><?php _e( 'Tip: Change the zoom level and map type to your own wishes.', 'pronamic_google_maps' ); ?></span>
+				<span class="description"><?php esc_html_e( 'Tip: Change the zoom level and map type to your own wishes.', 'pronamic-google-maps' ); ?></span>
 			</td>
 		</tr>
 	</table>

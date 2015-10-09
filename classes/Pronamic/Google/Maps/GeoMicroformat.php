@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps GEO microformat
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  */
 class Pronamic_Google_Maps_GeoMicroformat {
 	/**
@@ -24,8 +24,8 @@ class Pronamic_Google_Maps_GeoMicroformat {
 		$arguments = wp_parse_args( $arguments, $defaults );
 
 		// Options
-		$options = Pronamic_Google_Maps_Maps::getOptions();
-		$pgm = Pronamic_Google_Maps_Maps::getMetaData();
+		$options = Pronamic_Google_Maps_Maps::get_options();
+		$pgm = Pronamic_Google_Maps_Maps::get_meta_data();
 
 		$activeTypes = $options['active'];
 
@@ -41,13 +41,15 @@ class Pronamic_Google_Maps_GeoMicroformat {
 					<abbr class="longitude" title="%.6f">%s</abbr>
 				</div>' ,
 				$pgm->latitude,
-				Pronamic_Google_Maps_LatLng::convertToDegMinSec( $pgm->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE ),
+				Pronamic_Google_Maps_LatLng::convert_to_deg_min_sec( $pgm->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE ),
 				$pgm->longitude,
-				Pronamic_Google_Maps_LatLng::convertToDegMinSec( $pgm->longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE )
+				Pronamic_Google_Maps_LatLng::convert_to_deg_min_sec( $pgm->longitude, Pronamic_Google_Maps_LatLng::DIRECTION_LONGITUDE )
 			);
 
 			if ( $arguments['echo'] ) {
+				// @codingStandardsIgnoreStart
 				echo $content;
+				// @codingStandardsIgnoreEnd
 			} else {
 				return $content;
 			}

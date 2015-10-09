@@ -3,10 +3,10 @@
 /**
  * Title: Pronamic Google Maps admin
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  */
 class Pronamic_Google_Maps_Size {
 	/**
@@ -56,7 +56,7 @@ class Pronamic_Google_Maps_Size {
 	public function get_pixels( $context ) {
 		$pixels = $this->number;
 
-		if ( $this->unit == '%' ) {
+		if ( '%' === $this->unit ) {
 			$ratio = $context / 100;
 
 			$pixels = $ratio * $this->number;
