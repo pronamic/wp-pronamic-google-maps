@@ -230,7 +230,6 @@ module.exports = function( grunt ) {
 		'default',
 		'copy',
 		'uglify',
-		'pot',
 		'shell'
 	] );
 
