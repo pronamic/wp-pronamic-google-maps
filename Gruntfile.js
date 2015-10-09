@@ -224,13 +224,15 @@ module.exports = function( grunt ) {
 
 	// Default task(s).
 	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpcs', 'checkwpversion' ] );
+	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
+
 	grunt.registerTask( 'build', [
 		'default',
 		'copy',
-		'uglify'
+		'uglify',
+		'pot',
+		'shell'
 	] );
-
-	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
 
 	grunt.registerTask( 'deploy', [
 		'checkwpversion',
