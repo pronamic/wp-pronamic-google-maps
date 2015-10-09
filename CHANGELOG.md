@@ -6,6 +6,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [Unreleased][unreleased]
 
+## [2.3.1] - 2015-10-09
+- Load the new text domain 'pronamic-google-maps'.
+
 ## [2.3.0] - 2015-10-09
 - All serverside Google Maps API request now run via https://.
 - Improved documentation in README.md file.
@@ -224,7 +227,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [1.0] - 2010-10-05
 - Initial release
 
-[unreleased]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.0...HEAD
+[unreleased]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.1...HEAD
+[2.3.1]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.2.9...2.3.0
 [2.2.9]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.2.8...2.2.9
 [2.2.8]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.2.7...2.2.8

@@ -281,11 +281,11 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
 
 	grunt.registerTask( 'build', [
+		'shell',
 		'default',
 		'copy',
 		'uglify',
-		'pot',
-		'shell'
+		'pot'
 	] );
 
 	grunt.registerTask( 'deploy', [

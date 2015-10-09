@@ -2,7 +2,7 @@
 # This file is distributed under the GPL.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pronamic Google Maps 2.3.0\n"
+"Project-Id-Version: Pronamic Google Maps 2.3.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/pronamic-google-maps\n"
 "POT-Creation-Date: 2015-10-09 10:23:28+00:00\n"
