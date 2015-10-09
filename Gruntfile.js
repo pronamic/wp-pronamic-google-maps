@@ -68,7 +68,7 @@ module.exports = function( grunt ) {
 		// Check textdomain errors
 		checktextdomain: {
 			options:{
-				text_domain: 'pronamic-google-maps',
+				text_domain: '<%= pkg.name %>',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
@@ -105,6 +105,7 @@ module.exports = function( grunt ) {
 					domainPath: 'languages',
 					type: 'wp-plugin',
 					updatePoFiles: true,
+					updateTimestamp: false,
 					exclude: [
 						'bower_components/.*',
 						'deploy/.*',
@@ -155,13 +156,18 @@ module.exports = function( grunt ) {
 					'**',
 					'!.*',
 					'!.*/**',
+					'!bower.json',
+					'!CHANGELOG.md',
 					'!Gruntfile.js',
 					'!package.json',
-					'!project.ruleset.xml',
+					'!phpcs.ruleset.xml',
+					'!README.md',
+					'!bower_components/**',
+					'!examples/**',
 					'!node_modules/**',
-					'!wp-svn/**'
+					'!src/**'
 				],
-				dest: 'deploy',
+				dest: 'deploy/latest',
 				expand: true,
 				dot: true
 			}
@@ -190,6 +196,19 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// Compress
+		compress: {
+			deploy: {
+				options: {
+					archive: 'deploy/archives/<%= pkg.name %>.<%= pkg.version %>.zip'
+				},
+				expand: true,
+				cwd: 'deploy/latest',
+				src: ['**/*'],
+				dest: '<%= pkg.name %>/'
+			}
+		},
+
 		// Shell
 		shell: {
 			// Generate readme.txt
@@ -208,14 +227,49 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// Git checkout
+		gitcheckout: {
+			tag: {
+				options: {
+					branch: 'tags/<%= pkg.version %>'
+				}
+			},
+			develop: {
+				options: {
+					branch: 'develop'
+				}
+			}
+		},
+
+		// S3
+		aws_s3: {
+			options: {
+				region: 'eu-central-1'
+			},
+			deploy: {
+				options: {
+					bucket: 'downloads.pronamic.eu',
+					differential: true
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'deploy/archives/',
+						src: '<%= pkg.name %>.<%= pkg.version %>.zip',
+						dest: 'plugins/<%= pkg.name %>/'
+					}
+				]
+			}
+		},
+
 		// WordPress deploy
 		rt_wp_deploy: {
 			app: {
 				options: {
-					svnUrl: 'http://plugins.svn.wordpress.org/pronamic-google-maps/',
-					svnDir: 'wp-svn',
+					svnUrl: 'http://plugins.svn.wordpress.org/<%= pkg.name %>/',
+					svnDir: 'deploy/wp-svn',
 					svnUsername: 'pronamic',
-					deployDir: 'deploy',
+					deployDir: 'deploy/latest',
 					version: '<%= pkg.version %>'
 				}
 			}
@@ -230,17 +284,28 @@ module.exports = function( grunt ) {
 		'default',
 		'copy',
 		'uglify',
+		'pot',
 		'shell'
 	] );
 
 	grunt.registerTask( 'deploy', [
 		'checkwpversion',
 		'clean:deploy',
-		'copy:deploy'
+		'copy:deploy',
+		'compress:deploy'
 	] );
 
 	grunt.registerTask( 'wp-deploy', [
+		'gitcheckout:tag',
 		'deploy',
-		'rt_wp_deploy'
+		'rt_wp_deploy',
+		'gitcheckout:develop'
+	] );
+	
+	grunt.registerTask( 's3-deploy', [
+		'gitcheckout:tag',
+		'deploy',
+		'aws_s3:deploy',
+		'gitcheckout:develop'
 	] );
 };
