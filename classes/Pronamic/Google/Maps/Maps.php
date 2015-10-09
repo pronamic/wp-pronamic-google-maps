@@ -114,7 +114,7 @@ class Pronamic_Google_Maps_Maps {
 		// Load plugin text domain
 		$rel_path = dirname( plugin_basename( self::$file ) ) . '/languages/';
 
-		load_plugin_textdomain( 'pronamic_google_maps', false, $rel_path );
+		load_plugin_textdomain( 'pronamic-google-maps', false, $rel_path );
 
 		// Scripts
 		self::register_scripts();
