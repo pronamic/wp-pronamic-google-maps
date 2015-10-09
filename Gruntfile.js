@@ -192,7 +192,7 @@ module.exports = function( grunt ) {
 		// Clean
 		clean: {
 			deploy: {
-				src: [ 'deploy' ]
+				src: [ 'deploy/latest' ]
 			}
 		},
 
