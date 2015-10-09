@@ -1,0 +1,260 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pronamic Google Maps\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-google-"
+"maps\n"
+"POT-Creation-Date: 2015-10-09 09:14:08+00:00\n"
+"PO-Revision-Date: 2013-01-20 21:40+0200\n"
+"Last-Translator: Ronny Sherer <ronny@hoojima.com>\n"
+"Language-Team: Pronamic <info@pronamic.nl>\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/Pronamic/Google/Maps/Admin.php:113
+#: classes/Pronamic/Google/Maps/Admin.php:114
+#: classes/Pronamic/Google/Maps/MetaBox.php:27
+#: classes/Pronamic/Google/Maps/Widget.php:40
+msgid "Google Maps"
+msgstr "מפות גוגל"
+
+#: classes/Pronamic/Google/Maps/Admin.php:126
+#: classes/Pronamic/Google/Maps/Admin.php:127 views/meta-box.php:48
+msgid "Geocoder"
+msgstr "גאוקודר"
+
+#: classes/Pronamic/Google/Maps/Admin.php:136
+#: classes/Pronamic/Google/Maps/Plugin.php:31
+msgid "Settings"
+msgstr "הגדרות"
+
+#: classes/Pronamic/Google/Maps/Mashup.php:104
+#: classes/Pronamic/Google/Maps/Mashup.php:143
+msgid "Permalink to %s"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:51
+msgid "General"
+msgstr "כללי"
+
+#: classes/Pronamic/Google/Maps/Settings.php:61
+msgid "Key"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:72
+#, fuzzy
+msgid "Post Types"
+msgstr "סוג הפרסום"
+
+#: classes/Pronamic/Google/Maps/Settings.php:77
+msgid "Enable Google Maps for the selected post types."
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:83
+msgid "Visual Refresh"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:89
+msgid ""
+"The <a href=\"%s\" target=\"_blank\">Google Maps visual refresh</a> brings a "
+"fresh new look to applications using the Google Maps JavaScript API."
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:250
+msgid "Use Google Maps Visual Refresh"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Widget.php:36
+msgid "Use this widget to add an Google Maps as a widget."
+msgstr "השתמש בווידג'ט זה כדי להוסיף מפת גוגל כווידג'ט"
+
+#: classes/Pronamic/Google/Maps/Widget.php:139
+msgid "pixels"
+msgstr "פיקסלים"
+
+#: classes/Pronamic/Google/Maps/Widget.php:140
+msgid "percent"
+msgstr "אחוזים"
+
+#: views/meta-box.php:15
+msgid "Active"
+msgstr "פעיל"
+
+#: views/meta-box.php:19
+msgid "Show Google Maps"
+msgstr "הצג את מפות גוגל"
+
+#: views/meta-box.php:24 views/page-geocoder.php:38 views/page-geocoder.php:110
+#: views/widget-form.php:20
+msgid "Title"
+msgstr "כותרת"
+
+#: views/meta-box.php:32 views/widget-form.php:28
+msgid "Description"
+msgstr "תיאור"
+
+#: views/meta-box.php:40 views/page-geocoder.php:46 views/page-geocoder.php:111
+msgid "Address"
+msgstr "כתובת"
+
+#: views/meta-box.php:51
+msgid "Geocode &darr;"
+msgstr "גאוקודר &darr;"
+
+#: views/meta-box.php:53
+msgid "Reverse Geocode &uarr;"
+msgstr "גאוקודר הפוך &uarr;"
+
+#: views/meta-box.php:58 views/page-geocoder.php:62
+msgid "Location"
+msgstr "מיקום"
+
+#: views/meta-box.php:69
+msgid "Tip: Change the zoom level and map type to your own wishes."
+msgstr "טיפ: התאם את רמת הזום וסוג המפה לצרכיך"
+
+#: views/page-general.php:9
+msgid "Save Changes"
+msgstr "שמור שינויים"
+
+#: views/page-geocoder.php:14
+msgid "Number posts to geocode: %s"
+msgstr "מספר הפרסומים לחישוב גאוקוד: %s"
+
+#: views/page-geocoder.php:28
+msgid "ID"
+msgstr "מזהה"
+
+#: views/page-geocoder.php:54
+msgid "Status"
+msgstr "סטטוס"
+
+#: views/page-geocoder.php:73
+msgid "Geocode"
+msgstr "גאוקוד"
+
+#: views/page-geocoder.php:94
+msgid "Zero results"
+msgstr "אין תוצאות"
+
+#: views/page-geocoder.php:100
+msgid ""
+"We found no geocoding results for the following %s posts, adjust them "
+"manually if needed."
+msgstr "לא מצאנו שום תוצאות גיאוקוד עבור %s הפרסומים הבאים, התאם ידנית אם נדרש"
+
+#: views/widget-form.php:36
+msgid "Latitude"
+msgstr "קו רוחב"
+
+#: views/widget-form.php:42
+msgid "Longitude"
+msgstr "קו אורך"
+
+#: views/widget-form.php:52
+msgid "Width"
+msgstr "רוחב"
+
+#: views/widget-form.php:60
+msgid "Height"
+msgstr "גובה"
+
+#: views/widget-form.php:69
+msgid "Dynamic"
+msgstr "דינמי"
+
+#: views/widget-form.php:72
+msgid "Static"
+msgstr "סטטי"
+
+#. Plugin Name of the plugin/theme
+#, fuzzy
+msgid "Pronamic Google Maps"
+msgstr "גאוקודר - מפות גוגל של פנורמיק"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.happywp.com/plugins/pronamic-google-maps/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin makes it simple to add Google Maps to your WordPress post, pages "
+"or other custom post types."
+msgstr ""
+
+#. Author of the plugin/theme
+#, fuzzy
+msgid "Pronamic"
+msgstr "דינמי"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr ""
+
+#~ msgid "Configuration - Pronamic Google Maps"
+#~ msgstr "הגדרות - מפות גוגל של פנורמיק"
+
+#~ msgid "Activate Google Maps"
+#~ msgstr "הפעל את מפות גוגל"
+
+#~ msgid "Delete plugin"
+#~ msgstr "מחק את התוסף"
+
+#~ msgid "Warning! This will delete all Pronamic Google Maps data and options."
+#~ msgstr "אזהרה! פעולה זו תמחוק את כל המידע והאפשרויות של מפות גוגל."
+
+#~ msgid "Uninstall"
+#~ msgstr "הסר התקנה"
+
+#~ msgid "Search"
+#~ msgstr "Zoeken"
+
+#~ msgid "Click to toggle"
+#~ msgstr "Klik om te wisselen"
+
+#~ msgid "Donate $10, $20 or $50!"
+#~ msgstr "Doneer $10, $20 of $50!"
+
+#~ msgid ""
+#~ "This plugin has cost us countless hours of work, if you use it, please "
+#~ "donate a token of your appreciation!"
+#~ msgstr ""
+#~ "Het ons veel uren werken gekost om deze plugin te ontwikkelen, als je het "
+#~ "gebruikt, doneer a.u.b. voor je waardering!"
+
+#~ msgid "Latest news from Pronamic"
+#~ msgstr "Laatste nieuws van Pronamic"
+
+#~ msgid "no news items, feed might be broken..."
+#~ msgstr "geen nieuws items, feed is waarschijnlijk niet bereikbaar..."
+
+#~ msgid "Subscribe with RSS"
+#~ msgstr "Aanmelden voor RSS"
+
+#~ msgid "Subscribe by e-mail"
+#~ msgstr "Aanmelden via e-mail"
+
+#~ msgid "Why not do any or all of the following:"
+#~ msgstr "Waarom doe je niet één van de volgende dingen:"
+
+#~ msgid "Link to it so other folks can find out about it."
+#~ msgstr "Link naar ons zodat anderen deze plugin ook ontdekken."
+
+#~ msgid "Give it a good rating on WordPress.org."
+#~ msgstr "Geef het een goede score op WordPress.org."
+
+#~ msgid "Let other people know that it works with your WordPress setup."
+#~ msgstr "Laat anderen weten dat het werk op je WordPress installatie."
+
+#~ msgid "Found a bug?"
+#~ msgstr "Bug gevonden?"
+
+#~ msgid "Configuration"
+#~ msgstr "Configuratie"

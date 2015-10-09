@@ -20,7 +20,7 @@ $meta_keys = "'" . implode( "', '", array(
 	'_pronamic_google_maps_zoom',
 ) ) . "'";
 
-$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE meta_key IN ( $meta_keys);" );
+$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE meta_key IN ( $meta_keys);" ); // unprepared SQL
 
 // Delete options
 delete_option( 'Pronamic_Google_maps' );

@@ -6,6 +6,6 @@
 
 		<?php do_settings_sections( 'pronamic_google_maps' ); ?>
 
-		<?php submit_button( __( 'Save Changes', 'pronamic_google_maps' ) ); ?>
+		<?php submit_button( __( 'Save Changes', 'pronamic-google-maps' ) ); ?>
 	</form>
 </div>

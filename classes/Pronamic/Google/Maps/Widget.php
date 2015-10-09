@@ -33,11 +33,11 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * Constructs and initialize the Google Maps meta box
 	 */
 	public function Pronamic_Google_Maps_Widget() {
-		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic_google_maps' );
+		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic-google-maps' );
 		$widgetOptions  = array( 'classname' => 'pronamic_google_maps_widget', 'description' => $description );
 		$controlOptions = array( 'width' => 500 );
 
-		parent::__construct( 'pronamic_google_maps', __( 'Google Maps', 'pronamic_google_maps' ), $widgetOptions, $controlOptions );
+		parent::__construct( 'pronamic_google_maps', __( 'Google Maps', 'pronamic-google-maps' ), $widgetOptions, $controlOptions );
 	}
 
 	//////////////////////////////////////////////////
@@ -136,8 +136,8 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 */
 	public function renderUnitField( $name, $value = null ) {
 		$units = array(
-			array( 'value' => 'px', 'label' => __( 'pixels', 'pronamic_google_maps' ) ),
-			array( 'value' => '%', 'label' => __( 'percent', 'pronamic_google_maps' ) ),
+			array( 'value' => 'px', 'label' => __( 'pixels', 'pronamic-google-maps' ) ),
+			array( 'value' => '%', 'label' => __( 'percent', 'pronamic-google-maps' ) ),
 		);
 
 		?>

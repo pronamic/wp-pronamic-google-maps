@@ -28,7 +28,7 @@ class Pronamic_Google_Maps_Plugin {
 	public static function action_links( $links ) {
 		$url = admin_url( 'admin.php?page=' . Pronamic_Google_Maps_Maps::SLUG );
 
-		$link = '<a href="' . $url . '">' . __( 'Settings', 'pronamic_google_maps' ) . '</a>';
+		$link = '<a href="' . $url . '">' . __( 'Settings', 'pronamic-google-maps' ) . '</a>';
 
 		array_unshift( $links, $link );
 

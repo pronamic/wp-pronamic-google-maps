@@ -101,7 +101,7 @@ class Pronamic_Google_Maps_Mashup {
 				$description = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
 					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 
@@ -140,7 +140,7 @@ class Pronamic_Google_Maps_Mashup {
 				$item = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
 					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic_google_maps' ), the_title_attribute( 'echo=0' ) ) ,
+					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
 					get_the_title()
 				);
 

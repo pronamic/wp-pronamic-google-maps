@@ -1,0 +1,216 @@
+# Translation of 2.2.3 in Serbian
+# This file is distributed under the same license as the 2.2.3 package.
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-google-"
+"maps\n"
+"POT-Creation-Date: 2015-10-09 09:14:08+00:00\n"
+"PO-Revision-Date: 2013-10-18 08:49+0100\n"
+"Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: classes/Pronamic/Google/Maps/Admin.php:113
+#: classes/Pronamic/Google/Maps/Admin.php:114
+#: classes/Pronamic/Google/Maps/MetaBox.php:27
+#: classes/Pronamic/Google/Maps/Widget.php:40
+msgid "Google Maps"
+msgstr "Google Maps"
+
+#: classes/Pronamic/Google/Maps/Admin.php:126
+#: classes/Pronamic/Google/Maps/Admin.php:127 views/meta-box.php:48
+msgid "Geocoder"
+msgstr "Geocoder"
+
+#: classes/Pronamic/Google/Maps/Admin.php:136
+#: classes/Pronamic/Google/Maps/Plugin.php:31
+msgid "Settings"
+msgstr "Postavke"
+
+#: classes/Pronamic/Google/Maps/Mashup.php:104
+#: classes/Pronamic/Google/Maps/Mashup.php:143
+msgid "Permalink to %s"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:51
+msgid "General"
+msgstr "Opšte"
+
+#: classes/Pronamic/Google/Maps/Settings.php:61
+msgid "Key"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:72
+#, fuzzy
+msgid "Post Types"
+msgstr "Tip posta"
+
+#: classes/Pronamic/Google/Maps/Settings.php:77
+msgid "Enable Google Maps for the selected post types."
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:83
+msgid "Visual Refresh"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:89
+msgid ""
+"The <a href=\"%s\" target=\"_blank\">Google Maps visual refresh</a> brings a "
+"fresh new look to applications using the Google Maps JavaScript API."
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Settings.php:250
+msgid "Use Google Maps Visual Refresh"
+msgstr ""
+
+#: classes/Pronamic/Google/Maps/Widget.php:36
+msgid "Use this widget to add an Google Maps as a widget."
+msgstr "Koristi ovaj widget da dodate GoogleMaps kao widget"
+
+#: classes/Pronamic/Google/Maps/Widget.php:139
+msgid "pixels"
+msgstr "pikseli"
+
+#: classes/Pronamic/Google/Maps/Widget.php:140
+msgid "percent"
+msgstr "procenat"
+
+#: views/meta-box.php:15
+msgid "Active"
+msgstr "Aktivno"
+
+#: views/meta-box.php:19
+msgid "Show Google Maps"
+msgstr "Prikaži Google Maps"
+
+#: views/meta-box.php:24 views/page-geocoder.php:38 views/page-geocoder.php:110
+#: views/widget-form.php:20
+msgid "Title"
+msgstr "Naslov"
+
+#: views/meta-box.php:32 views/widget-form.php:28
+msgid "Description"
+msgstr "Opis"
+
+#: views/meta-box.php:40 views/page-geocoder.php:46 views/page-geocoder.php:111
+msgid "Address"
+msgstr "Adresa"
+
+#: views/meta-box.php:51
+msgid "Geocode &darr;"
+msgstr "Geocode &darr;"
+
+#: views/meta-box.php:53
+msgid "Reverse Geocode &uarr;"
+msgstr "Vrati Geocode &darr;"
+
+#: views/meta-box.php:58 views/page-geocoder.php:62
+msgid "Location"
+msgstr "Lokacija"
+
+#: views/meta-box.php:69
+msgid "Tip: Change the zoom level and map type to your own wishes."
+msgstr "Savet: Promeni nivo zoom i tip mape."
+
+#: views/page-general.php:9
+msgid "Save Changes"
+msgstr "Sačuvati promene"
+
+#: views/page-geocoder.php:14
+msgid "Number posts to geocode: %s"
+msgstr "Broj postova ugeocode: %s"
+
+#: views/page-geocoder.php:28
+msgid "ID"
+msgstr "ID"
+
+#: views/page-geocoder.php:54
+msgid "Status"
+msgstr "Status"
+
+#: views/page-geocoder.php:73
+msgid "Geocode"
+msgstr "Geocode"
+
+#: views/page-geocoder.php:94
+msgid "Zero results"
+msgstr "Nema rezultata"
+
+#: views/page-geocoder.php:100
+msgid ""
+"We found no geocoding results for the following %s posts, adjust them "
+"manually if needed."
+msgstr ""
+"Nismo pronašli  geocoding rezultate sledećih %s postova, namestite ih "
+"manuelno ako je potrebno."
+
+#: views/widget-form.php:36
+msgid "Latitude"
+msgstr "Geografska širina"
+
+#: views/widget-form.php:42
+msgid "Longitude"
+msgstr "Geografska dužina"
+
+#: views/widget-form.php:52
+msgid "Width"
+msgstr "Širina"
+
+#: views/widget-form.php:60
+msgid "Height"
+msgstr "Visina"
+
+#: views/widget-form.php:69
+msgid "Dynamic"
+msgstr "Dinamično"
+
+#: views/widget-form.php:72
+msgid "Static"
+msgstr "Statično"
+
+#. Plugin Name of the plugin/theme
+#, fuzzy
+msgid "Pronamic Google Maps"
+msgstr "Pronamic Google Maps"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.happywp.com/plugins/pronamic-google-maps/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin makes it simple to add Google Maps to your WordPress post, pages "
+"or other custom post types."
+msgstr ""
+
+#. Author of the plugin/theme
+#, fuzzy
+msgid "Pronamic"
+msgstr "Dinamično"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr ""
+
+#~ msgid "Configuration - Pronamic Google Maps"
+#~ msgstr "Konfiguracija - Pronamic Google Maps"
+
+#~ msgid "Activate Google Maps"
+#~ msgstr "Aktivirajte Google Maps"
+
+#~ msgid "Delete plugin"
+#~ msgstr "Obriši plugin"
+
+#~ msgid "Warning! This will delete all Pronamic Google Maps data and options."
+#~ msgstr ""
+#~ "Upozorenje! Ovo će obrisati sve  Pronamic Google Maps podatke i opcije."
+
+#~ msgid "Uninstall"
+#~ msgstr "Uninstall"

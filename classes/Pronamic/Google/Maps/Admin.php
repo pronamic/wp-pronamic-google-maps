@@ -110,8 +110,8 @@ class Pronamic_Google_Maps_Admin {
 	 */
 	public static function admin_menu() {
 		add_menu_page(
-			__( 'Google Maps', 'pronamic_google_maps' ), // page title
-			__( 'Google Maps', 'pronamic_google_maps' ), // menu title
+			__( 'Google Maps', 'pronamic-google-maps' ), // page title
+			__( 'Google Maps', 'pronamic-google-maps' ), // menu title
 			'manage_options', // capability
 			'pronamic_google_maps', // menu slug
 			array( __CLASS__, 'page_general' ), // function
@@ -123,8 +123,8 @@ class Pronamic_Google_Maps_Admin {
 		// @see wp-admin/menu.php
 		add_submenu_page(
 			'pronamic_google_maps', // parent slug
-			__( 'Geocoder', 'pronamic_google_maps' ), // page title
-			__( 'Geocoder', 'pronamic_google_maps' ), // menu title
+			__( 'Geocoder', 'pronamic-google-maps' ), // page title
+			__( 'Geocoder', 'pronamic-google-maps' ), // menu title
 			'manage_options', // capability
 			'pronamic_google_maps_geocoder', // menu slug
 			array( __CLASS__, 'page_geocoder' ) // function
@@ -133,7 +133,7 @@ class Pronamic_Google_Maps_Admin {
 		global $submenu;
 
 		if ( isset( $submenu['pronamic_google_maps'] ) ) {
-			$submenu['pronamic_google_maps'][0][0] = __( 'Settings', 'pronamic_google_maps' );
+			$submenu['pronamic_google_maps'][0][0] = __( 'Settings', 'pronamic-google-maps' );
 		}
 	}
 

@@ -11,7 +11,7 @@
 	<p>
 		<?php
 
-		echo wp_kses( sprintf( __( 'Number posts to geocode: %s', 'pronamic_google_maps' ),
+		echo wp_kses( sprintf( __( 'Number posts to geocode: %s', 'pronamic-google-maps' ),
 			sprintf( '<strong id="pgm-found-posts">%s</strong>', $query->found_posts )
 		), array( 'strong' => array() ) );
 
@@ -25,7 +25,7 @@
 				<?php $pgm = pronamic_get_google_maps_meta(); ?>
 				<tr>
 					<th scope="row">
-						<label for="pgm-id-field"><?php esc_html_e( 'ID', 'pronamic_google_maps' ); ?></label>
+						<label for="pgm-id-field"><?php esc_html_e( 'ID', 'pronamic-google-maps' ); ?></label>
 					</th>
 					<td>
 						<input name="action" value="pgm_geocode" type="hidden"  />
@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="pgm-title-field"><?php esc_html_e( 'Title', 'pronamic_google_maps' ); ?></label>
+						<label for="pgm-title-field"><?php esc_html_e( 'Title', 'pronamic-google-maps' ); ?></label>
 					</th>
 					<td>
 						<input id="pgm-title-field" name="_pronamic_google_maps_title" value="<?php the_title(); ?>" class="regular-text readonly" type="text" readonly="readonly" />
@@ -43,7 +43,7 @@
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="pgm-address-field"><?php esc_html_e( 'Address', 'pronamic_google_maps' ); ?></label>
+						<label for="pgm-address-field"><?php esc_html_e( 'Address', 'pronamic-google-maps' ); ?></label>
 					</th>
 					<td>
 						<textarea id="pgm-address-field" name="_pronamic_google_maps_address" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="pgm-status-field"><?php esc_html_e( 'Status', 'pronamic_google_maps' ); ?></label>
+						<label for="pgm-status-field"><?php esc_html_e( 'Status', 'pronamic-google-maps' ); ?></label>
 					</th>
 					<td>
 						<input id="pgm-status-field" name="_pronamic_google_maps_geocode_status" value="" class="regular-text readonly" type="text" readonly="readonly" />
@@ -59,7 +59,7 @@
 				</tr>
 				<tr>
 					<th scope="row">
-						<?php esc_html_e( 'Location', 'pronamic_google_maps' ); ?>
+						<?php esc_html_e( 'Location', 'pronamic-google-maps' ); ?>
 					</th>
 					<td>
 						<input id="pgm-lat-field" name="_pronamic_google_maps_latitude" value="<?php echo esc_attr( $pgm->latitude ); ?>" type="text" class="readonly" readonly="readonly" />
@@ -70,7 +70,7 @@
 				</tr>
 			</table>
 
-			<?php submit_button( __( 'Geocode', 'pronamic_google_maps' ) ); ?>
+			<?php submit_button( __( 'Geocode', 'pronamic-google-maps' ) ); ?>
 		</form>
 
 	<?php endif;
@@ -91,13 +91,13 @@
 
 	if ( $query->have_posts() ) : ?>
 
-		<h2><?php echo esc_html( __( 'Zero results', 'pronamic_google_maps' ) ); ?></h2>
+		<h2><?php echo esc_html( __( 'Zero results', 'pronamic-google-maps' ) ); ?></h2>
 
 		<p>
 			<?php
 
 			echo wp_kses( sprintf(
-				__( 'We found no geocoding results for the following %s posts, adjust them manually if needed.' ),
+				__( 'We found no geocoding results for the following %s posts, adjust them manually if needed.', 'pronamic-google-maps' ),
 				sprintf( '<strong>%d</strong>', $query->found_posts )
 			), array( 'strong' => array() ) );
 
@@ -107,8 +107,8 @@
 		<table cellspacing="0" class="widefat page fixed">
 			<thead>
 				<tr>
-					<th scope="col" class="manage-column"><?php esc_html_e( 'Title', 'pronamic_google_maps' ); ?></th>
-					<th scope="col" class="manage-column"><?php esc_html_e( 'Address', 'pronamic_google_maps' ); ?></th>
+					<th scope="col" class="manage-column"><?php esc_html_e( 'Title', 'pronamic-google-maps' ); ?></th>
+					<th scope="col" class="manage-column"><?php esc_html_e( 'Address', 'pronamic-google-maps' ); ?></th>
 				</tr>
 			</thead>
 

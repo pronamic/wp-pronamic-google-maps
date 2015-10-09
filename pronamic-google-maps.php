@@ -10,7 +10,7 @@ Requires at least: 3.0
 Author: Pronamic
 Author URI: http://www.pronamic.eu/
 
-Text Domain: pronamic_google_maps
+Text Domain: pronamic-google-maps
 Domain Path: /languages/
 
 License: GPL
