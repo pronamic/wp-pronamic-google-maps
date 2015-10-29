@@ -274,7 +274,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function get_geocode_query_args() {
 		return array(
 			'post_type'      => 'any',
-			'posts_per_page' => 50,
+			'posts_per_page' => 1,
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
@@ -337,6 +337,8 @@ class Pronamic_Google_Maps_Admin {
 		}
 
 		wp_send_json( $result );
+
+		exit;
 
 		/*
 		 Queries to empty latitude, longitude and geocode status meta

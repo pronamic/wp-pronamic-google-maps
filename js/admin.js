@@ -253,7 +253,7 @@
 		var geocoder = new google.maps.Geocoder();
 
 		// Submit
-		element.find( '#submit' ).click( function() {
+		$element.find( '#submit' ).click( function() {
 			obj.startGeocode();
 
 			return false;
@@ -279,7 +279,7 @@
 					}
 				}
 
-				$.post( ajaxurl, element.serialize(), function( result ) {
+				$.post( ajaxurl, $element.serialize(), function( result ) {
 					obj.updateFields( result );
 				} );
 			} );
@@ -302,7 +302,7 @@
 
 				obj.startGeocode();
 			} else {
-				element.hide();
+				$element.hide();
 			} 
 		};
 	};
