@@ -299,8 +299,14 @@
 				fields.address.val( post.address );
 				fields.latitude.val( post.latitude );
 				fields.longitude.val( post.longitude );
+				fields.status.val( '' );
 
-				obj.startGeocode();
+				// Google Maps Geocoding API Usage Limits
+				// https://developers.google.com/maps/documentation/geocoding/usage-limits
+				// 10 requests per second
+				setTimeout( function() {
+					obj.startGeocode();
+				}, 10000 );				
 			} else {
 				$element.hide();
 			} 
