@@ -45,10 +45,10 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	/**
 	 * Render the widget
 	 *
-	 * @param array $arguments
+	 * @param array $args
 	 * @param array $instance
 	 */
-	public function widget( $arguments, $instance ) {
+	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		// @codingStandardsIgnoreStart
