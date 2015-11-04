@@ -97,6 +97,13 @@ class Pronamic_Google_Maps_Shortcodes {
 			wp_parse_str( $value, $options );
 		}
 
+		// Transform numeric options into int or float
+		foreach ( $options as $key => $option ) {
+			if ( is_numeric( $option ) ) {
+				$options[ $key ] = 0 + $option;
+			}
+		}
+
 		$atts['marker_clusterer_options'] = $options;
 
 		return $atts;
