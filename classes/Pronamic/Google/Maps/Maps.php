@@ -311,7 +311,8 @@ class Pronamic_Google_Maps_Maps {
 	 * @return string an URL
 	 */
 	public static function get_static_map_url( Pronamic_Google_Maps_Info $info ) {
-		$url = 'http://maps.google.com/maps/api/staticmap?';
+		$protocol = is_ssl() ? 'https' : 'http';
+		$url = $protocol . '://maps.google.com/maps/api/staticmap?';
 
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
