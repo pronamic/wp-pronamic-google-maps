@@ -178,8 +178,6 @@ class Pronamic_Google_Maps_Maps {
 	 * Register scripts
 	 */
 	public static function register_scripts() {
-		$protocol = is_ssl() ? 'https' : 'http';
-
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		// Register the Google Maps script
@@ -193,7 +191,7 @@ class Pronamic_Google_Maps_Maps {
 					'sensor' => 'false',
 					'key'    => $key,
 				),
-				$protocol . '://maps.googleapis.com/maps/api/js'
+				'https://maps.googleapis.com/maps/api/js'
 			),
 			array(),
 			null
@@ -311,8 +309,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @return string an URL
 	 */
 	public static function get_static_map_url( Pronamic_Google_Maps_Info $info ) {
-		$protocol = is_ssl() ? 'https' : 'http';
-		$url = $protocol . '://maps.google.com/maps/api/staticmap?';
+		$url = 'https://maps.google.com/maps/api/staticmap?';
 
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
