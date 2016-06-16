@@ -32,7 +32,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	/**
 	 * Constructs and initialize the Google Maps meta box
 	 */
-	public function Pronamic_Google_Maps_Widget() {
+	public function __construct() {
 		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic-google-maps' );
 		$widgetOptions  = array( 'classname' => 'pronamic_google_maps_widget', 'description' => $description );
 		$controlOptions = array( 'width' => 500 );
