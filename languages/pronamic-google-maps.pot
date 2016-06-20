@@ -1,4 +1,4 @@
-# Copyright (C) 2015 Pronamic
+# Copyright (C) 2016 Pronamic
 # This file is distributed under the GPL.
 msgid ""
 msgstr ""
@@ -9,10 +9,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
 
 #: classes/Pronamic/Google/Maps/Admin.php:113
 #: classes/Pronamic/Google/Maps/Admin.php:114
