@@ -201,7 +201,7 @@ class Pronamic_Google_Maps_Maps {
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
 		wp_register_script(
 			'google-maps-marker-clusterer-plus',
-			plugins_url( 'assets/google-maps-marker-clusterer-plus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
+			plugins_url( 'assets/markerclustererplus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
 			array( 'google-maps' ),
 			'2.0.6'
 		);
