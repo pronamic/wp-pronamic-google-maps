@@ -164,7 +164,7 @@
 		fields.zoom        = $element.find( '.zoom-field' );
 
 		// Canvas
-		var canvas = element.find( '.google-maps-canvas' );
+		var canvas = $element.find( '.google-maps-canvas' );
 
 		var location =  new google.maps.LatLng( fields.latitude.val(), fields.longitude.val() );
 
@@ -225,7 +225,12 @@
 			map.setCenter( location );
 		};
 
-		element.closest( '.widget' ).find( '.widget-action' ).click( function() { setTimeout( fixMap, 1000 ); } );
+		$element.closest( '.widget' ).find( '.widget-action' ).click( function() { setTimeout( fixMap, 1000 ); } );
+		$element.closest( '.widget' ).on( 'click', function() {
+			if ( ! $( this ).hasClass( 'open' ) ) {
+				setTimeout( fixMap, 1000 );
+			}
+		} );
 	};
 	
 	//////////////////////////////////////////////////
