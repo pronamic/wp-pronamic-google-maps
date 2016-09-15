@@ -204,7 +204,7 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps-marker-clusterer-plus',
 			plugins_url( 'assets/markerclustererplus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
 			array( 'google-maps' ),
-			'2.0.6'
+			'2.1.1'
 		);
 
 		// MarkerManager

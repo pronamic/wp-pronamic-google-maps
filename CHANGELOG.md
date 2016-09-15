@@ -6,6 +6,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [Unreleased][unreleased]
 
+## [2.3.2] - 2016-09-15
+- Fixed issue with the geocoded.
+- Added an delay of 10 seconds for Google Maps API Usage Limit.
+- Fixed name of arguments variable for widget.
+- Added example map with link to directions.
+- Fixed JavaScript error "fromDivPixelToLatLng: Point.x and Point.y must be of type number".
+- Fixed 'Deprecated: Methods with the same name as their class will not be constructors in a future version of PHP'.
+- Use bower package `markerclustererplus` instead of `google-maps-marker-clusterer-plus` to fix incorrect MarkerClusterer.IMAGE_PATH.
+- Fixed loading map while editing widget.
+- Updated MarkerClustererPlus library to version 2.1.1.
+
 ## [2.3.1] - 2015-10-09
 - Load the new text domain 'pronamic-google-maps'.
 
@@ -227,7 +238,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [1.0] - 2010-10-05
 - Initial release
 
-[unreleased]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.1...HEAD
+[unreleased]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.2...HEAD
+[2.3.2]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.2.9...2.3.0
 [2.2.9]: https://github.com/pronamic/wp-pronamic-google-maps/compare/2.2.8...2.2.9

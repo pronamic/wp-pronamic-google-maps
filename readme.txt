@@ -273,6 +273,7 @@ Or througt an filter
 *	Fixed 'Deprecated: Methods with the same name as their class will not be constructors in a future version of PHP'.
 *	Use bower package `markerclustererplus` instead of `google-maps-marker-clusterer-plus` to fix incorrect MarkerClusterer.IMAGE_PATH.
 *	Fixed loading map while editing widget.
+*	Updated MarkerClustererPlus library to version 2.1.1.
 
 = 2.3.1 - 2015-10-09 =
 *	Load the new text domain 'pronamic-google-maps'.
