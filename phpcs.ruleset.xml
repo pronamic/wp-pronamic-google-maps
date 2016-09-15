@@ -6,6 +6,12 @@
 
 		<exclude name="Squiz.Commenting" />
 
+		<exclude name="Squiz.PHP.CommentedOutCode.Found" />
+
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase" />
+
 		<exclude name="WordPress.PHP.DiscouragedFunctions.DiscouragedWithAlternative" />
 
 		<!-- Direct database queries are used in the uninstall script. -->
