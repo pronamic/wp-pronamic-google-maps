@@ -162,6 +162,7 @@ module.exports = function( grunt ) {
 					'!package.json',
 					'!phpcs.ruleset.xml',
 					'!README.md',
+					'!deploy/**',
 					'!bower_components/**',
 					'!examples/**',
 					'!node_modules/**',
