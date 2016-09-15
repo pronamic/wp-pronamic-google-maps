@@ -5,6 +5,7 @@
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  * @doc http://codex.wordpress.org/Shortcode_API
@@ -95,6 +96,13 @@ class Pronamic_Google_Maps_Shortcodes {
 			$value = html_entity_decode( $value );
 
 			wp_parse_str( $value, $options );
+		}
+
+		// Transform numeric options into int or float
+		foreach ( $options as $key => $option ) {
+			if ( is_numeric( $option ) ) {
+				$options[ $key ] = 0 + $option;
+			}
 		}
 
 		$atts['marker_clusterer_options'] = $options;

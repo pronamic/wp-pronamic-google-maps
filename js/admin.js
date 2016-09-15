@@ -164,7 +164,7 @@
 		fields.zoom        = $element.find( '.zoom-field' );
 
 		// Canvas
-		var canvas = element.find( '.google-maps-canvas' );
+		var canvas = $element.find( '.google-maps-canvas' );
 
 		var location =  new google.maps.LatLng( fields.latitude.val(), fields.longitude.val() );
 
@@ -225,7 +225,12 @@
 			map.setCenter( location );
 		};
 
-		element.closest( '.widget' ).find( '.widget-action' ).click( function() { setTimeout( fixMap, 1000 ); } );
+		$element.closest( '.widget' ).find( '.widget-action' ).click( function() { setTimeout( fixMap, 1000 ); } );
+		$element.closest( '.widget' ).on( 'click', function() {
+			if ( ! $( this ).hasClass( 'open' ) ) {
+				setTimeout( fixMap, 1000 );
+			}
+		} );
 	};
 	
 	//////////////////////////////////////////////////
@@ -253,7 +258,7 @@
 		var geocoder = new google.maps.Geocoder();
 
 		// Submit
-		element.find( '#submit' ).click( function() {
+		$element.find( '#submit' ).click( function() {
 			obj.startGeocode();
 
 			return false;
@@ -279,7 +284,7 @@
 					}
 				}
 
-				$.post( ajaxurl, element.serialize(), function( result ) {
+				$.post( ajaxurl, $element.serialize(), function( result ) {
 					obj.updateFields( result );
 				} );
 			} );
@@ -299,10 +304,16 @@
 				fields.address.val( post.address );
 				fields.latitude.val( post.latitude );
 				fields.longitude.val( post.longitude );
+				fields.status.val( '' );
 
-				obj.startGeocode();
+				// Google Maps Geocoding API Usage Limits
+				// https://developers.google.com/maps/documentation/geocoding/usage-limits
+				// 10 requests per second
+				setTimeout( function() {
+					obj.startGeocode();
+				}, 10000 );				
 			} else {
-				element.hide();
+				$element.hide();
 			} 
 		};
 	};

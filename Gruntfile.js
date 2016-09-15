@@ -139,9 +139,9 @@ module.exports = function( grunt ) {
 					},
 					{ // Google Maps MarkerClustererPlus - https://github.com/mahnunchik/markerclustererplus
 						expand: true,
-						cwd: 'bower_components/google-marker-clusterer-plus/src/',
+						cwd: 'bower_components/markerclustererplus/src/',
 						src: [ 'markerclusterer.js' ],
-						dest: 'assets/google-maps-marker-clusterer-plus'
+						dest: 'assets/markerclustererplus'
 					},
 					{ // Google Maps Overlapping Marker Spiderfier - https://github.com/jawj/OverlappingMarkerSpiderfier
 						expand: true,
@@ -162,6 +162,7 @@ module.exports = function( grunt ) {
 					'!package.json',
 					'!phpcs.ruleset.xml',
 					'!README.md',
+					'!deploy/**',
 					'!bower_components/**',
 					'!examples/**',
 					'!node_modules/**',
@@ -184,7 +185,7 @@ module.exports = function( grunt ) {
 			assets: {
 				files: {
 					'assets/google-maps-marker-manager/markermanager.min.js': 'assets/google-maps-marker-manager/markermanager.js',
-					'assets/google-maps-marker-clusterer-plus/markerclusterer.min.js': 'assets/google-maps-marker-clusterer-plus/markerclusterer.js'
+					'assets/markerclustererplus/markerclusterer.min.js': 'assets/markerclustererplus/markerclusterer.js'
 				}
 			}
 		},
@@ -192,7 +193,7 @@ module.exports = function( grunt ) {
 		// Clean
 		clean: {
 			deploy: {
-				src: [ 'deploy' ]
+				src: [ 'deploy/latest' ]
 			}
 		},
 

@@ -5,6 +5,7 @@
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -75,9 +76,9 @@ class Pronamic_Google_Maps_Admin {
 			'toplevel_page_shopp-products',
 		);
 
-		if ( in_array( $hook, $enqueue_shooks ) ) {
+		if ( in_array( $hook, $enqueue_shooks, true ) ) {
 			$enqueue = true;
-		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
+		} elseif ( in_array( $hook, array( 'post-new.php', 'post.php' ), true ) ) {
 			$screen = get_current_screen();
 
 			$types = Pronamic_Google_Maps_Settings::get_active_post_types();
@@ -274,7 +275,7 @@ class Pronamic_Google_Maps_Admin {
 	public static function get_geocode_query_args() {
 		return array(
 			'post_type'      => 'any',
-			'posts_per_page' => 50,
+			'posts_per_page' => 1,
 			'meta_query'     => array(
 				// The address should not be empty
 				array(
@@ -337,6 +338,8 @@ class Pronamic_Google_Maps_Admin {
 		}
 
 		wp_send_json( $result );
+
+		exit;
 
 		/*
 		 Queries to empty latitude, longitude and geocode status meta

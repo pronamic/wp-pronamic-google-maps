@@ -26,6 +26,6 @@
   ],
   "dependencies": {
     "google-maps-markermanager": "*",
-    "google-marker-clusterer-plus": "~2.1.2"
+    "markerclustererplus": "~2.1.4"
   }
 }

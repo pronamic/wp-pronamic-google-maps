@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: 2.2.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-google-"
 "maps\n"
-"POT-Creation-Date: 2015-10-09 09:14:08+00:00\n"
+"POT-Creation-Date: 2015-10-09 10:23:28+00:00\n"
 "PO-Revision-Date: 2013-10-18 08:49+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: \n"
@@ -17,25 +17,25 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#: classes/Pronamic/Google/Maps/Admin.php:113
 #: classes/Pronamic/Google/Maps/Admin.php:114
-#: classes/Pronamic/Google/Maps/MetaBox.php:27
-#: classes/Pronamic/Google/Maps/Widget.php:40
+#: classes/Pronamic/Google/Maps/Admin.php:115
+#: classes/Pronamic/Google/Maps/MetaBox.php:28
+#: classes/Pronamic/Google/Maps/Widget.php:41
 msgid "Google Maps"
 msgstr "Google Maps"
 
-#: classes/Pronamic/Google/Maps/Admin.php:126
-#: classes/Pronamic/Google/Maps/Admin.php:127 views/meta-box.php:48
+#: classes/Pronamic/Google/Maps/Admin.php:127
+#: classes/Pronamic/Google/Maps/Admin.php:128 views/meta-box.php:48
 msgid "Geocoder"
 msgstr "Geocoder"
 
-#: classes/Pronamic/Google/Maps/Admin.php:136
-#: classes/Pronamic/Google/Maps/Plugin.php:31
+#: classes/Pronamic/Google/Maps/Admin.php:137
+#: classes/Pronamic/Google/Maps/Plugin.php:32
 msgid "Settings"
 msgstr "Postavke"
 
-#: classes/Pronamic/Google/Maps/Mashup.php:104
-#: classes/Pronamic/Google/Maps/Mashup.php:143
+#: classes/Pronamic/Google/Maps/Mashup.php:105
+#: classes/Pronamic/Google/Maps/Mashup.php:144
 msgid "Permalink to %s"
 msgstr ""
 
@@ -70,15 +70,15 @@ msgstr ""
 msgid "Use Google Maps Visual Refresh"
 msgstr ""
 
-#: classes/Pronamic/Google/Maps/Widget.php:36
+#: classes/Pronamic/Google/Maps/Widget.php:37
 msgid "Use this widget to add an Google Maps as a widget."
 msgstr "Koristi ovaj widget da dodate GoogleMaps kao widget"
 
-#: classes/Pronamic/Google/Maps/Widget.php:139
+#: classes/Pronamic/Google/Maps/Widget.php:140
 msgid "pixels"
 msgstr "pikseli"
 
-#: classes/Pronamic/Google/Maps/Widget.php:140
+#: classes/Pronamic/Google/Maps/Widget.php:141
 msgid "percent"
 msgstr "procenat"
 
@@ -181,7 +181,7 @@ msgid "Pronamic Google Maps"
 msgstr "Pronamic Google Maps"
 
 #. Plugin URI of the plugin/theme
-msgid "http://www.happywp.com/plugins/pronamic-google-maps/"
+msgid "https://www.pronamic.eu/plugins/pronamic-google-maps/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -196,7 +196,7 @@ msgid "Pronamic"
 msgstr "Dinamično"
 
 #. Author URI of the plugin/theme
-msgid "http://www.pronamic.eu/"
+msgid "https://www.pronamic.eu/"
 msgstr ""
 
 #~ msgid "Configuration - Pronamic Google Maps"

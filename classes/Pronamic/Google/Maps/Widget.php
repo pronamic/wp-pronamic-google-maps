@@ -5,6 +5,7 @@
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  * @doc http://codex.wordpress.org/Widgets_API
@@ -32,7 +33,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	/**
 	 * Constructs and initialize the Google Maps meta box
 	 */
-	public function Pronamic_Google_Maps_Widget() {
+	public function __construct() {
 		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic-google-maps' );
 		$widgetOptions  = array( 'classname' => 'pronamic_google_maps_widget', 'description' => $description );
 		$controlOptions = array( 'width' => 500 );
@@ -45,10 +46,10 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	/**
 	 * Render the widget
 	 *
-	 * @param array $arguments
+	 * @param array $args
 	 * @param array $instance
 	 */
-	public function widget( $arguments, $instance ) {
+	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		// @codingStandardsIgnoreStart

@@ -7,6 +7,21 @@
 		]
 	},
 	{
+		"version": "2.3.2",
+		"date": "2016-09-15",
+		"changes": [
+			"Fixed issue with the geocoded.",
+			"Added an delay of 10 seconds for Google Maps API Usage Limit.",
+			"Fixed name of arguments variable for widget.",
+			"Added example map with link to directions.",
+			"Fixed JavaScript error \"fromDivPixelToLatLng: Point.x and Point.y must be of type number\".",
+			"Fixed 'Deprecated: Methods with the same name as their class will not be constructors in a future version of PHP'.",
+			"Use bower package `markerclustererplus` instead of `google-maps-marker-clusterer-plus` to fix incorrect MarkerClusterer.IMAGE_PATH.",
+			"Fixed loading map while editing widget.",
+			"Updated MarkerClustererPlus library to version 2.1.1."
+		]
+	},
+	{
 		"version": "2.3.1",
 		"date": "2015-10-09",
 		"changes": [

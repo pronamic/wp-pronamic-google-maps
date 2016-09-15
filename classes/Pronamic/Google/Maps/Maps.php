@@ -5,6 +5,7 @@
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -178,8 +179,6 @@ class Pronamic_Google_Maps_Maps {
 	 * Register scripts
 	 */
 	public static function register_scripts() {
-		$protocol = is_ssl() ? 'https' : 'http';
-
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		// Register the Google Maps script
@@ -193,7 +192,7 @@ class Pronamic_Google_Maps_Maps {
 					'sensor' => 'false',
 					'key'    => $key,
 				),
-				$protocol . '://maps.googleapis.com/maps/api/js'
+				'https://maps.googleapis.com/maps/api/js'
 			),
 			array(),
 			null
@@ -203,9 +202,9 @@ class Pronamic_Google_Maps_Maps {
 		// @see http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.6/
 		wp_register_script(
 			'google-maps-marker-clusterer-plus',
-			plugins_url( 'assets/google-maps-marker-clusterer-plus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
+			plugins_url( 'assets/markerclustererplus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
 			array( 'google-maps' ),
-			'2.0.6'
+			'2.1.1'
 		);
 
 		// MarkerManager
@@ -311,7 +310,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @return string an URL
 	 */
 	public static function get_static_map_url( Pronamic_Google_Maps_Info $info ) {
-		$url = 'http://maps.google.com/maps/api/staticmap?';
+		$url = 'https://maps.google.com/maps/api/staticmap?';
 
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );

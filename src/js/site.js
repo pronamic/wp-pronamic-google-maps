@@ -12,7 +12,13 @@
 		buildMap: function( s ) {
 			var element = $( s );
 
-			var info = $.parseJSON( element.find( 'input[name="pgm-info"]' ).val() );
+			var input = element.find( 'input[name="pgm-info"]' );
+
+			if ( input.length < 1 ) {
+				return;
+			}
+
+			var info = $.parseJSON( input.val() );
 
 			var canvas = element.find( '.canvas' ).get( 0 );
 
