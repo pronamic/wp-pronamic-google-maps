@@ -20,7 +20,7 @@ class Pronamic_Google_Maps_ApiClient {
 
 	}
 
-	public function geocode_address( $address, $sensor = false ) {
+	public function geocode_address( $address, $deprecated = false ) {
 		$result = null;
 
 		// URL
@@ -30,7 +30,6 @@ class Pronamic_Google_Maps_ApiClient {
 			self::OUTPUT_JSON,
 			_http_build_query( array(
 				'address' => $address,
-				'sensor'  => $sensor ? 'true' : 'false',
 			) )
 		);
 

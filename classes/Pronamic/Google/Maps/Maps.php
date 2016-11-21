@@ -189,8 +189,7 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps',
 			add_query_arg(
 				array(
-					'sensor' => 'false',
-					'key'    => $key,
+					'key' => $key,
 				),
 				'https://maps.googleapis.com/maps/api/js'
 			),
@@ -320,7 +319,6 @@ class Pronamic_Google_Maps_Maps {
 		$parameters['zoom']    = $info->mapOptions->zoom;
 		$parameters['size']    = $width->get_pixels( self::$defaultWidth ) . 'x' . $height->get_pixels( self::$defaultHeight );
 		$parameters['maptype'] = $info->mapOptions->mapTypeId;
-		$parameters['sensor']  = 'false';
 
 		$markers = '';
 		if ( null !== $info->color ) {
