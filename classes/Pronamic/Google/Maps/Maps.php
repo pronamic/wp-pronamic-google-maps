@@ -311,6 +311,8 @@ class Pronamic_Google_Maps_Maps {
 	public static function get_static_map_url( Pronamic_Google_Maps_Info $info ) {
 		$url = 'https://maps.google.com/maps/api/staticmap?';
 
+		$key = get_option( 'pronamic_google_maps_key' );
+
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
 
@@ -336,6 +338,10 @@ class Pronamic_Google_Maps_Maps {
 		$markers .= $info->latitude . ',' . $info->longitude;
 
 		$parameters['markers'] = $markers;
+
+		if ( ! empty( $key ) ) {
+			$parameters['key'] = $key;
+		}
 
 		$url .= http_build_query( $parameters, '', '&amp;' );
 
