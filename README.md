@@ -1,7 +1,7 @@
 # [Pronamic Google Maps](http://www.happywp.com/plugins/pronamic-google-maps/)
 
 > [!IMPORTANT]  
-> The "Pronamic Google Maps" plugin is no longer being maintained and developed. An alternative is the Google Map field in the Advanced Custom Fields plugin
+> The "Pronamic Google Maps" plugin is no longer being maintained and developed. An alternative is the Google Map field in the Advanced Custom Fields plugin.
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
