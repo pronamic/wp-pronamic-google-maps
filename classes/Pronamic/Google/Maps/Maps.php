@@ -189,8 +189,7 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps',
 			add_query_arg(
 				array(
-					'sensor' => 'false',
-					'key'    => $key,
+					'key' => $key,
 				),
 				'https://maps.googleapis.com/maps/api/js'
 			),
@@ -312,6 +311,8 @@ class Pronamic_Google_Maps_Maps {
 	public static function get_static_map_url( Pronamic_Google_Maps_Info $info ) {
 		$url = 'https://maps.google.com/maps/api/staticmap?';
 
+		$key = get_option( 'pronamic_google_maps_key' );
+
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
 
@@ -320,7 +321,6 @@ class Pronamic_Google_Maps_Maps {
 		$parameters['zoom']    = $info->mapOptions->zoom;
 		$parameters['size']    = $width->get_pixels( self::$defaultWidth ) . 'x' . $height->get_pixels( self::$defaultHeight );
 		$parameters['maptype'] = $info->mapOptions->mapTypeId;
-		$parameters['sensor']  = 'false';
 
 		$markers = '';
 		if ( null !== $info->color ) {
@@ -338,6 +338,10 @@ class Pronamic_Google_Maps_Maps {
 		$markers .= $info->latitude . ',' . $info->longitude;
 
 		$parameters['markers'] = $markers;
+
+		if ( ! empty( $key ) ) {
+			$parameters['key'] = $key;
+		}
 
 		$url .= http_build_query( $parameters, '', '&amp;' );
 

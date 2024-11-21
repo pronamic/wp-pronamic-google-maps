@@ -20,8 +20,11 @@ class Pronamic_Google_Maps_ApiClient {
 
 	}
 
-	public function geocode_address( $address, $sensor = false ) {
+	public function geocode_address( $address, $deprecated = false ) {
 		$result = null;
+
+		$key = get_option( 'pronamic_google_maps_key' );
+		$key = empty( $key ) ? false : $key;
 
 		// URL
 		$url = sprintf(
@@ -30,7 +33,7 @@ class Pronamic_Google_Maps_ApiClient {
 			self::OUTPUT_JSON,
 			_http_build_query( array(
 				'address' => $address,
-				'sensor'  => $sensor ? 'true' : 'false',
+				'key'     => $key,
 			) )
 		);
 

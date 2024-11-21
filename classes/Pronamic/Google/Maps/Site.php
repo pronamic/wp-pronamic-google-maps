@@ -46,7 +46,6 @@ class Pronamic_Google_Maps_Site {
 
 		// Settings
 		$other_params_array = array(
-			'sensor' => 'false',
 		);
 
 		$other_params_array  = apply_filters( 'pronamic_google_maps_load_other_params_array', $other_params_array );
