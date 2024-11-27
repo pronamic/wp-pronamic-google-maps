@@ -13,13 +13,11 @@ if ( function_exists( 'pronamic_google_maps' ) ) {
 				'minZoom' => 5,
 				'maxZoom' => 10,
 			],
-		] 
+		]
 	);
 
-	$post_id = get_the_ID();
-
-	$latitude  = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
-	$longitude = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
+	$latitude  = get_post_meta( get_the_ID(), '_pronamic_google_maps_latitude', true );
+	$longitude = get_post_meta( get_the_ID(), '_pronamic_google_maps_longitude', true );
 
 	$daddr = $latitude . ',' . $longitude;
 

@@ -48,9 +48,9 @@ class Pronamic_Google_Maps_Plugin {
 
 		if ( ! empty( $address ) ) {
 			if ( empty( $latitude ) && empty( $longitude ) ) {
-				$apiClient = new Pronamic_Google_Maps_ApiClient();
+				$client = new Pronamic_Google_Maps_ApiClient();
 
-				$data = $apiClient->geocode_address( $address );
+				$data = $client->geocode_address( $address );
 
 				if ( $data ) {
 					foreach ( $data->results as $result ) {

@@ -86,6 +86,7 @@ class Pronamic_Google_Maps_Settings {
 			'pronamic_google_maps_settings_section_general',
 			[
 				'description' => sprintf(
+					/* translators: %s: visual refresh documentation URL */
 					__( 'The <a href="%s" target="_blank">Google Maps visual refresh</a> brings a fresh new look to applications using the Google Maps JavaScript API.', 'pronamic-google-maps' ),
 					'https://developers.google.com/maps/documentation/javascript/basics#VisualRefresh'
 				),
@@ -117,7 +118,7 @@ class Pronamic_Google_Maps_Settings {
 					'post' => true,
 					'page' => true,
 				],
-			] 
+			]
 		);
 	}
 
@@ -220,7 +221,7 @@ class Pronamic_Google_Maps_Settings {
 			[
 				'public' => true,
 			],
-			'objects' 
+			'objects'
 		);
 
 		if ( $post_types ) : ?>

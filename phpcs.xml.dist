@@ -5,6 +5,9 @@
 
 	<exclude-pattern type="relative">^build/*</exclude-pattern>
 	<exclude-pattern type="relative">^node_modules/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/changelog-md/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/readme-md/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/readme-txt/*</exclude-pattern>
 	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
 
 	<rule ref="PronamicWP">
@@ -12,21 +15,18 @@
 
 		<exclude name="Squiz.Commenting" />
 
-		<exclude name="Squiz.PHP.CommentedOutCode.Found" />
-
 		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase" />
 		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar" />
 		<exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
 
 		<exclude name="WordPress.PHP.DiscouragedFunctions.DiscouragedWithAlternative" />
 
 		<!-- The wp_remote_get() function is used to geocode addresses using the Google Maps API. -->
-		<exclude name="WordPress.VIP.RestrictedFunctions.wp_remote_get" />
+		<exclude name="WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get" />
 
 		<!-- Meta queries are used by the geocoder feature. -->
-		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query" />
-
-		<!-- Use meta function is used in the current user example. -->
-		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta" />
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_query" />
 	</rule>
 </ruleset>

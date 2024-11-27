@@ -187,10 +187,10 @@ class Pronamic_Google_Maps_LatLng {
 	public static function convert_to_deg_min_sec( $decimal, $direction = null ) {
 		$string = (string) $decimal;
 
-		$degrees           = $string;
-		$minutes           = 0;
-		$seconds           = 0;
-		$cardinalDirection = null;
+		$degrees            = $string;
+		$minutes            = 0;
+		$seconds            = 0;
+		$cardinal_direction = null;
 
 		$position = strpos( $string, '.' );
 		if ( false !== $position ) {
@@ -208,18 +208,18 @@ class Pronamic_Google_Maps_LatLng {
 		if ( null !== $direction ) {
 			switch ( $direction ) {
 				case self::DIRECTION_LATITUDE:
-					$cardinalDirection = $decimal < 0 ? self::CARDINAL_DIRECTION_SOUTH : self::CARDINAL_DIRECTION_NORTH;
+					$cardinal_direction = $decimal < 0 ? self::CARDINAL_DIRECTION_SOUTH : self::CARDINAL_DIRECTION_NORTH;
 
 					break;
 				case self::DIRECTION_LONGITUDE:
-					$cardinalDirection = $decimal < 0 ? self::CARDINAL_DIRECTION_WEST : self::CARDINAL_DIRECTION_EAST;
+					$cardinal_direction = $decimal < 0 ? self::CARDINAL_DIRECTION_WEST : self::CARDINAL_DIRECTION_EAST;
 
 					break;
 			}
 		}
 
-		if ( null !== $cardinalDirection ) {
-			return sprintf( '%s°%s\' %s" %s', $degrees, $minutes, $seconds, $cardinalDirection );
+		if ( null !== $cardinal_direction ) {
+			return sprintf( '%s°%s\' %s" %s', $degrees, $minutes, $seconds, $cardinal_direction );
 		} else {
 			return sprintf( '%s°%s\' %s"', $degrees, $minutes, $seconds );
 		}

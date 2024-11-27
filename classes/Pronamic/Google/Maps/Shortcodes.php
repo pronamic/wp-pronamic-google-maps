@@ -39,7 +39,6 @@ class Pronamic_Google_Maps_Shortcodes {
 
 		$map_options_keys = [
 			'backgroundColor'        => FILTER_SANITIZE_STRING,
-			// 'center' => ?,
 			'disableDefaultUI'       => FILTER_VALIDATE_BOOLEAN,
 			'disableDoubleClickZoom' => FILTER_VALIDATE_BOOLEAN,
 			'draggable'              => FILTER_VALIDATE_BOOLEAN,
@@ -49,28 +48,19 @@ class Pronamic_Google_Maps_Shortcodes {
 			'keyboardShortcuts'      => FILTER_VALIDATE_BOOLEAN,
 			'mapMaker'               => FILTER_VALIDATE_BOOLEAN,
 			'mapTypeControl'         => FILTER_VALIDATE_BOOLEAN,
-			// 'mapTypeControlOptions' => ?,
 			'mapTypeId'              => FILTER_SANITIZE_STRING,
 			'maxZoom'                => FILTER_VALIDATE_INT,
 			'minZoom'                => FILTER_VALIDATE_INT,
 			'noClear'                => FILTER_VALIDATE_BOOLEAN,
 			'overviewMapControl'     => FILTER_VALIDATE_BOOLEAN,
-			// 'overviewMapControlOptions' => ?,
 			'panControl'             => FILTER_VALIDATE_BOOLEAN,
-			// 'panControlOptions' => ?,
 			'rotateControl'          => FILTER_VALIDATE_BOOLEAN,
-			// 'rotateControlOptions' => ?,
 			'scaleControl'           => FILTER_VALIDATE_BOOLEAN,
-			// 'scaleControlOptions' => ?,
 			'scrollwheel'            => FILTER_VALIDATE_BOOLEAN,
-			// 'streetView' => ?,
 			'streetViewControl'      => FILTER_VALIDATE_BOOLEAN,
-			// 'streetViewControlOptions' => ?,
-			// 'styles' => ?,
 			'tilt'                   => FILTER_VALIDATE_INT,
 			'zoom'                   => FILTER_VALIDATE_INT,
 			'zoomControl'            => FILTER_VALIDATE_BOOLEAN,
-			// 'zoomControlOptions' => ?
 		];
 
 		foreach ( $map_options_keys as $key => $filter ) {
@@ -147,8 +137,6 @@ class Pronamic_Google_Maps_Shortcodes {
 	 * @deprecated 2.3
 	 */
 	public static function shortcode_map_hyphen( $atts ) {
-		// _deprecated_function('Pronamic Google Maps shortcode [google-maps]', '2.3', 'Pronamic Google Maps shortcode [googlemaps]');
-
 		return self::shortcode_map( $atts );
 	}
 
@@ -174,7 +162,7 @@ class Pronamic_Google_Maps_Shortcodes {
 			$atts,
 			[
 				'query' => [],
-			] 
+			]
 		);
 
 		$atts = self::parse_map_options( $atts );

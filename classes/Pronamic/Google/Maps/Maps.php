@@ -93,7 +93,7 @@ class Pronamic_Google_Maps_Maps {
 		// Actions and hooks
 		add_action( 'init', [ __CLASS__, 'init' ] );
 
-		add_filter( 'parse_query', [ __CLASS__, 'parse_query' ], 1000 );
+		add_action( 'parse_query', [ __CLASS__, 'parse_query' ], 1000 );
 
 		// Options
 		$embed_size = wp_embed_defaults();
@@ -131,7 +131,7 @@ class Pronamic_Google_Maps_Maps {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Pre get posts
+	 * Parse query
 	 *
 	 * @param WP_Query $query
 	 * @see http://core.trac.wordpress.org/browser/tags/3.4/wp-includes/query.php#L0
@@ -194,7 +194,8 @@ class Pronamic_Google_Maps_Maps {
 				'https://maps.googleapis.com/maps/api/js'
 			),
 			[],
-			null
+			null,
+			true
 		);
 
 		// MarkerClustererPlus
@@ -203,7 +204,8 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps-marker-clusterer-plus',
 			plugins_url( 'assets/markerclustererplus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
 			[ 'google-maps' ],
-			'2.1.1'
+			'2.1.1',
+			true
 		);
 
 		// MarkerManager
@@ -212,7 +214,8 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps-marker-manager',
 			plugins_url( 'assets/google-maps-marker-manager/markermanager' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
 			[ 'google-maps' ],
-			'1.0'
+			'1.0',
+			true
 		);
 
 		// OverlappingMarkerSpiderfier
@@ -221,7 +224,8 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps-overlapping-marker-spiderfier',
 			plugins_url( 'assets/google-maps-overlapping-marker-spiderfier/oms.min.js', Pronamic_Google_Maps_Maps::$file ),
 			[ 'google-maps' ],
-			'0.3.3'
+			'0.3.3',
+			true
 		);
 	}
 
@@ -253,8 +257,6 @@ class Pronamic_Google_Maps_Maps {
 	 * @return stdClass
 	 */
 	public static function get_meta_data( $post_id = null ) {
-		// _deprecated_function( __FUNCTION__, '1.4.1');
-
 		$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
 
 		$meta = new stdClass();
@@ -362,13 +364,13 @@ class Pronamic_Google_Maps_Maps {
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
 
 		if ( $info->is_dynamic() ) {
-			$content .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
+			$content .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( wp_json_encode( $info ) ) );
 
-			$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $width, $height );
-			$content .= sprintf( '	<noscript><img src="%s" alt="" /></noscript>', self::get_static_map_url( $info ) );
+			$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', esc_attr( $width ), esc_attr( $height ) );
+			$content .= sprintf( '	<noscript><img src="%s" alt="" /></noscript>', esc_url( self::get_static_map_url( $info ) ) );
 			$content .= sprintf( '</div>' );
 		} else {
-			$content .= sprintf( '<img src="%s" alt="" />', self::get_static_map_url( $info ) );
+			$content .= sprintf( '<img src="%s" alt="" />', esc_url( self::get_static_map_url( $info ) ) );
 		}
 
 		$content .= '</div>';
@@ -404,56 +406,60 @@ class Pronamic_Google_Maps_Maps {
 		$options = Pronamic_Google_Maps_Maps::get_options();
 		$pgm     = Pronamic_Google_Maps_Maps::get_meta_data( $post_id );
 
-		$activeTypes = $options['active'];
+		if ( ! $pgm->active ) {
+			return;
+		}
+
+		$active_types = $options['active'];
 
 		$post_type = get_post_type( $post_id );
 
-		$active = isset( $activeTypes[ $post_type ] ) && $activeTypes[ $post_type ];
+		if ( ! array_key_exists( $post_type, $active_types ) || ! $active_types[ $post_type ] ) {
+			return;
+		}
 
-		if ( $active && $pgm->active ) {
-			$info              = new Pronamic_Google_Maps_Info();
-			$info->title       = $pgm->title;
-			$info->description = $pgm->description;
-			$info->latitude    = $pgm->latitude;
-			$info->longitude   = $pgm->longitude;
-			$info->width       = $arguments['width'];
-			$info->height      = $arguments['height'];
-			$info->static      = filter_var( $arguments['static'], FILTER_VALIDATE_BOOLEAN );
-			$info->label       = $arguments['label'];
-			$info->color       = $arguments['color'];
+		$info              = new Pronamic_Google_Maps_Info();
+		$info->title       = $pgm->title;
+		$info->description = $pgm->description;
+		$info->latitude    = $pgm->latitude;
+		$info->longitude   = $pgm->longitude;
+		$info->width       = $arguments['width'];
+		$info->height      = $arguments['height'];
+		$info->static      = filter_var( $arguments['static'], FILTER_VALIDATE_BOOLEAN );
+		$info->label       = $arguments['label'];
+		$info->color       = $arguments['color'];
 
-			// Marker options
-			$marker_options = $arguments['marker_options'];
-			$marker_options = apply_filters( 'pronamic_google_maps_marker_options', $marker_options );
+		// Marker options
+		$marker_options = $arguments['marker_options'];
+		$marker_options = apply_filters( 'pronamic_google_maps_marker_options', $marker_options );
 
-			foreach ( $marker_options as $key => $value ) {
-				$value = apply_filters( 'pronamic_google_maps_marker_options_' . $key, $value );
+		foreach ( $marker_options as $key => $value ) {
+			$value = apply_filters( 'pronamic_google_maps_marker_options_' . $key, $value );
 
-				$info->markerOptions->$key = $value;
-			}
+			$info->markerOptions->$key = $value;
+		}
 
-			// Map options
-			$info->mapOptions->mapTypeId = $pgm->mapType;
-			$info->mapOptions->zoom      = $pgm->zoom;
-			foreach ( $arguments['map_options'] as $key => $value ) {
-				$value = apply_filters( 'pronamic_google_maps_map_options_' . $key, $value );
+		// Map options
+		$info->mapOptions->mapTypeId = $pgm->mapType;
+		$info->mapOptions->zoom      = $pgm->zoom;
+		foreach ( $arguments['map_options'] as $key => $value ) {
+			$value = apply_filters( 'pronamic_google_maps_map_options_' . $key, $value );
 
-				$info->mapOptions->$key = $value;
-			}
+			$info->mapOptions->$key = $value;
+		}
 
-			$html = self::get_map_html( $info );
+		$html = self::get_map_html( $info );
 
-			if ( $info->is_dynamic() ) {
-				Pronamic_Google_Maps_Site::require_site_script();
-			}
+		if ( $info->is_dynamic() ) {
+			Pronamic_Google_Maps_Site::require_site_script();
+		}
 
-			if ( $arguments['echo'] ) {
-				// @codingStandardsIgnoreStart
-				echo $html;
-				// @codingStandardsIgnoreEnd
-			} else {
-				return $html;
-			}
+		if ( $arguments['echo'] ) {
+			// @codingStandardsIgnoreStart
+			echo $html;
+			// @codingStandardsIgnoreEnd
+		} else {
+			return $html;
 		}
 	}
 }

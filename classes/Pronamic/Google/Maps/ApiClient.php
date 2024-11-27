@@ -19,7 +19,7 @@ class Pronamic_Google_Maps_ApiClient {
 	public function __construct() {
 	}
 
-	public function geocode_address( $address, $deprecated = false ) {
+	public function geocode_address( $address ) {
 		$result = null;
 
 		$key = get_option( 'pronamic_google_maps_key' );
@@ -34,7 +34,7 @@ class Pronamic_Google_Maps_ApiClient {
 				[
 					'address' => $address,
 					'key'     => $key,
-				] 
+				]
 			)
 		);
 

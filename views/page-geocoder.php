@@ -13,10 +13,11 @@
 
 		echo wp_kses(
 			sprintf(
+				/* translators: %s: number of posts to geocode */
 				__( 'Number posts to geocode: %s', 'pronamic-google-maps' ),
 				sprintf( '<strong id="pgm-found-posts">%s</strong>', $query->found_posts )
 			),
-			[ 'strong' => [] ] 
+			[ 'strong' => [] ]
 		);
 
 		?>
@@ -96,7 +97,7 @@
 					'value' => Pronamic_Google_Maps_GeocoderStatus::ZERO_RESULTS,
 				],
 			],
-		] 
+		]
 	);
 
 	if ( $query->have_posts() ) :
@@ -109,10 +110,11 @@
 
 			echo wp_kses(
 				sprintf(
+					/* translators: %s: number of found posts */
 					__( 'We found no geocoding results for the following %s posts, adjust them manually if needed.', 'pronamic-google-maps' ),
 					sprintf( '<strong>%d</strong>', $query->found_posts )
 				),
-				[ 'strong' => [] ] 
+				[ 'strong' => [] ]
 			);
 
 			?>
@@ -137,7 +139,7 @@
 						<?php $pgm = pronamic_get_google_maps_meta(); ?>
 
 						<td>
-							<a href="<?php echo esc_attr( get_edit_post_link( get_the_ID() ) ); ?>">
+							<a href="<?php echo esc_url( get_edit_post_link( get_the_ID() ) ); ?>">
 								<?php the_title(); ?>
 							</a>
 						</td>

@@ -102,7 +102,11 @@ class Pronamic_Google_Maps_Mashup {
 				$description = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>',
 					get_permalink(),
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ),
+					sprintf(
+						/* translators: %s: the title attribute */
+						esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ),
+						the_title_attribute( 'echo=0' )
+					),
 					get_the_title()
 				);
 
@@ -136,12 +140,16 @@ class Pronamic_Google_Maps_Mashup {
 				$options->markers[] = $marker;
 
 				$items .= '<li>';
-				$items .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
+				$items .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( wp_json_encode( $info ) ) );
 
 				$item = sprintf(
 					'<a href="%s" title="%s" rel="bookmark">%s</a>',
 					get_permalink(),
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ),
+					sprintf(
+						/* translators: %s: the title attribute */
+						esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ),
+						the_title_attribute( 'echo=0' )
+					),
 					get_the_title()
 				);
 
@@ -153,9 +161,9 @@ class Pronamic_Google_Maps_Mashup {
 		wp_reset_postdata();
 
 		$content  = '<div class="pgmm">';
-		$content .= sprintf( '<input type="hidden" name="pgmm-info" value="%s" />', esc_attr( json_encode( $options ) ) );
+		$content .= sprintf( '<input type="hidden" name="pgmm-info" value="%s" />', esc_attr( wp_json_encode( $options ) ) );
 
-		$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $options->width, $options->height );
+		$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', esc_attr( $options->width ), esc_attr( $options->height ) );
 		$content .= sprintf( '</div>' );
 
 		if ( ! empty( $items ) ) {

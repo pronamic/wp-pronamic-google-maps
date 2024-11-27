@@ -34,14 +34,18 @@ class Pronamic_Google_Maps_Site {
 		// Scripts
 		wp_register_style(
 			'pronamic_google_maps_fix',
-			plugins_url( 'css/fix.css', Pronamic_Google_Maps_Maps::$file )
+			plugins_url( 'css/fix.css', Pronamic_Google_Maps_Maps::$file ),
+			[],
+			\hash_file( 'crc32b', plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'css/fix.css' )
 		);
 
 		// Scripts
 		wp_register_script(
 			'pronamic_google_maps_site',
 			plugins_url( 'js/site.js', Pronamic_Google_Maps_Maps::$file ),
-			[ 'jquery', 'google-maps' ]
+			[ 'jquery', 'google-maps' ],
+			\hash_file( 'crc32b', plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'js/site.js' ),
+			true
 		);
 
 		// Settings
@@ -59,7 +63,7 @@ class Pronamic_Google_Maps_Site {
 			[
 				'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
 				'other_params'  => $other_params_string,
-			] 
+			]
 		);
 	}
 
