@@ -1,16 +1,8 @@
-# Composer
-/vendor/
-
-# Deploy
-/deploy/
-
-# Eclipse
-/.buildpath
-/.project
-/.settings/
-
-# WordPress SVN
-/wp-svn/
+# Build
+/build/
 
 # Node.js
 /node_modules/
+
+# Composer
+/vendor/
