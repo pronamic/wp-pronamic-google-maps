@@ -19,22 +19,7 @@
   },
   "homepage": "https://github.com/pronamic/wp-pronamic-google-maps",
   "devDependencies": {
-    "@wordpress/env": "^10.13.0",
-    "grunt": "^1.6.1",
-    "grunt-aws-s3": "^2.0.2",
-    "grunt-checktextdomain": "^1.0.1",
-    "grunt-contrib-clean": "^2.0.1",
-    "grunt-contrib-compress": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^3.2.0",
-    "grunt-contrib-uglify": "^5.2.2",
-    "grunt-git": "^1.1.1",
-    "grunt-phpcs": "^0.4.0",
-    "grunt-phplint": "0.1.0",
-    "grunt-rt-wp-deploy": "^0.1.2",
-    "grunt-shell": "^4.0.0",
-    "grunt-wp-i18n": "^1.0.3",
-    "load-grunt-tasks": "^5.1.0"
+    "@wordpress/env": "^10.13.0"
   },
   "dependencies": {
     "@googlemaps/markermanager": "^1.0.29",
