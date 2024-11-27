@@ -19,16 +19,12 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		add_action( 'widgets_init', [ __CLASS__, 'initialize' ] );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Initialize
 	 */
 	public static function initialize() {
 		register_widget( __CLASS__ );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Constructs and initialize the Google Maps meta box
@@ -46,8 +42,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 			]
 		);
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Render the widget
@@ -86,8 +80,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 		// @codingStandardsIgnoreEnd
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Update the widget data
 	 *
@@ -109,8 +101,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 
 		return $instance;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Render the widget form
@@ -135,8 +125,6 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 
 		include plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'views/widget-form.php';
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Render unit field

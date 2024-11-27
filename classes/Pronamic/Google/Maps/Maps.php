@@ -17,8 +17,6 @@ class Pronamic_Google_Maps_Maps {
 	 */
 	const SLUG = 'pronamic_google_maps';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The name of the option
 	 *
@@ -26,16 +24,12 @@ class Pronamic_Google_Maps_Maps {
 	 */
 	const OPTION_NAME = 'Pronamic_Google_maps';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The nonce name
 	 *
 	 * @var string
 	 */
 	const NONCE_NAME = 'Pronamic_Google_Maps_Leap_of_faith';
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Default zoom value
@@ -51,16 +45,12 @@ class Pronamic_Google_Maps_Maps {
 	 */
 	const MAP_TYPE_DEFAULT = Pronamic_Google_Maps_MapTypeId::ROADMAP;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The plugin file
 	 *
 	 * @var string
 	 */
 	public static $file;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The default width
@@ -75,8 +65,6 @@ class Pronamic_Google_Maps_Maps {
 	 * @var int
 	 */
 	public static $defaultHeight = 375;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Bootstrap this plugin
@@ -102,8 +90,6 @@ class Pronamic_Google_Maps_Maps {
 		self::$defaultHeight = $embed_size['height'];
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Initialize the plugin
 	 */
@@ -127,8 +113,6 @@ class Pronamic_Google_Maps_Maps {
 			Pronamic_Google_Maps_Site::bootstrap();
 		}
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Parse query
@@ -229,8 +213,6 @@ class Pronamic_Google_Maps_Maps {
 		);
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the options for this plugin
 	 *
@@ -248,8 +230,6 @@ class Pronamic_Google_Maps_Maps {
 	public static function set_default_options() {
 		Pronamic_Google_Maps_Settings::set_default_options();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the Google Maps meta data for the current post
@@ -302,8 +282,6 @@ class Pronamic_Google_Maps_Maps {
 		return $meta;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get an URL to an static Google Maps iamge
 	 *
@@ -350,8 +328,6 @@ class Pronamic_Google_Maps_Maps {
 		return $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Render an Google Maps according the specified info
 	 *
@@ -377,8 +353,6 @@ class Pronamic_Google_Maps_Maps {
 
 		return $content;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Render an Google Maps for the current global post

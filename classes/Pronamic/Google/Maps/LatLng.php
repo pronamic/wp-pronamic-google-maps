@@ -51,8 +51,6 @@ class Pronamic_Google_Maps_LatLng {
 	 */
 	const CARDINAL_DIRECTION_WEST = 'W';
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Indicator for the latitude direction
 	 *
@@ -67,8 +65,6 @@ class Pronamic_Google_Maps_LatLng {
 	 */
 	const DIRECTION_LONGITUDE = 'lng';
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * The latitude value
 	 */
@@ -78,8 +74,6 @@ class Pronamic_Google_Maps_LatLng {
 	 * The longitude value
 	 */
 	protected $longitude;
-
-	///////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Constructs and initializes an latitude and longitude object
@@ -92,8 +86,6 @@ class Pronamic_Google_Maps_LatLng {
 		$this->longitude = $longitude;
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Get the latitude value
 	 *
@@ -103,8 +95,6 @@ class Pronamic_Google_Maps_LatLng {
 		return $this->latitude;
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Get the longitude value
 	 *
@@ -113,8 +103,6 @@ class Pronamic_Google_Maps_LatLng {
 	public function lng() {
 		return $this->longitude;
 	}
-
-	///////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Checks if this latitude and longitude object is equal to the specified object
@@ -126,8 +114,6 @@ class Pronamic_Google_Maps_LatLng {
 		return ( $this->latitude === $other->latitude && $this->longitude === $other->longitude );
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Determine the distance from another coordinate
 	 *
@@ -137,8 +123,6 @@ class Pronamic_Google_Maps_LatLng {
 	public function distance_from( self $other ) {
 		return sqrt( sqrt( ( pow( $other->latitude - $this->latitude, 2 ) ) + pow( $other->longitude - $this->longitude, 2 ) ) );
 	}
-
-	///////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Determine the mid point to the specified coordinate
@@ -153,8 +137,6 @@ class Pronamic_Google_Maps_LatLng {
 		);
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Transform this latitude and longitude object
 	 *
@@ -165,8 +147,6 @@ class Pronamic_Google_Maps_LatLng {
 		$this->longitude += $delta->longitude;
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Create a string representation for this object
 	 *
@@ -175,8 +155,6 @@ class Pronamic_Google_Maps_LatLng {
 	public function __toString() {
 		return '(' + $this->latitude + ', ' + $this->longitude + ')';
 	}
-
-	///////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Convert the specified decimail to deg min sec

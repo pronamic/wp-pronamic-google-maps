@@ -21,8 +21,6 @@ class Pronamic_Google_Maps_Plugin {
 		add_action( 'save_post', [ __CLASS__, 'save_post_try_geocode' ], 200 );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Render the option page
 	 */
@@ -35,8 +33,6 @@ class Pronamic_Google_Maps_Plugin {
 
 		return $links;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Save post try geocode

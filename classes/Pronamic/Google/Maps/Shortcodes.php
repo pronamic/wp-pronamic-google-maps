@@ -22,8 +22,6 @@ class Pronamic_Google_Maps_Shortcodes {
 		add_shortcode( 'googlemapsmashup', [ __CLASS__, 'shortcode_mashup' ] );
 	}
 
-	//////////////////////////////////////////////////
-
 	public static function parse_map_options( $atts ) {
 		$map_options = [];
 
@@ -115,8 +113,6 @@ class Pronamic_Google_Maps_Shortcodes {
 		return $atts;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Shortcode map
 	 */
@@ -140,8 +136,6 @@ class Pronamic_Google_Maps_Shortcodes {
 		return self::shortcode_map( $atts );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Shortcode GEO
 	 */
@@ -151,8 +145,6 @@ class Pronamic_Google_Maps_Shortcodes {
 
 		return Pronamic_Google_Maps_GeoMicroformat::render( $atts );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Shortcode map

@@ -57,8 +57,6 @@ class Pronamic_Google_Maps_Admin {
 		self::$pronamic_google_maps_settings = new Pronamic_Google_Maps_Settings();
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Enqueue scripts
 	 */
@@ -94,8 +92,6 @@ class Pronamic_Google_Maps_Admin {
 		}
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Initialize the admin
 	 */
@@ -103,8 +99,6 @@ class Pronamic_Google_Maps_Admin {
 		// Actions and hooks
 		add_action( 'add_meta_boxes', [ __CLASS__, 'add_meta_boxes' ] );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Admin menu
@@ -152,8 +146,6 @@ class Pronamic_Google_Maps_Admin {
 		include plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'views/page-geocoder.php';
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Add the meta box
 	 */
@@ -170,8 +162,6 @@ class Pronamic_Google_Maps_Admin {
 			}
 		}
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Update post meta, only store post meta when there is meta to store
@@ -263,8 +253,6 @@ class Pronamic_Google_Maps_Admin {
 		}
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the geocode query arguments
 	 *
@@ -290,8 +278,6 @@ class Pronamic_Google_Maps_Admin {
 			],
 		];
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * AJAX geocode
@@ -338,11 +324,5 @@ class Pronamic_Google_Maps_Admin {
 		wp_send_json( $result );
 
 		exit;
-
-		/*
-		Queries to empty latitude, longitude and geocode status meta
-		UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('_pronamic_google_maps_latitude', '_pronamic_google_maps_longitude');
-		UPDATE wp_postmeta SET meta_value = '' WHERE meta_key = '_pronamic_google_maps_geocode_status';
-		 */
 	}
 }

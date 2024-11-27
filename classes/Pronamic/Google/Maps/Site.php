@@ -18,8 +18,6 @@ class Pronamic_Google_Maps_Site {
 	 */
 	public static $print_scripts = false;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initliaze an Google Maps admin
 	 */
@@ -67,8 +65,6 @@ class Pronamic_Google_Maps_Site {
 		);
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Require site script
 	 */
@@ -79,8 +75,6 @@ class Pronamic_Google_Maps_Site {
 		// This will load the script in the footer.
 		wp_enqueue_script( 'pronamic_google_maps_site' );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Print scripts

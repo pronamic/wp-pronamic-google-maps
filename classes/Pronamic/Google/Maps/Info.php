@@ -17,8 +17,6 @@ class Pronamic_Google_Maps_Info {
 	 */
 	public $static;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The desired width of the Google Maps
 	 *
@@ -33,8 +31,6 @@ class Pronamic_Google_Maps_Info {
 	 */
 	public $height;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The latitude
 	 *
@@ -48,8 +44,6 @@ class Pronamic_Google_Maps_Info {
 	 * @var float
 	 */
 	public $longitude;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The label
@@ -73,16 +67,12 @@ class Pronamic_Google_Maps_Info {
 	 */
 	public $newDesign;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The map options
 	 *
 	 * @var stdClass
 	 */
 	public $mapOptions;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The marker options
@@ -91,8 +81,6 @@ class Pronamic_Google_Maps_Info {
 	 */
 	public $markerOptions;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize an info object
 	 */
@@ -100,8 +88,6 @@ class Pronamic_Google_Maps_Info {
 		$this->mapOptions    = new stdClass();
 		$this->markerOptions = new stdClass();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Is this Google Maps static or not
