@@ -230,19 +230,25 @@ class Pronamic_Google_Maps_Admin {
 		self::update_post_meta( $post_id, '_pronamic_google_maps_zoom', Pronamic_Google_Maps_Maps::MAP_ZOOM_DEFAULT === $zoom ? null : $zoom );
 
 		// Title
-		$title = filter_input( INPUT_POST, '_pronamic_google_maps_title', FILTER_UNSAFE_RAW );
-		$title = wp_kses_post( $title );
-		self::update_post_meta( $post_id, '_pronamic_google_maps_title', $title );
+		if ( \array_key_exists( '_pronamic_google_maps_title', $_POST ) ) {
+			$title = \wp_kses_post( \wp_unslash( $_POST['_pronamic_google_maps_title'] ) );
+		
+			self::update_post_meta( $post_id, '_pronamic_google_maps_title', $title );
+		}
 
 		// Description
-		$description = filter_input( INPUT_POST, '_pronamic_google_maps_description', FILTER_UNSAFE_RAW );
-		$description = wp_kses_post( $description );
-		self::update_post_meta( $post_id, '_pronamic_google_maps_description', $description );
+		if ( \array_key_exists( '_pronamic_google_maps_description', $_POST ) ) {
+			$description = \wp_kses_post( \wp_unslash( $_POST['_pronamic_google_maps_description'] ) );
+		
+			self::update_post_meta( $post_id, '_pronamic_google_maps_description', $description );
+		}
 
-		// Description
-		$address = filter_input( INPUT_POST, '_pronamic_google_maps_address', FILTER_UNSAFE_RAW );
-		$address = wp_kses_post( $address );
-		self::update_post_meta( $post_id, '_pronamic_google_maps_address', $address );
+		// Address
+		if ( \array_key_exists( '_pronamic_google_maps_address', $_POST ) ) {
+			$address = \wp_kses_post( \wp_unslash( $_POST['_pronamic_google_maps_address'] ) );
+		
+			self::update_post_meta( $post_id, '_pronamic_google_maps_description', $address );
+		}
 
 		// Status
 		if ( ! empty( $latitude ) && ! empty( $longitude ) ) {
