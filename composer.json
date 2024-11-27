@@ -71,6 +71,7 @@
 	},
 	"scripts": {
 		"build": [
+			"@changelog",
 			"rm -rf ./build",
 			"mkdir ./build",
 			"mkdir ./build/stage-1",
