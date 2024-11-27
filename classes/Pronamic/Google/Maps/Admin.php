@@ -128,6 +128,7 @@ class Pronamic_Google_Maps_Admin {
 		global $submenu;
 
 		if ( isset( $submenu['pronamic_google_maps'] ) ) {
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Override first submenu item title.
 			$submenu['pronamic_google_maps'][0][0] = __( 'Settings', 'pronamic-google-maps' );
 		}
 	}
