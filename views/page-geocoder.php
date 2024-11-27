@@ -54,7 +54,7 @@
 						<label for="pgm-address-field"><?php esc_html_e( 'Address', 'pronamic-google-maps' ); ?></label>
 					</th>
 					<td>
-						<textarea id="pgm-address-field" name="_pronamic_google_maps_address" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_attr( $pgm->address ); ?></textarea>
+						<textarea id="pgm-address-field" name="_pronamic_google_maps_address" rows="3" cols="50" class="readonly" readonly="readonly"><?php echo esc_textarea( $pgm->address ); ?></textarea>
 					</td>
 				</tr>
 				<tr>
