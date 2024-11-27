@@ -28,5 +28,9 @@
 
 		<!-- Meta queries are used by the geocoder feature. -->
 		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_query" />
+
+		<!-- Direct database queries are used by the uninstall feature. -->
+		<exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery" />
+		<exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching" />
 	</rule>
 </ruleset>
