@@ -1,0 +1,30 @@
+# GitHub
+/.github/
+
+# WP-CLI
+/.distignore
+
+# EditorConfig
+/.editorconfig
+
+# Git
+/.gitattributes
+/.gitignore
+
+# JSHin
+/.jshintrc
+
+# WordPress environment
+/.wp-env.json
+
+# PHP_CodeSniffer
+/phpcs.xmldist
+
+# PHP Mess Detector
+/phpmd.ruleset.xml
+
+# Examples
+/examples/
+
+# Source
+/src/
