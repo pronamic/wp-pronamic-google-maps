@@ -26,7 +26,7 @@ class Pronamic_Google_Maps_MetaBox {
 		add_meta_box(
 			self::ID,
 			__( 'Google Maps', 'pronamic-google-maps' ),
-			array( __CLASS__, 'render' ),
+			[ __CLASS__, 'render' ],
 			$page,
 			$context,
 			$priority

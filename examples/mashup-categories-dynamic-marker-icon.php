@@ -27,17 +27,17 @@ add_filter( 'pronamic_google_maps_marker_options_icon', 'prefix_pronamic_google_
  */
 if ( function_exists( 'pronamic_google_maps_mashup' ) ) {
 	pronamic_google_maps_mashup(
-		array(
+		[
 			'post_type'      => 'post',
 			'posts_per_page' => 50,
-		),
-		array(
+		],
+		[
 			'width'          => 800,
 			'height'         => 800,
 			'map_type_id'    => 'satellite',
-			'marker_options' => array(
+			'marker_options' => [
 				'icon' => 'http://google-maps-icons.googlecode.com/files/photo.png',
-			),
-		)
+			],
+		]
 	);
 }

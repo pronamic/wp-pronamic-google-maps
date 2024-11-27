@@ -17,7 +17,6 @@ class Pronamic_Google_Maps_ApiClient {
 	const API_END_POINT = 'https://maps.googleapis.com/maps/api/';
 
 	public function __construct() {
-
 	}
 
 	public function geocode_address( $address, $deprecated = false ) {
@@ -31,10 +30,12 @@ class Pronamic_Google_Maps_ApiClient {
 			self::API_END_POINT . '%s/%s?%s',
 			'geocode',
 			self::OUTPUT_JSON,
-			_http_build_query( array(
-				'address' => $address,
-				'key'     => $key,
-			) )
+			_http_build_query(
+				[
+					'address' => $address,
+					'key'     => $key,
+				] 
+			)
 		);
 
 		$response = wp_remote_get( $url );

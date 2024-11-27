@@ -97,7 +97,7 @@ class Pronamic_Google_Maps_Info {
 	 * Constructs and initialize an info object
 	 */
 	public function __construct() {
-		$this->mapOptions = new stdClass();
+		$this->mapOptions    = new stdClass();
 		$this->markerOptions = new stdClass();
 	}
 

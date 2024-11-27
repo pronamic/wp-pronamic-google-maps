@@ -28,36 +28,39 @@ class Pronamic_Google_Maps_Site {
 
 		// Actions and hooks
 		if ( version_compare( $wp_version, '3.3', '<' ) ) {
-			add_action( 'wp_footer', array( __CLASS__, 'print_scripts' ) );
+			add_action( 'wp_footer', [ __CLASS__, 'print_scripts' ] );
 		}
 
 		// Scripts
 		wp_register_style(
-			'pronamic_google_maps_fix' ,
+			'pronamic_google_maps_fix',
 			plugins_url( 'css/fix.css', Pronamic_Google_Maps_Maps::$file )
 		);
 
 		// Scripts
 		wp_register_script(
-			'pronamic_google_maps_site' ,
+			'pronamic_google_maps_site',
 			plugins_url( 'js/site.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'jquery', 'google-maps' )
+			[ 'jquery', 'google-maps' ]
 		);
 
 		// Settings
-		$other_params_array = array(
-		);
+		$other_params_array = [];
 
-		$other_params_array  = apply_filters( 'pronamic_google_maps_load_other_params_array', $other_params_array );
+		$other_params_array = apply_filters( 'pronamic_google_maps_load_other_params_array', $other_params_array );
 
 		$other_params_string = _http_build_query( $other_params_array, null, '&' );
 
-		$other_params_string  = apply_filters( 'pronamic_google_maps_load_other_params_string', $other_params_string );
+		$other_params_string = apply_filters( 'pronamic_google_maps_load_other_params_string', $other_params_string );
 
-		wp_localize_script( 'pronamic_google_maps_site', 'pronamic_google_maps_settings', array(
-			'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
-			'other_params'  => $other_params_string,
-		) );
+		wp_localize_script(
+			'pronamic_google_maps_site',
+			'pronamic_google_maps_settings',
+			[
+				'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
+				'other_params'  => $other_params_string,
+			] 
+		);
 	}
 
 	//////////////////////////////////////////////////

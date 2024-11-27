@@ -16,9 +16,9 @@ class Pronamic_Google_Maps_Plugin {
 	public static function bootstrap() {
 		$plugin = plugin_basename( Pronamic_Google_Maps_Maps::$file );
 
-		add_filter( 'plugin_action_links_' . $plugin, array( __CLASS__, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . $plugin, [ __CLASS__, 'action_links' ] );
 
-		add_action( 'save_post', array( __CLASS__, 'save_post_try_geocode' ), 200 );
+		add_action( 'save_post', [ __CLASS__, 'save_post_try_geocode' ], 200 );
 	}
 
 	//////////////////////////////////////////////////
@@ -42,8 +42,8 @@ class Pronamic_Google_Maps_Plugin {
 	 * Save post try geocode
 	 */
 	public static function save_post_try_geocode( $post_id ) {
-		$address = get_post_meta( $post_id, '_pronamic_google_maps_address', true );
-		$latitude = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
+		$address   = get_post_meta( $post_id, '_pronamic_google_maps_address', true );
+		$latitude  = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
 		$longitude = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
 
 		if ( ! empty( $address ) ) {

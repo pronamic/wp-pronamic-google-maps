@@ -91,9 +91,9 @@ class Pronamic_Google_Maps_Maps {
 		Pronamic_Google_Maps_Shortcodes::bootstrap();
 
 		// Actions and hooks
-		add_action( 'init',        array( __CLASS__, 'init' ) );
+		add_action( 'init', [ __CLASS__, 'init' ] );
 
-		add_filter( 'parse_query', array( __CLASS__, 'parse_query' ), 1000 );
+		add_filter( 'parse_query', [ __CLASS__, 'parse_query' ], 1000 );
 
 		// Options
 		$embed_size = wp_embed_defaults();
@@ -137,7 +137,7 @@ class Pronamic_Google_Maps_Maps {
 	 * @see http://core.trac.wordpress.org/browser/tags/3.4/wp-includes/query.php#L0
 	 */
 	public static function parse_query( $query ) {
-		$meta_query_extra = array();
+		$meta_query_extra = [];
 
 		// Range
 		// @see http://en.wikipedia.org/wiki/Decimal_degrees
@@ -147,31 +147,31 @@ class Pronamic_Google_Maps_Maps {
 		$latitude = $query->get( 'pronamic_latitude' );
 
 		if ( ! empty( $latitude ) ) {
-			$meta_query_extra[] = array(
+			$meta_query_extra[] = [
 				'key'     => '_pronamic_google_maps_latitude',
 				'compare' => 'BETWEEN',
-				'value'   => array( $latitude - $range, $latitude + $range ),
-			);
+				'value'   => [ $latitude - $range, $latitude + $range ],
+			];
 		}
 
 		// Longitude
 		$longitude = $query->get( 'pronamic_longitude' );
 
 		if ( ! empty( $longitude ) ) {
-			$meta_query_extra[] = array(
+			$meta_query_extra[] = [
 				'key'     => '_pronamic_google_maps_longitude',
 				'compare' => 'BETWEEN',
-				'value'   => array( $longitude - $range, $longitude + $range ),
-			);
+				'value'   => [ $longitude - $range, $longitude + $range ],
+			];
 		}
 
 		// Meta query
 		if ( ! empty( $meta_query_extra ) ) {
 			$meta_query = $query->get( 'meta_query' );
 
-			$meta_query = wp_parse_args( $meta_query_extra , $meta_query );
+			$meta_query = wp_parse_args( $meta_query_extra, $meta_query );
 
-			$query->set( 'meta_query' , $meta_query );
+			$query->set( 'meta_query', $meta_query );
 		}
 	}
 
@@ -188,12 +188,12 @@ class Pronamic_Google_Maps_Maps {
 		wp_register_script(
 			'google-maps',
 			add_query_arg(
-				array(
+				[
 					'key' => $key,
-				),
+				],
 				'https://maps.googleapis.com/maps/api/js'
 			),
-			array(),
+			[],
 			null
 		);
 
@@ -202,7 +202,7 @@ class Pronamic_Google_Maps_Maps {
 		wp_register_script(
 			'google-maps-marker-clusterer-plus',
 			plugins_url( 'assets/markerclustererplus/markerclusterer' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'google-maps' ),
+			[ 'google-maps' ],
 			'2.1.1'
 		);
 
@@ -211,7 +211,7 @@ class Pronamic_Google_Maps_Maps {
 		wp_register_script(
 			'google-maps-marker-manager',
 			plugins_url( 'assets/google-maps-marker-manager/markermanager' . $min . '.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'google-maps' ),
+			[ 'google-maps' ],
 			'1.0'
 		);
 
@@ -220,7 +220,7 @@ class Pronamic_Google_Maps_Maps {
 		wp_register_script(
 			'google-maps-overlapping-marker-spiderfier',
 			plugins_url( 'assets/google-maps-overlapping-marker-spiderfier/oms.min.js', Pronamic_Google_Maps_Maps::$file ),
-			array( 'google-maps' ),
+			[ 'google-maps' ],
 			'0.3.3'
 		);
 	}
@@ -259,28 +259,28 @@ class Pronamic_Google_Maps_Maps {
 
 		$meta = new stdClass();
 
-		$active = get_post_meta( $post_id, '_pronamic_google_maps_active', true );
+		$active       = get_post_meta( $post_id, '_pronamic_google_maps_active', true );
 		$meta->active = filter_var( $active, FILTER_VALIDATE_BOOLEAN );
 
 		$meta->latitude = null;
-		$value = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
+		$value          = get_post_meta( $post_id, '_pronamic_google_maps_latitude', true );
 		if ( '' !== $value ) {
 			$meta->latitude = (float) $value;
 		}
 		$meta->longitude = null;
-		$value = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
+		$value           = get_post_meta( $post_id, '_pronamic_google_maps_longitude', true );
 		if ( '' !== $value ) {
 			$meta->longitude = (float) $value;
 		}
 
 		$meta->mapType = self::MAP_TYPE_DEFAULT;
-		$value = get_post_meta( $post_id, '_pronamic_google_maps_map_type', true );
+		$value         = get_post_meta( $post_id, '_pronamic_google_maps_map_type', true );
 		if ( '' !== $value ) {
 			$meta->mapType = $value;
 		}
 
 		$meta->zoom = self::MAP_ZOOM_DEFAULT;
-		$value = get_post_meta( $post_id, '_pronamic_google_maps_zoom', true );
+		$value      = get_post_meta( $post_id, '_pronamic_google_maps_zoom', true );
 		if ( '' !== $value ) {
 			$meta->zoom = (int) $value;
 		}
@@ -316,7 +316,7 @@ class Pronamic_Google_Maps_Maps {
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
 
-		$parameters = array();
+		$parameters            = [];
 		$parameters['center']  = $info->latitude . ',' . $info->longitude;
 		$parameters['zoom']    = $info->mapOptions->zoom;
 		$parameters['size']    = $width->get_pixels( self::$defaultWidth ) . 'x' . $height->get_pixels( self::$defaultHeight );
@@ -383,18 +383,18 @@ class Pronamic_Google_Maps_Maps {
 	 *
 	 * @param mixed $arguments
 	 */
-	public static function render( $arguments = array() ) {
-		$defaults = array(
+	public static function render( $arguments = [] ) {
+		$defaults = [
 			'width'          => self::$defaultWidth,
 			'height'         => self::$defaultHeight,
 			'static'         => false,
 			'label'          => null,
 			'color'          => null,
 			'echo'           => true,
-			'marker_options' => array(),
-			'map_options'    => array(),
+			'marker_options' => [],
+			'map_options'    => [],
 			'post_id'        => null,
-		);
+		];
 
 		$arguments = wp_parse_args( $arguments, $defaults );
 
@@ -402,7 +402,7 @@ class Pronamic_Google_Maps_Maps {
 		$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
 
 		$options = Pronamic_Google_Maps_Maps::get_options();
-		$pgm = Pronamic_Google_Maps_Maps::get_meta_data( $post_id );
+		$pgm     = Pronamic_Google_Maps_Maps::get_meta_data( $post_id );
 
 		$activeTypes = $options['active'];
 
@@ -411,7 +411,7 @@ class Pronamic_Google_Maps_Maps {
 		$active = isset( $activeTypes[ $post_type ] ) && $activeTypes[ $post_type ];
 
 		if ( $active && $pgm->active ) {
-			$info = new Pronamic_Google_Maps_Info();
+			$info              = new Pronamic_Google_Maps_Info();
 			$info->title       = $pgm->title;
 			$info->description = $pgm->description;
 			$info->latitude    = $pgm->latitude;

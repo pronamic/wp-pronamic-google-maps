@@ -127,7 +127,7 @@ if we didn't earn 5 stars.
 
 We do accept feature requests for all of our plugins, free ones included. The most requested features 
 will make it into the next version.
-    
+	
 <strong>If you need a special feature NOW, <a href="http://pronamic.eu/contact/">contact us</a>!</strong> 
 We offer expedited feature development. Most features can be implemented in less than a week for $200!
 
@@ -249,7 +249,8 @@ PHP;
 
 Or througt an filter
 
-<?php echo <<<'PHP'
+<?php
+echo <<<'PHP'
 	<?php
 	
 	function custom_pronamic_google_maps_the_content( $content ) {
@@ -299,7 +300,7 @@ PHP;
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-need-routes-too?replies=1#post-2741427
 *	http://wordpress.org/support/topic/plugin-pronamic-google-maps-is-it-possible-to-set-the-default-location-etc-for-post-edit-map?replies=4#post-2811858
 
-<?php include 'changelog.php'; ?>
+<?php require 'changelog.php'; ?>
 
 
 == Upgrade Notice ==
@@ -333,7 +334,7 @@ Thanks for using the Pronamic Google Maps plugin! As always, this update is very
 *	[Markdown's Syntax Documentation][markdown syntax]
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+			"Markdown is what the parser uses to process much of the readme file"
 
 
 

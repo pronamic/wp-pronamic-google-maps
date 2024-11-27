@@ -15,17 +15,17 @@ class Pronamic_Google_Maps_Shortcodes {
 	 * Bootstrap
 	 */
 	public static function bootstrap() {
-		add_shortcode( 'googlemaps',       array( __CLASS__, 'shortcode_map' ) );
+		add_shortcode( 'googlemaps', [ __CLASS__, 'shortcode_map' ] );
 		// The shortcode with hyphen is @deprecated
-		add_shortcode( 'google-maps',      array( __CLASS__, 'shortcode_map_hyphen' ) );
-		add_shortcode( 'geo',              array( __CLASS__, 'shortcode_geo' ) );
-		add_shortcode( 'googlemapsmashup', array( __CLASS__, 'shortcode_mashup' ) );
+		add_shortcode( 'google-maps', [ __CLASS__, 'shortcode_map_hyphen' ] );
+		add_shortcode( 'geo', [ __CLASS__, 'shortcode_geo' ] );
+		add_shortcode( 'googlemapsmashup', [ __CLASS__, 'shortcode_mashup' ] );
 	}
 
 	//////////////////////////////////////////////////
 
 	public static function parse_map_options( $atts ) {
-		$map_options = array();
+		$map_options = [];
 
 		if ( isset( $atts['map_options'] ) ) {
 			$value = $atts['map_options'];
@@ -37,7 +37,7 @@ class Pronamic_Google_Maps_Shortcodes {
 			}
 		}
 
-		$map_options_keys = array(
+		$map_options_keys = [
 			'backgroundColor'        => FILTER_SANITIZE_STRING,
 			// 'center' => ?,
 			'disableDefaultUI'       => FILTER_VALIDATE_BOOLEAN,
@@ -71,7 +71,7 @@ class Pronamic_Google_Maps_Shortcodes {
 			'zoom'                   => FILTER_VALIDATE_INT,
 			'zoomControl'            => FILTER_VALIDATE_BOOLEAN,
 			// 'zoomControlOptions' => ?
-		);
+		];
 
 		foreach ( $map_options_keys as $key => $filter ) {
 			// Shortcode attributes are always lower case
@@ -89,7 +89,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	}
 
 	public static function parse_marker_clusterer_options( $atts ) {
-		$options = array();
+		$options = [];
 
 		if ( isset( $atts['marker_clusterer_options'] ) ) {
 			$value = $atts['marker_clusterer_options'];
@@ -111,7 +111,7 @@ class Pronamic_Google_Maps_Shortcodes {
 	}
 
 	public static function parse_overlapping_marker_spiderfier_options( $atts ) {
-		$options = array();
+		$options = [];
 
 		if ( isset( $atts['overlapping_marker_spiderfier_options'] ) ) {
 			$value = $atts['overlapping_marker_spiderfier_options'];
@@ -170,9 +170,12 @@ class Pronamic_Google_Maps_Shortcodes {
 	 * Shortcode map
 	 */
 	public static function shortcode_mashup( $atts ) {
-		$atts = wp_parse_args( $atts, array(
-			'query' => array(),
-		) );
+		$atts = wp_parse_args(
+			$atts,
+			[
+				'query' => [],
+			] 
+		);
 
 		$atts = self::parse_map_options( $atts );
 		$atts = self::parse_marker_clusterer_options( $atts );

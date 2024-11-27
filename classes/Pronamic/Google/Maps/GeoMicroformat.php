@@ -16,17 +16,17 @@ class Pronamic_Google_Maps_GeoMicroformat {
 	 * @param float $latitude
 	 * @param float $longitude
 	 */
-	public static function render( $arguments = array() ) {
+	public static function render( $arguments = [] ) {
 		// Arguments
-		$defaults = array(
+		$defaults = [
 			'echo' => true,
-		);
+		];
 
 		$arguments = wp_parse_args( $arguments, $defaults );
 
 		// Options
 		$options = Pronamic_Google_Maps_Maps::get_options();
-		$pgm = Pronamic_Google_Maps_Maps::get_meta_data();
+		$pgm     = Pronamic_Google_Maps_Maps::get_meta_data();
 
 		$activeTypes = $options['active'];
 
@@ -36,11 +36,12 @@ class Pronamic_Google_Maps_GeoMicroformat {
 
 		// Active
 		if ( $active && $pgm->active ) {
-			$content = sprintf('
+			$content = sprintf(
+				'
 				<div class="geo">
 					<abbr class="latitude" title="%.6f">%s</abbr>
 					<abbr class="longitude" title="%.6f">%s</abbr>
-				</div>' ,
+				</div>',
 				$pgm->latitude,
 				Pronamic_Google_Maps_LatLng::convert_to_deg_min_sec( $pgm->latitude, Pronamic_Google_Maps_LatLng::DIRECTION_LATITUDE ),
 				$pgm->longitude,

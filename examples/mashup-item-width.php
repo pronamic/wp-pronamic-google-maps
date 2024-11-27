@@ -4,7 +4,7 @@
  * Filter snippet
  */
 function prefix_pronamic_google_maps_mashup_item( $content ) {
-	$content  = '';
+	$content = '';
 
 	$content .= '<div style="width: 250px">';
 

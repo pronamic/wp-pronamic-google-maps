@@ -187,14 +187,14 @@ class Pronamic_Google_Maps_LatLng {
 	public static function convert_to_deg_min_sec( $decimal, $direction = null ) {
 		$string = (string) $decimal;
 
-		$degrees = $string;
-		$minutes = 0;
-		$seconds = 0;
+		$degrees           = $string;
+		$minutes           = 0;
+		$seconds           = 0;
 		$cardinalDirection = null;
 
 		$position = strpos( $string, '.' );
 		if ( false !== $position ) {
-			$integral = (int) substr( $string, 0, $position );
+			$integral   = (int) substr( $string, 0, $position );
 			$fractional = (float) ( '0.' . substr( $string, $position + 1 ) );
 
 			$s = $fractional * 3600;

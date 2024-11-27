@@ -65,10 +65,18 @@ $static      = $instance['static'];
 	</p>
 
 	<p>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="false" type="radio" <?php if ( ! $static ) : ?>checked="checked"<?php endif; ?> />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="false" type="radio" 
+								<?php
+								if ( ! $static ) :
+									?>
+			checked="checked"<?php endif; ?> />
 		<label for="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>"><?php esc_html_e( 'Dynamic', 'pronamic-google-maps' ); ?></label>
 
-		<input id="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="true" type="radio" <?php if ( $static ) : ?>checked="checked"<?php endif; ?> />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="true" type="radio" 
+								<?php
+								if ( $static ) :
+									?>
+			checked="checked"<?php endif; ?> />
 		<label for="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>"><?php esc_html_e( 'Static', 'pronamic-google-maps' ); ?></label>
 	</p>
 </div>

@@ -16,7 +16,7 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * Bootstrap this widget
 	 */
 	public static function bootstrap() {
-		add_action( 'widgets_init', array( __CLASS__, 'initialize' ) );
+		add_action( 'widgets_init', [ __CLASS__, 'initialize' ] );
 	}
 
 	//////////////////////////////////////////////////
@@ -35,8 +35,11 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		$description    = __( 'Use this widget to add an Google Maps as a widget.', 'pronamic-google-maps' );
-		$widgetOptions  = array( 'classname' => 'pronamic_google_maps_widget', 'description' => $description );
-		$controlOptions = array( 'width' => 500 );
+		$widgetOptions  = [
+			'classname'   => 'pronamic_google_maps_widget',
+			'description' => $description,
+		];
+		$controlOptions = [ 'width' => 500 ];
 
 		parent::__construct( 'pronamic_google_maps', __( 'Google Maps', 'pronamic-google-maps' ), $widgetOptions, $controlOptions );
 	}
@@ -112,17 +115,20 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array(
-			'title'       => '',
-			'description' => '',
-			'latitude'    => 0,
-			'longitude'   => 0,
-			'map-type'    => '',
-			'zoom'        => '',
-			'width'       => '100',
-			'height'      => '200',
-			'static'      => false,
-		) );
+		$instance = wp_parse_args(
+			(array) $instance,
+			[
+				'title'       => '',
+				'description' => '',
+				'latitude'    => 0,
+				'longitude'   => 0,
+				'map-type'    => '',
+				'zoom'        => '',
+				'width'       => '100',
+				'height'      => '200',
+				'static'      => false,
+			] 
+		);
 
 		include plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'views/widget-form.php';
 	}
@@ -136,10 +142,16 @@ class Pronamic_Google_Maps_Widget extends WP_Widget {
 	 * @param string $value
 	 */
 	public function renderUnitField( $name, $value = null ) {
-		$units = array(
-			array( 'value' => 'px', 'label' => __( 'pixels', 'pronamic-google-maps' ) ),
-			array( 'value' => '%', 'label' => __( 'percent', 'pronamic-google-maps' ) ),
-		);
+		$units = [
+			[
+				'value' => 'px',
+				'label' => __( 'pixels', 'pronamic-google-maps' ),
+			],
+			[
+				'value' => '%',
+				'label' => __( 'percent', 'pronamic-google-maps' ),
+			],
+		];
 
 		?>
 		<select id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>">
