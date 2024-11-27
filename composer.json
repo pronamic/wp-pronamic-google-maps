@@ -82,6 +82,7 @@
 			"vendor/bin/wp i18n make-mo ./build/stage-2/languages/",
 			"vendor/bin/wp dist-archive ./build/stage-2/ --plugin-dirname=pronamic-google-maps"
 		],
+		"changelog": "Pronamic\\ChangelogMdToWordPressPluginReadmeTxt\\Synchronizer::run",
 		"translate": [
 			"@build",
 			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/",
