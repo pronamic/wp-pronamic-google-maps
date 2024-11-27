@@ -6,7 +6,7 @@
 	var methods = {
 		/**
 		 * Build map
-		 * 
+		 *
 		 * @param s an jQuery selector
 		 */
 		buildMap: function( s ) {
@@ -28,7 +28,7 @@
 
 				// Map options
 				var mapOptions = $.extend( {
-						center: location 
+						center: location
 					},
 					info.mapOptions
 				);
@@ -47,7 +47,7 @@
 
 				element.data( 'google-maps', map);
 				element.data( 'google-maps-marker', marker );
-			
+
 				var infoWindow = new google.maps.InfoWindow( { content: info.description } );
 
 				google.maps.event.addListener( marker, 'click', function() {
@@ -59,14 +59,12 @@
 			}
 		},
 
-		//////////////////////////////////////////////////
-
 		/**
 		 * Build mashup
-		 * 
+		 *
 		 * @param s an jQuery selector
 		 */
-		buildMashup: function( s ) { 
+		buildMashup: function( s ) {
 			var element = $( s );
 
 			var list = element.find( 'ul' );
@@ -79,13 +77,13 @@
 				if ( mashupInfo.hideList ) {
 					list.hide();
 				}
-				
+
 				var center = new google.maps.LatLng( mashupInfo.center.latitude, mashupInfo.center.longitude );
 
 				// Map options
 				var mapOptions = $.extend( {
 						center: center
-					}, 
+					},
 					mashupInfo.mapOptions
 				);
 
@@ -102,13 +100,13 @@
 				if ( mashupInfo.overlappingMarkerSpiderfierOptions ) {
 					overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier( map, mashupInfo.overlappingMarkerSpiderfierOptions );
 				}
-				
+
 				// Associated the Google Maps with the element so other developers can easily retrieve the Google Maps object
 				element.data( 'google-maps', map );
 
 				// Create one info window where the details from the posts will be displayed in
 				var infoWindow = new google.maps.InfoWindow();
-				
+
 				// Create an bounds object so we can fit the map to show all posts
 				var bounds = new google.maps.LatLngBounds();
 
@@ -133,7 +131,7 @@
 					if ( markerClusterer ) {
 						markerClusterer.addMarker( marker, false );
 					}
-					
+
 					if ( overlappingMarkerSpiderfier ) {
 						overlappingMarkerSpiderfier.addMarker( marker );
 					}
@@ -158,8 +156,6 @@
 		}
 	};
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The Pronamic Google Maps jQuery plugin function
 	 */
@@ -169,8 +165,6 @@
 		} );
 	};
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The Pronamic Google Maps mashup jQuery plugin function
 	 */
@@ -179,8 +173,6 @@
 			methods.buildMashup( this );
 		} );
 	};
-	
-	//////////////////////////////////////////////////
 
 	/**
 	 * Initialize
@@ -189,7 +181,7 @@
 		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
 
 		$( '.pgm' ).pronamicGoogleMaps();
-		
+
 		$( '.pgmm' ).pronamicGoogleMapsMashup();
 	};
 

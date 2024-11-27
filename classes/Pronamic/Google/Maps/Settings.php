@@ -20,7 +20,7 @@
 class Pronamic_Google_Maps_Settings {
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'admin_init', [ $this, 'register_settings' ] );
 	}
 
 	/**
@@ -59,43 +59,44 @@ class Pronamic_Google_Maps_Settings {
 		add_settings_field(
 			'pronamic_google_maps_key',
 			__( 'Key', 'pronamic-google-maps' ),
-			array( $this, 'input_text' ),
+			[ $this, 'input_text' ],
 			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
-			array(
-				'label_for'   => 'pronamic_google_maps_key',
-			)
+			[
+				'label_for' => 'pronamic_google_maps_key',
+			]
 		);
 
 		add_settings_field(
 			'Pronamic_Google_maps',
 			__( 'Post Types', 'pronamic-google-maps' ),
-			array( $this, 'setting_google_maps_active' ),
+			[ $this, 'setting_google_maps_active' ],
 			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
-			array(
+			[
 				'description' => __( 'Enable Google Maps for the selected post types.', 'pronamic-google-maps' ),
-			)
+			]
 		);
 
 		add_settings_field(
 			'pronamic_google_maps_visual_refresh',
 			__( 'Visual Refresh', 'pronamic-google-maps' ),
-			array( $this, 'setting_google_maps_visual_refresh' ),
+			[ $this, 'setting_google_maps_visual_refresh' ],
 			'pronamic_google_maps',
 			'pronamic_google_maps_settings_section_general',
-			array(
+			[
 				'description' => sprintf(
+					/* translators: %s: visual refresh documentation URL */
 					__( 'The <a href="%s" target="_blank">Google Maps visual refresh</a> brings a fresh new look to applications using the Google Maps JavaScript API.', 'pronamic-google-maps' ),
 					'https://developers.google.com/maps/documentation/javascript/basics#VisualRefresh'
 				),
 				'label_for'   => 'pronamic_google_maps_visual_refresh',
-			)
+			]
 		);
 
 		// Register those settings
 		register_setting( 'pronamic_google_maps', 'Pronamic_Google_maps' );
-		register_setting( 'pronamic_google_maps', 'pronamic_google_maps_visual_refresh', array( $this, 'sanitize_boolean' ) );
+		register_setting( 'pronamic_google_maps', 'pronamic_google_maps_visual_refresh', [ $this, 'sanitize_boolean' ] );
 	}
 
 	/**
@@ -110,7 +111,15 @@ class Pronamic_Google_Maps_Settings {
 	 * @return void
 	 */
 	public static function set_default_options() {
-		update_option( 'Pronamic_Google_maps', array( 'active' => array( 'post' => true, 'page' => true ) ) );
+		update_option(
+			'Pronamic_Google_maps',
+			[
+				'active' => [
+					'post' => true,
+					'page' => true,
+				],
+			]
+		);
 	}
 
 	/**
@@ -167,7 +176,7 @@ class Pronamic_Google_Maps_Settings {
 	 * @return array
 	 */
 	public static function get_active_post_types() {
-		$active = array();
+		$active = [];
 
 		$legacy_options = get_option( 'Pronamic_Google_maps' );
 		if ( isset( $legacy_options['active'] ) ) {
@@ -186,9 +195,9 @@ class Pronamic_Google_Maps_Settings {
 	 */
 
 	public static function input_text( $args ) {
-		$defaults = array(
+		$defaults = [
 			'type' => 'text',
-		);
+		];
 
 		$args = wp_parse_args( $args, $defaults );
 
@@ -208,9 +217,12 @@ class Pronamic_Google_Maps_Settings {
 	 * @setting-name Pronamic_Google_maps
 	 */
 	public function setting_google_maps_active( $args ) {
-		$post_types = get_post_types( array(
-			'public' => true,
-		), 'objects' );
+		$post_types = get_post_types(
+			[
+				'public' => true,
+			],
+			'objects'
+		);
 
 		if ( $post_types ) : ?>
 
@@ -233,7 +245,8 @@ class Pronamic_Google_Maps_Settings {
 
 				<p class="description"><?php echo wp_kses_post( $args['description'] ); ?></p>
 
-			<?php endif;
+				<?php
+			endif;
 
 		endif;
 	}
@@ -254,7 +267,8 @@ class Pronamic_Google_Maps_Settings {
 
 			<p class="description"><?php echo wp_kses_post( $args['description'] ); ?></p>
 
-		<?php endif;
+			<?php
+		endif;
 	}
 
 	public function sanitize_boolean( $input ) {

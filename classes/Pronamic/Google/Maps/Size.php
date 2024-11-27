@@ -24,8 +24,6 @@ class Pronamic_Google_Maps_Size {
 	 */
 	public $unit;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Pattern for size
 	 *
@@ -33,8 +31,6 @@ class Pronamic_Google_Maps_Size {
 	 * @var string
 	 */
 	const PATTERN = '/(?P<number>\d+)(?P<unit>\D+)?/';
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Construct size
@@ -45,8 +41,6 @@ class Pronamic_Google_Maps_Size {
 		$this->number = $number;
 		$this->unit   = $unit;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get pixels
@@ -66,8 +60,6 @@ class Pronamic_Google_Maps_Size {
 		return $pixels;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * To string
 	 *
@@ -76,8 +68,6 @@ class Pronamic_Google_Maps_Size {
 	public function __toString() {
 		return '' . $this->number . $this->unit;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Parse the specified value in to an size object

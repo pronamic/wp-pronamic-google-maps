@@ -32,7 +32,7 @@ wp_nonce_field( 'save-post', Pronamic_Google_Maps_Maps::NONCE_NAME );
 				<label for="pgm-description-field"><?php esc_html_e( 'Description', 'pronamic-google-maps' ); ?></label>
 			</th>
 			<td>
-				<textarea id="pgm-description-field" name="_pronamic_google_maps_description" rows="3" cols="50"><?php echo esc_attr( $pgm->description ); ?></textarea>
+				<textarea id="pgm-description-field" name="_pronamic_google_maps_description" rows="3" cols="50"><?php echo esc_textarea( $pgm->description ); ?></textarea>
 			</td>
 		</tr>
 		<tr>

@@ -146,8 +146,6 @@
 		fields.description.change( function() { infoWindow.setContent( fields.description.val() ); } );
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * Pronamic Google Maps widget prototype
 	 */
@@ -233,8 +231,6 @@
 		} );
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * Pronamic Google Maps geocoder prototype
 	 */
@@ -318,8 +314,6 @@
 		};
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * jQuery plugin - Pronamic Google Maps meta box
 	 */
@@ -337,8 +331,6 @@
 		} );
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * jQuery plugin - Pronamic Google Maps geocoder
 	 */
@@ -356,8 +348,6 @@
 		} );
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * jQuery plugin - Pronamic Google Maps geocoder
 	 */
@@ -375,8 +365,6 @@
 		} );
 	};
 	
-	//////////////////////////////////////////////////
-
 	/**
 	 * Initialize
 	 */

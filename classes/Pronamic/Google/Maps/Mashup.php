@@ -10,10 +10,10 @@
  * @version 1.0.0
  */
 class Pronamic_Google_Maps_Mashup {
-	public static function render( $q = array(), $arguments = array() ) {
+	public static function render( $q = [], $arguments = [] ) {
 		Pronamic_Google_Maps_Site::require_site_script();
 
-		$defaults = array(
+		$defaults = [
 			'width'                  => Pronamic_Google_Maps_Maps::$defaultWidth,
 			'height'                 => Pronamic_Google_Maps_Maps::$defaultHeight,
 			'latitude'               => 0,
@@ -23,11 +23,11 @@ class Pronamic_Google_Maps_Mashup {
 			'hide_list'              => true,
 			'fit_bounds'             => true,
 			'center_client_location' => false,
-			'marker_options'         => array(),
-			'map_options'            => array(),
-			'marker_cluster_options' => array(),
+			'marker_options'         => [],
+			'map_options'            => [],
+			'marker_cluster_options' => [],
 			'echo'                   => true,
-		);
+		];
 
 		$arguments = wp_parse_args( $arguments, $defaults );
 
@@ -37,7 +37,7 @@ class Pronamic_Google_Maps_Mashup {
 			$query = new WP_Query( $q );
 		}
 
-		$options = new stdClass();
+		$options        = new stdClass();
 		$options->width = $arguments['width'];
 		if ( is_numeric( $options->width ) ) {
 			$options->width = '' . $options->width . 'px';
@@ -46,17 +46,17 @@ class Pronamic_Google_Maps_Mashup {
 		if ( is_numeric( $options->height ) ) {
 			$options->height = '' . $options->height . 'px';
 		}
-		$options->center = new stdClass();
-		$options->center->latitude = $arguments['latitude'];
-		$options->center->longitude = $arguments['longitude'];
-		$options->hideList = $arguments['hide_list'];
-		$options->fitBounds = filter_var( $arguments['fit_bounds'], FILTER_VALIDATE_BOOLEAN );
+		$options->center               = new stdClass();
+		$options->center->latitude     = $arguments['latitude'];
+		$options->center->longitude    = $arguments['longitude'];
+		$options->hideList             = $arguments['hide_list'];
+		$options->fitBounds            = filter_var( $arguments['fit_bounds'], FILTER_VALIDATE_BOOLEAN );
 		$options->centerClientLocation = $arguments['center_client_location'];
 
 		// Map options
-		$options->mapOptions = new stdClass();
+		$options->mapOptions            = new stdClass();
 		$options->mapOptions->mapTypeId = $arguments['map_type_id'];
-		$options->mapOptions->zoom = $arguments['zoom'];
+		$options->mapOptions->zoom      = $arguments['zoom'];
 		foreach ( $arguments['map_options'] as $key => $value ) {
 			$value = apply_filters( 'pronamic_google_maps_map_options_' . $key, $value );
 
@@ -89,7 +89,7 @@ class Pronamic_Google_Maps_Mashup {
 		}
 
 		// Markers
-		$options->markers = array();
+		$options->markers = [];
 
 		// HTML
 		$items = '';
@@ -100,15 +100,19 @@ class Pronamic_Google_Maps_Mashup {
 
 			if ( $pgm->active ) {
 				$description = sprintf(
-					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
-					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
+					'<a href="%s" title="%s" rel="bookmark">%s</a>',
+					get_permalink(),
+					sprintf(
+						/* translators: %s: the title attribute */
+						esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ),
+						the_title_attribute( 'echo=0' )
+					),
 					get_the_title()
 				);
 
 				$description = apply_filters( 'pronamic_google_maps_mashup_item', $description );
 
-				$info = new Pronamic_Google_Maps_Info();
+				$info                = new Pronamic_Google_Maps_Info();
 				$info->title         = $pgm->title;
 				$info->description   = $pgm->description;
 				$info->latitude      = $pgm->latitude;
@@ -125,7 +129,7 @@ class Pronamic_Google_Maps_Mashup {
 					$info->markerOptions->$key = $value;
 				}
 
-				$marker = new stdClass();
+				$marker              = new stdClass();
 				$marker->options     = $info->markerOptions;
 				$marker->lat         = $pgm->latitude;
 				$marker->lng         = $pgm->longitude;
@@ -136,12 +140,16 @@ class Pronamic_Google_Maps_Mashup {
 				$options->markers[] = $marker;
 
 				$items .= '<li>';
-				$items .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( json_encode( $info ) ) );
+				$items .= sprintf( '<input type="hidden" name="pgm-info" value="%s" />', esc_attr( wp_json_encode( $info ) ) );
 
 				$item = sprintf(
-					'<a href="%s" title="%s" rel="bookmark">%s</a>' ,
-					get_permalink() ,
-					sprintf( esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ), the_title_attribute( 'echo=0' ) ) ,
+					'<a href="%s" title="%s" rel="bookmark">%s</a>',
+					get_permalink(),
+					sprintf(
+						/* translators: %s: the title attribute */
+						esc_attr__( 'Permalink to %s', 'pronamic-google-maps' ),
+						the_title_attribute( 'echo=0' )
+					),
 					get_the_title()
 				);
 
@@ -152,10 +160,10 @@ class Pronamic_Google_Maps_Mashup {
 
 		wp_reset_postdata();
 
-		$content = '<div class="pgmm">';
-		$content .= sprintf( '<input type="hidden" name="pgmm-info" value="%s" />', esc_attr( json_encode( $options ) ) );
+		$content  = '<div class="pgmm">';
+		$content .= sprintf( '<input type="hidden" name="pgmm-info" value="%s" />', esc_attr( wp_json_encode( $options ) ) );
 
-		$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', $options->width, $options->height );
+		$content .= sprintf( '<div class="canvas" style="width: %s; height: %s;">', esc_attr( $options->width ), esc_attr( $options->height ) );
 		$content .= sprintf( '</div>' );
 
 		if ( ! empty( $items ) ) {

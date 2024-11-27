@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<ruleset name="Pronamic Google Maps">
+	<file>.</file>
+
+	<exclude-pattern type="relative">^build/*</exclude-pattern>
+	<exclude-pattern type="relative">^node_modules/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/changelog-md/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/readme-md/*</exclude-pattern>
+	<exclude-pattern type="relative">^src/readme-txt/*</exclude-pattern>
+	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
+
+	<rule ref="PronamicWP">
+		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
+
+		<exclude name="Squiz.Commenting" />
+
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+
+		<exclude name="WordPress.PHP.DiscouragedFunctions.DiscouragedWithAlternative" />
+
+		<!-- The wp_remote_get() function is used to geocode addresses using the Google Maps API. -->
+		<exclude name="WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get" />
+
+		<!-- Meta queries are used by the geocoder feature. -->
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_query" />
+
+		<!-- Direct database queries are used by the uninstall feature. -->
+		<exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery" />
+		<exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching" />
+	</rule>
+</ruleset>

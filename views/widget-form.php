@@ -1,18 +1,18 @@
 <?php
 
-$title       = strip_tags( $instance['title'] );
-$description = format_to_edit( $instance['description'] );
-$latitude    = strip_tags( $instance['latitude'] );
-$longitude   = strip_tags( $instance['longitude'] );
-$mapType     = $instance['map-type'];
-$zoom        = $instance['zoom'];
-$width       = $instance['width'];
-$height      = $instance['height'];
-$static      = $instance['static'];
+$widget_title = wp_strip_all_tags( $instance['title'] );
+$description  = format_to_edit( $instance['description'] );
+$latitude     = wp_strip_all_tags( $instance['latitude'] );
+$longitude    = wp_strip_all_tags( $instance['longitude'] );
+$map_type     = $instance['map-type'];
+$zoom         = $instance['zoom'];
+$width        = $instance['width'];
+$height       = $instance['height'];
+$static       = $instance['static'];
 
 ?>
 <div id="<?php echo esc_attr( $this->get_field_id( 'pgm' ) ); ?>" class="pronamic-google-maps-widget">
-	<input class="map-type-field" id="<?php echo esc_attr( $this->get_field_id( 'map-type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'map-type' ) ); ?>" value="<?php echo esc_attr( $mapType ); ?>" type="hidden" />
+	<input class="map-type-field" id="<?php echo esc_attr( $this->get_field_id( 'map-type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'map-type' ) ); ?>" value="<?php echo esc_attr( $map_type ); ?>" type="hidden" />
 	<input class="zoom-field" id="<?php echo esc_attr( $this->get_field_id( 'zoom' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'zoom' ) ); ?>" value="<?php echo esc_attr( $zoom ); ?>" type="hidden" />
 
 	<p>
@@ -20,7 +20,7 @@ $static      = $instance['static'];
 			<?php esc_html_e( 'Title', 'pronamic-google-maps' ); ?>:
 		</label>
 
-		<input class="widefat title-field" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+		<input class="widefat title-field" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $widget_title ); ?>" />
 	</p>
 
 	<p>
@@ -65,10 +65,18 @@ $static      = $instance['static'];
 	</p>
 
 	<p>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="false" type="radio" <?php if ( ! $static ) : ?>checked="checked"<?php endif; ?> />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="false" type="radio"
+								<?php
+								if ( ! $static ) :
+									?>
+			checked="checked"<?php endif; ?> />
 		<label for="<?php echo esc_attr( $this->get_field_id( 'static-false' ) ); ?>"><?php esc_html_e( 'Dynamic', 'pronamic-google-maps' ); ?></label>
 
-		<input id="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="true" type="radio" <?php if ( $static ) : ?>checked="checked"<?php endif; ?> />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'static' ) ); ?>" value="true" type="radio"
+								<?php
+								if ( $static ) :
+									?>
+			checked="checked"<?php endif; ?> />
 		<label for="<?php echo esc_attr( $this->get_field_id( 'static-true' ) ); ?>"><?php esc_html_e( 'Static', 'pronamic-google-maps' ); ?></label>
 	</p>
 </div>

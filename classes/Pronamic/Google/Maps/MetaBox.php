@@ -17,8 +17,6 @@ class Pronamic_Google_Maps_MetaBox {
 	 */
 	const ID = 'pronamic-google-maps-meta-box';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Register this meta box on the specified page
 	 */
@@ -26,14 +24,12 @@ class Pronamic_Google_Maps_MetaBox {
 		add_meta_box(
 			self::ID,
 			__( 'Google Maps', 'pronamic-google-maps' ),
-			array( __CLASS__, 'render' ),
+			[ __CLASS__, 'render' ],
 			$page,
 			$context,
 			$priority
 		);
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Render the option page

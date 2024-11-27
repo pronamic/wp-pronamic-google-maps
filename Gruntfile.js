@@ -219,12 +219,12 @@ module.exports = function( grunt ) {
 
 			// Generate README.md
 			readme_md: {
-				command: 'php src/readme-md/README.php > README.md'	
+				command: 'php src/readme-md/README.php > README.md'
 			},
 
 			// Generate CHANGELOG.md
 			changelog_md: {
-				command: 'php src/changelog-md/CHANGELOG.php > CHANGELOG.md'	
+				command: 'php src/changelog-md/CHANGELOG.php > CHANGELOG.md'
 			}
 		},
 
@@ -278,7 +278,7 @@ module.exports = function( grunt ) {
 	} );
 
 	// Default task(s).
-	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpcs', 'checkwpversion' ] );
+	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpcs' ] );
 	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
 
 	grunt.registerTask( 'build', [
@@ -290,7 +290,6 @@ module.exports = function( grunt ) {
 	] );
 
 	grunt.registerTask( 'deploy', [
-		'checkwpversion',
 		'clean:deploy',
 		'copy:deploy',
 		'compress:deploy'
@@ -302,7 +301,7 @@ module.exports = function( grunt ) {
 		'rt_wp_deploy',
 		'gitcheckout:develop'
 	] );
-	
+
 	grunt.registerTask( 's3-deploy', [
 		'gitcheckout:tag',
 		'deploy',

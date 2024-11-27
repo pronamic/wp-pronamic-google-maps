@@ -37,14 +37,14 @@ function pronamic_google_maps_location() {
 	echo esc_html( $latitude . ', ' . $longitude );
 }
 
-function pronamic_google_maps_geo_microformat( $args = array() ) {
+function pronamic_google_maps_geo_microformat( $args = [] ) {
 	return Pronamic_Google_Maps_GeoMicroformat::render( $args );
 }
 
-function pronamic_google_maps( $args = array() ) {
+function pronamic_google_maps( $args = [] ) {
 	return Pronamic_Google_Maps_Maps::render( $args );
 }
 
-function pronamic_google_maps_mashup( $query = array(), $args = array() ) {
+function pronamic_google_maps_mashup( $query = [], $args = [] ) {
 	return Pronamic_Google_Maps_Mashup::render( $query, $args );
 }
