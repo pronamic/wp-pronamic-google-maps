@@ -1,27 +1,31 @@
+# Apple Desktop Services Store
+.DS_Store
+
 # GitHub
-/.github/
+.github/
 
 # WP-CLI
-/.distignore
+.distignore
 
 # EditorConfig
-/.editorconfig
+.editorconfig
 
 # Git
-/.gitattributes
-/.gitignore
+.git/
+.gitattributes
+.gitignore
 
 # JSHin
-/.jshintrc
+.jshintrc
 
 # WordPress environment
-/.wp-env.json
+.wp-env.json
 
 # PHP_CodeSniffer
-/phpcs.xmldist
+phpcs.xmldist
 
 # PHP Mess Detector
-/phpmd.ruleset.xml
+phpmd.ruleset.xml
 
 # Examples
 /examples/
