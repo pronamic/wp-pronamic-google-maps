@@ -4,7 +4,7 @@ Tags: pronamic, google maps, geo, geocode
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
 Tested up to: 6.7
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv2 or later
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
@@ -265,6 +265,22 @@ Or througt an filter
 = Unreleased - 2015-08-21 =
 
 <!-- Start changelog -->
+
+### [2.3.3] - 2024-11-27
+
+#### Commits
+
+- Use `esc_textarea` instead of `esc_attr` in `<textarea>` element. ([c9361f5](https://github.com/pronamic/wp-pronamic-google-maps/commit/c9361f5dd2a8c76ab148bb9cbd074b5783c6f986))
+- Use `esc_textarea` instead of `esc_attr` in `<textarea>` element. ([145ce66](https://github.com/pronamic/wp-pronamic-google-maps/commit/145ce661adc1522dc435b2db2e40eeb9ca216199))
+- Coding standards. ([60a9b88](https://github.com/pronamic/wp-pronamic-google-maps/commit/60a9b884b0960c63a05b4a240c11a83b29585997))
+- Tested up to: 6.7, closes #38. ([09a66a5](https://github.com/pronamic/wp-pronamic-google-maps/commit/09a66a580699b34474cbda7d2f70aa2d1637b94c))
+- Added API key for GEO coordinates. ([90b18ce](https://github.com/pronamic/wp-pronamic-google-maps/commit/90b18ce0f604c925ddf2eda8eeaef88670527195))
+- Added API key to static map URL. ([092d85b](https://github.com/pronamic/wp-pronamic-google-maps/commit/092d85b0a05887d072127388ebdf6f50e135b6a8))
+- Removed sensor parameter (as recommended by Google in https://developers.google.com/maps/documentation/javascript/error-messages#sensor-not-required) ([7a5c480](https://github.com/pronamic/wp-pronamic-google-maps/commit/7a5c480b773548ce252a1dcd87abdb113477b3db))
+
+Full set of changes: [`2.3.2...2.3.3`][2.3.3]
+
+[2.3.3]: https://github.com/pronamic/wp-pronamic-google-maps/compare/v2.3.2...v2.3.3
 
 ### [2.3.2] - 2016-09-15
 - Fixed issue with the geocoded.
