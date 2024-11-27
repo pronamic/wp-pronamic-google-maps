@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pronamic/wp-pronamic-google-maps",
   "devDependencies": {
+    "@wordpress/env": "^10.13.0",
     "grunt": "^1.6.1",
     "grunt-aws-s3": "^2.0.2",
     "grunt-checktextdomain": "^1.0.1",
