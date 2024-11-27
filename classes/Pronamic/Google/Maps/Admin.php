@@ -247,7 +247,7 @@ class Pronamic_Google_Maps_Admin {
 		if ( \array_key_exists( '_pronamic_google_maps_address', $_POST ) ) {
 			$address = \wp_kses_post( \wp_unslash( $_POST['_pronamic_google_maps_address'] ) );
 		
-			self::update_post_meta( $post_id, '_pronamic_google_maps_description', $address );
+			self::update_post_meta( $post_id, '_pronamic_google_maps_address', $address );
 		}
 
 		// Status
