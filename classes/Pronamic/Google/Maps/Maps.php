@@ -178,6 +178,7 @@ class Pronamic_Google_Maps_Maps {
 				'https://maps.googleapis.com/maps/api/js'
 			),
 			[],
+			// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Google Maps API does not use a version parameter.
 			null,
 			true
 		);
