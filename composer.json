@@ -1,0 +1,97 @@
+{
+	"name": "pronamic/wp-pronamic-google-maps",
+	"type": "wordpress-plugin",
+	"description": "This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.",
+	"keywords": [
+		"pronamic",
+		"google",
+		"maps",
+		"geo",
+		"geocode"
+	],
+	"homepage": "https://github.com/pronamic/wp-pronamic-google-maps",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Remco Tolsma",
+			"email": "remco@pronamic.nl",
+			"homepage": "https://www.remcotolsma.nl/",
+			"role": "Developer"
+		},
+		{
+			"name": "Reüel van der Steege",
+			"email": "reuel@pronamic.nl",
+			"homepage": "https://www.reuel.nl/",
+			"role": "Developer"
+		},
+		{
+			"name": "Karel-Jan Tolsma",
+			"email": "kareljan@pronamic.nl",
+			"homepage": "https://www.kareljantolsma.nl/",
+			"role": "Designer"
+		},
+		{
+			"name": "Leo Oosterloo",
+			"email": "leo@pronamic.nl",
+			"homepage": "https://www.leo-oosterloo.eu/",
+			"role": "Designer"
+		}
+	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org/"
+		}
+	],
+	"config": {
+		"platform": {
+			"php": "8.1"
+		},
+		"platform-check": false,
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"roots/wordpress-core-installer": true,
+			"composer/installers": true
+		},
+		"wp-slug": "pronamic-google-maps"
+	},
+	"require": {
+		"php": ">=8.1",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"phpmd/phpmd": "^2.15",
+		"phpstan/phpstan": "^1.11",
+		"pronamic/changelog-md-to-wordpress-plugin-readme-txt": "dev-main",
+		"pronamic/pronamic-cli": "^1.1",
+		"pronamic/wp-coding-standards": "^2.2",
+		"roots/wordpress-no-content": "^6.7",
+		"vimeo/psalm": "^5.24"
+	},
+	"scripts": {
+		"build": [
+			"Pronamic\\ChangelogMdToWordPressPluginReadmeTxt\\Synchronizer::run"
+		],
+		"translate": [
+			"@build",
+			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/",
+			"@update-po"
+		],
+		"version": [
+			"@build"
+		],
+		"phpcbf": "XDEBUG_MODE=off vendor/bin/phpcbf",
+		"phpcs": "XDEBUG_MODE=off vendor/bin/phpcs -s -v",
+		"phplint": "find classes examples includes src views -name '*.php' | xargs -n 1 -P 4 php -l",
+		"phpmd": "vendor/bin/phpmd classes,examples,includes,src,views text phpmd.ruleset.xml --suffixes php",
+		"phpstan": "XDEBUG_MODE=off vendor/bin/phpstan analyse --memory-limit=-1",
+		"psalm": "XDEBUG_MODE=off vendor/bin/psalm",
+		"update-po": "find languages/*.po -type f -exec msgmerge --update --backup=off {} languages/pronamic-google-maps.pot \\;",
+		"release": [
+			"Composer\\Config::disableProcessTimeout",
+			"@build",
+			"vendor/bin/pronamic release-to-github"
+		]
+	}
+}

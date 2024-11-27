@@ -1,6 +1,9 @@
 # Bower
 /bower_components/
 
+# Composer
+/vendor/
+
 # Deploy
 /deploy/
 
