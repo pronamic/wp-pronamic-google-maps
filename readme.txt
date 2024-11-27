@@ -264,6 +264,8 @@ Or througt an filter
 
 = Unreleased - 2015-08-21 =
 
+<!-- Start changelog -->
+
 = 2.3.2 - 2016-09-15 =
 *	Fixed issue with the geocoded.
 *	Added an delay of 10 seconds for Google Maps API Usage Limit.
@@ -496,7 +498,7 @@ Or througt an filter
 = 1.0 - 2010-10-05 =
 *	Initial release
 
-
+<!-- End changelog -->
 
 == Upgrade Notice ==
 

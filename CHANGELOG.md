@@ -6,6 +6,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [Unreleased][unreleased]
 
+<!-- Start changelog -->
+
 ## [2.3.2] - 2016-09-15
 - Fixed issue with the geocoded.
 - Added an delay of 10 seconds for Google Maps API Usage Limit.
@@ -278,3 +280,5 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 [1.3]: https://github.com/pronamic/wp-pronamic-google-maps/compare/1.2...1.3
 [1.2]: https://github.com/pronamic/wp-pronamic-google-maps/compare/1.1...1.2
 [1.1]: https://github.com/pronamic/wp-pronamic-google-maps/compare/1.0...1.1
+
+<!-- End changelog -->
