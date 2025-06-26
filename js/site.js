@@ -185,6 +185,8 @@
 		$( '.pgmm' ).pronamicGoogleMapsMashup();
 	};
 
+	window.initPronamicGoogleMapsSite = initialize;
+
 	/**
 	 * Ready
 	 */

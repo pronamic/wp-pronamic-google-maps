@@ -173,7 +173,9 @@ class Pronamic_Google_Maps_Maps {
 			'google-maps',
 			add_query_arg(
 				[
-					'key' => $key,
+					'key'      => $key,
+					'loading'  => 'async',
+					'callback' => 'initPronamicGoogleMapsSite',
 				],
 				'https://maps.googleapis.com/maps/api/js'
 			),
