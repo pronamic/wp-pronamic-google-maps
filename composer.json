@@ -65,8 +65,8 @@
 		"phpstan/phpstan": "^1.11",
 		"pronamic/changelog-md-to-wordpress-plugin-readme-txt": "dev-main",
 		"pronamic/pronamic-cli": "^1.1",
-		"pronamic/wp-coding-standards": "^2.2",
-		"roots/wordpress-no-content": "^6.7",
+		"pronamic/wp-coding-standards": "^2.3",
+		"roots/wordpress-no-content": "^6.8",
 		"vimeo/psalm": "^5.24"
 	},
 	"scripts": {
