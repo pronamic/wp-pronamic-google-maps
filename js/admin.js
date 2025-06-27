@@ -1,6 +1,5 @@
 /*jshint unused:false */
 /* global google */
-/* global pronamic_google_maps_settings */
 /* global ajaxurl */
 (function( $ ) {
 	/**
@@ -369,8 +368,6 @@
 	 * Initialize
 	 */
 	var initialize = function() {
-		google.maps.visualRefresh = pronamic_google_maps_settings.visualRefresh;
-
 		$( '#pronamic-google-maps-meta-box' ).pronamicGoogleMapsMetaBox();
 
 		$( '#pgm-geocoder' ).pronamicGoogleMapsGeocoder();

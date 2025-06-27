@@ -44,8 +44,7 @@ class Pronamic_Google_Maps_Site {
 			'pronamic_google_maps_site',
 			'pronamic_google_maps_settings',
 			[
-				'visualRefresh' => get_option( 'pronamic_google_maps_visual_refresh' ),
-				'other_params'  => $other_params_string,
+				'other_params' => $other_params_string,
 			]
 		);
 	}
