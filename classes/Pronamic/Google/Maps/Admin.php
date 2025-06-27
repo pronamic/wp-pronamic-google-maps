@@ -110,8 +110,7 @@ class Pronamic_Google_Maps_Admin {
 			'manage_options', // capability
 			'pronamic_google_maps', // menu slug
 			[ __CLASS__, 'page_general' ], // function
-			// http://www.veryicon.com/icons/system/palm/google-maps.html
-			plugins_url( 'images/icon-16x16-v2.png', Pronamic_Google_Maps_Maps::$file ) // icon url
+			'dashicons-location' // icon
 		);
 
 		// @see _add_post_type_submenus()
