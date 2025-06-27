@@ -49,13 +49,13 @@
 			var infoWindow = new google.maps.InfoWindow( { content: fields.description.val() } );
 			infoWindow.open( map, marker );
 
-			$element.find( '#pgm-geocode-button' ).click( function() {
+			$element.find( '#pgm-geocode-button' ).on( 'click', function() {
 				obj.geocode();
 				
 				return false;
 			} );
 
-			$element.find( '#pgm-reverse-geocode-button' ).click( function() {
+			$element.find( '#pgm-reverse-geocode-button' ).on( 'click', function() {
 				obj.reverseGeocode();
 				
 				return false;
@@ -136,13 +136,9 @@
 		google.maps.event.addListener( marker, 'drag', obj.updateFields );
 		google.maps.event.addListener( marker, 'dragend', obj.updateFields );
 
-		fields.latitude.keyup( obj.updateMarker );
-		fields.latitude.change( obj.updateMarker );
-		fields.longitude.keyup( obj.updateMarker );
-		fields.longitude.change( obj.updateMarker );
-
-		fields.description.keyup( function() { infoWindow.setContent( fields.description.val() ); } );
-		fields.description.change( function() { infoWindow.setContent( fields.description.val() ); } );
+		fields.latitude.on( 'keyup change', obj.updateMarker );
+		fields.longitude.on( 'keyup change', obj.updateMarker );
+		fields.description.on( 'keyup change', function() { infoWindow.setContent( fields.description.val() ); } );
 	};
 	
 	/**
@@ -209,11 +205,9 @@
 		google.maps.event.addListener( marker, 'drag', updateFields );
 		google.maps.event.addListener( marker, 'dragend', updateFields );
 
-		fields.latitude.keyup( updateMarker ).change( updateMarker );
-		fields.longitude.keyup( updateMarker ).change( updateMarker );
-
-		fields.description.change( function() { infoWindow.setContent( fields.description.val() ); } );
-		fields.description.keyup( function() { infoWindow.setContent( fields.description.val() ); } );
+		fields.latitude.on( 'keyup change', updateMarker );
+		fields.longitude.on( 'keyup change', updateMarker );
+		fields.description.on( 'keyup change', function() { infoWindow.setContent( fields.description.val() ); } );
 
 		// The widget area is resized, wich is causing a buggy Google Maps, this function fixes that issue
 		var fixMap = function() {
@@ -222,7 +216,7 @@
 			map.setCenter( location );
 		};
 
-		$element.closest( '.widget' ).find( '.widget-action' ).click( function() { setTimeout( fixMap, 1000 ); } );
+		$element.closest( '.widget' ).find( '.widget-action' ).on( 'click', function() { setTimeout( fixMap, 1000 ); } );
 		$element.closest( '.widget' ).on( 'click', function() {
 			if ( ! $( this ).hasClass( 'open' ) ) {
 				setTimeout( fixMap, 1000 );
@@ -253,7 +247,7 @@
 		var geocoder = new google.maps.Geocoder();
 
 		// Submit
-		$element.find( '#submit' ).click( function() {
+		$element.find( '#submit' ).on( 'click', function() {
 			obj.startGeocode();
 
 			return false;
@@ -374,7 +368,7 @@
 
 		$( '#widgets-right .pronamic-google-maps-widget' ).pronamicGoogleMapsWidget();
 
-		jQuery( 'div[id$="_pronamic_google_maps-__i__"]' ).bind( 'dragstop', function() {
+		jQuery( 'div[id$="_pronamic_google_maps-__i__"]' ).on( 'dragstop', function() {
 			$( '#widgets-right .pronamic-google-maps-widget' ).pronamicGoogleMapsWidget();
 		} );
 	};
