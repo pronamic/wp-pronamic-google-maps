@@ -169,14 +169,19 @@ class Pronamic_Google_Maps_Maps {
 		$key = get_option( 'pronamic_google_maps_key' );
 		$key = empty( $key ) ? false : $key;
 
+		$args = [
+			'key'     => $key,
+			'loading' => 'async',
+		];
+
+		if ( ! \is_admin() ) {
+			$args['callback'] = 'initPronamicGoogleMapsSite';
+		}
+
 		wp_register_script(
 			'google-maps',
 			add_query_arg(
-				[
-					'key'      => $key,
-					'loading'  => 'async',
-					'callback' => 'initPronamicGoogleMapsSite',
-				],
+				$args,
 				'https://maps.googleapis.com/maps/api/js'
 			),
 			[],
