@@ -18,7 +18,7 @@
 				return;
 			}
 
-			var info = $.parseJSON( input.val() );
+			var info = JSON.parse( input.val() );
 
 			var canvas = element.find( '.canvas' ).get( 0 );
 
@@ -69,7 +69,7 @@
 
 			var list = element.find( 'ul' );
 
-			var mashupInfo = $.parseJSON( element.find( 'input[name="pgmm-info"]' ).val());
+			var mashupInfo = JSON.parse( element.find( 'input[name="pgmm-info"]' ).val());
 
 			var canvas = element.find( '.canvas' ).get( 0 );
 
