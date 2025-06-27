@@ -36,14 +36,6 @@ class Pronamic_Google_Maps_Admin {
 			true
 		);
 
-		// Styles
-		wp_register_style(
-			'pronamic-google-maps-admin',
-			plugins_url( 'css/admin.css', Pronamic_Google_Maps_Maps::$file ),
-			[],
-			'2.3.0'
-		);
-
 		// Add the localization for giving the settings.
 		wp_localize_script(
 			'pronamic-google-maps-admin',
