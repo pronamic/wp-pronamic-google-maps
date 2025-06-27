@@ -183,12 +183,5 @@
 		$( '.pgmm' ).pronamicGoogleMapsMashup();
 	};
 
-	window.initPronamicGoogleMapsSite = initialize;
-
-	/**
-	 * Ready
-	 */
-	$( document ).ready( function() {
-		initialize();
-	} );
+	window.initPronamicGoogleMaps = initialize;
 } )( jQuery );

@@ -379,10 +379,5 @@
 		} );
 	};
 
-	/**
-	 * Ready
-	 */
-	$( document ).ready( function() {
-		initialize();
-	} );
+	window.initPronamicGoogleMaps = initialize;
 } )( jQuery );
