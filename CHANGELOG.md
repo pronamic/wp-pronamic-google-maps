@@ -8,6 +8,31 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 <!-- Start changelog -->
 
+## [2.4.0] - 2025-06-27
+
+### Changed
+
+- Load Google Maps asynchronously.
+- Updated admin menu page icon. ([5b9afe4](https://github.com/pronamic/wp-pronamic-google-maps/commit/5b9afe4c162f15c4c860d7821b454b3a7d03f1d9))
+- Tested up to: 6.8. ([45e990a](https://github.com/pronamic/wp-pronamic-google-maps/commit/45e990aa13c80a8b108e66370addba3b5d11b6c6))
+
+### Fixed
+
+- Fixed using deprecated event listeners. ([cf670fc](https://github.com/pronamic/wp-pronamic-google-maps/commit/cf670fc26373c7fb3b372ddd1fdeba297813bb4e))
+- Fixed "jQuery.parseJSON is deprecated; use JSON.parse". ([633fb8d](https://github.com/pronamic/wp-pronamic-google-maps/commit/633fb8da316b4b18caa1bc8fb28a61e5c58b4013))
+
+### Removed
+
+- Removed visual refresh setting. ([555b9db](https://github.com/pronamic/wp-pronamic-google-maps/commit/555b9db872888ed13ff78fac5cd3585452e76ac3))
+- Removed unused style. ([69d1d32](https://github.com/pronamic/wp-pronamic-google-maps/commit/69d1d324c72587d4d9b02acc1a269c3da34145a4))
+- Removed unused scripts. ([7f2e919](https://github.com/pronamic/wp-pronamic-google-maps/commit/7f2e919257c135719a56903d3a83c6bd70cee79a))
+- Removed unused images. ([0503062](https://github.com/pronamic/wp-pronamic-google-maps/commit/05030627f9eec376af186095239371b3bf757c03))
+- Removed WordPress < 3.3 compatibility. ([282d959](https://github.com/pronamic/wp-pronamic-google-maps/commit/282d959ae06230061c90dd8bc1d59c7fcda730c7))
+
+Full set of changes: [`2.3.3...2.4.0`][2.4.0]
+
+[2.4.0]: https://github.com/pronamic/wp-pronamic-google-maps/compare/v2.3.3...v2.4.0
+
 ## [2.3.3] - 2024-11-27
 
 ### Commits
