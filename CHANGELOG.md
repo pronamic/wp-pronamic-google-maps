@@ -8,6 +8,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 <!-- Start changelog -->
 
+## [2.4.1] - 2025-07-09
+
+### Changed
+
+- Use file hash as script version number. ([d8db811](https://github.com/pronamic/wp-pronamic-google-maps/commit/d8db8118e2792419374e8c8d88e335c797e5de0f))
+
+Full set of changes: [`2.4.0...2.4.1`][2.4.1]
+
+[2.4.1]: https://github.com/pronamic/wp-pronamic-google-maps/compare/v2.4.0...v2.4.1
+
 ## [2.4.0] - 2025-06-27
 
 ### Changed

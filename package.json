@@ -1,6 +1,6 @@
 {
   "name": "pronamic-google-maps",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "This plugin makes it simple to add Google Maps to your WordPress post, pages or other custom post types.",
   "main": "pronamic-google-maps.php",
   "repository": {
