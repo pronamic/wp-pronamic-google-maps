@@ -28,11 +28,11 @@ class Pronamic_Google_Maps_Admin {
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'admin_enqueue_scripts' ] );
 
 		// Scripts
-		wp_register_script(
+		\wp_register_script(
 			'pronamic-google-maps-admin',
-			plugins_url( 'js/admin.js', Pronamic_Google_Maps_Maps::$file ),
+			\plugins_url( 'js/admin.js', Pronamic_Google_Maps_Maps::$file ),
 			[ 'jquery', 'google-maps' ],
-			'2.3.0',
+			\hash_file( 'crc32b', \plugin_dir_path( Pronamic_Google_Maps_Maps::$file ) . 'js/admin.js' ),
 			true
 		);
 
