@@ -4,7 +4,7 @@ Tags: pronamic, google maps, geo, geocode
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
 Tested up to: 6.8
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 License: GPLv2 or later
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
@@ -265,6 +265,16 @@ Or througt an filter
 = Unreleased - 2015-08-21 =
 
 <!-- Start changelog -->
+
+### [2.4.2] - 2025-08-25
+
+#### Commits
+
+- No longer use hidden HTML input for JSON ([b71e6f6](https://github.com/pronamic/wp-pronamic-google-maps/commit/b71e6f6a8fc61ac1065a0a2789490cb058b1bffe))
+
+Full set of changes: [`2.4.1...2.4.2`][2.4.2]
+
+[2.4.2]: https://github.com/pronamic/wp-pronamic-google-maps/compare/v2.4.1...v2.4.2
 
 ### [2.4.1] - 2025-07-09
 

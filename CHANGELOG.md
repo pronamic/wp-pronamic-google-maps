@@ -8,6 +8,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 <!-- Start changelog -->
 
+## [2.4.2] - 2025-08-25
+
+### Commits
+
+- No longer use hidden HTML input for JSON ([b71e6f6](https://github.com/pronamic/wp-pronamic-google-maps/commit/b71e6f6a8fc61ac1065a0a2789490cb058b1bffe))
+
+Full set of changes: [`2.4.1...2.4.2`][2.4.2]
+
+[2.4.2]: https://github.com/pronamic/wp-pronamic-google-maps/compare/v2.4.1...v2.4.2
+
 ## [2.4.1] - 2025-07-09
 
 ### Changed
