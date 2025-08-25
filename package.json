@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/pronamic/wp-pronamic-google-maps",
   "devDependencies": {
-    "@wordpress/env": "^10.13.0"
+    "@wordpress/env": "^10.29.0"
   },
   "dependencies": {
     "@googlemaps/markermanager": "^1.0.29",
