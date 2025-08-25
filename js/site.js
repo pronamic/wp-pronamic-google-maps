@@ -12,13 +12,13 @@
 		buildMap: function( s ) {
 			var element = $( s );
 
-			var input = element.find( 'input[name="pgm-info"]' );
+			var jsVar = element.data( 'pronamic-google-maps-info-var' );
 
-			if ( input.length < 1 ) {
+			var info = window[ jsVar ];
+
+			if ( ! info ) {
 				return;
 			}
-
-			var info = JSON.parse( input.val() );
 
 			var canvas = element.find( '.canvas' ).get( 0 );
 

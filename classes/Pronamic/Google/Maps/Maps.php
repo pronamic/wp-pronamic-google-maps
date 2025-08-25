@@ -337,7 +337,15 @@ class Pronamic_Google_Maps_Maps {
 	 * @param Pronamic_Google_Maps_Info $info
 	 */
 	public static function get_map_html( Pronamic_Google_Maps_Info $info ) {
-		$content = '<div class="pgm">';
+		static $id = 0;
+
+		$id++;
+
+		$jsVar = 'pgmInfo' . $id;
+
+		$content = sprintf( '<div class="pgm" data-pronamic-google-maps-info-var="%s">', esc_attr( $jsVar ) );
+
+		$content .= \sprintf( '<script>window.%s = %s;</script>', $jsVar, \wp_json_encode( $info ) );
 
 		$width  = Pronamic_Google_Maps_Size::parse( $info->width );
 		$height = Pronamic_Google_Maps_Size::parse( $info->height );
