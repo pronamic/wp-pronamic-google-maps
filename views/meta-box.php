@@ -50,7 +50,7 @@ wp_nonce_field( 'save-post', Pronamic_Google_Maps_Maps::NONCE_NAME );
 			<td>
 				<input id="pgm-geocode-button" type="submit" value="<?php esc_attr_e( 'Geocode &darr;', 'pronamic-google-maps' ); ?>" class="button" name="pgm_geocode" />
 
-				<input id="pgm-reverse-geocode-button" type="submit" value="<?php echo esc_attr_e( 'Reverse Geocode &uarr;', 'pronamic-google-maps' ); ?>" class="button" name="pgm_reverse_geocode" />
+				<input id="pgm-reverse-geocode-button" type="submit" value="<?php esc_attr_e( 'Reverse Geocode &uarr;', 'pronamic-google-maps' ); ?>" class="button" name="pgm_reverse_geocode" />
 			</td>
 		</tr>
 		<tr>
