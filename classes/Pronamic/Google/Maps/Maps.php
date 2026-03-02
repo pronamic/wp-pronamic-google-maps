@@ -395,6 +395,10 @@ class Pronamic_Google_Maps_Maps {
 			return;
 		}
 
+		if ( ! isset( $options['active'] ) || ! is_array( $options['active'] ) ) {
+			return;
+		}
+
 		$active_types = $options['active'];
 
 		$post_type = get_post_type( $post_id );

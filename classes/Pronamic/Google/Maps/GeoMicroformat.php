@@ -32,6 +32,10 @@ class Pronamic_Google_Maps_GeoMicroformat {
 			return;
 		}
 
+		if ( ! isset( $options['active'] ) || ! is_array( $options['active'] ) ) {
+			return;
+		}
+
 		// Active
 		$active_types = $options['active'];
 
