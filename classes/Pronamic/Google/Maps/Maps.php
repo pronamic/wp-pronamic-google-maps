@@ -395,7 +395,7 @@ class Pronamic_Google_Maps_Maps {
 			return;
 		}
 
-		if ( ! isset( $options['active'] ) || ! is_array( $options['active'] ) ) {
+		if ( ! is_array( $options ) || ! isset( $options['active'] ) || ! is_array( $options['active'] ) ) {
 			return;
 		}
 
