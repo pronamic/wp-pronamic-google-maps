@@ -255,6 +255,9 @@ Or througt an filter
 
 == Changelog ==
 
+= 2.4.3 =
+* Fixed authorization checks for the bulk geocoder AJAX endpoint.
+
 = todo =
 *	Add options for different dimension types pixels, percentages, etc.
 *	$("#pronamic-google-maps-meta-box-hide").change(function() { google.maps.event.trigger(map, "resize"); });
