@@ -3,7 +3,7 @@
 		"version": "Unreleased",
 		"date": "2015-08-21",
 		"changes": [
-
+			"Fixed authorization checks for the bulk geocoder AJAX endpoint."
 		]
 	},
 	{

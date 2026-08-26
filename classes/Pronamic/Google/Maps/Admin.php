@@ -248,8 +248,17 @@ class Pronamic_Google_Maps_Admin {
 	 * @return array
 	 */
 	public static function get_geocode_query_args() {
+		$active_post_types = array_keys(
+			array_filter(
+				Pronamic_Google_Maps_Settings::get_active_post_types(),
+				static function ( $active ) {
+					return filter_var( $active, FILTER_VALIDATE_BOOLEAN );
+				}
+			)
+		);
+
 		return [
-			'post_type'      => 'any',
+			'post_type'      => empty( $active_post_types ) ? 'none' : $active_post_types,
 			'posts_per_page' => 1,
 			'meta_query'     => [
 				// The address should not be empty
@@ -272,15 +281,32 @@ class Pronamic_Google_Maps_Admin {
 	 * AJAX geocode
 	 */
 	public static function ajax_geocode() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( [ 'message' => __( 'You are not allowed to geocode posts.', 'pronamic-google-maps' ) ], 403 );
+		}
+
+		check_ajax_referer( 'pgm-geocode', '_pgm_geocode_nonce' );
+
 		// ID
 		$post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT );
+		$post    = get_post( $post_id );
+
+		if ( ! $post || ! Pronamic_Google_Maps_Settings::is_active_post_type( $post->post_type ) || ! current_user_can( 'edit_post', $post_id ) || ! current_user_can( 'read_post', $post_id ) ) {
+			wp_send_json_error( [ 'message' => __( 'You are not allowed to geocode this post.', 'pronamic-google-maps' ) ], 403 );
+		}
 
 		// Latitude
 		$latitude = filter_input( INPUT_POST, '_pronamic_google_maps_latitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		if ( ! is_numeric( $latitude ) || $latitude < -90 || $latitude > 90 ) {
+			wp_send_json_error( [ 'message' => __( 'The latitude is invalid.', 'pronamic-google-maps' ) ], 400 );
+		}
 		update_post_meta( $post_id, '_pronamic_google_maps_latitude', $latitude );
 
 		// Longitude
 		$longitude = filter_input( INPUT_POST, '_pronamic_google_maps_longitude', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		if ( ! is_numeric( $longitude ) || $longitude < -180 || $longitude > 180 ) {
+			wp_send_json_error( [ 'message' => __( 'The longitude is invalid.', 'pronamic-google-maps' ) ], 400 );
+		}
 		update_post_meta( $post_id, '_pronamic_google_maps_longitude', $longitude );
 
 		// Status
@@ -292,13 +318,20 @@ class Pronamic_Google_Maps_Admin {
 		$result->success = true;
 
 		// Next post
-		$query = new WP_Query();
-		$query->query( Pronamic_Google_Maps_Admin::get_geocode_query_args() );
+		$query                        = new WP_Query();
+		$query_args                   = self::get_geocode_query_args();
+		$query_args['posts_per_page'] = -1;
+		$query->query( $query_args );
 
 		$result->foundPosts = $query->found_posts;
 
 		while ( $query->have_posts() ) {
 			$query->the_post();
+
+			if ( ! current_user_can( 'edit_post', get_the_ID() ) || ! current_user_can( 'read_post', get_the_ID() ) ) {
+				--$result->foundPosts;
+				continue;
+			}
 
 			$pgm = pronamic_get_google_maps_meta();
 

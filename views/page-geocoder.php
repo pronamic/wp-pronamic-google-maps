@@ -29,6 +29,7 @@
 		?>
 
 		<form id="pgm-geocoder" action="" method="post">
+			<?php wp_nonce_field( 'pgm-geocode', '_pgm_geocode_nonce' ); ?>
 			<table class="form-table">
 				<?php $pgm = pronamic_get_google_maps_meta(); ?>
 				<tr>

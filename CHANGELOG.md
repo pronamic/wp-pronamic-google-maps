@@ -8,6 +8,12 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 <!-- Start changelog -->
 
+## [2.4.3] - 2026-08-26
+
+### Fixed
+
+- Added authorization, nonce, post type, capability, and coordinate validation to the bulk geocoder.
+
 ## [2.4.2] - 2025-08-25
 
 ### Commits

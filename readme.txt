@@ -3,8 +3,8 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, geo, geocode
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 6.8
-Stable tag: 2.4.2
+Tested up to: 7.0
+Stable tag: 2.4.3
 License: GPLv2 or later
 
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
