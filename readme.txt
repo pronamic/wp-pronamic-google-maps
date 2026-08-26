@@ -3,7 +3,7 @@ Contributors: pronamic, remcotolsma
 Tags: pronamic, google maps, geo, geocode
 Donate link: http://pronamic.eu/donate/?for=wp-plugin-pronamic-google-maps&source=wp-plugin-readme-txt
 Requires at least: 3.0
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 2.4.3
 License: GPLv2 or later
 
