@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       Pronamic Google Maps
  * Plugin URI:        https://www.pronamic.eu/plugins/pronamic-google-maps/
- * Description:       This plugin makes it simple to add Google Maps to your WordPress post, pages or other custom post types.
+ * Description:       ⚠️ DEPRECATED - This plugin has been archived due to a critical security vulnerability. Do not use. See DEPRECATED.md for details.
  * Version:           2.4.2
  * Requires at least: 3.0
  * Author:            Pronamic
@@ -16,6 +16,7 @@
  * Text Domain:       pronamic-google-maps
  * Domain Path:       /languages/
  * License:           GPL
+ * Deprecated:        2026-08-31
  */
 
 function pronamic_google_maps_autoload( $name ) {

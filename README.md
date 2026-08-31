@@ -1,5 +1,22 @@
 # [Pronamic Google Maps](http://www.happywp.com/plugins/pronamic-google-maps/)
 
+## ⚠️ ARCHIVED / DEPRECATED
+
+**As of August 31, 2026, this plugin has been archived and is no longer maintained.**
+
+This plugin was removed from the WordPress.org Plugin Directory due to a **critical security vulnerability** affecting authorization checks in the geocoding AJAX handler. 
+
+**Do not use this plugin.** If you are currently using it, please:
+1. Deactivate and delete it immediately
+2. Review your post metadata for unauthorized changes
+3. Consider alternative Google Maps solutions
+
+See [DEPRECATED.md](./DEPRECATED.md) for full details about the vulnerability and archival decision.
+
+---
+
+## Original Description
+
 This plugin makes it easy to add Google Maps to your WordPress post, pages or other custom post types.
 
 ## Shortcode `googlemaps` `googlemapsmashup`
